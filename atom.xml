@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-05T10:31:52.040Z</updated>
+  <updated>2016-12-07T14:25:34.984Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>常用Linux 命令筆記(for Oracle Linux)</title>
+    <link href="http://yoursite.com/2016/12/07/Linux/"/>
+    <id>http://yoursite.com/2016/12/07/Linux/</id>
+    <published>2016-12-07T14:05:00.000Z</published>
+    <updated>2016-12-07T14:25:34.984Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h2&gt;&lt;h3 id=&quot;新增使用者及密碼修改&quot;&gt;&lt;a href=&quot;#新增使用者及密碼修改&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="技術之路" scheme="http://yoursite.com/categories/technology/"/>
+    
+    
+      <category term="命令" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Big Data相關環境建置筆記</title>
-    <link href="http://yoursite.com/2016/12/04/MyTest/"/>
-    <id>http://yoursite.com/2016/12/04/MyTest/</id>
+    <link href="http://yoursite.com/2016/12/04/BigData/"/>
+    <id>http://yoursite.com/2016/12/04/BigData/</id>
     <published>2016-12-04T13:10:28.000Z</published>
-    <updated>2016-12-05T10:31:52.040Z</updated>
+    <updated>2016-12-07T14:02:24.548Z</updated>
     
     <content type="html"><![CDATA[<h3 id="安裝前準備-每台Datanode也要做"><a href="#安裝前準備-每台Datanode也要做" class="headerlink" title="安裝前準備(每台Datanode也要做)"></a>安裝前準備(每台Datanode也要做)</h3><p>先使用root登入Linux OS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">##停止iptables服務</div><div class="line">[root@hadoop-master]service iptables stop  #停止iptables服務</div><div class="line">[root@hadoop-master]vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div><div class="line"></div><div class="line">##新增hadoop User</div><div class="line">[root@hadoop-master]adduser hadoop</div><div class="line">[root@hadoop-master]passwd  hadoop</div><div class="line">[root@hadoop-master]visudo</div><div class="line">hadoop	ALL=(ALL) ALL  #加入這一行,存檔後離開</div><div class="line">(以上步驟每台電腦都要做)</div><div class="line"></div><div class="line">[root@hadoop-master]su - hadoop</div><div class="line"></div><div class="line">##ssh 設定</div><div class="line">[hadoop@hadoop-master]ssh-keygen</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">[hadoop@hadoop-master]ssh hadoop-master</div><div class="line">[hadoop@hadoop-master]ssh hadoop-slave1</div><div class="line"></div><div class="line">##系統時間同步</div><div class="line">[hadoop@hadoop-master]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave1]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave2]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line"></div><div class="line">##建立安裝目錄</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/install_src</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/java</div><div class="line">[hadoop@hadoop-master]sudo chown -R hadoop:hadoop /bgdt</div><div class="line"></div><div class="line">##將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下</div><div class="line">使用WinSCP上傳比較方便囉!!!</div><div class="line">jdk-8u101-linux-x64.tar.gz</div><div class="line">hadoop-2.7.2.tar.gz</div><div class="line">spark-2.0.0-bin-hadoop2.7.tgz</div><div class="line">apache-hive-2.1.0-bin.tar.gz</div><div class="line">Anaconda3-4.2.0-Linux-x86_64.sh</div><div class="line">oozie-4.3.0-SNAPSHOT-distro.tar.gz</div></pre></td></tr></table></figure></p>
 <h3 id="JDK1-8安裝"><a href="#JDK1-8安裝" class="headerlink" title="JDK1.8安裝"></a>JDK1.8安裝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line"></div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下兩行</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div><div class="line">(以上步驟在每台Datanode上也需要安裝喔!!)</div></pre></td></tr></table></figure>
@@ -53,6 +76,8 @@
       &lt;h3 id=&quot;安裝前準備-每台Datanode也要做&quot;&gt;&lt;a href=&quot;#安裝前準備-每台Datanode也要做&quot; class=&quot;headerlink&quot; title=&quot;安裝前準備(每台Datanode也要做)&quot;&gt;&lt;/a&gt;安裝前準備(每台Datanode也要做)&lt;/h3&gt;&lt;p&gt;
     
     </summary>
+    
+      <category term="技術之路" scheme="http://yoursite.com/categories/technology/"/>
     
     
       <category term="環境安裝" scheme="http://yoursite.com/tags/%E7%92%B0%E5%A2%83%E5%AE%89%E8%A3%9D/"/>
