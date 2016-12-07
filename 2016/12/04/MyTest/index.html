@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Big Data相關環境建置筆記 | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安裝前準備(每台Datanode也要做)先使用root登入Linux OS123456789101112131415161718192021222324252627282930313233343536373839404142##停止iptables服務[root@hadoop-master]service iptables stop  #停止iptables服務[root@hadoop-maste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Big Data相關環境建置筆記">
+<meta property="og:url" content="http://yoursite.com/2016/12/04/MyTest/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="安裝前準備(每台Datanode也要做)先使用root登入Linux OS123456789101112131415161718192021222324252627282930313233343536373839404142##停止iptables服務[root@hadoop-master]service iptables stop  #停止iptables服務[root@hadoop-maste">
+<meta property="og:image" content="http://yoursite.com/images/dfs_2.jpg">
+<meta property="og:image" content="http://yoursite.com/images/jupyter_1.jpg">
+<meta property="og:image" content="http://yoursite.com/images/jupyter_2.jpg">
+<meta property="og:updated_time" content="2016-12-05T10:31:52.040Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Big Data相關環境建置筆記">
+<meta name="twitter:description" content="安裝前準備(每台Datanode也要做)先使用root登入Linux OS123456789101112131415161718192021222324252627282930313233343536373839404142##停止iptables服務[root@hadoop-master]service iptables stop  #停止iptables服務[root@hadoop-maste">
+<meta name="twitter:image" content="http://yoursite.com/images/dfs_2.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Popal&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MyTest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/04/MyTest/" class="article-date">
+  <time datetime="2016-12-04T13:10:28.000Z" itemprop="datePublished">2016-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Big Data相關環境建置筆記
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備-每台Datanode也要做"><span class="toc-text">安裝前準備(每台Datanode也要做)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8安裝"><span class="toc-text">JDK1.8安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-0"><span class="toc-text">Hive安裝(2.1.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anaconda3安裝-4-2-0"><span class="toc-text">Anaconda3安裝(4.2.0)</span></a></li></ol>
+</div>
+
+        <h3 id="安裝前準備-每台Datanode也要做"><a href="#安裝前準備-每台Datanode也要做" class="headerlink" title="安裝前準備(每台Datanode也要做)"></a>安裝前準備(每台Datanode也要做)</h3><p>先使用root登入Linux OS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">##停止iptables服務</div><div class="line">[root@hadoop-master]service iptables stop  #停止iptables服務</div><div class="line">[root@hadoop-master]vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div><div class="line"></div><div class="line">##新增hadoop User</div><div class="line">[root@hadoop-master]adduser hadoop</div><div class="line">[root@hadoop-master]passwd  hadoop</div><div class="line">[root@hadoop-master]visudo</div><div class="line">hadoop	ALL=(ALL) ALL  #加入這一行,存檔後離開</div><div class="line">(以上步驟每台電腦都要做)</div><div class="line"></div><div class="line">[root@hadoop-master]su - hadoop</div><div class="line"></div><div class="line">##ssh 設定</div><div class="line">[hadoop@hadoop-master]ssh-keygen</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">[hadoop@hadoop-master]ssh hadoop-master</div><div class="line">[hadoop@hadoop-master]ssh hadoop-slave1</div><div class="line"></div><div class="line">##系統時間同步</div><div class="line">[hadoop@hadoop-master]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave1]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave2]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line"></div><div class="line">##建立安裝目錄</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/install_src</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/java</div><div class="line">[hadoop@hadoop-master]sudo chown -R hadoop:hadoop /bgdt</div><div class="line"></div><div class="line">##將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下</div><div class="line">使用WinSCP上傳比較方便囉!!!</div><div class="line">jdk-8u101-linux-x64.tar.gz</div><div class="line">hadoop-2.7.2.tar.gz</div><div class="line">spark-2.0.0-bin-hadoop2.7.tgz</div><div class="line">apache-hive-2.1.0-bin.tar.gz</div><div class="line">Anaconda3-4.2.0-Linux-x86_64.sh</div><div class="line">oozie-4.3.0-SNAPSHOT-distro.tar.gz</div></pre></td></tr></table></figure></p>
+<h3 id="JDK1-8安裝"><a href="#JDK1-8安裝" class="headerlink" title="JDK1.8安裝"></a>JDK1.8安裝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line"></div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下兩行</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div><div class="line">(以上步驟在每台Datanode上也需要安裝喔!!)</div></pre></td></tr></table></figure>
+<h3 id="Hadoop-Cluster安裝-2-7-2"><a href="#Hadoop-Cluster安裝-2-7-2" class="headerlink" title="Hadoop Cluster安裝(2.7.2)"></a>Hadoop Cluster安裝(2.7.2)</h3><p>1.解壓縮並設定相關環境變數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/hadoop-2.7.2.tar.gz -C /bgdt</div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下變數</div><div class="line">export HADOOP_HOME=/bgdt/hadoop-2.7.2</div><div class="line">export HADOOP_CONF_DIR=/bgdt/hadoop-2.7.2/etc/hadoop</div><div class="line"></div><div class="line">export CLASSPATH=$CLASSPATH:$HADOOP_HOME/lib/*:.</div><div class="line">export CLASSPATH=$CLASSPATH:$HADOOP_HOME/share/hadoop/common/*:.</div><div class="line"></div><div class="line">export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div></pre></td></tr></table></figure></p>
+<p>2.修改設定檔<br>2-1.修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">   &lt;value&gt;hdfs://hadoop-master:8020&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">   &lt;value&gt;file:/usr/local/hadoop-2.7.2/tmp&lt;/value&gt;           </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</div><div class="line">   &lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</div><div class="line">   &lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>2-2.修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</div><div class="line">   &lt;value&gt;hadoop-master:50070&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">   &lt;value&gt;2&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</div><div class="line">   &lt;value&gt;file:/bgdt/hadoop-2.7.2/tmp/dfs/name&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</div><div class="line">   &lt;value&gt;file:/bgdt/hadoop-2.7.2/tmp/dfs/data&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.block.size&lt;/name&gt;</div><div class="line">   &lt;value&gt;64M&lt;/value&gt;   </div><div class="line">  &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>2-3.修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">   &lt;value&gt;yarn&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">   &lt;value&gt;hadoop-master:10020&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">   &lt;value&gt;hadoop-master:19888&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>2-4.修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">   &lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">    &lt;value&gt;hadoop-master&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">   &lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.log.server.url&lt;/name&gt;</div><div class="line">    &lt;value&gt;http://hadoop-master:19888/jobhistory/logs&lt;/value&gt;</div><div class="line">  &lt;/property&gt;  </div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>2-5.修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/slaves)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop-slave1</div><div class="line">hadoop-slave2</div></pre></td></tr></table></figure></p>
+<p>3.將檔案分送到其他Datanode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##將目錄壓縮</div><div class="line">[hadoop@hadoop-master]tar -zcf /bgdt/hadoop.master.tar.gz /bgdt/hadoop-2.7.2</div><div class="line">[hadoop@hadoop-master]scp /bgdt/hadoop.master.tar.gz hadoop-slave1:/bgdt/install_src</div><div class="line">[hadoop@hadoop-master]scp /bgdt/hadoop.master.tar.gz hadoop-slave2:/bgdt/install_src</div><div class="line"></div><div class="line">##各個Datanode將Hadoop解壓縮至/bgdt,解完後設定相關Haoop變數如第一大項</div></pre></td></tr></table></figure></p>
+<p>4.格式化HDFS系統<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]hadoop namenode -format</div><div class="line">[hadoop@hadoop-master]hadoop dfsadmin -report</div></pre></td></tr></table></figure></p>
+<p>5.啟動dfs與yarn<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]start-dfs.sh</div><div class="line">[hadoop@hadoop-master]start-yarn.sh</div></pre></td></tr></table></figure></p>
+<p>6.HDFS WebUI(因為後來系統從做,所以主機名稱略有不同)Web UI port:50070<br><img src="/images/dfs_2.jpg" alt=""></p>
+<h3 id="Spark安裝-2-0-0"><a href="#Spark安裝-2-0-0" class="headerlink" title="Spark安裝(2.0.0)"></a>Spark安裝(2.0.0)</h3><h3 id="MariaDB安裝-10-1-17"><a href="#MariaDB安裝-10-1-17" class="headerlink" title="MariaDB安裝(10.1.17)"></a>MariaDB安裝(10.1.17)</h3><h3 id="Hive安裝-2-1-0"><a href="#Hive安裝-2-1-0" class="headerlink" title="Hive安裝(2.1.0)"></a>Hive安裝(2.1.0)</h3><h3 id="OOZIE安裝-4-3-0"><a href="#OOZIE安裝-4-3-0" class="headerlink" title="OOZIE安裝(4.3.0)"></a>OOZIE安裝(4.3.0)</h3><h3 id="Anaconda3安裝-4-2-0"><a href="#Anaconda3安裝-4-2-0" class="headerlink" title="Anaconda3安裝(4.2.0)"></a>Anaconda3安裝(4.2.0)</h3><p>Download Anaconda3-4.2.0-Linux-x86.sh<br><a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a><br><a href="https://www.continuum.io/downloads" target="_blank" rel="external">https://www.continuum.io/downloads</a></p>
+<p>Upload Anaconda3-4.2.0-Linux-x86.sh to Host</p>
+<p>Install bzip2(if not bzip2)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure></p>
+<p>Install Anaconda3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">bash /opt/Anaconda3-4.2.0-Linux-x86.sh</div><div class="line">&gt;&gt;&gt;[Enter]</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div><div class="line">&gt;&gt;&gt;/opt/anaconda3</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div></pre></td></tr></table></figure></p>
+<p>Modify ~/.bashrc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># added by Anaconda3 4.2.0 installer</div><div class="line">export PATH=&quot;/opt/anaconda3/bin:$PATH&quot;</div></pre></td></tr></table></figure></p>
+<p>Modify spark-env.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /usr/local/spark/conf/spark/spark-env.sh</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export PYSPARK_PYTHON=/opt/anaconda3/bin/python3</div><div class="line">export PYSPARK_DRIVER_PYTHON=jupyter</div><div class="line">export PYSPARK_DRIVER_PYTHON_OPTS=&quot;notebook --NotebookApp.open_browser=False --NotebookApp.ip=&apos;*&apos; --NotebookApp.port=8880&quot;</div></pre></td></tr></table></figure>
+<p>重新進入Putty後,啟動Hadoop相關服務<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">start-dfs.sh  ##start Hadoop</div><div class="line">start-yarn.sh ##start yarn</div><div class="line">nohup /usr/local/spark/bin/pyspark &amp;</div></pre></td></tr></table></figure></p>
+<p>啟動完成後,打開Web Browser即可看到Jupyter Web UI<br><img src="/images/jupyter_1.jpg" alt=""></p>
+<p>以下編寫測試範例:<br><img src="/images/jupyter_2.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rdd = sc.textFile(&quot;hdfs://XXX.XXX.XXX.XXX:8020/OOO/readme.txt&quot;)</div><div class="line">rdd.count()</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">l = [(&apos;Alice&apos;, 1)]</div><div class="line">spark.createDataFrame(l).collect()</div><div class="line">spark.createDataFrame(l, [&apos;name&apos;, &apos;age&apos;]).collect()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ds = spark.sql(&quot;select * from students&quot;)</div><div class="line">ds.take(5)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/04/MyTest/" data-id="ciwez0qor0001l4lltii1jh5a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/04/MyTest/">Big Data相關環境建置筆記</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/04/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 popal<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
