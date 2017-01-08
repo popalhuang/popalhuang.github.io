@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -68,60 +68,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/07/Linux/" class="article-date">
-  <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/technology/">技術之路</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
-</div>
-
-        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
-<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/Linux/" data-id="cixohmoz30000ncllc3u6wo1z" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2016/12/07/Linux/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-BigData" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/04/BigData/" class="article-date">
-  <time datetime="2016-12-04T13:10:28.000Z" itemprop="datePublished">2016-12-04</time>
+    <a href="/2017/01/08/BigData/" class="article-date">
+  <time datetime="2017-01-08T10:00:00.000Z" itemprop="datePublished">2017-01-08</time>
 </a>
     
   <div class="article-category">
@@ -136,7 +86,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/04/BigData/">Big Data相關環境建置筆記</a>
+      <a class="article-title" href="/2017/01/08/BigData/">Hadoop Cluster相關環境建置筆記(持續更新中)</a>
     </h1>
   
 
@@ -146,10 +96,10 @@
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備-每台Datanode也要做"><span class="toc-text">安裝前準備(每台Datanode也要做)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8安裝"><span class="toc-text">JDK1.8安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-1"><span class="toc-text">Hive安裝(2.1.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anaconda3安裝-4-2-0-選裝"><span class="toc-text">Anaconda3安裝(4.2.0),選裝</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備"><span class="toc-text">安裝前準備</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-1"><span class="toc-text">Hive安裝(2.1.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anaconda3安裝-4-2-0-選裝"><span class="toc-text">Anaconda3安裝(4.2.0),選裝</span></a></li></ol>
 </div>
 
-        <h3 id="安裝前準備-每台Datanode也要做"><a href="#安裝前準備-每台Datanode也要做" class="headerlink" title="安裝前準備(每台Datanode也要做)"></a>安裝前準備(每台Datanode也要做)</h3><blockquote>
+        <h3 id="安裝前準備"><a href="#安裝前準備" class="headerlink" title="安裝前準備"></a>安裝前準備</h3><blockquote>
 <p>以下步驟在Hadoop cluster下的每台電腦皆要安裝與設定 </p>
 <ol>
 <li>關閉iptables服務</li>
@@ -161,11 +111,11 @@
 </ol>
 </blockquote>
 <ol>
-<li>先使用root登入Linux OS<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">##停止iptables服務</div><div class="line">[root@hadoop-master]service iptables stop  #停止iptables服務</div><div class="line">[root@hadoop-master]vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div><div class="line"></div><div class="line">##新增hadoop User</div><div class="line">[root@hadoop-master]adduser hadoop</div><div class="line">[root@hadoop-master]passwd  hadoop</div><div class="line">[root@hadoop-master]visudo</div><div class="line">hadoop	ALL=(ALL) ALL  #加入這一行,存檔後離開</div><div class="line">(以上步驟每台電腦都要做)</div><div class="line"></div><div class="line">[root@hadoop-master]su - hadoop</div><div class="line"></div><div class="line">##ssh 設定</div><div class="line">[hadoop@hadoop-master]ssh-keygen</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">[hadoop@hadoop-master]ssh hadoop-master</div><div class="line">[hadoop@hadoop-master]ssh hadoop-slave1</div><div class="line"></div><div class="line">##系統時間同步</div><div class="line">[hadoop@hadoop-master]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave1]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave2]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line"></div><div class="line">##建立安裝目錄</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/install_src</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/java</div><div class="line">[hadoop@hadoop-master]sudo chown -R hadoop:hadoop /bgdt</div><div class="line"></div><div class="line">##將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下</div><div class="line">使用WinSCP上傳比較方便囉!!!</div><div class="line">jdk-8u101-linux-x64.tar.gz</div><div class="line">hadoop-2.7.2.tar.gz</div><div class="line">spark-2.0.0-bin-hadoop2.7.tgz</div><div class="line">apache-hive-2.1.1-bin.tar.gz</div><div class="line">apache-hive-2.1.1-src.tar.gz</div><div class="line">Anaconda3-4.2.0-Linux-x86_64.sh</div><div class="line">oozie-4.3.0-SNAPSHOT-distro.tar.gz</div><div class="line">mysql-connector-java-5.1.39-bin.jar</div></pre></td></tr></table></figure>
+<li><p>先使用root登入Linux OS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">##停止iptables服務</div><div class="line">[root@hadoop-master]service iptables stop  #停止iptables服務</div><div class="line">[root@hadoop-master]vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div><div class="line"></div><div class="line">##新增hadoop User</div><div class="line">[root@hadoop-master]adduser hadoop</div><div class="line">[root@hadoop-master]passwd  hadoop</div><div class="line">[root@hadoop-master]visudo</div><div class="line">hadoop	ALL=(ALL) ALL  #加入這一行,存檔後離開</div><div class="line">(以上步驟每台電腦都要做)</div><div class="line"></div><div class="line">[root@hadoop-master]su - hadoop</div><div class="line"></div><div class="line">##ssh 設定</div><div class="line">[hadoop@hadoop-master]ssh-keygen</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">[hadoop@hadoop-master]ssh hadoop-master</div><div class="line">[hadoop@hadoop-master]ssh hadoop-slave1</div><div class="line"></div><div class="line">##系統時間同步</div><div class="line">[hadoop@hadoop-master]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave1]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave2]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line"></div><div class="line">##建立安裝目錄</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/install_src</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/java</div><div class="line">[hadoop@hadoop-master]sudo chown -R hadoop:hadoop /bgdt</div><div class="line"></div><div class="line">##將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下</div><div class="line">使用WinSCP上傳比較方便囉!!!</div><div class="line">jdk-8u101-linux-x64.tar.gz</div><div class="line">hadoop-2.7.2.tar.gz</div><div class="line">spark-2.0.0-bin-hadoop2.7.tgz</div><div class="line">apache-hive-2.1.1-bin.tar.gz</div><div class="line">apache-hive-2.1.1-src.tar.gz</div><div class="line">Anaconda3-4.2.0-Linux-x86_64.sh</div><div class="line">oozie-4.3.0-SNAPSHOT-distro.tar.gz</div><div class="line">mysql-connector-java-5.1.39-bin.jar</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<h3 id="JDK1-8安裝"><a href="#JDK1-8安裝" class="headerlink" title="JDK1.8安裝"></a>JDK1.8安裝</h3><ol>
-<li>安裝JDK<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line"></div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下兩行</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div><div class="line">(以上步驟在每台Datanode上也需要安裝喔!!)</div></pre></td></tr></table></figure>
+<li><p>安裝JDK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line"></div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下兩行</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div><div class="line">(以上步驟在每台Datanode上也需要安裝喔!!)</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="Hadoop-Cluster安裝-2-7-2"><a href="#Hadoop-Cluster安裝-2-7-2" class="headerlink" title="Hadoop Cluster安裝(2.7.2)"></a>Hadoop Cluster安裝(2.7.2)</h3><blockquote>
@@ -379,12 +329,62 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/04/BigData/" data-id="cixohmoz70001nclld8wq7w59" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/08/BigData/" data-id="cixoq81e800003gllce3g1slu" class="article-share-link">Partager</a>
       
-        <a href="http://yoursite.com/2016/12/04/BigData/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/01/08/BigData/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/07/Linux/" class="article-date">
+  <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">技術之路</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
+</div>
+
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/07/Linux/" data-id="cixoq81ec00013glluo8g8iy9" class="article-share-link">Partager</a>
+      
+        <a href="http://yoursite.com/2016/12/07/Linux/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
 
     </footer>
   </div>
@@ -400,7 +400,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">技術之路</a></li></ul>
     </div>
@@ -410,7 +410,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
     </div>
@@ -420,7 +420,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
       <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
     </div>
@@ -431,7 +431,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
     </div>
   </div>
 
@@ -439,16 +439,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
+            <a href="/2017/01/08/BigData/">Hadoop Cluster相關環境建置筆記(持續更新中)</a>
           </li>
         
           <li>
-            <a href="/2016/12/04/BigData/">Big Data相關環境建置筆記</a>
+            <a href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
           </li>
         
       </ul>
@@ -464,7 +464,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 popal<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
