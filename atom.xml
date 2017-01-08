@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-04T13:07:01.387Z</updated>
+  <updated>2016-12-07T14:42:59.132Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,29 +16,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/12/13/hello-world/"/>
-    <id>http://yoursite.com/2016/12/13/hello-world/</id>
-    <published>2016-12-13T08:57:40.212Z</published>
-    <updated>2016-12-04T13:07:01.387Z</updated>
+    <title>常用Linux 命令筆記(for Oracle Linux)</title>
+    <link href="http://yoursite.com/2016/12/07/Linux/"/>
+    <id>http://yoursite.com/2016/12/07/Linux/</id>
+    <published>2016-12-07T14:05:00.000Z</published>
+    <updated>2016-12-07T14:42:59.132Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;h2 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h2&gt;&lt;h3 id=&quot;新增使用者及密碼修改&quot;&gt;&lt;a href=&quot;#新增使用者及密碼修改&quot; class=&quot;headerlink&quot; titl
     
     </summary>
     
+      <category term="技術之路" scheme="http://yoursite.com/categories/technology/"/>
+    
+    
+      <category term="命令" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
@@ -47,7 +43,7 @@
     <link href="http://yoursite.com/2016/12/04/BigData/"/>
     <id>http://yoursite.com/2016/12/04/BigData/</id>
     <published>2016-12-04T13:10:28.000Z</published>
-    <updated>2017-01-08T09:49:58.483Z</updated>
+    <updated>2017-01-08T09:56:40.826Z</updated>
     
     <content type="html"><![CDATA[<h3 id="安裝前準備-每台Datanode也要做"><a href="#安裝前準備-每台Datanode也要做" class="headerlink" title="安裝前準備(每台Datanode也要做)"></a>安裝前準備(每台Datanode也要做)</h3><blockquote>
 <p>以下步驟在Hadoop cluster下的每台電腦皆要安裝與設定 </p>
@@ -238,7 +234,16 @@
 <p>9.3 執行oozie example </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/spark/job.properties -run</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/map-reduce/job.properties -run</div></pre></td></tr></table></figure>
 <p>9.4 到WebUI觀察執行情形 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:8088</div><div class="line">```  </div><div class="line">### Anaconda3安裝(4.2.0),選裝</div><div class="line">1. Download Anaconda3-4.2.0-Linux-x86.sh  </div><div class="line">[https://repo.continuum.io/archive/](https://repo.continuum.io/archive/)  </div><div class="line">[https://www.continuum.io/downloads](https://www.continuum.io/downloads)</div><div class="line">  </div><div class="line">2. Upload Anaconda3-4.2.0-Linux-x86.sh to Host</div><div class="line">  </div><div class="line">3. Install bzip2(if not bzip2)       </div><div class="line">``` </div><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:8088</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Anaconda3安裝-4-2-0-選裝"><a href="#Anaconda3安裝-4-2-0-選裝" class="headerlink" title="Anaconda3安裝(4.2.0),選裝"></a>Anaconda3安裝(4.2.0),選裝</h3><ol>
+<li><p>Download Anaconda3-4.2.0-Linux-x86.sh<br><a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a><br><a href="https://www.continuum.io/downloads" target="_blank" rel="external">https://www.continuum.io/downloads</a></p>
+</li>
+<li><p>Upload Anaconda3-4.2.0-Linux-x86.sh to Host</p>
+</li>
+<li><p>Install bzip2(if not bzip2)       </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
 </li>
 <li><p>Install Anaconda3    </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">bash /opt/Anaconda3-4.2.0-Linux-x86.sh</div><div class="line">&gt;&gt;&gt;[Enter]</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div><div class="line">&gt;&gt;&gt;/opt/anaconda3</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div></pre></td></tr></table></figure>

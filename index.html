@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -68,12 +68,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/13/hello-world/" class="article-date">
-  <time datetime="2016-12-13T08:57:40.212Z" itemprop="datePublished">2016-12-13</time>
+    <a href="/2016/12/07/Linux/" class="article-date">
+  <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">技術之路</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -82,7 +86,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/13/hello-world/">Hello World</a>
+      <a class="article-title" href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
     </h1>
   
 
@@ -92,27 +96,21 @@
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
 </div>
 
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/13/hello-world/" data-id="cixohh1360001ncllc26k2eaa" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/12/07/Linux/" data-id="cixohkie100005gllmgb9vdrd" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2016/12/13/hello-world/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://yoursite.com/2016/12/07/Linux/#disqus_thread" class="article-comment-link">Comments</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
+
     </footer>
   </div>
   
@@ -148,7 +146,7 @@
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備-每台Datanode也要做"><span class="toc-text">安裝前準備(每台Datanode也要做)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8安裝"><span class="toc-text">JDK1.8安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-1"><span class="toc-text">Hive安裝(2.1.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備-每台Datanode也要做"><span class="toc-text">安裝前準備(每台Datanode也要做)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8安裝"><span class="toc-text">JDK1.8安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-1"><span class="toc-text">Hive安裝(2.1.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anaconda3安裝-4-2-0-選裝"><span class="toc-text">Anaconda3安裝(4.2.0),選裝</span></a></li></ol>
 </div>
 
         <h3 id="安裝前準備-每台Datanode也要做"><a href="#安裝前準備-每台Datanode也要做" class="headerlink" title="安裝前準備(每台Datanode也要做)"></a>安裝前準備(每台Datanode也要做)</h3><blockquote>
@@ -340,7 +338,16 @@
 <p>9.3 執行oozie example </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/spark/job.properties -run</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/map-reduce/job.properties -run</div></pre></td></tr></table></figure>
 <p>9.4 到WebUI觀察執行情形 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:8088</div><div class="line">```  </div><div class="line">### Anaconda3安裝(4.2.0),選裝</div><div class="line">1. Download Anaconda3-4.2.0-Linux-x86.sh  </div><div class="line">[https://repo.continuum.io/archive/](https://repo.continuum.io/archive/)  </div><div class="line">[https://www.continuum.io/downloads](https://www.continuum.io/downloads)</div><div class="line">  </div><div class="line">2. Upload Anaconda3-4.2.0-Linux-x86.sh to Host</div><div class="line">  </div><div class="line">3. Install bzip2(if not bzip2)       </div><div class="line">``` </div><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:8088</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Anaconda3安裝-4-2-0-選裝"><a href="#Anaconda3安裝-4-2-0-選裝" class="headerlink" title="Anaconda3安裝(4.2.0),選裝"></a>Anaconda3安裝(4.2.0),選裝</h3><ol>
+<li><p>Download Anaconda3-4.2.0-Linux-x86.sh<br><a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a><br><a href="https://www.continuum.io/downloads" target="_blank" rel="external">https://www.continuum.io/downloads</a></p>
+</li>
+<li><p>Upload Anaconda3-4.2.0-Linux-x86.sh to Host</p>
+</li>
+<li><p>Install bzip2(if not bzip2)       </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
 </li>
 <li><p>Install Anaconda3    </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">bash /opt/Anaconda3-4.2.0-Linux-x86.sh</div><div class="line">&gt;&gt;&gt;[Enter]</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div><div class="line">&gt;&gt;&gt;/opt/anaconda3</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div></pre></td></tr></table></figure>
@@ -372,9 +379,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/04/BigData/" data-id="cixohh1320000ncllpvyn2exd" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/12/04/BigData/" data-id="cixohkie500015glluimpxcrr" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2016/12/04/BigData/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://yoursite.com/2016/12/04/BigData/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
@@ -393,7 +400,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">技術之路</a></li></ul>
     </div>
@@ -403,9 +410,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
     </div>
   </div>
 
@@ -415,14 +422,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
+      <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
     </div>
@@ -432,12 +439,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/12/13/hello-world/">Hello World</a>
+            <a href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
           </li>
         
           <li>
