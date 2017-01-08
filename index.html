@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -108,61 +108,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/13/hello-world/" data-id="cixoel4180004qcll94ubf9am" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/13/hello-world/" data-id="cixohh1360001ncllc26k2eaa" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2016/12/13/hello-world/#disqus_thread" class="article-comment-link">Commentaires</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/07/Linux/" class="article-date">
-  <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/technology/">技術之路</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
-</div>
-
-        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
-<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/Linux/" data-id="cixoel4130001qcllv5ozitpf" class="article-share-link">Partager</a>
-      
-        <a href="http://yoursite.com/2016/12/07/Linux/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2016/12/13/hello-world/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
-
     </footer>
   </div>
   
@@ -198,7 +148,7 @@
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備-每台Datanode也要做"><span class="toc-text">安裝前準備(每台Datanode也要做)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8安裝"><span class="toc-text">JDK1.8安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-1"><span class="toc-text">Hive安裝(2.1.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anaconda3安裝-4-2-0"><span class="toc-text">Anaconda3安裝(4.2.0)</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝前準備-每台Datanode也要做"><span class="toc-text">安裝前準備(每台Datanode也要做)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK1-8安裝"><span class="toc-text">JDK1.8安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Cluster安裝-2-7-2"><span class="toc-text">Hadoop Cluster安裝(2.7.2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark安裝-2-0-0"><span class="toc-text">Spark安裝(2.0.0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MariaDB安裝-10-1-17"><span class="toc-text">MariaDB安裝(10.1.17)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive安裝-2-1-1"><span class="toc-text">Hive安裝(2.1.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OOZIE安裝-4-3-0"><span class="toc-text">OOZIE安裝(4.3.0)</span></a></li></ol>
 </div>
 
         <h3 id="安裝前準備-每台Datanode也要做"><a href="#安裝前準備-每台Datanode也要做" class="headerlink" title="安裝前準備(每台Datanode也要做)"></a>安裝前準備(每台Datanode也要做)</h3><blockquote>
@@ -360,13 +310,37 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@mna1 ~]$ beeline</div><div class="line">beeline&gt; !connect jdbc:hive2://192.168.11.96:10000/default</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="OOZIE安裝-4-3-0"><a href="#OOZIE安裝-4-3-0" class="headerlink" title="OOZIE安裝(4.3.0)"></a>OOZIE安裝(4.3.0)</h3><h3 id="Anaconda3安裝-4-2-0"><a href="#Anaconda3安裝-4-2-0" class="headerlink" title="Anaconda3安裝(4.2.0)"></a>Anaconda3安裝(4.2.0)</h3><ol>
-<li><p>Download Anaconda3-4.2.0-Linux-x86.sh<br><a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a><br><a href="https://www.continuum.io/downloads" target="_blank" rel="external">https://www.continuum.io/downloads</a></p>
+<h3 id="OOZIE安裝-4-3-0"><a href="#OOZIE安裝-4-3-0" class="headerlink" title="OOZIE安裝(4.3.0)"></a>OOZIE安裝(4.3.0)</h3><ol>
+<li>從Github下載oozie原始碼,編譯oozie,並產生”oozie-4.3.0-SNAPSHOT.tar.gz”檔案</li>
+<li><p>解壓縮oozie-4.3.0-SNAPSHOT.tar.gz並變更目錄名稱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo tar -zxvf /bgdt/install_src/oozie-4.3.0-SNAPSHOT.tar.gz -C /bgdt</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/oozie-4.3.0-SNAPSHOT</div><div class="line">sudo mv /bgdt/oozie-4.3.0-SNAPSHOT /bgdt/oozie-4.3.0</div></pre></td></tr></table></figure>
 </li>
-<li><p>Upload Anaconda3-4.2.0-Linux-x86.sh to Host</p>
+<li><p>搬移相關lib至libext目錄</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/oozie-4.3.0/libext</div><div class="line">cp /bgdt/hadoop-2.7.2/share/hadoop/*/*.jar /bgdt/oozie-4.3.0/libext/</div><div class="line">cp /bgdt/hadoop-2.7.2/share/hadoop/*/lib/*.jar /bgdt/oozie-4.3.0/libext/</div><div class="line">rm -rf /bgdt/oozie-4.3.0/libext/jsp-api-2.1.jar</div><div class="line">cp /bgdt/install_src/ext2-2.zip /bgdt/oozie-4.3.0/libext</div></pre></td></tr></table></figure>
 </li>
-<li><p>Install bzip2(if not bzip2)       </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
+<li><p>安裝相關Server,createdb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozie-setup.sh prepare-war</div><div class="line">./bin/oozie-setup.sh db create -run</div><div class="line">./bin/oozied.sh start</div><div class="line">./bin/oozie admin -oozie http://localhost:11000/oozie -status</div></pre></td></tr></table></figure>
+</li>
+<li><p>OOZIE WEB UI:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:11000/oozie</div></pre></td></tr></table></figure>
+</li>
+<li><p>安裝sharelib</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">tar -zxvf oozie-sharelib-4.3.0-SNAPSHOT.tar.gz</div><div class="line">rm -rf /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">mkdir -p /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp /bgdt/spark/jars/* /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp oozie-sharelib-oozie-4.3.0-SNAPSHOT.jar  /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp oozie-sharelib-spark-4.3.0-SNAPSHOT.jar  /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp /bgdt/hive-2.1.1/conf/hive-site.xml  /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp /bgdt/install_src/mysql-connector-java-5.1.39-bin.jar /bgdt/oozie-4.3.0/share/lib/spark</div></pre></td></tr></table></figure>
+</li>
+<li><p>在HDFS上建立sharelib相關目錄</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /user/hadoop/share/lib</div><div class="line">hadoop fs -put /bgdt/oozie-4.3.0/share/lib/* /user/hadoop/share/lib</div></pre></td></tr></table></figure>
+</li>
+<li><p>重啟oozie</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozied.sh stop</div><div class="line">./bin/oozied.sh start</div></pre></td></tr></table></figure>
+</li>
+<li><p>執行oozie提供相關的測試範例:<br>9.1 上傳oozie examples相關設定到 hdfs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar -zxvf oozie-examples.tar.gz</div><div class="line">hadoop fs -mkdir -p /user/hadoop/oozie/examples</div><div class="line">hadoop fs -put -f /bgdt/oozie-4.3.0/examples/* /user/hadoop/oozie/examples</div></pre></td></tr></table></figure>
+<p>9.2 修改job.properties </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0/examples/apps/spark</div><div class="line">vi ./job.properties</div><div class="line"></div><div class="line">##修改以下內容</div><div class="line">nameNode=hdfs://hadoop-master:8020</div><div class="line">jobTracker=hadoop-master:8032</div><div class="line">master=local[*]</div><div class="line">queueName=default</div><div class="line">examplesRoot=examples</div><div class="line">oozie.use.system.libpath=true</div><div class="line">oozie.wf.application.path=/user/hadoop/oozie/examples/apps/spark</div></pre></td></tr></table></figure>
+<p>9.3 執行oozie example </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/spark/job.properties -run</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/map-reduce/job.properties -run</div></pre></td></tr></table></figure>
+<p>9.4 到WebUI觀察執行情形 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:8088</div><div class="line">```  </div><div class="line">### Anaconda3安裝(4.2.0),選裝</div><div class="line">1. Download Anaconda3-4.2.0-Linux-x86.sh  </div><div class="line">[https://repo.continuum.io/archive/](https://repo.continuum.io/archive/)  </div><div class="line">[https://www.continuum.io/downloads](https://www.continuum.io/downloads)</div><div class="line">  </div><div class="line">2. Upload Anaconda3-4.2.0-Linux-x86.sh to Host</div><div class="line">  </div><div class="line">3. Install bzip2(if not bzip2)       </div><div class="line">``` </div><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
 </li>
 <li><p>Install Anaconda3    </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">bash /opt/Anaconda3-4.2.0-Linux-x86.sh</div><div class="line">&gt;&gt;&gt;[Enter]</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div><div class="line">&gt;&gt;&gt;/opt/anaconda3</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div></pre></td></tr></table></figure>
@@ -398,9 +372,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/04/BigData/" data-id="cixoel40y0000qcllvwzj8n2k" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/04/BigData/" data-id="cixohh1320000ncllpvyn2exd" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2016/12/04/BigData/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2016/12/04/BigData/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
@@ -419,7 +393,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Catégories</h3>
+    <h3 class="widget-title">Categorieën</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">技術之路</a></li></ul>
     </div>
@@ -429,9 +403,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
     </div>
   </div>
 
@@ -439,16 +413,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
+      <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
     </div>
@@ -458,16 +432,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
           <li>
             <a href="/2016/12/13/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
           </li>
         
           <li>
@@ -487,7 +457,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 popal<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
