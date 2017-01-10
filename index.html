@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -68,9 +68,119 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-BigData" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-[hadoop]CreatNewDataNode" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/08/BigData/" class="article-date">
+    <a href="/2017/01/10/[hadoop]CreatNewDataNode/" class="article-date">
+  <time datetime="2017-01-10T10:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<p>hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode<br>1.動態新增一個DataNode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">##新主機請安裝以下</div><div class="line">1.  安裝Linux OS</div><div class="line">2.  在/etc/hosts加入所有Hadoop cluster節點的hostname</div><div class="line">3.  進入NameNode下執行</div><div class="line">    ssh-copy-id hadoop@hadoop-slave5</div><div class="line">    scp hadoop-bin-2.7.2.tar.gz hadoop@hadoop-slave5:/bgdt/install_src</div><div class="line">4.  進入新增的DataNode</div><div class="line">5.  tar -zxvf jdk8_101.tar.gz -C /bgdt</div><div class="line">6.  tar -zxvf hadoop-bin-2.7.2.tar.gz -C /bgdt</div><div class="line">7.  Modify ~/.bashrc</div><div class="line">8.  scp 相關設定檔</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/slaves hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/slaves</div><div class="line">9.  hadoop-daemon.sh start datanode</div><div class="line">10. 觀察Web UI是否出現slave5 DataNode</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cixrb4t1z0005dkll39xc7q6t" class="article-share-link">Partager</a>
+      
+        <a href="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoopMultiDirectoryStore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">技術之路</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#環境說明"><span class="toc-text">環境說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相關設定說明"><span class="toc-text">相關設定說明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#進入劇本之前"><span class="toc-text">進入劇本之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本1"><span class="toc-text">劇本1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本2"><span class="toc-text">劇本2</span></a></li></ol>
+</div>
+
+        <h3 id="環境說明"><a href="#環境說明" class="headerlink" title="環境說明"></a>環境說明</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">namenode *1(for Linux OS)</div><div class="line">datanode *4(for Linux OS)</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="相關設定說明"><a href="#相關設定說明" class="headerlink" title="相關設定說明"></a>相關設定說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/data/data2</div><div class="line"></div><div class="line">##修改hdfs-site.xml</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;/bgdt/hadoop-2.7.2/tmp/dfs/data,/bgdt/data/data2&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.failed.volumes.tolerated&lt;/name&gt;</div><div class="line">	&lt;value&gt;1&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="進入劇本之前"><a href="#進入劇本之前" class="headerlink" title="進入劇本之前"></a>進入劇本之前</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##重啟dfs與yarn</div><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div><div class="line"></div><div class="line">##並下達以下指令:</div><div class="line">hadoop balancer</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="劇本1"><a href="#劇本1" class="headerlink" title="劇本1"></a>劇本1</h3><blockquote>
+<p>系統Run了一段時間後,發現空間不夠了,想增加一個空間給目前的Hadoop cluster環境,因此有了以下的劇本與想法<br>1.用新加一個目錄,來取代模擬新分割區<br>2.copy 一個檔案至HDFS系統後,透過介面查詢相關block id,找出相對實體檔案的儲存位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -P /user/hadoop/data</div><div class="line">hadoop fs -put /opt/staff.csv /user/hadoop/data</div><div class="line"></div><div class="line">##打開Web UI觀察 /user/hadoop/data/staff.csv block Id=XXXXXX</div><div class="line">在檔案下載畫面中會有檔案相關資訊</div><div class="line">block Id:  </div><div class="line">Avaailable</div><div class="line">dna1</div><div class="line">dna3</div><div class="line"></div><div class="line">##確認block Id,與存放的Datanode位置後,直接查找存放的實體位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line">/bgdt/data/data2/current/BP-1008347755-192.168.11.96-1474254342729/current/finalized/subdir0/subdir0/blk_XXXXXX</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="劇本2"><a href="#劇本2" class="headerlink" title="劇本2"></a>劇本2</h3><blockquote>
+<p>將某個Datanode的某個目錄權限及owner設定成(chown root:root chmod 000),模擬硬碟損壞的狀況　<br>1.測試當某個正在運行的hadoop cluster節點的儲存目錄被設為無讀寫權限時,系統是否會Crash<br>2.當目錄修復完成後資料是否有辦法從其他的node,reconvert回來<br>3.當該某個正在運行的節點,所有目錄都無法讀取時,系統是否會正常運行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">##將測試檔案存放到HDFS,並設定副本數為4</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff_1.csv /user/hadoop/data</div><div class="line"></div><div class="line">##查詢block Id 及block儲存位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line"></div><div class="line">##模擬故障</div><div class="line">sudo chown -R root:root /bgdt/hadoop-2.7.2/tmp</div><div class="line">sudo chmod -R 000 /bgdt/hadoop-2.7.2/tmp</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##Web UI上Datanode Volume Failures會出現有問題的目錄</div><div class="line"></div><div class="line">##balencer執行完成後,會將原本在/tmp目錄下的資料搬移到 /bgdt/data/data2</div><div class="line"></div><div class="line">##此時若再把另外一個目錄也模擬成無權限狀態</div><div class="line">sudo chown -R root:root /bgdt/data</div><div class="line">sudo chmod -R 000 /bgdt/data</div><div class="line"></div><div class="line">##該node的Status會變成Dead,並且DataNode的process會停止</div><div class="line"></div><div class="line">##此時資料的Repl雖然一樣是4,但實際上的資料份數是3</div><div class="line"></div><div class="line">##接著將/bgdt/data目錄設回原本權限,並將資料刪除</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/data</div><div class="line">sudo chmod -R 755 /bgdt/data</div><div class="line">rm -rf /bgdt/data</div><div class="line"></div><div class="line">##並將/bgdt/data目錄的資料刪除後,重啟datanode</div><div class="line">hadoop-daemon.sh start datanode</div><div class="line"></div><div class="line">##重啟成功後,進行balancer</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##看到所有檔案的副本數與與資料又恢復正常</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cixrb4t1x0004dkllbcq5bz46" class="article-share-link">Partager</a>
+      
+        <a href="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[Install]BigData" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/08/[Install]BigData/" class="article-date">
   <time datetime="2017-01-08T10:00:00.000Z" itemprop="datePublished">2017-01-08</time>
 </a>
     
@@ -86,7 +196,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/08/BigData/">Hadoop Cluster相關環境建置筆記(持續更新中)</a>
+      <a class="article-title" href="/2017/01/08/[Install]BigData/">Hadoop Cluster相關環境建置筆記</a>
     </h1>
   
 
@@ -327,9 +437,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/08/BigData/" data-id="cixr4b0h00001mcllw6scng4p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cixrb4t1o0000dklllllka41w" class="article-share-link">Partager</a>
       
-        <a href="http://yoursite.com/2017/01/08/BigData/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/01/08/[Install]BigData/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
@@ -341,9 +451,9 @@
 
 
   
-    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-[Linux]Linux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/07/Linux/" class="article-date">
+    <a href="/2016/12/07/[Linux]Linux/" class="article-date">
   <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
 </a>
     
@@ -359,7 +469,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
+      <a class="article-title" href="/2016/12/07/[Linux]Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
     </h1>
   
 
@@ -377,9 +487,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/Linux/" data-id="cixr4b0gv0000mcllohzy8efd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cixrb4t1s0001dkllwjispkux" class="article-share-link">Partager</a>
       
-        <a href="http://yoursite.com/2016/12/07/Linux/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2016/12/07/[Linux]Linux/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
@@ -398,7 +508,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">技術之路</a></li></ul>
     </div>
@@ -408,7 +518,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/環境安裝/">環境安裝</a></li></ul>
     </div>
@@ -418,7 +528,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
       <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/環境安裝/" style="font-size: 10px;">環境安裝</a>
     </div>
@@ -437,16 +547,24 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/01/08/BigData/">Hadoop Cluster相關環境建置筆記(持續更新中)</a>
+            <a href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
           </li>
         
           <li>
-            <a href="/2016/12/07/Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
+            <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/08/[Install]BigData/">Hadoop Cluster相關環境建置筆記</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/07/[Linux]Linux/">常用Linux 命令筆記(for Oracle Linux)</a>
           </li>
         
       </ul>
@@ -462,7 +580,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 popal<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
