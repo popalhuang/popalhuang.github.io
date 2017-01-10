@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-10T05:46:16.768Z</updated>
+  <updated>2017-01-10T06:09:24.820Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/01/08/BigData/"/>
     <id>http://yoursite.com/2017/01/08/BigData/</id>
     <published>2017-01-08T10:00:00.000Z</published>
-    <updated>2017-01-10T05:46:16.768Z</updated>
+    <updated>2017-01-10T06:09:24.820Z</updated>
     
     <content type="html"><![CDATA[<h3 id="安裝前準備"><a href="#安裝前準備" class="headerlink" title="安裝前準備"></a>安裝前準備</h3><h4 id="停止iptables服務"><a href="#停止iptables服務" class="headerlink" title="停止iptables服務"></a>停止iptables服務</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## 先使用root登入Linux OS</div><div class="line">service iptables stop  #停止iptables服務</div><div class="line">vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div></pre></td></tr></table></figure>
@@ -94,7 +94,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">scala&gt;val distFile = sc.textFile(&quot;/user/hadoop/ccc/test1.csv&quot;)</div><div class="line">scala&gt;distFile.count()</div><div class="line">scala&gt;distFile.collect()</div></pre></td></tr></table></figure>
 </blockquote>
 <h5 id="範例執行結果"><a href="#範例執行結果" class="headerlink" title="範例執行結果"></a>範例執行結果</h5><p><img src="/images/spark_shell_3.jpg" alt=""></p>
-<h4 id="測試-spark-submit"><a href="#測試-spark-submit" class="headerlink" title="測試(spark-submit)"></a>測試(spark-submit)</h4><h3 id="MariaDB安裝-10-1-17-僅安裝於NameNode"><a href="#MariaDB安裝-10-1-17-僅安裝於NameNode" class="headerlink" title="MariaDB安裝(10.1.17),僅安裝於NameNode"></a>MariaDB安裝(10.1.17),僅安裝於NameNode</h3><h4 id="下載MariaDB安裝檔-目前最新版本為10-1-20"><a href="#下載MariaDB安裝檔-目前最新版本為10-1-20" class="headerlink" title="下載MariaDB安裝檔(目前最新版本為10.1.20)"></a>下載MariaDB安裝檔(目前最新版本為10.1.20)</h4><p><a href="http://ftp.ubuntu-tw.org/mirror/mariadb//mariadb-10.1.17/bintar-linux-x86_64/mariadb-10.1.17-linux-x86_64.tar.gz" target="_blank" rel="external">Download mariadb-10.1.17-linux-x86_64</a><br><img src="/images/mariadb_install_1.jpg" alt=""></p>
+<h4 id="測試-spark-submit"><a href="#測試-spark-submit" class="headerlink" title="測試(spark-submit)"></a>測試(spark-submit)</h4><h4 id="啟動Spark-History-Server-Port-18080"><a href="#啟動Spark-History-Server-Port-18080" class="headerlink" title="啟動Spark History Server(Port:18080)"></a>啟動Spark History Server(Port:18080)</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /tmp/history</div><div class="line">$SPARK_HOME/sbin/start-history-server.sh hdfs://hadoop-master:8020/tmp/history</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="啟動Job-History-Server-Port-19888"><a href="#啟動Job-History-Server-Port-19888" class="headerlink" title="啟動Job History Server(Port:19888)"></a>啟動Job History Server(Port:19888)</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="MariaDB安裝-10-1-17-僅安裝於NameNode"><a href="#MariaDB安裝-10-1-17-僅安裝於NameNode" class="headerlink" title="MariaDB安裝(10.1.17),僅安裝於NameNode"></a>MariaDB安裝(10.1.17),僅安裝於NameNode</h3><h4 id="下載MariaDB安裝檔-目前最新版本為10-1-20"><a href="#下載MariaDB安裝檔-目前最新版本為10-1-20" class="headerlink" title="下載MariaDB安裝檔(目前最新版本為10.1.20)"></a>下載MariaDB安裝檔(目前最新版本為10.1.20)</h4><p><a href="http://ftp.ubuntu-tw.org/mirror/mariadb//mariadb-10.1.17/bintar-linux-x86_64/mariadb-10.1.17-linux-x86_64.tar.gz" target="_blank" rel="external">Download mariadb-10.1.17-linux-x86_64</a><br><img src="/images/mariadb_install_1.jpg" alt=""></p>
 <h4 id="關閉iptables-service"><a href="#關閉iptables-service" class="headerlink" title="關閉iptables service"></a>關閉iptables service</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">先以root權限登入系統並關閉iptables服務</div><div class="line">service iptables stop</div><div class="line">service iptables status</div></pre></td></tr></table></figure>
 </blockquote>
