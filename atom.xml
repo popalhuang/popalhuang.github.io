@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-08T10:10:20.193Z</updated>
+  <updated>2017-01-10T05:46:16.768Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,242 +20,231 @@
     <link href="http://yoursite.com/2017/01/08/BigData/"/>
     <id>http://yoursite.com/2017/01/08/BigData/</id>
     <published>2017-01-08T10:00:00.000Z</published>
-    <updated>2017-01-08T10:10:20.193Z</updated>
+    <updated>2017-01-10T05:46:16.768Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="安裝前準備"><a href="#安裝前準備" class="headerlink" title="安裝前準備"></a>安裝前準備</h3><blockquote>
-<p>以下步驟在Hadoop cluster下的每台電腦皆要安裝與設定 </p>
-<ol>
-<li>關閉iptables服務</li>
-<li>建立haoop帳號,並visudo給hadoop與Root一樣的設定</li>
-<li>ssh-copy-id至每台datanode包含namenode</li>
-<li>要能在namenode主機上ssh至各台datanode</li>
-<li>hadoop cluster環境上的所有主機,皆需要同步系統時間</li>
-<li>安裝JDK</li>
-</ol>
+    <content type="html"><![CDATA[<h3 id="安裝前準備"><a href="#安裝前準備" class="headerlink" title="安裝前準備"></a>安裝前準備</h3><h4 id="停止iptables服務"><a href="#停止iptables服務" class="headerlink" title="停止iptables服務"></a>停止iptables服務</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## 先使用root登入Linux OS</div><div class="line">service iptables stop  #停止iptables服務</div><div class="line">vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div></pre></td></tr></table></figure>
 </blockquote>
-<ol>
-<li><p>先使用root登入Linux OS</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">##停止iptables服務</div><div class="line">[root@hadoop-master]service iptables stop  #停止iptables服務</div><div class="line">[root@hadoop-master]vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div><div class="line"></div><div class="line">##新增hadoop User</div><div class="line">[root@hadoop-master]adduser hadoop</div><div class="line">[root@hadoop-master]passwd  hadoop</div><div class="line">[root@hadoop-master]visudo</div><div class="line">hadoop	ALL=(ALL) ALL  #加入這一行,存檔後離開</div><div class="line">(以上步驟每台電腦都要做)</div><div class="line"></div><div class="line">[root@hadoop-master]su - hadoop</div><div class="line"></div><div class="line">##ssh 設定</div><div class="line">[hadoop@hadoop-master]ssh-keygen</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">[hadoop@hadoop-master]ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">[hadoop@hadoop-master]ssh hadoop-master</div><div class="line">[hadoop@hadoop-master]ssh hadoop-slave1</div><div class="line"></div><div class="line">##系統時間同步</div><div class="line">[hadoop@hadoop-master]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave1]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">[hadoop@hadoop-slave2]sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line"></div><div class="line">##建立安裝目錄</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/install_src</div><div class="line">[hadoop@hadoop-master]sudo mkdir -p /bgdt/java</div><div class="line">[hadoop@hadoop-master]sudo chown -R hadoop:hadoop /bgdt</div><div class="line"></div><div class="line">##將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下</div><div class="line">使用WinSCP上傳比較方便囉!!!</div><div class="line">jdk-8u101-linux-x64.tar.gz</div><div class="line">hadoop-2.7.2.tar.gz</div><div class="line">spark-2.0.0-bin-hadoop2.7.tgz</div><div class="line">apache-hive-2.1.1-bin.tar.gz</div><div class="line">apache-hive-2.1.1-src.tar.gz</div><div class="line">Anaconda3-4.2.0-Linux-x86_64.sh</div><div class="line">oozie-4.3.0-SNAPSHOT-distro.tar.gz</div><div class="line">mysql-connector-java-5.1.39-bin.jar</div></pre></td></tr></table></figure>
-</li>
-<li><p>安裝JDK</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line"></div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下兩行</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div><div class="line">(以上步驟在每台Datanode上也需要安裝喔!!)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Hadoop-Cluster安裝-2-7-2"><a href="#Hadoop-Cluster安裝-2-7-2" class="headerlink" title="Hadoop Cluster安裝(2.7.2)"></a>Hadoop Cluster安裝(2.7.2)</h3><blockquote>
-<p>以下為簡要安裝說明:</p>
-<ol>
-<li>下載hadoop-2.7.2.tar.gz檔案,並解壓縮及設定相關環境變數</li>
-<li>修改設定檔<blockquote>
-<ol>
-<li>$HADOOP_HOME/etc/hadoop/core-site.xml</li>
-<li>$HADOOP_HOME/etc/hadoop/hdfs-site.xml</li>
-<li>$HADOOP_HOME/etc/hadoop/mapred-site.xml</li>
-<li>$HADOOP_HOME/etc/hadoop/yarn-site.xml</li>
-<li>$HADOOP_HOME/etc/hadoop/slaves</li>
-</ol>
+<h4 id="新增hadoop-User-並賦予hadoop-root的權限"><a href="#新增hadoop-User-並賦予hadoop-root的權限" class="headerlink" title="新增hadoop User,並賦予hadoop root的權限"></a>新增hadoop User,並賦予hadoop root的權限</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">adduser hadoop</div><div class="line">passwd  hadoop</div><div class="line"></div><div class="line">visudo</div><div class="line">hadoop	ALL=(ALL) ALL  #加入這一行,存檔後離開</div><div class="line">(以上步驟每台電腦都要做)</div></pre></td></tr></table></figure>
 </blockquote>
-</li>
-<li>將檔案傳送到其他Datanode</li>
-<li>格式化HDFS系統</li>
-<li>start-dfs.sh/start-yarn.sh</li>
-<li>Web UI<blockquote>
-<ol>
-<li><a href="http://hadoop-master:50070" target="_blank" rel="external">http://hadoop-master:50070</a></li>
-<li><a href="http://hadoop-master:8088" target="_blank" rel="external">http://hadoop-master:8088</a></li>
-</ol>
+<h4 id="進行SSH相關的設定-透過ssh做無密碼連線測試"><a href="#進行SSH相關的設定-透過ssh做無密碼連線測試" class="headerlink" title="進行SSH相關的設定,透過ssh做無密碼連線測試"></a>進行SSH相關的設定,透過ssh做無密碼連線測試</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">su - hadoop</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">ssh hadoop-master</div><div class="line">ssh hadoop-slave1</div></pre></td></tr></table></figure>
 </blockquote>
-</li>
-</ol>
+<h4 id="系統時間同步"><a href="#系統時間同步" class="headerlink" title="系統時間同步"></a>系統時間同步</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">sudo date [MMddHHmmYYYY];hwclocl -w</div></pre></td></tr></table></figure>
 </blockquote>
-<ol>
-<li><p>解壓縮並設定相關環境變數</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/hadoop-2.7.2.tar.gz -C /bgdt</div><div class="line">##修改 ~/.bashrc</div><div class="line">[hadoop@hadoop-master]vi ~/.bshrc</div><div class="line">加入以下變數</div><div class="line">export HADOOP_HOME=/bgdt/hadoop-2.7.2</div><div class="line">export HADOOP_CONF_DIR=/bgdt/hadoop-2.7.2/etc/hadoop</div><div class="line"></div><div class="line">export CLASSPATH=$CLASSPATH:$HADOOP_HOME/lib/*:.</div><div class="line">export CLASSPATH=$CLASSPATH:$HADOOP_HOME/share/hadoop/common/*:.</div><div class="line"></div><div class="line">export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</div><div class="line"></div><div class="line">[hadoop@hadoop-master]source ~/.bashrc</div><div class="line">[hadoop@hadoop-master]java -version</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml)</p>
+<h4 id="建立安裝目錄"><a href="#建立安裝目錄" class="headerlink" title="建立安裝目錄"></a>建立安裝目錄</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /bgdt/install_src</div><div class="line">sudo mkdir -p /bgdt/java</div><div class="line">sudo chown -R hadoop:hadoop /bgdt</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="將相關的安裝檔案上傳到-hadoop-master-bget-install-src目錄下"><a href="#將相關的安裝檔案上傳到-hadoop-master-bget-install-src目錄下" class="headerlink" title="將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下"></a>將相關的安裝檔案上傳到 hadoop-master /bget/install_src目錄下</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">使用WinSCP上傳比較方便</div><div class="line">jdk-8u101-linux-x64.tar.gz</div><div class="line">hadoop-2.7.2.tar.gz</div><div class="line">spark-2.0.0-bin-hadoop2.7.tgz</div><div class="line">apache-hive-2.1.1-bin.tar.gz</div><div class="line">apache-hive-2.1.1-src.tar.gz</div><div class="line">Anaconda3-4.2.0-Linux-x86_64.sh</div><div class="line">oozie-4.3.0-SNAPSHOT-distro.tar.gz</div><div class="line">mysql-connector-java-5.1.39-bin.jar</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="安裝JDK"><a href="#安裝JDK" class="headerlink" title="安裝JDK"></a>安裝JDK</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line"></div><div class="line">##修改 ~/.bashrc</div><div class="line">vi ~/.bshrc</div><div class="line">加入以下兩行</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line"></div><div class="line">source ~/.bashrc</div><div class="line">java -version</div><div class="line">(以上步驟在每台Datanode上也需要安裝喔!!)</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop-Cluster安裝-2-7-2-每台電腦皆要安裝"><a href="#Hadoop-Cluster安裝-2-7-2-每台電腦皆要安裝" class="headerlink" title="Hadoop Cluster安裝(2.7.2),每台電腦皆要安裝"></a>Hadoop Cluster安裝(2.7.2),每台電腦皆要安裝</h3><h4 id="解壓縮並設定相關環境變數"><a href="#解壓縮並設定相關環境變數" class="headerlink" title="解壓縮並設定相關環境變數"></a>解壓縮並設定相關環境變數</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]tar -zxvf /bgdt/hadoop-2.7.2.tar.gz -C /bgdt</div><div class="line">##修改 ~/.bashrc</div><div class="line">vi ~/.bshrc</div><div class="line">加入以下變數</div><div class="line">export HADOOP_HOME=/bgdt/hadoop-2.7.2</div><div class="line">export HADOOP_CONF_DIR=/bgdt/hadoop-2.7.2/etc/hadoop</div><div class="line"></div><div class="line">export CLASSPATH=$CLASSPATH:$HADOOP_HOME/lib/*:.</div><div class="line">export CLASSPATH=$CLASSPATH:$HADOOP_HOME/share/hadoop/common/*:.</div><div class="line"></div><div class="line">export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</div><div class="line"></div><div class="line">source ~/.bashrc</div><div class="line">java -version</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="修改設定檔"><a href="#修改設定檔" class="headerlink" title="修改設定檔"></a>修改設定檔</h4><h5 id="修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-core-site-xml"><a href="#修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-core-site-xml" class="headerlink" title="修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml)"></a>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml)</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">   &lt;value&gt;hdfs://hadoop-master:8020&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">   &lt;value&gt;file:/usr/local/hadoop-2.7.2/tmp&lt;/value&gt;           </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</div><div class="line">   &lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</div><div class="line">   &lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml)</p>
+</blockquote>
+<h5 id="修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-hdfs-site-xml"><a href="#修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-hdfs-site-xml" class="headerlink" title="修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml)"></a>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml)</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</div><div class="line">   &lt;value&gt;hadoop-master:50070&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">   &lt;value&gt;2&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</div><div class="line">   &lt;value&gt;file:/bgdt/hadoop-2.7.2/tmp/dfs/name&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</div><div class="line">   &lt;value&gt;file:/bgdt/hadoop-2.7.2/tmp/dfs/data&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;dfs.block.size&lt;/name&gt;</div><div class="line">   &lt;value&gt;64M&lt;/value&gt;   </div><div class="line">  &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml)</p>
+</blockquote>
+<h5 id="修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-mapred-site-xml"><a href="#修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-mapred-site-xml" class="headerlink" title="修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml)"></a>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml)</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">   &lt;value&gt;yarn&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">   &lt;value&gt;hadoop-master:10020&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">   &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">   &lt;value&gt;hadoop-master:19888&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml)</p>
+</blockquote>
+<h5 id="修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-yarn-site-xml"><a href="#修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-yarn-site-xml" class="headerlink" title="修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml)"></a>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml)</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">   &lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">    &lt;value&gt;hadoop-master&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">   &lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">  &lt;/property&gt;</div><div class="line">  &lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.log.server.url&lt;/name&gt;</div><div class="line">    &lt;value&gt;http://hadoop-master:19888/jobhistory/logs&lt;/value&gt;</div><div class="line">  &lt;/property&gt;  </div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/slaves)</p>
+</blockquote>
+<h5 id="修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-slaves"><a href="#修改設定檔-bgdt-hadoop-2-7-2-etc-hadoop-slaves" class="headerlink" title="修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/slaves)"></a>修改設定檔(/bgdt/hadoop-2.7.2/etc/hadoop/slaves)</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop-slave1</div><div class="line">hadoop-slave2</div></pre></td></tr></table></figure>
-</li>
-<li><p>將檔案分送到其他Datanode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##將目錄壓縮</div><div class="line">[hadoop@hadoop-master]tar -zcf /bgdt/hadoop.master.tar.gz /bgdt/hadoop-2.7.2</div><div class="line">[hadoop@hadoop-master]scp /bgdt/hadoop.master.tar.gz hadoop-slave1:/bgdt/install_src</div><div class="line">[hadoop@hadoop-master]scp /bgdt/hadoop.master.tar.gz hadoop-slave2:/bgdt/install_src</div><div class="line"></div><div class="line">##各個Datanode將Hadoop解壓縮至/bgdt,解完後設定相關Haoop變數如第一大項</div></pre></td></tr></table></figure>
-</li>
-<li><p>格式化HDFS系統</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]hadoop namenode -format</div><div class="line">[hadoop@hadoop-master]hadoop dfsadmin -report</div></pre></td></tr></table></figure>
-</li>
-<li><p>啟動dfs與yarn</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master]start-dfs.sh</div><div class="line">[hadoop@hadoop-master]start-yarn.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p>HDFS WebUI(因為後來系統從做,所以主機名稱略有不同)Web UI port:50070<br><img src="/images/dfs_2.jpg" alt=""></p>
-</li>
-</ol>
-<h3 id="Spark安裝-2-0-0"><a href="#Spark安裝-2-0-0" class="headerlink" title="Spark安裝(2.0.0)"></a>Spark安裝(2.0.0)</h3><ol>
-<li><p><a href="https://http://spark.apache.org/downloads.html" target="_blank" rel="external">Download spark 2.0.0安裝程式</a><br><img src="/images/spark_1.jpg" alt=""><br>下載後會產生一個 “spark-2.0.0-bin-hadoop2.7.tgz”檔案<br>或使用wget下載,下載前請先確定是否可以連網路囉!!</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -P /bgdt/install_src http://archive.apache.org/dist/spark/spark-2.0.0/spark-2.0.0-bin-hadoop2.7.tgz</div></pre></td></tr></table></figure>
-</li>
-<li><p>解壓縮下載檔案</p>
+</blockquote>
+<h4 id="將檔案分送到其他Datanode"><a href="#將檔案分送到其他Datanode" class="headerlink" title="將檔案分送到其他Datanode"></a>將檔案分送到其他Datanode</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##將目錄壓縮</div><div class="line">tar -zcf /bgdt/hadoop.master.tar.gz /bgdt/hadoop-2.7.2</div><div class="line">scp /bgdt/hadoop.master.tar.gz hadoop-slave1:/bgdt/install_src</div><div class="line">scp /bgdt/hadoop.master.tar.gz hadoop-slave2:/bgdt/install_src</div><div class="line"></div><div class="line">##各個Datanode將Hadoop解壓縮至/bgdt,解完後設定相關Haoop變數如第一大項</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="格式化HDFS系統"><a href="#格式化HDFS系統" class="headerlink" title="格式化HDFS系統"></a>格式化HDFS系統</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop namenode -format</div><div class="line">hadoop dfsadmin -report</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="啟動dfs與yarn"><a href="#啟動dfs與yarn" class="headerlink" title="啟動dfs與yarn"></a>啟動dfs與yarn</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="HDFS-WebUI-hadoop-master-50070"><a href="#HDFS-WebUI-hadoop-master-50070" class="headerlink" title="HDFS WebUI (hadoop-master:50070)"></a>HDFS WebUI (hadoop-master:50070)</h4><p><img src="/images/dfs_2.jpg" alt=""></p>
+<h3 id="Spark安裝-2-0-0-僅安裝於NameNode"><a href="#Spark安裝-2-0-0-僅安裝於NameNode" class="headerlink" title="Spark安裝(2.0.0),僅安裝於NameNode"></a>Spark安裝(2.0.0),僅安裝於NameNode</h3><h4 id="Download-spark-2-0-0安裝程式"><a href="#Download-spark-2-0-0安裝程式" class="headerlink" title="Download spark 2.0.0安裝程式"></a><a href="https://http://spark.apache.org/downloads.html" target="_blank" rel="external">Download spark 2.0.0安裝程式</a></h4><p><img src="/images/spark_1.jpg" alt=""><br> 下載後會產生一個 “spark-2.0.0-bin-hadoop2.7.tgz”檔案<br> 或使用wget下載,下載前請先確定是否可以連網路囉!!</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget -P \</div><div class="line">/bgdt/install_src http://archive.apache.org/dist/spark/spark-2.0.0/spark-2.0.0-bin-hadoop2.7.tgz</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="解壓縮下載檔案"><a href="#解壓縮下載檔案" class="headerlink" title="解壓縮下載檔案"></a>解壓縮下載檔案</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/install_src/spark-2.0.0-bin-hadoop2.7.tgz -C /bgdt</div><div class="line">mv /bgdt/spark-2.0.0-bin-hadoop2.7 /bgdt/spark-2.0.0	##目錄名稱太長了,所以把目錄名稱改短</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改~/.bashrc</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export SPARK_HOME=/bgdt/spark-2.0.0</div><div class="line"></div><div class="line">將檔案儲存後,記得下source,讓設定生效</div><div class="line">[hadoop@mna1 ~]$source ~/.bashrc</div></pre></td></tr></table></figure>
-</li>
-<li><p>測試</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##進入spark-shell</div><div class="line">[hadoop@mna1 ~]$/bgdt/spark-2.0.0/bin/sparl-shell</div><div class="line">......</div><div class="line">......</div><div class="line">scala&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>spark-shell畫面截圖<br><img src="/images/spark_2.jpg" alt=""></p>
-</li>
-<li><p>Spark Scala Shell Test</p>
+</blockquote>
+<h4 id="修改-bashrc"><a href="#修改-bashrc" class="headerlink" title="修改~/.bashrc"></a>修改~/.bashrc</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export SPARK_HOME=/bgdt/spark-2.0.0</div><div class="line"></div><div class="line">將檔案儲存後,記得下source,讓設定生效</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="測試-spark-shell"><a href="#測試-spark-shell" class="headerlink" title="測試(spark-shell)"></a>測試(spark-shell)</h4><h5 id="進入spark-shell-CLI"><a href="#進入spark-shell-CLI" class="headerlink" title="進入spark-shell CLI"></a>進入spark-shell CLI</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##進入spark-shell</div><div class="line">/bgdt/spark-2.0.0/bin/sparl-shell</div><div class="line">......</div><div class="line">......</div><div class="line">scala&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="Spark-Scala-Shell-Test"><a href="#Spark-Scala-Shell-Test" class="headerlink" title="Spark Scala Shell Test"></a>Spark Scala Shell Test</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[CTRL+l] &lt;--清除shell畫面</div><div class="line">scala&gt;sc</div><div class="line">scala&gt;spark</div></pre></td></tr></table></figure>
-</li>
-<li><p>Spark Example for Scala-建立檔案內容並上傳至HDFS</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[hadoop@mna1 ~]$hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line">[hadoop@mna1 ~]$echo &quot;1,\&quot;test1\&quot;,10000&quot; &gt;&gt; test1.csv</div><div class="line">[hadoop@mna1 ~]$echo &quot;2,\&quot;test2\&quot;,20000&quot; &gt;&gt; test1.csv</div><div class="line">[hadoop@mna1 ~]$echo &quot;3,\&quot;test3\&quot;,30000&quot; &gt;&gt; test1.csv</div><div class="line">[hadoop@mna1 ~]$echo &quot;4,\&quot;test4\&quot;,40000&quot; &gt;&gt; test1.csv</div><div class="line">[hadoop@mna1 ~]$echo &quot;5,\&quot;test5\&quot;,50000&quot; &gt;&gt; test1.csv</div><div class="line">[hadoop@mna1 ~]$cat test1.csv</div><div class="line">[hadoop@mna1 ~]$hadoop fs -put ~/test1.csv /user/hadoop/ccc</div></pre></td></tr></table></figure>
-</li>
-<li><p>Spark Example for Scala-spark for scala程式撰寫</p>
+</blockquote>
+<h5 id="Spark-Example-for-Scala-建立檔案內容並上傳至HDFS"><a href="#Spark-Example-for-Scala-建立檔案內容並上傳至HDFS" class="headerlink" title="Spark Example for Scala-建立檔案內容並上傳至HDFS"></a>Spark Example for Scala-建立檔案內容並上傳至HDFS</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line">echo &quot;1,\&quot;test1\&quot;,10000&quot; &gt;&gt; test1.csv</div><div class="line">echo &quot;2,\&quot;test2\&quot;,20000&quot; &gt;&gt; test1.csv</div><div class="line">echo &quot;3,\&quot;test3\&quot;,30000&quot; &gt;&gt; test1.csv</div><div class="line">echo &quot;4,\&quot;test4\&quot;,40000&quot; &gt;&gt; test1.csv</div><div class="line">echo &quot;5,\&quot;test5\&quot;,50000&quot; &gt;&gt; test1.csv</div><div class="line">cat test1.csv</div><div class="line">hadoop fs -put ~/test1.csv /user/hadoop/ccc</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="Spark-Example-for-Scala-spark-for-scala程式撰寫"><a href="#Spark-Example-for-Scala-spark-for-scala程式撰寫" class="headerlink" title="Spark Example for Scala-spark for scala程式撰寫"></a>Spark Example for Scala-spark for scala程式撰寫</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">scala&gt;val distFile = sc.textFile(&quot;/user/hadoop/ccc/test1.csv&quot;)</div><div class="line">scala&gt;distFile.count()</div><div class="line">scala&gt;distFile.collect()</div></pre></td></tr></table></figure>
-</li>
-<li><p>範例執行結果<br><img src="/images/spark_shell_3.jpg" alt=""></p>
-</li>
-</ol>
-<h3 id="MariaDB安裝-10-1-17"><a href="#MariaDB安裝-10-1-17" class="headerlink" title="MariaDB安裝(10.1.17)"></a>MariaDB安裝(10.1.17)</h3><ol>
-<li>下載MariaDB安裝檔(目前最新版本為10.1.20)<br><a href="http://ftp.ubuntu-tw.org/mirror/mariadb//mariadb-10.1.17/bintar-linux-x86_64/mariadb-10.1.17-linux-x86_64.tar.gz" target="_blank" rel="external">Download mariadb-10.1.17-linux-x86_64</a><br><img src="/images/mariadb_install_1.jpg" alt=""></li>
-<li><p>關閉iptables service</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">先以root權限登入系統並關閉iptables服務</div><div class="line">[root@mna1 ~]$service iptables stop</div><div class="line">[root@mna1 ~]$service iptables status</div><div class="line"></div><div class="line">建立mysql帳號:</div><div class="line">[root@mna1 ~]$groupadd mysql</div><div class="line">[root@mna1 ~]$useradd -g mysql mysql</div><div class="line"></div><div class="line">安裝MariaDB</div><div class="line">[root@mna1 ~]cd /usr/local</div><div class="line">[root@mna1 local]$tar -zxvf /bgdt/install_src/mariadb-10.1.17-linux-x86_64.tar.gz -C /usr/local</div><div class="line">[root@mna1 local]$ln -s mariadb-10.1.17-linux-x86_64 mysql</div><div class="line">[root@mna1 local]$cd mysql</div><div class="line">[root@mna1 mysql]$./scripts/mysql_install_db --user=mysql</div><div class="line">[root@mna1 mysql]$chown -R root .</div><div class="line">[root@mna1 mysql]$chown -R mysql data</div><div class="line"></div><div class="line">啟動MariaDB</div><div class="line">[root@mna1 mysql]$nohup ./bin/mysqld &amp;</div><div class="line">[root@mna1 mysql]$./bin/mysqladmin -u root password &apos;!QAZxsw2&apos;  --socket=/var/lib/mysql/mysql.sock </div><div class="line">[root@mna1 mysql]$./bin/mysql -p  --socket=/var/lib/mysql/mysql.sock</div><div class="line">輸入密碼:!QAZxsw2</div><div class="line"></div><div class="line">設定權限</div><div class="line">mariadb&gt;create database metastore_db;</div><div class="line">mariadb&gt;SELECT User, Host FROM mysql.user WHERE Host &lt;&gt; &apos;localhost&apos;; </div><div class="line">mariadb&gt;GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;!QAZxsw2&apos; WITH GRANT OPTION;</div><div class="line">mariadb&gt;FLUSH PRIVILEGES;</div></pre></td></tr></table></figure>
-</li>
-<li><p>觀察3306 Port是否有開啟</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@mna1 ~]$netstat -tnl | grep &quot;3306&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>確認”3306” Port是否有開啟？並且關閉確認關閉iptables<br><img src="/images/mariadb_install_2.jpg" alt=""></p>
-</li>
-</ol>
-<h3 id="Hive安裝-2-1-1"><a href="#Hive安裝-2-1-1" class="headerlink" title="Hive安裝(2.1.1)"></a>Hive安裝(2.1.1)</h3><ol>
-<li>下載 Hive安裝檔/原始碼<br><a href="http://apache.stu.edu.tw/hive/hive-2.1.1/apache-hive-2.1.1-bin.tar.gz" target="_blank" rel="external">Download Hive 安裝檔,apache-hive-2.1.1-bin</a><br><a href="http://apache.stu.edu.tw/hive/hive-2.1.1/apache-hive-2.1.1-src.tar.gz" target="_blank" rel="external">Download Hive 原始碼,apache-hive-2.1.1-src</a><br><img src="/images/hive_install_1.jpg" alt=""></li>
-<li><p>解壓縮檔案</p>
+</blockquote>
+<h5 id="範例執行結果"><a href="#範例執行結果" class="headerlink" title="範例執行結果"></a>範例執行結果</h5><p><img src="/images/spark_shell_3.jpg" alt=""></p>
+<h4 id="測試-spark-submit"><a href="#測試-spark-submit" class="headerlink" title="測試(spark-submit)"></a>測試(spark-submit)</h4><h3 id="MariaDB安裝-10-1-17-僅安裝於NameNode"><a href="#MariaDB安裝-10-1-17-僅安裝於NameNode" class="headerlink" title="MariaDB安裝(10.1.17),僅安裝於NameNode"></a>MariaDB安裝(10.1.17),僅安裝於NameNode</h3><h4 id="下載MariaDB安裝檔-目前最新版本為10-1-20"><a href="#下載MariaDB安裝檔-目前最新版本為10-1-20" class="headerlink" title="下載MariaDB安裝檔(目前最新版本為10.1.20)"></a>下載MariaDB安裝檔(目前最新版本為10.1.20)</h4><p><a href="http://ftp.ubuntu-tw.org/mirror/mariadb//mariadb-10.1.17/bintar-linux-x86_64/mariadb-10.1.17-linux-x86_64.tar.gz" target="_blank" rel="external">Download mariadb-10.1.17-linux-x86_64</a><br><img src="/images/mariadb_install_1.jpg" alt=""></p>
+<h4 id="關閉iptables-service"><a href="#關閉iptables-service" class="headerlink" title="關閉iptables service"></a>關閉iptables service</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">先以root權限登入系統並關閉iptables服務</div><div class="line">service iptables stop</div><div class="line">service iptables status</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="建立mysql帳號"><a href="#建立mysql帳號" class="headerlink" title="建立mysql帳號"></a>建立mysql帳號</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">groupadd mysql</div><div class="line">useradd -g mysql mysql</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="安裝MariaDB"><a href="#安裝MariaDB" class="headerlink" title="安裝MariaDB"></a>安裝MariaDB</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /usr/local</div><div class="line">tar -zxvf /bgdt/install_src/mariadb-10.1.17-linux-x86_64.tar.gz -C /usr/local</div><div class="line">ln -s mariadb-10.1.17-linux-x86_64 mysql</div><div class="line">cd mysql</div><div class="line">./scripts/mysql_install_db --user=mysql</div><div class="line">chown -R root .</div><div class="line">chown -R mysql data</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="啟動MariaDB"><a href="#啟動MariaDB" class="headerlink" title="啟動MariaDB"></a>啟動MariaDB</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nohup ./bin/mysqld &amp;</div><div class="line">./bin/mysqladmin -u root password &apos;!QAZxsw2&apos;  --socket=/var/lib/mysql/mysql.sock </div><div class="line">./bin/mysql -p  --socket=/var/lib/mysql/mysql.sock</div><div class="line">輸入密碼:!QAZxsw2</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="設定權限"><a href="#設定權限" class="headerlink" title="設定權限"></a>設定權限</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mariadb&gt;create database metastore_db;</div><div class="line">mariadb&gt;SELECT User, Host FROM mysql.user WHERE Host &lt;&gt; &apos;localhost&apos;; </div><div class="line">mariadb&gt;GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;!QAZxsw2&apos; WITH GRANT OPTION;</div><div class="line">mariadb&gt;FLUSH PRIVILEGES;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="確認”3306”-Port是否有開啟？並且關閉確認關閉iptables"><a href="#確認”3306”-Port是否有開啟？並且關閉確認關閉iptables" class="headerlink" title="確認”3306” Port是否有開啟？並且關閉確認關閉iptables"></a>確認”3306” Port是否有開啟？並且關閉確認關閉iptables</h4><p><img src="/images/mariadb_install_2.jpg" alt=""></p>
+<h3 id="Hive安裝-2-1-1-僅安裝於NameNode"><a href="#Hive安裝-2-1-1-僅安裝於NameNode" class="headerlink" title="Hive安裝(2.1.1),僅安裝於NameNode"></a>Hive安裝(2.1.1),僅安裝於NameNode</h3><h4 id="安裝-設定-啟動-Hive-CLI"><a href="#安裝-設定-啟動-Hive-CLI" class="headerlink" title="安裝/設定/啟動 Hive CLI"></a>安裝/設定/啟動 Hive CLI</h4><h5 id="下載-Hive安裝檔-原始碼"><a href="#下載-Hive安裝檔-原始碼" class="headerlink" title="下載 Hive安裝檔/原始碼"></a>下載 Hive安裝檔/原始碼</h5><p><a href="http://apache.stu.edu.tw/hive/hive-2.1.1/apache-hive-2.1.1-bin.tar.gz" target="_blank" rel="external">Download Hive 安裝檔,apache-hive-2.1.1-bin</a><br><a href="http://apache.stu.edu.tw/hive/hive-2.1.1/apache-hive-2.1.1-src.tar.gz" target="_blank" rel="external">Download Hive 原始碼,apache-hive-2.1.1-src</a><br><img src="/images/hive_install_1.jpg" alt=""></p>
+<h5 id="解壓縮檔案"><a href="#解壓縮檔案" class="headerlink" title="解壓縮檔案"></a>解壓縮檔案</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/install_src/apache-hive-2.1.1-bin.tar.gz -C /bgdt</div><div class="line">mv /bgdt/apache-hive-2.1.1-bin /bgdt/hive-2.1.1</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改~/.bashrc</p>
+</blockquote>
+<h5 id="修改-bashrc-1"><a href="#修改-bashrc-1" class="headerlink" title="修改~/.bashrc"></a>修改~/.bashrc</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export HIVE_HOME=/bgdt/hive-2.1.1</div><div class="line">export PATH= $HIVE_HOME\bin:$PATH</div><div class="line">儲存檔案</div><div class="line"></div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
-</li>
-<li><p>將mysql-connector-java-5.1.39-bin.jar copy to /bgdt/hive-2.1.1/lib目錄下</p>
-</li>
-<li><p>建立Hive Warehouse</p>
+</blockquote>
+<h5 id="將mysql-connector-java-5-1-39-bin-jar-copy-to-bgdt-hive-2-1-1-lib目錄下"><a href="#將mysql-connector-java-5-1-39-bin-jar-copy-to-bgdt-hive-2-1-1-lib目錄下" class="headerlink" title="將mysql-connector-java-5.1.39-bin.jar copy to /bgdt/hive-2.1.1/lib目錄下"></a>將mysql-connector-java-5.1.39-bin.jar copy to /bgdt/hive-2.1.1/lib目錄下</h5><h5 id="建立Hive-Warehouse"><a href="#建立Hive-Warehouse" class="headerlink" title="建立Hive Warehouse"></a>建立Hive Warehouse</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /user/hive/warehouse</div><div class="line">hadoop fs -mkdir -p /tmp/hive</div></pre></td></tr></table></figure>
-</li>
-<li><p>Modify hive-site.xml</p>
+</blockquote>
+<h5 id="Modify-hive-site-xml"><a href="#Modify-hive-site-xml" class="headerlink" title="Modify hive-site.xml"></a>Modify hive-site.xml</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</div><div class="line">    &lt;value&gt;jdbc:mysql://192.168.XXX.XXX:3306/metastore_db&lt;/value&gt;</div><div class="line">    &lt;description&gt;JDBC connect string for a JDBC metastore &lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</div><div class="line">    &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</div><div class="line">    &lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</div><div class="line">    &lt;value&gt;root&lt;/value&gt;</div><div class="line">    &lt;description&gt;username to use against metastore database&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</div><div class="line">    &lt;value&gt;XXXXXXXXX&lt;/value&gt;</div><div class="line">    &lt;description&gt;password to use against metastore database&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.exec.scratchdir&lt;/name&gt;</div><div class="line">    &lt;value&gt;/tmp/hive&lt;/value&gt;</div><div class="line">    &lt;description&gt;HDFS root scratch dir for Hive jobs which gets created with write all (733) permission. For each connecting user, an HDFS scratch dir: $&#123;hive.exec.scratchdir&#125;/&amp;lt;username&amp;gt; is created, with $&#123;hive.scratch.dir.permission&#125;.&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.exec.local.scratchdir&lt;/name&gt;</div><div class="line">    &lt;value&gt;/tmp&lt;/value&gt;</div><div class="line">    &lt;description&gt;Local scratch space for Hive jobs&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.downloaded.resources.dir&lt;/name&gt;</div><div class="line">    &lt;value&gt;/tmp&lt;/value&gt;</div><div class="line">    &lt;description&gt;Temporary local directory for added resources in the remote file system.&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.scratch.dir.permission&lt;/name&gt;</div><div class="line">    &lt;value&gt;775&lt;/value&gt;</div><div class="line">    &lt;description&gt;The permission for the user specific scratch directories that get created.&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>第一次建立時</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">##此動作會在mariadb的metastore_db中建立Hive用到的系統表格(以下動作會將meta資料重建)</div><div class="line">[hadoop@mna1 ~]$schematool -dbType mysql -initSchema</div></pre></td></tr></table></figure>
-</li>
-<li><p>在命令列中執行HiveCLI</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[hadoop@mna1 ~]$hive</div><div class="line">......</div><div class="line">......</div><div class="line">hive&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在hive的CLI下建立Database及Table</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hive&gt;create database test1;</div><div class="line">hive&gt;create table test1.staff(id int, name string, salary double) row format delimited fields terminated by &apos;,&apos;;</div><div class="line">hive&gt;LOAD DATA INPATH &apos;/user/hadoop/ccc/test1.csv&apos; overwrite into table test1.staff;</div><div class="line">hive&gt;select * from test1.staff;</div></pre></td></tr></table></figure>
-</li>
-<li><p>以上命令執行結果:<br><img src="/images/hive_shell_1.jpg" alt=""></p>
-</li>
-<li><p>HWI安裝<br>將已下載的Hive Souce code解壓縮至/bgdt</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[hadoop@mna1 ~]$tar -zxvf /bgdt/install_src/apache-hive-2.1.1-src.tar.gz -C /bgdt</div><div class="line">[hadoop@mna1 ~]$cd /bgdt/apache-hive-2.1.1-src/hwi</div><div class="line">[hadoop@mna1 hwi]$ jar cfM hive-hwi-2.1.1.war -C web .</div><div class="line">[hadoop@mna1 hwi]$cp hive-hwi-2.1.1.war /bgdt/hive-2.1.1/lib/*</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改hive-site.xml</p>
+</blockquote>
+<h5 id="create-metastore-db-相關Table"><a href="#create-metastore-db-相關Table" class="headerlink" title="create metastore_db 相關Table"></a>create metastore_db 相關Table</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">##此動作會在mariadb的metastore_db中建立Hive用到的系統表格(以下動作會將meta資料重建)</div><div class="line">schematool -dbType mysql -initSchema</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="在命令列中執行Hive-CLI"><a href="#在命令列中執行Hive-CLI" class="headerlink" title="在命令列中執行Hive CLI"></a>在命令列中執行Hive CLI</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hive</div><div class="line">......</div><div class="line">......</div><div class="line">hive&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="在hive的CLI下建立Database及Table"><a href="#在hive的CLI下建立Database及Table" class="headerlink" title="在hive的CLI下建立Database及Table"></a>在hive的CLI下建立Database及Table</h6><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hive&gt;create database test1;</div><div class="line">hive&gt;create table test1.staff(id int, name string, salary double) </div><div class="line">hive&gt;row format delimited fields terminated by &apos;,&apos;;</div><div class="line">hive&gt;LOAD DATA INPATH &apos;/user/hadoop/ccc/test1.csv&apos; overwrite into table test1.staff;</div><div class="line">hive&gt;select * from test1.staff;</div></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="以上命令執行結果"><a href="#以上命令執行結果" class="headerlink" title="以上命令執行結果"></a>以上命令執行結果</h6><p><img src="/images/hive_shell_1.jpg" alt=""></p>
+<h4 id="HWI安裝與設定"><a href="#HWI安裝與設定" class="headerlink" title="HWI安裝與設定"></a>HWI安裝與設定</h4><h5 id="將已下載的Hive-Souce-code解壓縮至-bgdt"><a href="#將已下載的Hive-Souce-code解壓縮至-bgdt" class="headerlink" title="將已下載的Hive Souce code解壓縮至/bgdt"></a>將已下載的Hive Souce code解壓縮至/bgdt</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/install_src/apache-hive-2.1.1-src.tar.gz -C /bgdt</div><div class="line">cd /bgdt/apache-hive-2.1.1-src/hwi</div><div class="line">jar cfM hive-hwi-2.1.1.war -C web .</div><div class="line">cp hive-hwi-2.1.1.war /bgdt/hive-2.1.1/lib/*</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="修改hive-site-xml"><a href="#修改hive-site-xml" class="headerlink" title="修改hive-site.xml"></a>修改hive-site.xml</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.hwi.listen.host&lt;/name&gt;</div><div class="line">    &lt;value&gt;mna1&lt;/value&gt;</div><div class="line">    &lt;description&gt;This is the host address the Hive Web Interface will listen on&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.hwi.listen.port&lt;/name&gt;</div><div class="line">    &lt;value&gt;9999&lt;/value&gt;</div><div class="line">    &lt;description&gt;This is the port the Hive Web Interface will listen on&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.hwi.war.file&lt;/name&gt;</div><div class="line">    &lt;value&gt;lib/hive-hwi-2.1.1.war&lt;/value&gt;</div><div class="line">    &lt;description&gt;This sets the path to the HWI war file, relative to $&#123;HIVE_HOME&#125;. &lt;/description&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Start HWI Service</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">##HWI啟動Port(9999)</div><div class="line">[hadoop@hadoop-master ~]$ nohup hive --service hwi &amp;</div><div class="line">[hadoop@hadoop-master ~]$ netstat -tnl | grep &quot;9999&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>HWI介面(請連到<a href="http://XXX.XXX.XXX.XXX:9999/hwi" target="_blank" rel="external">http://XXX.XXX.XXX.XXX:9999/hwi</a>)<br><img src="/images/hive_hwi_1.jpg" alt=""></p>
-</li>
-<li><p>Start hiveserver2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">##啟動Hive JDBC Port(port:10000)</div><div class="line">[hadoop@mna1 ~]$ nohup hive --service hiveserver2 &amp;</div><div class="line">[hadoop@mna1 ~]$ netstat -tnl | grep &quot;10000&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用beeline連線Hive(須連線HiveServer2)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@mna1 ~]$ beeline</div><div class="line">beeline&gt; !connect jdbc:hive2://192.168.11.96:10000/default</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="OOZIE安裝-4-3-0"><a href="#OOZIE安裝-4-3-0" class="headerlink" title="OOZIE安裝(4.3.0)"></a>OOZIE安裝(4.3.0)</h3><ol>
-<li>從Github下載oozie原始碼,編譯oozie,並產生”oozie-4.3.0-SNAPSHOT.tar.gz”檔案</li>
-<li><p>解壓縮oozie-4.3.0-SNAPSHOT.tar.gz並變更目錄名稱</p>
+</blockquote>
+<h5 id="Start-HWI-Service"><a href="#Start-HWI-Service" class="headerlink" title="Start HWI Service"></a>Start HWI Service</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">##HWI啟動Port(9999)</div><div class="line">nohup hive --service hwi &amp;</div><div class="line">netstat -tnl | grep &quot;9999&quot;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="HWI介面-請連到http-hadoop-master-9999-hwi"><a href="#HWI介面-請連到http-hadoop-master-9999-hwi" class="headerlink" title="HWI介面(請連到http://hadoop-master:9999/hwi)"></a>HWI介面(請連到<a href="http://hadoop-master:9999/hwi" target="_blank" rel="external">http://hadoop-master:9999/hwi</a>)</h5><p><img src="/images/hive_hwi_1.jpg" alt=""></p>
+<h4 id="Hive-for-Beeline"><a href="#Hive-for-Beeline" class="headerlink" title="Hive for Beeline"></a>Hive for Beeline</h4><h5 id="Start-hiveserver2"><a href="#Start-hiveserver2" class="headerlink" title="Start hiveserver2"></a>Start hiveserver2</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">##啟動Hive JDBC Port(port:10000)</div><div class="line">nohup hive --service hiveserver2 &amp;</div><div class="line">netstat -tnl | grep &quot;10000&quot;</div></pre></td></tr></table></figure>
+<h5 id="使用beeline連線Hive-須連線HiveServer2"><a href="#使用beeline連線Hive-須連線HiveServer2" class="headerlink" title="使用beeline連線Hive(須連線HiveServer2)"></a>使用beeline連線Hive(須連線HiveServer2)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">beeline</div><div class="line"></div><div class="line">beeline&gt; !connect jdbc:hive2://192.168.11.96:10000/default</div></pre></td></tr></table></figure>
+<h3 id="OOZIE安裝-4-3-0-僅安裝於NameNode"><a href="#OOZIE安裝-4-3-0-僅安裝於NameNode" class="headerlink" title="OOZIE安裝(4.3.0),僅安裝於NameNode"></a>OOZIE安裝(4.3.0),僅安裝於NameNode</h3><h4 id="OOZIE安裝與設定"><a href="#OOZIE安裝與設定" class="headerlink" title="OOZIE安裝與設定"></a>OOZIE安裝與設定</h4><h5 id="從Github下載oozie原始碼-編譯oozie-並產生”oozie-4-3-0-SNAPSHOT-tar-gz”檔案"><a href="#從Github下載oozie原始碼-編譯oozie-並產生”oozie-4-3-0-SNAPSHOT-tar-gz”檔案" class="headerlink" title="從Github下載oozie原始碼,編譯oozie,並產生”oozie-4.3.0-SNAPSHOT.tar.gz”檔案"></a>從Github下載oozie原始碼,編譯oozie,並產生”oozie-4.3.0-SNAPSHOT.tar.gz”檔案</h5><h5 id="解壓縮oozie-4-3-0-SNAPSHOT-tar-gz並變更目錄名稱"><a href="#解壓縮oozie-4-3-0-SNAPSHOT-tar-gz並變更目錄名稱" class="headerlink" title="解壓縮oozie-4.3.0-SNAPSHOT.tar.gz並變更目錄名稱"></a>解壓縮oozie-4.3.0-SNAPSHOT.tar.gz並變更目錄名稱</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo tar -zxvf /bgdt/install_src/oozie-4.3.0-SNAPSHOT.tar.gz -C /bgdt</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/oozie-4.3.0-SNAPSHOT</div><div class="line">sudo mv /bgdt/oozie-4.3.0-SNAPSHOT /bgdt/oozie-4.3.0</div></pre></td></tr></table></figure>
-</li>
-<li><p>搬移相關lib至libext目錄</p>
+</blockquote>
+<h5 id="搬移相關lib至libext目錄"><a href="#搬移相關lib至libext目錄" class="headerlink" title="搬移相關lib至libext目錄"></a>搬移相關lib至libext目錄</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/oozie-4.3.0/libext</div><div class="line">cp /bgdt/hadoop-2.7.2/share/hadoop/*/*.jar /bgdt/oozie-4.3.0/libext/</div><div class="line">cp /bgdt/hadoop-2.7.2/share/hadoop/*/lib/*.jar /bgdt/oozie-4.3.0/libext/</div><div class="line">rm -rf /bgdt/oozie-4.3.0/libext/jsp-api-2.1.jar</div><div class="line">cp /bgdt/install_src/ext2-2.zip /bgdt/oozie-4.3.0/libext</div></pre></td></tr></table></figure>
-</li>
-<li><p>安裝相關Server,createdb</p>
+</blockquote>
+<h5 id="安裝相關Server-createdb"><a href="#安裝相關Server-createdb" class="headerlink" title="安裝相關Server,createdb"></a>安裝相關Server,createdb</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozie-setup.sh prepare-war</div><div class="line">./bin/oozie-setup.sh db create -run</div><div class="line">./bin/oozied.sh start</div><div class="line">./bin/oozie admin -oozie http://localhost:11000/oozie -status</div></pre></td></tr></table></figure>
-</li>
-<li><p>OOZIE WEB UI:</p>
+</blockquote>
+<h5 id="OOZIE-WEB-UI"><a href="#OOZIE-WEB-UI" class="headerlink" title="OOZIE WEB UI:"></a>OOZIE WEB UI:</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:11000/oozie</div></pre></td></tr></table></figure>
-</li>
-<li><p>安裝sharelib</p>
+</blockquote>
+<h4 id="安裝sharelib"><a href="#安裝sharelib" class="headerlink" title="安裝sharelib"></a>安裝sharelib</h4><h5 id="複製相關jar檔"><a href="#複製相關jar檔" class="headerlink" title="複製相關jar檔"></a>複製相關jar檔</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">tar -zxvf oozie-sharelib-4.3.0-SNAPSHOT.tar.gz</div><div class="line">rm -rf /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">mkdir -p /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp /bgdt/spark/jars/* /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp oozie-sharelib-oozie-4.3.0-SNAPSHOT.jar  /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp oozie-sharelib-spark-4.3.0-SNAPSHOT.jar  /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp /bgdt/hive-2.1.1/conf/hive-site.xml  /bgdt/oozie-4.3.0/share/lib/spark</div><div class="line">cp /bgdt/install_src/mysql-connector-java-5.1.39-bin.jar /bgdt/oozie-4.3.0/share/lib/spark</div></pre></td></tr></table></figure>
-</li>
-<li><p>在HDFS上建立sharelib相關目錄</p>
+</blockquote>
+<h5 id="在HDFS上建立sharelib相關目錄"><a href="#在HDFS上建立sharelib相關目錄" class="headerlink" title="在HDFS上建立sharelib相關目錄"></a>在HDFS上建立sharelib相關目錄</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /user/hadoop/share/lib</div><div class="line">hadoop fs -put /bgdt/oozie-4.3.0/share/lib/* /user/hadoop/share/lib</div></pre></td></tr></table></figure>
-</li>
-<li><p>重啟oozie</p>
+</blockquote>
+<h5 id="重啟oozie"><a href="#重啟oozie" class="headerlink" title="重啟oozie"></a>重啟oozie</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozied.sh stop</div><div class="line">./bin/oozied.sh start</div></pre></td></tr></table></figure>
-</li>
-<li><p>執行oozie提供相關的測試範例:<br>9.1 上傳oozie examples相關設定到 hdfs</p>
+</blockquote>
+<h4 id="執行oozie提供相關的測試範例"><a href="#執行oozie提供相關的測試範例" class="headerlink" title="執行oozie提供相關的測試範例:"></a>執行oozie提供相關的測試範例:</h4><h5 id="上傳oozie-examples相關設定到-hdfs"><a href="#上傳oozie-examples相關設定到-hdfs" class="headerlink" title="上傳oozie examples相關設定到 hdfs"></a>上傳oozie examples相關設定到 hdfs</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar -zxvf oozie-examples.tar.gz</div><div class="line">hadoop fs -mkdir -p /user/hadoop/oozie/examples</div><div class="line">hadoop fs -put -f /bgdt/oozie-4.3.0/examples/* /user/hadoop/oozie/examples</div></pre></td></tr></table></figure>
-<p>9.2 修改job.properties </p>
+</blockquote>
+<h5 id="修改job-properties"><a href="#修改job-properties" class="headerlink" title="修改job.properties"></a>修改job.properties</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0/examples/apps/spark</div><div class="line">vi ./job.properties</div><div class="line"></div><div class="line">##修改以下內容</div><div class="line">nameNode=hdfs://hadoop-master:8020</div><div class="line">jobTracker=hadoop-master:8032</div><div class="line">master=local[*]</div><div class="line">queueName=default</div><div class="line">examplesRoot=examples</div><div class="line">oozie.use.system.libpath=true</div><div class="line">oozie.wf.application.path=/user/hadoop/oozie/examples/apps/spark</div></pre></td></tr></table></figure>
-<p>9.3 執行oozie example </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/spark/job.properties -run</div><div class="line">./bin/oozie job -oozie http://localhost:11000/oozie -config ./examples/apps/map-reduce/job.properties -run</div></pre></td></tr></table></figure>
-<p>9.4 到WebUI觀察執行情形 </p>
+</blockquote>
+<h5 id="執行oozie-example"><a href="#執行oozie-example" class="headerlink" title="執行oozie example"></a>執行oozie example</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd /bgdt/oozie-4.3.0</div><div class="line"></div><div class="line">./bin/oozie job </div><div class="line">-oozie http://localhost:11000/oozie \</div><div class="line">-config ./examples/apps/spark/job.properties \</div><div class="line">-run</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="到WebUI觀察執行情形"><a href="#到WebUI觀察執行情形" class="headerlink" title="到WebUI觀察執行情形"></a>到WebUI觀察執行情形</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://hadoop-master:8088</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Anaconda3安裝-4-2-0-選裝"><a href="#Anaconda3安裝-4-2-0-選裝" class="headerlink" title="Anaconda3安裝(4.2.0),選裝"></a>Anaconda3安裝(4.2.0),選裝</h3><ol>
-<li><p>Download Anaconda3-4.2.0-Linux-x86.sh<br><a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a><br><a href="https://www.continuum.io/downloads" target="_blank" rel="external">https://www.continuum.io/downloads</a></p>
-</li>
-<li><p>Upload Anaconda3-4.2.0-Linux-x86.sh to Host</p>
-</li>
-<li><p>Install bzip2(if not bzip2)       </p>
+</blockquote>
+<h3 id="Anaconda3安裝-4-2-0-選裝-僅安裝於NameNode"><a href="#Anaconda3安裝-4-2-0-選裝-僅安裝於NameNode" class="headerlink" title="Anaconda3安裝(4.2.0),選裝,僅安裝於NameNode"></a>Anaconda3安裝(4.2.0),選裝,僅安裝於NameNode</h3><h4 id="Download-Anaconda3-4-2-0-Linux-x86-sh"><a href="#Download-Anaconda3-4-2-0-Linux-x86-sh" class="headerlink" title="Download Anaconda3-4.2.0-Linux-x86.sh"></a>Download Anaconda3-4.2.0-Linux-x86.sh</h4><p><a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a><br><a href="https://www.continuum.io/downloads" target="_blank" rel="external">https://www.continuum.io/downloads</a></p>
+<h4 id="Upload-Anaconda3-4-2-0-Linux-x86-sh-to-Host"><a href="#Upload-Anaconda3-4-2-0-Linux-x86-sh-to-Host" class="headerlink" title="Upload Anaconda3-4.2.0-Linux-x86.sh to Host"></a>Upload Anaconda3-4.2.0-Linux-x86.sh to Host</h4><h4 id="Install-bzip2-if-not-bzip2"><a href="#Install-bzip2-if-not-bzip2" class="headerlink" title="Install bzip2(if not bzip2)"></a>Install bzip2(if not bzip2)</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install bzip2 -y</div></pre></td></tr></table></figure>
-</li>
-<li><p>Install Anaconda3    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">bash /opt/Anaconda3-4.2.0-Linux-x86.sh</div><div class="line">&gt;&gt;&gt;[Enter]</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div><div class="line">&gt;&gt;&gt;/opt/anaconda3</div><div class="line">......</div><div class="line">&gt;&gt;&gt;yes</div><div class="line">......</div></pre></td></tr></table></figure>
-</li>
-<li><p>Modify ~/.bashrc  </p>
+</blockquote>
+<h4 id="Install-Anaconda3"><a href="#Install-Anaconda3" class="headerlink" title="Install Anaconda3"></a>Install Anaconda3</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bash /opt/Anaconda3-4.2.0-Linux-x86.sh</div><div class="line">[Enter]</div><div class="line">yes</div><div class="line">/opt/anaconda3</div><div class="line">yes</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Modify-bashrc"><a href="#Modify-bashrc" class="headerlink" title="Modify ~/.bashrc"></a>Modify ~/.bashrc</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># added by Anaconda3 4.2.0 installer</div><div class="line">export PATH=&quot;/opt/anaconda3/bin:$PATH&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Modify spark-env.sh  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /usr/local/spark/conf/spark/spark-env.sh</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export PYSPARK_PYTHON=/opt/anaconda3/bin/python3</div><div class="line">export PYSPARK_DRIVER_PYTHON=jupyter</div><div class="line">export PYSPARK_DRIVER_PYTHON_OPTS=&quot;notebook --NotebookApp.open_browser=False --NotebookApp.ip=&apos;*&apos; --NotebookApp.port=8880&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>重新進入Putty後,啟動Hadoop相關服務  </p>
+</blockquote>
+<h4 id="Modify-spark-env-sh"><a href="#Modify-spark-env-sh" class="headerlink" title="Modify spark-env.sh"></a>Modify spark-env.sh</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vi /usr/local/spark/conf/spark/spark-env.sh</div><div class="line">export PYSPARK_PYTHON=/opt/anaconda3/bin/python3</div><div class="line">export PYSPARK_DRIVER_PYTHON=jupyter</div><div class="line">export PYSPARK_DRIVER_PYTHON_OPTS=</div><div class="line">&quot;notebook --NotebookApp.open_browser=False --NotebookApp.ip=&apos;*&apos; --NotebookApp.port=8880&quot;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="重新進入Putty後-啟動Hadoop相關服務"><a href="#重新進入Putty後-啟動Hadoop相關服務" class="headerlink" title="重新進入Putty後,啟動Hadoop相關服務"></a>重新進入Putty後,啟動Hadoop相關服務</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">start-dfs.sh  ##start Hadoop</div><div class="line">start-yarn.sh ##start yarn</div><div class="line">nohup /usr/local/spark/bin/pyspark &amp;</div></pre></td></tr></table></figure>
-</li>
-<li><p>啟動完成後,打開Web Browser即可看到Jupyter Web UI<br><img src="/images/jupyter_1.jpg" alt=""></p>
-</li>
-<li><p>以下編寫測試範例:<br><img src="/images/jupyter_2.jpg" alt=""></p>
+</blockquote>
+<h4 id="啟動完成後-打開Web-Browser即可看到Jupyter-Web-UI"><a href="#啟動完成後-打開Web-Browser即可看到Jupyter-Web-UI" class="headerlink" title="啟動完成後,打開Web Browser即可看到Jupyter Web UI"></a>啟動完成後,打開Web Browser即可看到Jupyter Web UI</h4><blockquote>
+<p><img src="/images/jupyter_1.jpg" alt=""></p>
+</blockquote>
+<h4 id="以下編寫測試範例"><a href="#以下編寫測試範例" class="headerlink" title="以下編寫測試範例"></a>以下編寫測試範例</h4><h5 id="進入ipython-Web-UI"><a href="#進入ipython-Web-UI" class="headerlink" title="進入ipython Web UI"></a>進入ipython Web UI</h5><p><img src="/images/jupyter_2.jpg" alt=""></p>
+<h5 id="透過SparkContext取得文字檔"><a href="#透過SparkContext取得文字檔" class="headerlink" title="透過SparkContext取得文字檔"></a>透過SparkContext取得文字檔</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rdd = sc.textFile(&quot;hdfs://XXX.XXX.XXX.XXX:8020/OOO/readme.txt&quot;)</div><div class="line">rdd.count()</div></pre></td></tr></table></figure>
-</li>
-<li><p>操作DataFrame範例:</p>
+</blockquote>
+<h5 id="操作DataFrame範例"><a href="#操作DataFrame範例" class="headerlink" title="操作DataFrame範例"></a>操作DataFrame範例</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">l = [(&apos;Alice&apos;, 1)]</div><div class="line">spark.createDataFrame(l).collect()</div><div class="line">spark.createDataFrame(l, [&apos;name&apos;, &apos;age&apos;]).collect()</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用Spark SQL取得資料</p>
+</blockquote>
+<h5 id="使用Spark-SQL取得資料"><a href="#使用Spark-SQL取得資料" class="headerlink" title="使用Spark SQL取得資料"></a>使用Spark SQL取得資料</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ds = spark.sql(&quot;select * from students&quot;)</div><div class="line">ds.take(5)</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="相關參考"><a href="#相關參考" class="headerlink" title="相關參考"></a>相關參考</h3><h4 id="參考文件-Link"><a href="#參考文件-Link" class="headerlink" title="參考文件(Link)"></a>參考文件(Link)</h4><p><a href="http://yenyu-lovelan.blogspot.tw/2015/09/spark-on-ubuntu.html" target="_blank" rel="external">Spark on Ubuntu 離線安裝(第一次就上手)</a><br><a href="http://yenyu-lovelan.blogspot.tw/2015/09/spark-on-ubuntu.html" target="_blank" rel="external">Spark Standalone Cluster 練習</a></p>
+<h4 id="Big-Data-use-default-port"><a href="#Big-Data-use-default-port" class="headerlink" title="Big Data use default port"></a>Big Data use default port</h4><ol>
+<li><p>Hadoop use port</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">8020	&lt;-- HDFS Portocol port(NameNode metadata service)(fs.defaultFS)</div><div class="line">50070	&lt;-- HDFS Web Browser HTTP Port,NameNode WebUI(dfs.http.address)(Web)</div><div class="line">50075	&lt;-- DataNode WebUI to access the status, logs etc(dfs.datanode.http.address)(Web)</div><div class="line">50090 	&lt;-- Secondary NameNode Port(dfs.secondary.http.address)</div><div class="line">50020	&lt;-- The datanode ipc server address and port.(dfs.datanode.ipc.address)</div><div class="line">50010	&lt;-- The datanode server address and port for data transfer.(dfs.datanode.address)</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Yarn cluster use port</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">8088	&lt;-- Yarn-Cluster Web UI Port(yarn.resourcemanager.webapp.address)(web)</div><div class="line">8030	&lt;-- yarn.resourcemanager.scheduler.address</div><div class="line">8031	&lt;-- yarn.resourcemanager.resource-tracker.address</div><div class="line">8032	&lt;-- Yarn resourcemnager port(yarn.resourcemanager.address)(JobTracker port for Hadoop2.X)</div><div class="line">8033	&lt;-- yarn.resourcemanager.admin.address</div><div class="line">8040	&lt;-- Address where the localizer IPC is.(yarn.nodemanager.localizer.address)</div><div class="line">8042	&lt;-- NM Webapp address.(yarn.nodemanager.webapp.address)</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Hive use port</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">10000	&lt;-- Hive Server2 Port(Hive JDBC Use)(ENV Variable HIVE_PORT)</div><div class="line">10002	&lt;-- Hive Server2 Web UI</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Oozie use port</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">11000	&lt;-- OOZIE Web UI Port(OOZIE_HTTP_PORT in oozie_env.sh)(Web)</div><div class="line">11001   &lt;-- The admin port Oozie server runs(OOZIE_ADMIN_PORT in oozie_env.sh)(OOZIE admin Port)</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Spark use port</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4040 	&lt;-- Spark Web UI(spark)</div><div class="line">18080   &lt;-- Spark History port(Web)</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>MR-Job History use port</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">19888   &lt;-- MR Job History port(Web)</div><div class="line">10020	&lt;-- MapReduce JobHistory server address(mapreduce.jobhistory.address)</div><div class="line">10033	&lt;-- The address of the History server admin interface.(mapreduce.jobhistory.admin.address)</div></pre></td></tr></table></figure></blockquote>
 </li>
 </ol>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;安裝前準備&quot;&gt;&lt;a href=&quot;#安裝前準備&quot; class=&quot;headerlink&quot; title=&quot;安裝前準備&quot;&gt;&lt;/a&gt;安裝前準備&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;以下步驟在Hadoop cluster下的每台電腦皆要安裝與設定 &lt;/p&gt;
-&lt;ol&gt;
-&lt;l
+      &lt;h3 id=&quot;安裝前準備&quot;&gt;&lt;a href=&quot;#安裝前準備&quot; class=&quot;headerlink&quot; title=&quot;安裝前準備&quot;&gt;&lt;/a&gt;安裝前準備&lt;/h3&gt;&lt;h4 id=&quot;停止iptables服務&quot;&gt;&lt;a href=&quot;#停止iptables服務&quot; class=&quot;headerli
     
     </summary>
     
