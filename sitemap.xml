@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/01/08/%5BInstall%5DBigData/</loc>
+    
+    <lastmod>2017-02-24T10:36:23.366Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/02/20/%5Bvagrant%5DVagrantfile%E9%85%8D%E7%BD%AE%E6%AA%94%E8%AA%AA%E6%98%8E/</loc>
     
     <lastmod>2017-02-20T06:02:47.965Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://yoursite.com/2017/01/10/%5Bhadoop%5DhadoopMultiDirectoryStore/</loc>
     
     <lastmod>2017-01-10T09:59:13.871Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/01/08/%5BInstall%5DBigData/</loc>
-    
-    <lastmod>2017-01-10T09:57:04.991Z</lastmod>
     
   </url>
   
