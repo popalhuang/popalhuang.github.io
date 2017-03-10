@@ -93,30 +93,6 @@
   </entry>
   
   <entry>
-    <title>Hadoop常用命令說明</title>
-    <link href="http://yoursite.com/2017/01/10/%5Bhadoop%5DHadoop_CMD/"/>
-    <id>http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/</id>
-    <published>2017-01-09T16:00:00.000Z</published>
-    <updated>2017-01-10T10:14:07.994Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class
-    
-    </summary>
-    
-      <category term="hadoop" scheme="http://yoursite.com/categories/hadoop/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hadoop資料儲存於多個目錄中的模擬測試</title>
     <link href="http://yoursite.com/2017/01/10/%5Bhadoop%5DhadoopMultiDirectoryStore/"/>
     <id>http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/</id>
@@ -154,11 +130,35 @@
   </entry>
   
   <entry>
+    <title>Hadoop常用命令說明</title>
+    <link href="http://yoursite.com/2017/01/10/%5Bhadoop%5DHadoop_CMD/"/>
+    <id>http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/</id>
+    <published>2017-01-09T16:00:00.000Z</published>
+    <updated>2017-01-10T10:14:07.994Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class
+    
+    </summary>
+    
+      <category term="hadoop" scheme="http://yoursite.com/categories/hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Hadoop Cluster相關環境建置筆記(持續修正中......)</title>
     <link href="http://yoursite.com/2017/01/08/%5BInstall%5DBigData/"/>
     <id>http://yoursite.com/2017/01/08/[Install]BigData/</id>
     <published>2017-01-08T10:00:00.000Z</published>
-    <updated>2017-02-24T10:46:55.371Z</updated>
+    <updated>2017-03-10T02:04:47.208Z</updated>
     
     <content type="html"><![CDATA[<h3 id="安裝前準備"><a href="#安裝前準備" class="headerlink" title="安裝前準備"></a>安裝前準備</h3><h4 id="停止iptables服務"><a href="#停止iptables服務" class="headerlink" title="停止iptables服務"></a>停止iptables服務</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## 先使用root登入Linux OS</div><div class="line">service iptables stop  #停止iptables服務</div><div class="line">vi /etc/rc.local</div><div class="line">service iptables stop  #停止iptables服務,存檔後離開</div></pre></td></tr></table></figure>
@@ -170,7 +170,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">su - hadoop</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id hadoop@hadoop-master  ##別忘記自己也要copy</div><div class="line">ssh-copy-id hadoop@hadoop-slave1  ##有幾台datanode就要做幾次</div><div class="line">ssh-copy-id hadoop@hadoop-slave2  ##有幾台datanode就要做幾次</div><div class="line"></div><div class="line">##ssh連線測試</div><div class="line">ssh hadoop-master</div><div class="line">ssh hadoop-slave1</div></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="系統時間同步"><a href="#系統時間同步" class="headerlink" title="系統時間同步"></a>系統時間同步</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">sudo date [MMddHHmmYYYY];hwclocl -w</div><div class="line">sudo date [MMddHHmmYYYY];hwclocl -w</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo date [MMddhhmm.SS];hwclocl -w</div></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="建立安裝目錄"><a href="#建立安裝目錄" class="headerlink" title="建立安裝目錄"></a>建立安裝目錄</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /bgdt/install_src</div><div class="line">sudo mkdir -p /bgdt/java</div><div class="line">sudo chown -R hadoop:hadoop /bgdt</div></pre></td></tr></table></figure>
@@ -210,6 +210,9 @@
 </blockquote>
 <h4 id="啟動dfs與yarn"><a href="#啟動dfs與yarn" class="headerlink" title="啟動dfs與yarn"></a>啟動dfs與yarn</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="單台Datanode啟動程式"><a href="#單台Datanode啟動程式" class="headerlink" title="單台Datanode啟動程式"></a>單台Datanode啟動程式</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssh dna1</div><div class="line">/bgdt/hadoop-2.7.2/sbin/hadoop-daemon.sh start datanode</div><div class="line">/bgdt/hadoop-2.7.2/sbin/yarn-daemon.sh start nodemanager</div></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="HDFS-WebUI-hadoop-master-50070"><a href="#HDFS-WebUI-hadoop-master-50070" class="headerlink" title="HDFS WebUI (hadoop-master:50070)"></a>HDFS WebUI (hadoop-master:50070)</h4><p><img src="/images/dfs_2.jpg" alt=""></p>
 <h4 id="yarn-WebUI-hadoop-master-8088"><a href="#yarn-WebUI-hadoop-master-8088" class="headerlink" title="yarn WebUI (hadoop-master:8088)"></a>yarn WebUI (hadoop-master:8088)</h4><p><img src="/images/yarn_start_success.jpg" alt=""></p>
@@ -399,7 +402,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export HADOOP_HEAPSIZE=1024                     ##hadoop namenode&amp;datanode heap size(default 1000)</div><div class="line">export HADOOP_JOB_HISTORYSERVER_HEAPSIZE=1024   ##yarn job history heap size(default 1000)</div></pre></td></tr></table></figure>
 </blockquote>
 <h5 id="yarn-env-sh"><a href="#yarn-env-sh" class="headerlink" title="yarn-env.sh"></a>yarn-env.sh</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export YARN_RESOURCEMANAGER_HEAPSIZE=1024    ##Resource Manager heap size(default 1000)</div><div class="line">export YARN_NODEMANAGER_HEAPSIZE=512         ##Node Manager heap size(default 1000)</div></pre></td></tr></table></figure></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export YARN_RESOURCEMANAGER_HEAPSIZE=1024    ##Resource Manager heap size(default 1000)</div><div class="line">export YARN_NODEMANAGER_HEAPSIZE=512         ##Node Manager heap size(default 1000)</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Hadoop-Cluster相關環境啟動與停止程序整理"><a href="#Hadoop-Cluster相關環境啟動與停止程序整理" class="headerlink" title="Hadoop Cluster相關環境啟動與停止程序整理"></a>Hadoop Cluster相關環境啟動與停止程序整理</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Hadoop Cluster相關服務啟動順序</div><div class="line">------------------------------</div><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div><div class="line">mr-jobhistory-daemon.sh start historyserver</div><div class="line">/bgdt/spark-2.0.0/sbin/start-history-server.sh</div><div class="line">nohup hive --service hiveserver2 &amp; (使用&quot;netstat -tnl | grep &apos;10000&apos;&quot;驗證10000 port是否有啟動)</div><div class="line">/bgdt/oozie-4.3.0/bin/oozied.sh start</div><div class="line"></div><div class="line">Hadoop Cluster相關服務停止順序</div><div class="line">------------------------------</div><div class="line">/bgdt/oozie-4.3.0/bin/oozied.sh stop</div><div class="line">mr-jobhistory-daemon.sh stop historyserver</div><div class="line">/bgdt/spark-2.0.0/sbin/stop-history-server.sh</div><div class="line">stop-yarn.sh</div><div class="line">stop-dfs.sh</div><div class="line">hiveserver2需要用&quot;kill -9 PID&quot;方式停止,目前沒有停止指令</div></pre></td></tr></table></figure></blockquote>
 ]]></content>
     
     <summary type="html">
