@@ -55,7 +55,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -65,6 +65,67 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-[spark]spark_001" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/22/[spark]spark_001/" class="article-date">
+  <time datetime="2017-05-21T16:00:00.000Z" itemprop="datePublished">2017-05-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spark/">Spark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SparkSession-Example-1"><span class="toc-text">SparkSession Example 1</span></a></li></ol>
+</div>
+
+        <h3 id="SparkSession-Example-1"><a href="#SparkSession-Example-1" class="headerlink" title="SparkSession Example 1"></a>SparkSession Example 1</h3><ol>
+<li><p>使用vi,或先用記事本建立以下json檔案(我的是建立在/home/vagrant/src/job/person5_data.json)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;id&quot;:&quot;0000000001&quot;,&quot;name&quot;:&quot;Test001&quot;,&quot;gender&quot;:&quot;M&quot;,&quot;age&quot;:&quot;40&quot;,&quot;telphone&quot;:&quot;123456789&quot;,&quot;address&quot;:&#123;&quot;country&quot;:&quot;Taiwan&quot;,&quot;city&quot;:&quot;Taipei&quot;,&quot;state&quot;:&quot;Sanxia&quot;,&quot;street&quot;:&quot;test.&quot;&#125;,&quot;child&quot;:[&#123;&quot;age&quot;:&quot;5&quot;,&quot;name&quot;:&quot;sub_001&quot;,&quot;gender&quot;:&quot;M&quot;&#125;,&#123;&quot;age&quot;:&quot;6&quot;,&quot;name&quot;:&quot;sub_002&quot;,&quot;gender&quot;:&quot;M&quot;&#125;]&#125;,</div><div class="line">&#123;&quot;id&quot;:&quot;0000000002&quot;,&quot;name&quot;:&quot;Test002&quot;,&quot;gender&quot;:&quot;F&quot;,&quot;age&quot;:&quot;29&quot;,&quot;telphone&quot;:&quot;223456670&quot;,&quot;address&quot;:&#123;&quot;country&quot;:&quot;Taiwan&quot;,&quot;city&quot;:&quot;Taipei&quot;,&quot;state&quot;:&quot;Sanzhi&quot;,&quot;street&quot;:&quot;test.&quot;&#125;,&quot;child&quot;:[&#123;&quot;age&quot;:&quot;7&quot;,&quot;name&quot;:&quot;sub_003&quot;,&quot;gender&quot;:&quot;M&quot;&#125;,&#123;&quot;age&quot;:&quot;8&quot;,&quot;name&quot;:&quot;sub_004&quot;,&quot;gender&quot;:&quot;F&quot;&#125;]&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>將person5_data.json檔案放到HDFS目錄上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -put -f /home/vagrant/src/job/person5_data.json /user/hadoop/data</div></pre></td></tr></table></figure>
+</li>
+<li><p>Create SparkSession</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">import org.apache.spark.sql.AnalysisException;</div><div class="line">import org.apache.spark.sql.Dataset;</div><div class="line">import org.apache.spark.sql.Row;</div><div class="line">import org.apache.spark.sql.SaveMode;</div><div class="line">import org.apache.spark.sql.SparkSession;</div><div class="line">import org.apache.spark.sql.catalog.Database;</div><div class="line"></div><div class="line">public class SparkExample0 &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) throws AnalysisException &#123;</div><div class="line">		</div><div class="line">		//1. Create SparkSession</div><div class="line">		SparkSession spark = SparkSession.builder()	</div><div class="line">			.master(&quot;local&quot;)												</div><div class="line">			.config(&quot;spark.executor.memory&quot;, &quot;2g&quot;)	</div><div class="line">			.appName(&quot;SparkExample0&quot;)								</div><div class="line">			.enableHiveSupport()										</div><div class="line">			.getOrCreate();													</div><div class="line">		</div><div class="line">		//2. set new runtime options</div><div class="line">		spark.conf().set(&quot;spark.sql.shuffle.partitions&quot;, 6);</div><div class="line">						</div><div class="line">		//3. SparkSession-透過read方式來讀取各種不同來源的資料						</div><div class="line">		Dataset&lt;Row&gt; ds1 = spark.read().format(&quot;json&quot;).load(&quot;/user/hadoop/data/person5_data.json&quot;);</div><div class="line">		ds1.printSchema();</div><div class="line">		</div><div class="line">		//4. 將檔案存成Hive資料表</div><div class="line">		ds1.repartition(1).write().mode(SaveMode.Overwrite).saveAsTable(&quot;example.person_data5&quot;);													</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用spark-submit執行Java Spark程式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spark-submit --class &quot;SparkExample0&quot; /home/vagrant/src/job/Spark2Example.jar</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cj300x0ji0004vclll4ku8t4d" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/05/22/[spark]spark_001/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-[vagrant]VagrantMemo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -109,9 +170,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cj037ljw00005ugllowg0ne30" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cj300x0jm0005vcllkzrcnxm5" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -158,9 +219,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cj037ljw40009ugllnq7pis7a" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cj300x0jo0007vcllv6vri2vc" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -208,9 +269,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cj037ljvu0003ugll4bkkvywd" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cj300x0jd0003vcllolo95cfi" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -259,9 +320,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cj037ljvx0004ugllvevqsmf5" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cj300x0jr0009vcllrwqsambl" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -322,9 +383,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cj037ljw20007ugllw6n0wyf1" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cj300x0jw000bvcll81rl0vbv" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -617,9 +678,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cj037ljvp0001ugll0zt9ztqq" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cj300x0j60001vcll86kkrs9s" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2017/01/08/[Install]BigData/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2017/01/08/[Install]BigData/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -660,14 +721,19 @@
   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
 </div>
 
-        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
-<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
+</blockquote>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cj037ljvl0000ugllv8pmw6r5" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cj300x0j20000vclluzxjp6ww" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2016/12/07/[Linux]Linux/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://yoursite.com/2016/12/07/[Linux]Linux/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -686,7 +752,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -696,7 +762,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -707,6 +773,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
+          </li>
         
           <li>
             <a href="/2017/02/20/[vagrant]VagrantMemo/">Vagrant Command Line說明筆記</a>
@@ -722,10 +792,6 @@
         
           <li>
             <a href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
           </li>
         
       </ul>
@@ -755,7 +821,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; undefined ~ 2017 popal<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

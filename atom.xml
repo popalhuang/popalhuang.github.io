@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-20T05:35:44.382Z</updated>
+  <updated>2017-05-22T11:01:54.357Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spark程式開發系列_for Java1.8_001</title>
+    <link href="http://yoursite.com/2017/05/22/%5Bspark%5Dspark_001/"/>
+    <id>http://yoursite.com/2017/05/22/[spark]spark_001/</id>
+    <published>2017-05-21T16:00:00.000Z</published>
+    <updated>2017-05-22T11:01:54.357Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="SparkSession-Example-1"><a href="#SparkSession-Example-1" class="headerlink" title="SparkSession Example 1"></a>SparkSession Example 1</h3><ol>
+<li><p>使用vi,或先用記事本建立以下json檔案(我的是建立在/home/vagrant/src/job/person5_data.json)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;id&quot;:&quot;0000000001&quot;,&quot;name&quot;:&quot;Test001&quot;,&quot;gender&quot;:&quot;M&quot;,&quot;age&quot;:&quot;40&quot;,&quot;telphone&quot;:&quot;123456789&quot;,&quot;address&quot;:&#123;&quot;country&quot;:&quot;Taiwan&quot;,&quot;city&quot;:&quot;Taipei&quot;,&quot;state&quot;:&quot;Sanxia&quot;,&quot;street&quot;:&quot;test.&quot;&#125;,&quot;child&quot;:[&#123;&quot;age&quot;:&quot;5&quot;,&quot;name&quot;:&quot;sub_001&quot;,&quot;gender&quot;:&quot;M&quot;&#125;,&#123;&quot;age&quot;:&quot;6&quot;,&quot;name&quot;:&quot;sub_002&quot;,&quot;gender&quot;:&quot;M&quot;&#125;]&#125;,</div><div class="line">&#123;&quot;id&quot;:&quot;0000000002&quot;,&quot;name&quot;:&quot;Test002&quot;,&quot;gender&quot;:&quot;F&quot;,&quot;age&quot;:&quot;29&quot;,&quot;telphone&quot;:&quot;223456670&quot;,&quot;address&quot;:&#123;&quot;country&quot;:&quot;Taiwan&quot;,&quot;city&quot;:&quot;Taipei&quot;,&quot;state&quot;:&quot;Sanzhi&quot;,&quot;street&quot;:&quot;test.&quot;&#125;,&quot;child&quot;:[&#123;&quot;age&quot;:&quot;7&quot;,&quot;name&quot;:&quot;sub_003&quot;,&quot;gender&quot;:&quot;M&quot;&#125;,&#123;&quot;age&quot;:&quot;8&quot;,&quot;name&quot;:&quot;sub_004&quot;,&quot;gender&quot;:&quot;F&quot;&#125;]&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>將person5_data.json檔案放到HDFS目錄上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -put -f /home/vagrant/src/job/person5_data.json /user/hadoop/data</div></pre></td></tr></table></figure>
+</li>
+<li><p>Create SparkSession</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">import org.apache.spark.sql.AnalysisException;</div><div class="line">import org.apache.spark.sql.Dataset;</div><div class="line">import org.apache.spark.sql.Row;</div><div class="line">import org.apache.spark.sql.SaveMode;</div><div class="line">import org.apache.spark.sql.SparkSession;</div><div class="line">import org.apache.spark.sql.catalog.Database;</div><div class="line"></div><div class="line">public class SparkExample0 &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) throws AnalysisException &#123;</div><div class="line">		</div><div class="line">		//1. Create SparkSession</div><div class="line">		SparkSession spark = SparkSession.builder()	</div><div class="line">			.master(&quot;local&quot;)												</div><div class="line">			.config(&quot;spark.executor.memory&quot;, &quot;2g&quot;)	</div><div class="line">			.appName(&quot;SparkExample0&quot;)								</div><div class="line">			.enableHiveSupport()										</div><div class="line">			.getOrCreate();													</div><div class="line">		</div><div class="line">		//2. set new runtime options</div><div class="line">		spark.conf().set(&quot;spark.sql.shuffle.partitions&quot;, 6);</div><div class="line">						</div><div class="line">		//3. SparkSession-透過read方式來讀取各種不同來源的資料						</div><div class="line">		Dataset&lt;Row&gt; ds1 = spark.read().format(&quot;json&quot;).load(&quot;/user/hadoop/data/person5_data.json&quot;);</div><div class="line">		ds1.printSchema();</div><div class="line">		</div><div class="line">		//4. 將檔案存成Hive資料表</div><div class="line">		ds1.repartition(1).write().mode(SaveMode.Overwrite).saveAsTable(&quot;example.person_data5&quot;);													</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用spark-submit執行Java Spark程式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spark-submit --class &quot;SparkExample0&quot; /home/vagrant/src/job/Spark2Example.jar</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;SparkSession-Example-1&quot;&gt;&lt;a href=&quot;#SparkSession-Example-1&quot; class=&quot;headerlink&quot; title=&quot;SparkSession Example 1&quot;&gt;&lt;/a&gt;SparkSession Example
+    
+    </summary>
+    
+      <category term="Spark" scheme="http://yoursite.com/categories/Spark/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Vagrant Command Line說明筆記</title>
@@ -426,10 +460,15 @@
     <link href="http://yoursite.com/2016/12/07/%5BLinux%5DLinux/"/>
     <id>http://yoursite.com/2016/12/07/[Linux]Linux/</id>
     <published>2016-12-07T14:05:00.000Z</published>
-    <updated>2017-01-10T09:59:48.550Z</updated>
+    <updated>2017-03-10T02:41:02.821Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
-<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
+</blockquote>
+]]></content>
     
     <summary type="html">
     
