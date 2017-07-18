@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/01/08/%5BInstall%5DBigData/</loc>
+    
+    <lastmod>2017-06-02T07:23:28.134Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/22/%5Bspark%5Dspark_001/</loc>
     
     <lastmod>2017-05-22T11:01:54.357Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2016/12/07/%5BLinux%5DLinux/</loc>
     
     <lastmod>2017-03-10T02:41:02.821Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/01/08/%5BInstall%5DBigData/</loc>
-    
-    <lastmod>2017-03-10T02:34:23.489Z</lastmod>
     
   </url>
   
