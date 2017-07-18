@@ -5,25 +5,28 @@
   
   <title>Vagrant Command Line說明筆記 | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://files.vagrantup.com/precise64.boxvagrant box listvagrant box remove precise64
+  <meta name="description" content="vagrant package
+1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
 
-vagrant i">
+vagrant box
+1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vagrant Command Line說明筆記">
 <meta property="og:url" content="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://files.vagrantup.com/precise64.boxvagrant box listvagrant box remove precise64
+<meta property="og:description" content="vagrant package
+1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
 
-vagrant i">
-<meta property="og:updated_time" content="2017-02-20T05:35:44.382Z">
+vagrant box
+1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
+<meta property="og:updated_time" content="2017-07-18T05:24:19.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vagrant Command Line說明筆記">
-<meta name="twitter:description" content="vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://files.vagrantup.com/precise64.boxvagrant box listvagrant box remove precise64
+<meta name="twitter:description" content="vagrant package
+1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
 
-vagrant i">
+vagrant box
+1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
   
   
     <link rel="icon" href="/favicon.png">
@@ -102,22 +105,28 @@ vagrant i">
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-box"><span class="toc-text">vagrant box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-init"><span class="toc-text">vagrant init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-啟動-停止-重啟-移除-全部VM"><span class="toc-text">vagrant 啟動/停止/重啟/移除 全部VM</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-package"><span class="toc-text">vagrant package</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-box"><span class="toc-text">vagrant box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-init"><span class="toc-text">vagrant init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-啟動-停止-重啟-移除-全部VM"><span class="toc-text">vagrant 啟動/停止/重啟/移除 全部VM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#other-command"><span class="toc-text">other command</span></a></li></ol>
 </div>
 
-        <h4 id="vagrant-box"><a href="#vagrant-box" class="headerlink" title="vagrant box"></a>vagrant box</h4><blockquote>
+        <h4 id="vagrant-package"><a href="#vagrant-package" class="headerlink" title="vagrant package"></a>vagrant package</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant package --base &lt;vm_name&gt; --output &lt;box_name&gt;.box</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="vagrant-box"><a href="#vagrant-box" class="headerlink" title="vagrant box"></a>vagrant box</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/</div><div class="line">vagrant box add precise64 http://files.vagrantup.com/precise64.box</div><div class="line">vagrant box list</div><div class="line">vagrant box remove precise64</div></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="vagrant-init"><a href="#vagrant-init" class="headerlink" title="vagrant init"></a>vagrant init</h4><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant init  precise64	##會在執行語法的目錄下產生一個Vagrantfile的配置檔</div></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="vagrant-啟動-停止-重啟-移除-全部VM"><a href="#vagrant-啟動-停止-重啟-移除-全部VM" class="headerlink" title="vagrant 啟動/停止/重啟/移除 全部VM"></a>vagrant 啟動/停止/重啟/移除 全部VM</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">##以下為啟動/停止/重啟/移除全部VM的用法</div><div class="line">vagrant up	##啟動全部VM</div><div class="line">vagrant halt	##停止全部VM</div><div class="line">vagrant reload	##重啟全部VM</div><div class="line">vagrant destroy	##移除全部VM</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除單一VM的用法</div><div class="line">vagrant up master</div><div class="line">vagrant halt master</div><div class="line">vagrant reload master</div><div class="line">vagrant destroy master</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除多個VM的用法(VM名稱中間空格,以做為多個VM名稱區隔)</div><div class="line">vagrant up master slave1</div><div class="line">vagrant halt master slave1</div><div class="line">vagrant reload master slave1</div><div class="line">vagrant destroy master slave1</div></pre></td></tr></table></figure></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">##以下為啟動/停止/重啟/移除全部VM的用法</div><div class="line">vagrant up	##啟動全部VM</div><div class="line">vagrant halt	##停止全部VM</div><div class="line">vagrant reload	##重啟全部VM</div><div class="line">vagrant destroy	##移除全部VM</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除單一VM的用法</div><div class="line">vagrant up master</div><div class="line">vagrant halt master</div><div class="line">vagrant reload master</div><div class="line">vagrant destroy master</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除多個VM的用法(VM名稱中間空格,以做為多個VM名稱區隔)</div><div class="line">vagrant up master slave1</div><div class="line">vagrant halt master slave1</div><div class="line">vagrant reload master slave1</div><div class="line">vagrant destroy master slave1</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="other-command"><a href="#other-command" class="headerlink" title="other command"></a>other command</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant version</div><div class="line">vagrant status</div><div class="line">vagrant ssh-config &lt;vm_name&gt;</div><div class="line">vagrant ssh</div></pre></td></tr></table></figure></blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cj594mg0o000c3cll302rulct" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cj5984rck0007v8ll26f19ake" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -128,19 +137,19 @@ vagrant i">
     
 <nav id="article-nav">
   
-    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/22/[spark]spark_001/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Vagrant file 配置檔案說明
+          Spark程式開發系列_for Java1.8_001
         
       </div>
     </a>
   
   
-    <a href="/2017/01/10/[hadoop]CreatNewDataNode/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hadoop Cluster-動態新增一個節點</div>
+      <div class="article-nav-title">Vagrant file 配置檔案說明</div>
     </a>
   
 </nav>
@@ -162,7 +171,7 @@ vagrant i">
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -172,7 +181,7 @@ vagrant i">
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -185,11 +194,11 @@ vagrant i">
       <ul>
         
           <li>
-            <a href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
+            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
           </li>
         
           <li>
-            <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/">Vagrant file 配置檔案說明</a>
+            <a href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
           </li>
         
           <li>
@@ -197,11 +206,11 @@ vagrant i">
           </li>
         
           <li>
-            <a href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
+            <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/">Vagrant file 配置檔案說明</a>
           </li>
         
           <li>
-            <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
+            <a href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
           </li>
         
       </ul>
