@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-18T07:15:28.059Z</updated>
+  <updated>2017-11-06T10:12:00.165Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,118 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hive相關語法整理-1</title>
+    <link href="http://yoursite.com/2017/11/06/%5Bhive%5Dhive_sql_1/"/>
+    <id>http://yoursite.com/2017/11/06/[hive]hive_sql_1/</id>
+    <published>2017-11-05T16:00:00.000Z</published>
+    <updated>2017-11-06T10:12:00.165Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
+<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
+<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
+<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
+<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
+<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Create-Database&quot;&gt;&lt;a href=&quot;#Create-Database&quot; class=&quot;headerlink&quot; title=&quot;Create Database&quot;&gt;&lt;/a&gt;Create Database&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;creat
+    
+    </summary>
+    
+      <category term="hive" scheme="http://yoursite.com/categories/hive/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hive相關語法整理-2</title>
+    <link href="http://yoursite.com/2017/11/06/%5Bhive%5Dhive_sql_2/"/>
+    <id>http://yoursite.com/2017/11/06/[hive]hive_sql_2/</id>
+    <published>2017-11-05T16:00:00.000Z</published>
+    <updated>2017-11-06T11:19:32.542Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Create-Table"><a href="#Create-Table" class="headerlink" title="Create Table"></a>Create Table</h2><blockquote>
+<p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  [(col_name data_type [COMMENT col_comment], … [constraint_specification])]<br>  [COMMENT table_comment]<br>  [PARTITIONED BY (col_name data_type [COMMENT col_comment], …)]<br>  [CLUSTERED BY (col_name, col_name, …) [SORTED BY (col_name [ASC|DESC], …)] INTO num_buckets BUCKETS]<br>  [SKEWED BY (col_name, col_name, …)                  – (Note: Available in Hive 0.10.0 and later)]<br>     ON ((col_value, col_value, …), (col_value, col_value, …), …)<br>     [STORED AS DIRECTORIES]<br>  [<br>   [ROW FORMAT row_format]<br>   [STORED AS file_format]<br>     | STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)]  – (Note: Available in Hive 0.6.0 and later)<br>  ]<br>  [LOCATION hdfs_path]<br>  [TBLPROPERTIES (property_name=property_value, …)]   – (Note: Available in Hive 0.6.0 and later)<br>  [AS select_statement];   – (Note: Available in Hive 0.5.0 and later; not supported for external tables)</p>
+<p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  LIKE existing_table_or_view_name<br>  [LOCATION hdfs_path];</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example1:</div><div class="line">以下範例為Table建立各種型態欄位</div><div class="line">create table test1(a1 tinyint,a2 smallint,a3 int,a4 bigint);</div><div class="line">create table test2(a1 float,a2 double);</div><div class="line">create table test3(a1 string,a2 varchar(2000),a3 char(4));</div><div class="line">create table test4(a1 boolean,a2 date,a3 timestamp);</div><div class="line">create table test5(a1 map&lt;string,string&gt;,a2 array&lt;string&gt;,a3 struct&lt;c1:string,c2:int,c3:date&gt;);</div><div class="line">create table test5_1(a1 map&lt;string,string&gt;,a2 array&lt;string&gt;,a3 struct&lt;c1:string,c2:int,c3:date&gt;,a4 uniontype&lt;string,int,date&gt;);</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example2:</div><div class="line">建立Partition Table</div><div class="line">create table test6_1(a1 string,a2 int)</div><div class="line">partitioned by(a3 string);</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Example3:</div><div class="line">建立Bluck Table</div><div class="line">create table test6_2(a1 string,a2 int)</div><div class="line">clustered by(a2) </div><div class="line">into 5 buckets;</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example4:</div><div class="line">CTAS 用法範例</div><div class="line">create table test7 as select &quot;ttt&quot;, concat(&quot;part_&quot;, &quot;aaa&quot;);</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example5:</div><div class="line">建立外部表格,表格刪除時Table檔案並不會跟著一起被刪除</div><div class="line">create external table if not exists test8(a1 string,a2 int);</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example6:</div><div class="line">建立暫存表格</div><div class="line">create temporary table if not exists test9(a1 string,a2 int);</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example7:</div><div class="line">建立與某一個表格相同欄位的表格 (copy 某個Table的欄位)</div><div class="line">create table test10 like test1;	--copy columns from table;</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Example8:</div><div class="line">create table taiwan_area(</div><div class="line">  cityname string COMMENT &quot;行政區名稱&quot;,</div><div class="line">  type string COMMENT &quot;行政區類別&quot;,</div><div class="line">  area float COMMENT &quot;區域面積&quot;,</div><div class="line">  village_num smallint COMMENT &quot;村里數&quot;,</div><div class="line">  neighborhood_num smallint COMMENT &quot;鄰數&quot;,</div><div class="line">  people_num int COMMENT &quot;人口數&quot;,</div><div class="line">  density int COMMENT &quot;人口密度&quot;,</div><div class="line">  zipcode smallint COMMENT &quot;郵遞區號&quot;</div><div class="line">)</div><div class="line">row format serde &apos;org.apache.hadoop.hive.serde2.OpenCSVSerde&apos;</div><div class="line">with SERDEPROPERTIES(</div><div class="line">&quot;separatorChar&quot; = &quot;,&quot;,</div><div class="line">&quot;quoteChar&quot;     = &quot;\&quot;&quot;,</div><div class="line">&quot;escapeChar&quot;    = &quot;\\&quot;</div><div class="line">)</div><div class="line">STORED AS TEXTFILE;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Result:</div><div class="line">hive&gt; desc taiwan_area;</div><div class="line">OK</div><div class="line">cityname                string                  from deserializer</div><div class="line">type                    string                  from deserializer</div><div class="line">area                    string                  from deserializer</div><div class="line">village_num             string                  from deserializer</div><div class="line">neighborhood_num        string                  from deserializer</div><div class="line">people_num              string                  from deserializer</div><div class="line">density                 string                  from deserializer</div><div class="line">zipcode                 string                  from deserializer</div><div class="line">Time taken: 0.254 seconds, Fetched: 8 row(s)</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Example9:</div><div class="line">create table page_view(</div><div class="line">  viewTime int, </div><div class="line">  userid bigint,</div><div class="line">  page_url string, </div><div class="line">  referrer_url string,</div><div class="line">  ip string comment &apos;IP Address of the User&apos;)</div><div class="line">comment &apos;This is the page view table&apos;</div><div class="line">partitioned by(dt string, country string)</div><div class="line">row format delimited</div><div class="line">   fields terminated by &apos;\001&apos;</div><div class="line">   collection items terminated by &apos;\002&apos;</div><div class="line">   map keys terminated by &apos;\003&apos;</div><div class="line">stored as textfile;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Result:</div><div class="line">hive&gt; desc page_view;</div><div class="line">OK</div><div class="line">viewtime                int</div><div class="line">userid                  bigint</div><div class="line">page_url                string</div><div class="line">referrer_url            string</div><div class="line">ip                      string                  IP Address of the User</div><div class="line">dt                      string</div><div class="line">country                 string</div><div class="line"></div><div class="line"># Partition Information</div><div class="line"># col_name              data_type               comment</div><div class="line"></div><div class="line">dt                      string</div><div class="line">country                 string</div><div class="line">Time taken: 0.193 seconds, Fetched: 13 row(s)</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<p>Example10:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Prepare CSV file:</div><div class="line">CSV檔內容如下:</div><div class="line">test1.csv</div><div class="line">echo 100,1,\&quot;http://www.google.com\&quot;,\&quot;http://www.google.com\&quot;,\&quot;192.168.1.1\&quot; &gt; ~/test1.csv</div><div class="line">echo 200,2,\&quot;http://www.google.com\&quot;,\&quot;http://www.google.com\&quot;,\&quot;192.168.1.2\&quot; &gt;&gt; ~/test1.csv</div><div class="line">echo 150,3,\&quot;http://www.google.com\&quot;,\&quot;http://www.google.com\&quot;,\&quot;192.168.1.3\&quot; &gt;&gt; ~/test1.csv</div><div class="line">echo 300,4,\&quot;http://www.google.com\&quot;,\&quot;http://www.google.com\&quot;,\&quot;192.168.1.4\&quot; &gt;&gt; ~/test1.csv</div><div class="line">直接在Linux系統上使用指令建立以上檔案</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">create table page_view_1(</div><div class="line">  viewTime int, </div><div class="line">  userid bigint,</div><div class="line">  page_url string, </div><div class="line">  referrer_url string,</div><div class="line">  ip string comment &apos;IP Address of the User&apos;)</div><div class="line">comment &apos;This is the page view table&apos;</div><div class="line">partitioned by(dt string, country string)</div><div class="line">row format delimited</div><div class="line">   fields terminated by &apos;,&apos;</div><div class="line">stored as textfile;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">使用Load將資料insert至Table</div><div class="line">load data local inpath &quot;/home/hadoop/test1.csv&quot; overwrite into table page_view_1 partition(dt=&quot;taipei&quot;,country=&quot;taiwan&quot;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Result:</div><div class="line">hive&gt; select * from page_view_1;</div><div class="line">OK</div><div class="line">100     1       &quot;http://www.google.com&quot; &quot;http://www.google.com&quot; &quot;192.168.1.1&quot;   taipei  taiwan</div><div class="line">200     2       &quot;http://www.google.com&quot; &quot;http://www.google.com&quot; &quot;192.168.1.2&quot;   taipei  taiwan</div><div class="line">150     3       &quot;http://www.google.com&quot; &quot;http://www.google.com&quot; &quot;192.168.1.3&quot;   taipei  taiwan</div><div class="line">300     4       &quot;http://www.google.com&quot; &quot;http://www.google.com&quot; &quot;192.168.1.4&quot;   taipei  taiwan</div><div class="line">Time taken: 0.335 seconds, Fetched: 4 row(s)</div></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example11</div><div class="line">Step1:</div><div class="line">建立CSV檔</div><div class="line">test2.csv</div><div class="line">echo 1,\&quot;http://www.google.com\&quot;\;\&quot;192.168.1.1\&quot;\;\&quot;404\&quot;,100 &gt;~/test2.csv</div><div class="line">echo 2,\&quot;http://www.google.com\&quot;\;\&quot;192.168.1.1\&quot;\;\&quot;200\&quot;,100 &gt;&gt;~/test2.csv</div><div class="line">echo 3,\&quot;http://www.google.com\&quot;\;\&quot;192.168.1.1\&quot;\;\&quot;500\&quot;,100 &gt;&gt;~/test2.csv</div><div class="line">echo 4,\&quot;http://www.google.com\&quot;\;\&quot;192.168.1.1\&quot;\;\&quot;503\&quot;,100 &gt;&gt;~/test2.csv</div><div class="line">echo 5,\&quot;http://www.google.com\&quot;\;\&quot;192.168.1.1\&quot;\;\&quot;201\&quot;,100 &gt;&gt;~/test2.csv</div><div class="line">echo 6,\&quot;http://www.google.com\&quot;\;\&quot;192.168.1.1\&quot;\;\&quot;403\&quot;,100 &gt;&gt;~/test2.csv</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Step2:</div><div class="line">create table page_view_2( </div><div class="line">  userid bigint,</div><div class="line">  data struct&lt;page_url:string,ip:string,status:string&gt;,</div><div class="line">  view_count int)</div><div class="line">comment &apos;This is the page view table&apos;</div><div class="line">partitioned by(dt string, country string)</div><div class="line">row format delimited</div><div class="line">   fields terminated by &apos;,&apos;</div><div class="line">   collection items terminated by &apos;\;&apos;</div><div class="line">stored as textfile;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Step3:</div><div class="line">load data local inpath &quot;/home/hadoop/test2.csv&quot; overwrite into table page_view_2 partition(dt=&quot;taipei&quot;,country=&quot;taiwan&quot;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Step4:</div><div class="line">hive&gt; select * from page_view_2;</div><div class="line">OK</div><div class="line">1       &#123;&quot;page_url&quot;:&quot;\&quot;http://www.google.com\&quot;&quot;,&quot;ip&quot;:&quot;\&quot;192.168.1.1\&quot;&quot;,&quot;status&quot;:&quot;\&quot;404\&quot;&quot;&#125;      100     taipei  taiwan</div><div class="line">2       &#123;&quot;page_url&quot;:&quot;\&quot;http://www.google.com\&quot;&quot;,&quot;ip&quot;:&quot;\&quot;192.168.1.1\&quot;&quot;,&quot;status&quot;:&quot;\&quot;200\&quot;&quot;&#125;      100     taipei  taiwan</div><div class="line">3       &#123;&quot;page_url&quot;:&quot;\&quot;http://www.google.com\&quot;&quot;,&quot;ip&quot;:&quot;\&quot;192.168.1.1\&quot;&quot;,&quot;status&quot;:&quot;\&quot;500\&quot;&quot;&#125;      100     taipei  taiwan</div><div class="line">4       &#123;&quot;page_url&quot;:&quot;\&quot;http://www.google.com\&quot;&quot;,&quot;ip&quot;:&quot;\&quot;192.168.1.1\&quot;&quot;,&quot;status&quot;:&quot;\&quot;503\&quot;&quot;&#125;      100     taipei  taiwan</div><div class="line">5       &#123;&quot;page_url&quot;:&quot;\&quot;http://www.google.com\&quot;&quot;,&quot;ip&quot;:&quot;\&quot;192.168.1.1\&quot;&quot;,&quot;status&quot;:&quot;\&quot;201\&quot;&quot;&#125;      100     taipei  taiwan</div><div class="line">6       &#123;&quot;page_url&quot;:&quot;\&quot;http://www.google.com\&quot;&quot;,&quot;ip&quot;:&quot;\&quot;192.168.1.1\&quot;&quot;,&quot;status&quot;:&quot;\&quot;403\&quot;&quot;&#125;      100     taipei  taiwan</div><div class="line">Time taken: 2.183 seconds, Fetched: 6 row(s)</div></pre></td></tr></table></figure></blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Create-Table&quot;&gt;&lt;a href=&quot;#Create-Table&quot; class=&quot;headerlink&quot; title=&quot;Create Table&quot;&gt;&lt;/a&gt;Create Table&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;CREATE [TEMPORARY
+    
+    </summary>
+    
+      <category term="hive" scheme="http://yoursite.com/categories/hive/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>透過vagrant打包一個VM Box</title>
@@ -136,32 +248,6 @@
   </entry>
   
   <entry>
-    <title>Hadoop Cluster-動態新增一個節點</title>
-    <link href="http://yoursite.com/2017/01/10/%5Bhadoop%5DCreatNewDataNode/"/>
-    <id>http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/</id>
-    <published>2017-01-09T16:00:00.000Z</published>
-    <updated>2017-01-10T10:08:35.570Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode<br>1.動態新增一個DataNode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">##新主機請安裝以下</div><div class="line">1.  安裝Linux OS</div><div class="line">2.  在/etc/hosts加入所有Hadoop cluster節點的hostname</div><div class="line">3.  進入NameNode下執行</div><div class="line">    ssh-copy-id hadoop@hadoop-slave5</div><div class="line">    scp hadoop-bin-2.7.2.tar.gz hadoop@hadoop-slave5:/bgdt/install_src</div><div class="line">4.  進入新增的DataNode</div><div class="line">5.  tar -zxvf jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line">6.  tar -zxvf hadoop-bin-2.7.2.tar.gz -C /bgdt</div><div class="line">7.  Modify ~/.bashrc</div><div class="line">8.  scp 相關設定檔</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/slaves hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/slaves</div><div class="line">9.  hadoop-daemon.sh start datanode</div><div class="line">10. 觀察Web UI是否出現slave5 DataNode</div></pre></td></tr></table></figure>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode&lt;br&gt;1.動態新增一個DataNode&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td c
-    
-    </summary>
-    
-      <category term="hadoop" scheme="http://yoursite.com/categories/hadoop/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hadoop常用命令說明</title>
     <link href="http://yoursite.com/2017/01/10/%5Bhadoop%5DHadoop_CMD/"/>
     <id>http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/</id>
@@ -214,6 +300,32 @@
     
       &lt;h3 id=&quot;環境說明&quot;&gt;&lt;a href=&quot;#環境說明&quot; class=&quot;headerlink&quot; title=&quot;環境說明&quot;&gt;&lt;/a&gt;環境說明&lt;/h3&gt;&lt;blockquote&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class
+    
+    </summary>
+    
+      <category term="hadoop" scheme="http://yoursite.com/categories/hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop Cluster-動態新增一個節點</title>
+    <link href="http://yoursite.com/2017/01/10/%5Bhadoop%5DCreatNewDataNode/"/>
+    <id>http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/</id>
+    <published>2017-01-09T16:00:00.000Z</published>
+    <updated>2017-01-10T10:08:35.570Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode<br>1.動態新增一個DataNode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">##新主機請安裝以下</div><div class="line">1.  安裝Linux OS</div><div class="line">2.  在/etc/hosts加入所有Hadoop cluster節點的hostname</div><div class="line">3.  進入NameNode下執行</div><div class="line">    ssh-copy-id hadoop@hadoop-slave5</div><div class="line">    scp hadoop-bin-2.7.2.tar.gz hadoop@hadoop-slave5:/bgdt/install_src</div><div class="line">4.  進入新增的DataNode</div><div class="line">5.  tar -zxvf jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line">6.  tar -zxvf hadoop-bin-2.7.2.tar.gz -C /bgdt</div><div class="line">7.  Modify ~/.bashrc</div><div class="line">8.  scp 相關設定檔</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/slaves hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/slaves</div><div class="line">9.  hadoop-daemon.sh start datanode</div><div class="line">10. 觀察Web UI是否出現slave5 DataNode</div></pre></td></tr></table></figure>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode&lt;br&gt;1.動態新增一個DataNode&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td c
     
     </summary>
     

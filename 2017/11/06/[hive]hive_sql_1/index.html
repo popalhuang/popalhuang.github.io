@@ -3,30 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Vagrant Command Line說明筆記 | Popal&#39;s Blog</title>
+  <title>Hive相關語法整理-1 | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vagrant package
-1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
-
-vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
+  <meta name="description" content="Create Database
+create (database|schema) [if not exists] database_name [comment database_comment] [location hdfs_path] [with dbproperties (property_name=property_value, …)];12345678910Example:create d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vagrant Command Line說明筆記">
-<meta property="og:url" content="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/index.html">
+<meta property="og:title" content="Hive相關語法整理-1">
+<meta property="og:url" content="http://yoursite.com/2017/11/06/[hive]hive_sql_1/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="vagrant package
-1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
-
-vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
-<meta property="og:updated_time" content="2017-07-18T05:24:19.802Z">
+<meta property="og:description" content="Create Database
+create (database|schema) [if not exists] database_name [comment database_comment] [location hdfs_path] [with dbproperties (property_name=property_value, …)];12345678910Example:create d">
+<meta property="og:updated_time" content="2017-11-06T10:12:00.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vagrant Command Line說明筆記">
-<meta name="twitter:description" content="vagrant package
-1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
-
-vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
+<meta name="twitter:title" content="Hive相關語法整理-1">
+<meta name="twitter:description" content="Create Database
+create (database|schema) [if not exists] database_name [comment database_comment] [location hdfs_path] [with dbproperties (property_name=property_value, …)];12345678910Example:create d">
   
   
     <link rel="icon" href="/favicon.png">
@@ -77,14 +68,14 @@ vagrant box
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-[vagrant]VagrantMemo" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/20/[vagrant]VagrantMemo/" class="article-date">
-  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
+    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
+  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
+    <a class="article-category-link" href="/categories/hive/">hive</a>
   </div>
 
   </div>
@@ -95,7 +86,7 @@ vagrant box
         
   
     <h1 class="article-title" itemprop="name">
-      Vagrant Command Line說明筆記
+      Hive相關語法整理-1
     </h1>
   
 
@@ -105,30 +96,34 @@ vagrant box
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-package"><span class="toc-text">vagrant package</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-box"><span class="toc-text">vagrant box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-init"><span class="toc-text">vagrant init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-啟動-停止-重啟-移除-全部VM"><span class="toc-text">vagrant 啟動/停止/重啟/移除 全部VM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#other-command"><span class="toc-text">other command</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
 </div>
 
-        <h4 id="vagrant-package"><a href="#vagrant-package" class="headerlink" title="vagrant package"></a>vagrant package</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant package --base &lt;vm_name&gt; --output &lt;box_name&gt;.box</div></pre></td></tr></table></figure>
+        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
+<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
 </blockquote>
-<h4 id="vagrant-box"><a href="#vagrant-box" class="headerlink" title="vagrant box"></a>vagrant box</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/</div><div class="line">vagrant box add precise64 http://files.vagrantup.com/precise64.box</div><div class="line">vagrant box list</div><div class="line">vagrant box remove precise64</div></pre></td></tr></table></figure>
+<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
+<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
 </blockquote>
-<h4 id="vagrant-init"><a href="#vagrant-init" class="headerlink" title="vagrant init"></a>vagrant init</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant init  precise64	##會在執行語法的目錄下產生一個Vagrantfile的配置檔</div></pre></td></tr></table></figure>
+<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
 </blockquote>
-<h4 id="vagrant-啟動-停止-重啟-移除-全部VM"><a href="#vagrant-啟動-停止-重啟-移除-全部VM" class="headerlink" title="vagrant 啟動/停止/重啟/移除 全部VM"></a>vagrant 啟動/停止/重啟/移除 全部VM</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">##以下為啟動/停止/重啟/移除全部VM的用法</div><div class="line">vagrant up	##啟動全部VM</div><div class="line">vagrant halt	##停止全部VM</div><div class="line">vagrant reload	##重啟全部VM</div><div class="line">vagrant destroy	##移除全部VM</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除單一VM的用法</div><div class="line">vagrant up master</div><div class="line">vagrant halt master</div><div class="line">vagrant reload master</div><div class="line">vagrant destroy master</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除多個VM的用法(VM名稱中間空格,以做為多個VM名稱區隔)</div><div class="line">vagrant up master slave1</div><div class="line">vagrant halt master slave1</div><div class="line">vagrant reload master slave1</div><div class="line">vagrant destroy master slave1</div></pre></td></tr></table></figure>
+<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
+<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
 </blockquote>
-<h4 id="other-command"><a href="#other-command" class="headerlink" title="other command"></a>other command</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant version</div><div class="line">vagrant status</div><div class="line">vagrant ssh-config &lt;vm_name&gt;</div><div class="line">vagrant ssh</div></pre></td></tr></table></figure></blockquote>
+<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
+<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
+<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cj9o3hpcx000bt4llquyq1mxs" class="article-share-link">Поделиться</a>
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cj9o3hpco0005t4llpsduxk87" class="article-share-link">Поделиться</a>
       
-        <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Комментарии</a>
+        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_1/#disqus_thread" class="article-comment-link">Комментарии</a>
       
       
     </footer>
@@ -137,19 +132,10 @@ vagrant box
     
 <nav id="article-nav">
   
-    <a href="/2017/05/22/[spark]spark_001/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Следующий</strong>
-      <div class="article-nav-title">
-        
-          Spark程式開發系列_for Java1.8_001
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/06/[hive]hive_sql_2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Предыдущий</strong>
-      <div class="article-nav-title">Vagrant file 配置檔案說明</div>
+      <div class="article-nav-title">Hive相關語法整理-2</div>
     </a>
   
 </nav>
@@ -258,7 +244,7 @@ vagrant box
 <script>
   var disqus_shortname = 'popal';
   
-  var disqus_url = 'http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/';
+  var disqus_url = 'http://yoursite.com/2017/11/06/[hive]hive_sql_1/';
   
   (function(){
     var dsq = document.createElement('script');
