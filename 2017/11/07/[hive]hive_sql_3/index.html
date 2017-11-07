@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hive相關語法整理-3(Partition Table) | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Create Partition Table
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name  [(col_name data_type [COMMENT col_comment], … [constraint_specification])]  [COMMENT table_comment]  [P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive相關語法整理-3(Partition Table)">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/[hive]hive_sql_3/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="Create Partition Table
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name  [(col_name data_type [COMMENT col_comment], … [constraint_specification])]  [COMMENT table_comment]  [P">
+<meta property="og:updated_time" content="2017-11-07T09:55:02.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hive相關語法整理-3(Partition Table)">
+<meta name="twitter:description" content="Create Partition Table
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name  [(col_name data_type [COMMENT col_comment], … [constraint_specification])]  [COMMENT table_comment]  [P">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/">隨筆</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[hive]hive_sql_3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/07/[hive]hive_sql_3/" class="article-date">
+  <time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hive/">hive</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hive相關語法整理-3(Partition Table)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Partition-Table"><span class="toc-text">Create Partition Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Partition"><span class="toc-text">Alter Partition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Partition"><span class="toc-text">Add Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rename-Partition"><span class="toc-text">Rename Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exchange-Partition"><span class="toc-text">Exchange Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Drop-Partition"><span class="toc-text">Drop Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-Partition"><span class="toc-text">Show Partition</span></a></li></ol></li></ol>
+</div>
+
+        <h2 id="Create-Partition-Table"><a href="#Create-Partition-Table" class="headerlink" title="Create Partition Table"></a>Create Partition Table</h2><blockquote>
+<p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  [(col_name data_type [COMMENT col_comment], … [constraint_specification])]<br>  [COMMENT table_comment]<br>  [PARTITIONED BY (col_name data_type [COMMENT col_comment], …)]<br>  [<br>   [ROW FORMAT row_format]<br>   [STORED AS file_format]<br>     | STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)]<br>  ]<br>  [LOCATION hdfs_path]<br>  [TBLPROPERTIES (property_name=property_value, …)]<br>  [AS select_statement];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create table page_view_7(</div><div class="line">  viewTime int, </div><div class="line">  userid bigint,</div><div class="line">  page_url string, </div><div class="line">  referrer_url string,</div><div class="line">  ip string)</div><div class="line">partitioned by(dt string, country string)</div><div class="line">row format delimited</div><div class="line">   fields terminated by &apos;,&apos;</div><div class="line">stored as textfile;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h2 id="Alter-Partition"><a href="#Alter-Partition" class="headerlink" title="Alter Partition"></a>Alter Partition</h2><h3 id="Add-Partition"><a href="#Add-Partition" class="headerlink" title="Add Partition"></a>Add Partition</h3><blockquote>
+<p>ALTER TABLE table_name ADD [IF NOT EXISTS]<br>  PARTITION partition_spec [LOCATION ‘location’][, PARTITION partition_spec [LOCATION ‘location’], …];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">ALTER TABLE page_view_7 ADD PARTITION (dt=&apos;2008-08-08&apos;, country=&apos;us&apos;);</div><div class="line">ALTER TABLE page_view_7 ADD PARTITION (dt=&apos;2017-11-01&apos;, country=&apos;us&apos;) location &quot;/user/hadoop/data/page_view_7/partitions&quot;;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h3 id="Rename-Partition"><a href="#Rename-Partition" class="headerlink" title="Rename Partition"></a>Rename Partition</h3><blockquote>
+<p>ALTER TABLE table_name PARTITION partition_spec RENAME TO PARTITION partition_spec;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">alter table page_view_7 partition (dt=&quot;2017-11-07&quot;,country=&quot;taiwan&quot;) rename to partition (dt=&quot;test_2017-11-07&quot;,country=&quot;taiwan&quot;);</div><div class="line"></div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">dt=2017-11-01/country=us</div><div class="line">dt=test_2017-11-07/country=taiwan</div><div class="line">Time taken: 0.054 seconds, Fetched: 8 row(s)</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h3 id="Exchange-Partition"><a href="#Exchange-Partition" class="headerlink" title="Exchange Partition"></a>Exchange Partition</h3><blockquote>
+<p>ALTER TABLE table_name_2 EXCHANGE PARTITION (partition_spec) WITH TABLE table_name_1;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">alter table pv_7 exchange partition (dt=&quot;test_2017-11-07&quot;,country=&quot;taiwan&quot;) with table page_view_7;</div><div class="line"></div><div class="line">Demo:</div><div class="line">hive&gt; create table pv_7 like page_view_7;</div><div class="line">OK</div><div class="line">Time taken: 0.59 seconds</div><div class="line">hive&gt; alter table pv_7 exchange partition (dt=&quot;test_2017-11-07&quot;,country=&quot;taiwan&quot;) with table page_view_7;</div><div class="line">OK</div><div class="line">Time taken: 0.297 seconds</div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">dt=2017-11-01/country=us</div><div class="line">Time taken: 0.058 seconds, Fetched: 7 row(s)</div><div class="line">hive&gt; show partitions pv_7;</div><div class="line">OK</div><div class="line">dt=test_2017-11-07/country=taiwan</div><div class="line">Time taken: 0.055 seconds, Fetched: 1 row(s)</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<h3 id="Drop-Partition"><a href="#Drop-Partition" class="headerlink" title="Drop Partition"></a>Drop Partition</h3><blockquote>
+<p>ALTER TABLE table_name DROP [IF EXISTS] PARTITION partition_spec[, PARTITION partition_spec, …]<br>  [IGNORE PROTECTION] [PURGE];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">alter table page_view_7 drop if exists partition (dt=&quot;2017-11-01&quot;,country=&quot;us&quot;);</div><div class="line"></div><div class="line">Demo:</div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">dt=2017-11-01/country=us</div><div class="line">Time taken: 0.054 seconds, Fetched: 7 row(s)</div><div class="line">hive&gt; alter table page_view_7 drop if exists partition (dt=&quot;2017-11-01&quot;,country=&quot;us&quot;);</div><div class="line">Dropped the partition dt=2017-11-01/country=us</div><div class="line">OK</div><div class="line">Time taken: 0.36 seconds</div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">Time taken: 0.052 seconds, Fetched: 6 row(s)</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Show-Partition"><a href="#Show-Partition" class="headerlink" title="Show Partition"></a>Show Partition</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cj9pgw9z80007owll5j3e5ba9" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/11/07/[hive]hive_sql_3/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/06/[hive]hive_sql_2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hive相關語法整理-2(Table)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>
+	  <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; undefined ~ 2017 popal<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/" class="mobile-nav-link">隨筆</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'popal';
+  
+  var disqus_url = 'http://yoursite.com/2017/11/07/[hive]hive_sql_3/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
