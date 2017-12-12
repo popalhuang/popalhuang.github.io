@@ -66,6 +66,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-[hadoop]hadoopMultiDirectoryStore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#環境說明"><span class="toc-text">環境說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相關設定說明"><span class="toc-text">相關設定說明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#進入劇本之前"><span class="toc-text">進入劇本之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本1"><span class="toc-text">劇本1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本2"><span class="toc-text">劇本2</span></a></li></ol>
+</div>
+
+        <h3 id="環境說明"><a href="#環境說明" class="headerlink" title="環境說明"></a>環境說明</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">namenode *1(for Linux OS)</div><div class="line">datanode *4(for Linux OS)</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="相關設定說明"><a href="#相關設定說明" class="headerlink" title="相關設定說明"></a>相關設定說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/data/data2</div><div class="line"></div><div class="line">##修改hdfs-site.xml</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;/bgdt/hadoop-2.7.2/tmp/dfs/data,/bgdt/data/data2&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.failed.volumes.tolerated&lt;/name&gt;</div><div class="line">	&lt;value&gt;1&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="進入劇本之前"><a href="#進入劇本之前" class="headerlink" title="進入劇本之前"></a>進入劇本之前</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##重啟dfs與yarn</div><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div><div class="line"></div><div class="line">##並下達以下指令:</div><div class="line">hadoop balancer</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="劇本1"><a href="#劇本1" class="headerlink" title="劇本1"></a>劇本1</h3><blockquote>
+<p>系統Run了一段時間後,發現空間不夠了,想增加一個空間給目前的Hadoop cluster環境,因此有了以下的劇本與想法<br>1.用新加一個目錄,來取代模擬新分割區<br>2.copy 一個檔案至HDFS系統後,透過介面查詢相關block id,找出相對實體檔案的儲存位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -P /user/hadoop/data</div><div class="line">hadoop fs -put /opt/staff.csv /user/hadoop/data</div><div class="line"></div><div class="line">##打開Web UI觀察 /user/hadoop/data/staff.csv block Id=XXXXXX</div><div class="line">在檔案下載畫面中會有檔案相關資訊</div><div class="line">block Id:  </div><div class="line">Avaailable</div><div class="line">dna1</div><div class="line">dna3</div><div class="line"></div><div class="line">##確認block Id,與存放的Datanode位置後,直接查找存放的實體位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line">/bgdt/data/data2/current/BP-1008347755-192.168.11.96-1474254342729/current/finalized/subdir0/subdir0/blk_XXXXXX</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="劇本2"><a href="#劇本2" class="headerlink" title="劇本2"></a>劇本2</h3><blockquote>
+<p>將某個Datanode的某個目錄權限及owner設定成(chown root:root chmod 000),模擬硬碟損壞的狀況　<br>1.測試當某個正在運行的hadoop cluster節點的儲存目錄被設為無讀寫權限時,系統是否會Crash<br>2.當目錄修復完成後資料是否有辦法從其他的node,reconvert回來<br>3.當該某個正在運行的節點,所有目錄都無法讀取時,系統是否會正常運行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">##將測試檔案存放到HDFS,並設定副本數為4</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff_1.csv /user/hadoop/data</div><div class="line"></div><div class="line">##查詢block Id 及block儲存位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line"></div><div class="line">##模擬故障</div><div class="line">sudo chown -R root:root /bgdt/hadoop-2.7.2/tmp</div><div class="line">sudo chmod -R 000 /bgdt/hadoop-2.7.2/tmp</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##Web UI上Datanode Volume Failures會出現有問題的目錄</div><div class="line"></div><div class="line">##balencer執行完成後,會將原本在/tmp目錄下的資料搬移到 /bgdt/data/data2</div><div class="line"></div><div class="line">##此時若再把另外一個目錄也模擬成無權限狀態</div><div class="line">sudo chown -R root:root /bgdt/data</div><div class="line">sudo chmod -R 000 /bgdt/data</div><div class="line"></div><div class="line">##該node的Status會變成Dead,並且DataNode的process會停止</div><div class="line"></div><div class="line">##此時資料的Repl雖然一樣是4,但實際上的資料份數是3</div><div class="line"></div><div class="line">##接著將/bgdt/data目錄設回原本權限,並將資料刪除</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/data</div><div class="line">sudo chmod -R 755 /bgdt/data</div><div class="line">rm -rf /bgdt/data</div><div class="line"></div><div class="line">##並將/bgdt/data目錄的資料刪除後,重啟datanode</div><div class="line">hadoop-daemon.sh start datanode</div><div class="line"></div><div class="line">##重啟成功後,進行balancer</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##看到所有檔案的副本數與與資料又恢復正常</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cjb2zjea100051sllfhuefhhq" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-[Install]BigData" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/01/08/[Install]BigData/" class="article-date">
@@ -349,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cj9ph3tb50000yglllnvmugww" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cjb2zje9m00001slll6ppjevr" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/01/08/[Install]BigData/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -402,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cj9ph3tbc0001ygll03kevigf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cjb2zje9m00011sllsu7u691p" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2016/12/07/[Linux]Linux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -427,7 +490,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -437,7 +500,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -450,11 +513,11 @@
       <ul>
         
           <li>
-            <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
+            <a href="/2017/12/08/[excel]Excel_skill/">Excel之下拉式選單設計技巧-1</a>
           </li>
         
           <li>
-            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
+            <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
           </li>
         
           <li>
@@ -462,11 +525,11 @@
           </li>
         
           <li>
-            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
+            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
           </li>
         
           <li>
-            <a href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
+            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
           </li>
         
       </ul>

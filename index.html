@@ -66,6 +66,72 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-[excel]Excel_skill" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/08/[excel]Excel_skill/" class="article-date">
+  <time datetime="2017-12-07T16:00:00.000Z" itemprop="datePublished">2017-12-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Excel/">Excel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/[excel]Excel_skill/">Excel之下拉式選單設計技巧-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<p>Excel操作的小小筆記</p>
+</blockquote>
+<ol>
+<li><p>開啟Excel,之後先建立一個名叫部門代碼表的Sheet<br><img src="/images/excel_skill_1/List.jpg" alt=""></p>
+</li>
+<li><p>建立完工作表之後,需在”公式”-&gt;”名稱管理員”-&gt;”新增”中定義相關的名稱<br>其中有需要注意以下幾個地方:<br>1.名稱:部門代碼表<br>2.範圍:整個活頁簿<br>3.參照到:需要在要定義的工作表中選出定義的範圍(=部門代碼表!$A:$B)<br>“=部門代碼表!”–&gt;意思是部門代碼表這個工作表(Sheet)<br>“$A:$B”–&gt;表示工作表中的A欄和B欄全部<br>選取的內容是A和B兩個欄位全部,因為我們會想要隨時增加部門進來所以不限定列數<br><img src="/images/excel_skill_1/List_9.jpg" alt=""></p>
+</li>
+<li><p>我們再新增一個”部門名稱”的定義給名稱管理員,相關欄位同上圖,只是這次我們只選擇A欄<br>這個部份的定義是要給下拉式選單當成選擇的項目<br><img src="/images/excel_skill_1/List_10.jpg" alt=""></p>
+</li>
+<li><p>最後我們查看名稱管理員會出現兩個名稱定義(部門代碼表,部門名稱)<br><img src="/images/excel_skill_1/List_11.jpg" alt=""></p>
+</li>
+<li><p>再來我們開啟另一個工作表,隨便選一個cell做為下拉式選單測試<br>接著點選”資料”-&gt;”資料驗證”-&gt;”設定”<br>然後”儲存格內允許”–&gt;清單<br>“來源”–&gt;填入”=部門名稱”<br>“儲存格內的下拉式選單”記得勾選<br><img src="/images/excel_skill_1/List_12.jpg" alt=""></p>
+</li>
+<li><p>此時點選按鈕就會出現一個下拉式選單<br><img src="/images/excel_skill_1/List_13.jpg" alt=""></p>
+</li>
+<li><p>最後一個步驟,選擇一個要呈現結果的cell,填入以下公式<br>=VLOOKUP(A1,部門代碼表,2,FALSE)<br>以下說明VLOOKUP(自動查找函數)相關參數<br>查閱欄位：填入欄位編號<br>查閱範圍：定義的範圍名稱<br>欄位編號：取出欄位編號，在定義的範圍名稱欄位代號(由左至右1,2,….)<br>是否完全符合：搜尋時是否要完全符合查詢欄位的值，TRUE-部分符合，FALSE-完全符合。<br><img src="/images/excel_skill_1/List_14.jpg" alt=""></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjb2zjea100041slljyayfm0g" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/12/08/[excel]Excel_skill/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-[hive]hive_sql_3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/07/[hive]hive_sql_3/" class="article-date">
@@ -120,9 +186,74 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cj9ph3tbw0007ygllv0905l7q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjb2zjeah000d1sll7pijtbms" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/11/07/[hive]hive_sql_3/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
+  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hive/">hive</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
+</div>
+
+        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
+<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
+<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
+<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
+<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
+<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjb2zjea100071sllmpi9w8yf" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_1/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -321,74 +452,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cj9ph3tbz0009ygll532mrto4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjb2zjeah000c1sllza7ztryw" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_2/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
-  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
-</div>
-
-        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
-<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
-<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
-<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
-<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
-<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cj9ph3tbr0005ygllzmpz786a" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_1/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -442,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cj9ph3tdr000qygllrut2mw92" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjb2zjeah000m1sll1hbklpkz" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -503,7 +569,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cj9ph3tdl000mygll7vuik5ln" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjb2zjeah000g1slltaa3mo62" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/05/22/[spark]spark_001/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -552,7 +618,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cj9ph3tdn000nygllfpl1a51f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjb2zjeah000l1sllex7fift5" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -613,122 +679,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cj9ph3tdq000pygll43090bdn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjb2zjeah000i1sllwz8xul4i" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoopMultiDirectoryStore" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#環境說明"><span class="toc-text">環境說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相關設定說明"><span class="toc-text">相關設定說明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#進入劇本之前"><span class="toc-text">進入劇本之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本1"><span class="toc-text">劇本1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本2"><span class="toc-text">劇本2</span></a></li></ol>
-</div>
-
-        <h3 id="環境說明"><a href="#環境說明" class="headerlink" title="環境說明"></a>環境說明</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">namenode *1(for Linux OS)</div><div class="line">datanode *4(for Linux OS)</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="相關設定說明"><a href="#相關設定說明" class="headerlink" title="相關設定說明"></a>相關設定說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/data/data2</div><div class="line"></div><div class="line">##修改hdfs-site.xml</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;/bgdt/hadoop-2.7.2/tmp/dfs/data,/bgdt/data/data2&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.failed.volumes.tolerated&lt;/name&gt;</div><div class="line">	&lt;value&gt;1&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="進入劇本之前"><a href="#進入劇本之前" class="headerlink" title="進入劇本之前"></a>進入劇本之前</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##重啟dfs與yarn</div><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div><div class="line"></div><div class="line">##並下達以下指令:</div><div class="line">hadoop balancer</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="劇本1"><a href="#劇本1" class="headerlink" title="劇本1"></a>劇本1</h3><blockquote>
-<p>系統Run了一段時間後,發現空間不夠了,想增加一個空間給目前的Hadoop cluster環境,因此有了以下的劇本與想法<br>1.用新加一個目錄,來取代模擬新分割區<br>2.copy 一個檔案至HDFS系統後,透過介面查詢相關block id,找出相對實體檔案的儲存位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -P /user/hadoop/data</div><div class="line">hadoop fs -put /opt/staff.csv /user/hadoop/data</div><div class="line"></div><div class="line">##打開Web UI觀察 /user/hadoop/data/staff.csv block Id=XXXXXX</div><div class="line">在檔案下載畫面中會有檔案相關資訊</div><div class="line">block Id:  </div><div class="line">Avaailable</div><div class="line">dna1</div><div class="line">dna3</div><div class="line"></div><div class="line">##確認block Id,與存放的Datanode位置後,直接查找存放的實體位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line">/bgdt/data/data2/current/BP-1008347755-192.168.11.96-1474254342729/current/finalized/subdir0/subdir0/blk_XXXXXX</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="劇本2"><a href="#劇本2" class="headerlink" title="劇本2"></a>劇本2</h3><blockquote>
-<p>將某個Datanode的某個目錄權限及owner設定成(chown root:root chmod 000),模擬硬碟損壞的狀況　<br>1.測試當某個正在運行的hadoop cluster節點的儲存目錄被設為無讀寫權限時,系統是否會Crash<br>2.當目錄修復完成後資料是否有辦法從其他的node,reconvert回來<br>3.當該某個正在運行的節點,所有目錄都無法讀取時,系統是否會正常運行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">##將測試檔案存放到HDFS,並設定副本數為4</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff_1.csv /user/hadoop/data</div><div class="line"></div><div class="line">##查詢block Id 及block儲存位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line"></div><div class="line">##模擬故障</div><div class="line">sudo chown -R root:root /bgdt/hadoop-2.7.2/tmp</div><div class="line">sudo chmod -R 000 /bgdt/hadoop-2.7.2/tmp</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##Web UI上Datanode Volume Failures會出現有問題的目錄</div><div class="line"></div><div class="line">##balencer執行完成後,會將原本在/tmp目錄下的資料搬移到 /bgdt/data/data2</div><div class="line"></div><div class="line">##此時若再把另外一個目錄也模擬成無權限狀態</div><div class="line">sudo chown -R root:root /bgdt/data</div><div class="line">sudo chmod -R 000 /bgdt/data</div><div class="line"></div><div class="line">##該node的Status會變成Dead,並且DataNode的process會停止</div><div class="line"></div><div class="line">##此時資料的Repl雖然一樣是4,但實際上的資料份數是3</div><div class="line"></div><div class="line">##接著將/bgdt/data目錄設回原本權限,並將資料刪除</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/data</div><div class="line">sudo chmod -R 755 /bgdt/data</div><div class="line">rm -rf /bgdt/data</div><div class="line"></div><div class="line">##並將/bgdt/data目錄的資料刪除後,重啟datanode</div><div class="line">hadoop-daemon.sh start datanode</div><div class="line"></div><div class="line">##重啟成功後,進行balancer</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##看到所有檔案的副本數與與資料又恢復正常</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cj9ph3tbk0004ygllmeubxkmv" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]Hadoop_CMD" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/10/[hadoop]Hadoop_CMD/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/[hadoop]Hadoop_CMD/">Hadoop常用命令說明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  
-</div>
-
-        <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cj9ph3tbi0003yglleodpye26" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -777,9 +730,59 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cj9ph3tc7000cygllni6yda3j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjb2zjea100031sllbyq8808e" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]Hadoop_CMD" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/10/[hadoop]Hadoop_CMD/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]Hadoop_CMD/">Hadoop常用命令說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cjb2zjeah00091sllodv9maw0" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -802,7 +805,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -812,7 +815,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -825,11 +828,11 @@
       <ul>
         
           <li>
-            <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
+            <a href="/2017/12/08/[excel]Excel_skill/">Excel之下拉式選單設計技巧-1</a>
           </li>
         
           <li>
-            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
+            <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
           </li>
         
           <li>
@@ -837,11 +840,11 @@
           </li>
         
           <li>
-            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
+            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
           </li>
         
           <li>
-            <a href="/2017/05/22/[spark]spark_001/">Spark程式開發系列_for Java1.8_001</a>
+            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
           </li>
         
       </ul>
