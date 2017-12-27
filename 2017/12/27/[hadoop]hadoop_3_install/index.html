@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hadoop3.0.0 Cluster環境安裝說明 | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="相關環境說明
+
+
+
+IP Address
+HostName
+角色
+
+
+
+
+192.168.51.4
+hadoop-master
+NameNode(NN),SecondaryNameNode
+
+
+192.168.51.5
+hadoop-slave1
+DataNode(DN1)
+
+
+192.168.51.6
+hadoop-slave2
+DataNode(DN2)
+
+
+
+
+環境準備Install Lin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop3.0.0 Cluster環境安裝說明">
+<meta property="og:url" content="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="相關環境說明
+
+
+
+IP Address
+HostName
+角色
+
+
+
+
+192.168.51.4
+hadoop-master
+NameNode(NN),SecondaryNameNode
+
+
+192.168.51.5
+hadoop-slave1
+DataNode(DN1)
+
+
+192.168.51.6
+hadoop-slave2
+DataNode(DN2)
+
+
+
+
+環境準備Install Lin">
+<meta property="og:updated_time" content="2017-12-27T09:53:18.827Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop3.0.0 Cluster環境安裝說明">
+<meta name="twitter:description" content="相關環境說明
+
+
+
+IP Address
+HostName
+角色
+
+
+
+
+192.168.51.4
+hadoop-master
+NameNode(NN),SecondaryNameNode
+
+
+192.168.51.5
+hadoop-slave1
+DataNode(DN1)
+
+
+192.168.51.6
+hadoop-slave2
+DataNode(DN2)
+
+
+
+
+環境準備Install Lin">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/">隨筆</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[hadoop]hadoop_3_install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/27/[hadoop]hadoop_3_install/" class="article-date">
+  <time datetime="2017-12-26T16:00:00.000Z" itemprop="datePublished">2017-12-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hadoop3.0.0 Cluster環境安裝說明
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相關環境說明"><span class="toc-text">相關環境說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#環境準備"><span class="toc-text">環境準備</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-OS-略"><span class="toc-text">Install Linux OS(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-JDK8-略"><span class="toc-text">Install JDK8(略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下載hadoop-3-0-0-tar-gz"><span class="toc-text">下載hadoop-3.0.0.tar.gz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#檔案解壓縮"><span class="toc-text">檔案解壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#設定檔編輯"><span class="toc-text">設定檔編輯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改-bashrc"><span class="toc-text">修改~/.bashrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#core-site-xml"><span class="toc-text">core-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-site-xml"><span class="toc-text">hdfs-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maperd-site-xml"><span class="toc-text">maperd-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yarn-site-xml"><span class="toc-text">yarn-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#worker"><span class="toc-text">worker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#壓縮檔案後scp至DataNode"><span class="toc-text">壓縮檔案後scp至DataNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS格式化"><span class="toc-text">HDFS格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-3-0-0-Port-Number-List"><span class="toc-text">Hadoop 3.0.0 Port Number List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務啟動命令"><span class="toc-text">Hadoop服務啟動命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務關閉"><span class="toc-text">Hadoop服務關閉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-MapReduce-Example"><span class="toc-text">Hadoop MapReduce Example</span></a></li></ol>
+</div>
+
+        <h3 id="相關環境說明"><a href="#相關環境說明" class="headerlink" title="相關環境說明"></a>相關環境說明</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>IP Address</th>
+<th>HostName</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.51.4</td>
+<td>hadoop-master</td>
+<td>NameNode(NN),SecondaryNameNode</td>
+</tr>
+<tr>
+<td>192.168.51.5</td>
+<td>hadoop-slave1</td>
+<td>DataNode(DN1)</td>
+</tr>
+<tr>
+<td>192.168.51.6</td>
+<td>hadoop-slave2</td>
+<td>DataNode(DN2)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h3><h4 id="Install-Linux-OS-略"><a href="#Install-Linux-OS-略" class="headerlink" title="Install Linux OS(略)"></a>Install Linux OS(略)</h4><h4 id="Install-JDK8-略"><a href="#Install-JDK8-略" class="headerlink" title="Install JDK8(略)"></a>Install JDK8(略)</h4><h3 id="下載hadoop-3-0-0-tar-gz"><a href="#下載hadoop-3-0-0-tar-gz" class="headerlink" title="下載hadoop-3.0.0.tar.gz"></a>下載hadoop-3.0.0.tar.gz</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -P /bgdt http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="檔案解壓縮"><a href="#檔案解壓縮" class="headerlink" title="檔案解壓縮"></a>檔案解壓縮</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/hadoop-3.0.0.tar.gz -C /bgdt</div><div class="line">---</div><div class="line">解完壓縮檔之後進入hadoop-3.0.0目錄查看目錄結構</div><div class="line">[hadoop@hadoop-master:~$]ls -la /bgdt/hadoop-3.0.0</div><div class="line">total 220</div><div class="line">drwxr-xr-x 12 hadoop hadoop   4096 Dec 26 15:23 .</div><div class="line">drwxr-xr-x 10 hadoop hadoop   4096 Dec 27 16:54 ..</div><div class="line">drwxr-xr-x  2 hadoop hadoop   4096 Dec  9 03:42 bin</div><div class="line">drwxr-xr-x  3 hadoop hadoop   4096 Dec  9 03:17 etc</div><div class="line">drwxr-xr-x  2 hadoop hadoop   4096 Dec  9 03:42 include</div><div class="line">drwxr-xr-x  3 hadoop hadoop   4096 Dec  9 03:42 lib</div><div class="line">drwxr-xr-x  4 hadoop hadoop   4096 Dec  9 03:42 libexec</div><div class="line">-rw-r--r--  1 hadoop hadoop 147066 Nov 15 03:19 LICENSE.txt</div><div class="line">drwxrwxr-x  3 hadoop hadoop   4096 Dec 27 10:58 logs</div><div class="line">-rw-r--r--  1 hadoop hadoop  20891 Nov 15 03:19 NOTICE.txt</div><div class="line">-rw-r--r--  1 hadoop hadoop   1366 Jul  9  2016 README.txt</div><div class="line">drwxr-xr-x  3 hadoop hadoop   4096 Dec  9 03:17 sbin</div><div class="line">drwxr-xr-x  4 hadoop hadoop   4096 Dec  9 03:53 share</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="設定檔編輯"><a href="#設定檔編輯" class="headerlink" title="設定檔編輯"></a>設定檔編輯</h3><h4 id="修改-bashrc"><a href="#修改-bashrc" class="headerlink" title="修改~/.bashrc"></a>修改~/.bashrc</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vi ~/.bashrc</div><div class="line">export JAVA_HOME=/bgdt/java/jdk1.8.0_101</div><div class="line">export HADOOP_HOME=/bgdt/hadoop-3.0.0</div><div class="line">export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin	</div><div class="line">---</div><div class="line">修改完成後:wq存檔</div><div class="line"></div><div class="line">[hadoop@hadoop-master:~$]source ~/.bashrc</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="core-site-xml"><a href="#core-site-xml" class="headerlink" title="core-site.xml"></a>core-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">	&lt;value&gt;hdfs://hadoop-master:8020&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;file:/bgdt/hadoop-3.0.0/tmp&lt;/value&gt;</div><div class="line">	&lt;description&gt;Abase for other temporary directories.&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</div><div class="line">	&lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</div><div class="line">	&lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="hdfs-site-xml"><a href="#hdfs-site-xml" class="headerlink" title="hdfs-site.xml"></a>hdfs-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</div><div class="line">	&lt;value&gt;hadoop-master:50090&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">	&lt;value&gt;3&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;file:/bgdt/hadoop-3.0.0/tmp/dfs/name&lt;/value&gt;</div><div class="line">&lt;/property&gt; </div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;file:/bgdt/hadoop-3.0.0/tmp/dfs/data&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.block.size&lt;/name&gt;</div><div class="line">	&lt;value&gt;64M&lt;/value&gt;   </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="maperd-site-xml"><a href="#maperd-site-xml" class="headerlink" title="maperd-site.xml"></a>maperd-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;   </div><div class="line">&lt;property&gt;  </div><div class="line">	&lt;name&gt;mapreduce.framework.name&lt;/name&gt;  </div><div class="line">	&lt;value&gt;yarn&lt;/value&gt;  </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">	&lt;value&gt;mna1:10020&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">	&lt;value&gt;mna1:19888&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;  </div><div class="line">	&lt;name&gt;mapreduce.application.classpath&lt;/name&gt;  </div><div class="line">	&lt;value&gt;  </div><div class="line">		$HADOOP_HOME/share/hadoop/common/*,</div><div class="line">		$HADOOP_HOME/share/hadoop/hdfs/*,  </div><div class="line">		$HADOOP_HOME/share/hadoop/mapreduce/*,  </div><div class="line">		$HADOOP_HOME/share/hadoop/yarn/*</div><div class="line">	&lt;/value&gt;</div><div class="line">&lt;/property&gt;  </div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="yarn-site-xml"><a href="#yarn-site-xml" class="headerlink" title="yarn-site.xml"></a>yarn-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">	&lt;value&gt;hadoop-master&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">	&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;yarn.log.server.url&lt;/name&gt;</div><div class="line">	&lt;value&gt;http://hadoop-master:19888/jobhistory/logs&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop-slave1</div><div class="line">hadoop-slave2</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="壓縮檔案後scp至DataNode"><a href="#壓縮檔案後scp至DataNode" class="headerlink" title="壓縮檔案後scp至DataNode"></a>壓縮檔案後scp至DataNode</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">將NameNode hadoop目錄壓縮後copy至其他DataNode,進行解壓縮</div><div class="line">---</div><div class="line">[hadoop@hadoop-master:~$]cd /bgdt</div><div class="line">[hadoop@hadoop-master:~$]tar -zcvf ~/hadoop-3.0.0.tar.gz hadoop-3.0.0</div><div class="line">[hadoop@hadoop-master:~$]scp ~/hadoop-3.0.0.tar.gz hadoop-slave1:/bgdt</div><div class="line">[hadoop@hadoop-master:~$]scp ~/hadoop-3.0.0.tar.gz hadoop-slave2:/bgdt</div><div class="line">---</div><div class="line">ssh至DataNode並將hadoop-3.0.0.tar.gz解壓縮</div><div class="line">ssh hadoop-slave1</div><div class="line">[hadoop@hadoop-slave1:~$]tar -zxvf /bgdt/hadoop-3.0.0.tar.gz -C /bgdt</div><div class="line">ssh hadoop-slave2</div><div class="line">[hadoop@hadoop-slave2:~$]tar -zxvf /bgdt/hadoop-3.0.0.tar.gz -C /bgdt</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="HDFS格式化"><a href="#HDFS格式化" class="headerlink" title="HDFS格式化"></a>HDFS格式化</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop namenode -format</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop-3-0-0-Port-Number-List"><a href="#Hadoop-3-0-0-Port-Number-List" class="headerlink" title="Hadoop 3.0.0 Port Number List"></a>Hadoop 3.0.0 Port Number List</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Service Name</th>
+<th style="text-align:left">Hadoop 2.X Port Number</th>
+<th style="text-align:left">Hadoop 3.X Port Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Hadoop HDFS NameNode</td>
+<td style="text-align:left">8020</td>
+<td style="text-align:left">9820</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS NameNode HTTP UI</td>
+<td style="text-align:left">50070</td>
+<td style="text-align:left">9870</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS NameNode HTTPS UI</td>
+<td style="text-align:left">50470</td>
+<td style="text-align:left">9840</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS SecondaryNameNode HTTP UI</td>
+<td style="text-align:left">50091</td>
+<td style="text-align:left">9869</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS SecondaryNameNode HTTPS UI</td>
+<td style="text-align:left">50090</td>
+<td style="text-align:left">9868</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS</td>
+<td style="text-align:left">8020</td>
+<td style="text-align:left">9820</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode IPC Port</td>
+<td style="text-align:left">50020</td>
+<td style="text-align:left">9867</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode</td>
+<td style="text-align:left">50010</td>
+<td style="text-align:left">9866</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode HTTP UI</td>
+<td style="text-align:left">50075</td>
+<td style="text-align:left">9864</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode HTTPS UI</td>
+<td style="text-align:left">50475</td>
+<td style="text-align:left">9865</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="Hadoop服務啟動命令"><a href="#Hadoop服務啟動命令" class="headerlink" title="Hadoop服務啟動命令"></a>Hadoop服務啟動命令</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">啟動方式1:使用start-*.sh</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]start-dfs.sh</div><div class="line">[hadoop@hadoop-master:~$]start-yarn.sh</div><div class="line">[hadoop@hadoop-master:~$]jps</div><div class="line">2340 ResourceManager</div><div class="line">1834 NameNode</div><div class="line">2107 SecondaryNameNode</div><div class="line">[hadoop@hadoop-master:~$]ssh hadoop-slave1</div><div class="line">[hadoop@hadoop-slave1:~$]jps</div><div class="line">1568 DataNode</div><div class="line">1738 NodeManager</div><div class="line">[hadoop@hadoop-master:~$]ssh hadoop-slave2</div><div class="line">[hadoop@hadoop-slave2:~$]jps</div><div class="line">1715 NodeManager</div><div class="line">1545 DataNode</div><div class="line"></div><div class="line">啟動方式2:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon start namenode</div><div class="line">[hadoop@hadoop-master:~$]yarn --daemon start resourcemanager</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon start proxyserver</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon start httpfs</div><div class="line">[hadoop@hadoop-master:~$]mapred --daemon start historyserver</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave1:~$]hdfs --daemon start datanode</div><div class="line">[hadoop@hadoop-slave1:~$]yarn --daemon start nodemanager</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave2:~$]hdfs --daemon start datanode</div><div class="line">[hadoop@hadoop-slave2:~$]yarn --daemon start nodemanager</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop服務關閉"><a href="#Hadoop服務關閉" class="headerlink" title="Hadoop服務關閉"></a>Hadoop服務關閉</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">停止方式1:使用stop-*.sh</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]stop-dfs.sh</div><div class="line">[hadoop@hadoop-master:~$]stop-yarn.sh</div><div class="line"></div><div class="line">停止方式2:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop namenode</div><div class="line">[hadoop@hadoop-master:~$]yarn --daemon stop resourcemanager</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop proxyserver</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop httpfs</div><div class="line">[hadoop@hadoop-master:~$]mapred --daemon stop historyserver</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave1:~$]hdfs --daemon stop datanode</div><div class="line">[hadoop@hadoop-slave1:~$]yarn --daemon stop nodemanager</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave2:~$]hdfs --daemon stop datanode</div><div class="line">[hadoop@hadoop-slave2:~$]yarn --daemon stop nodemanager</div><div class="line"></div><div class="line">停止DataNode方式3:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs dfsadmin -shutdownDatanode 192.168.51.5:9867</div><div class="line">[hadoop@hadoop-master:~$]hdfs dfsadmin -shutdownDatanode 192.168.51.6:9867</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop-MapReduce-Example"><a href="#Hadoop-MapReduce-Example" class="headerlink" title="Hadoop MapReduce Example"></a>Hadoop MapReduce Example</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master:~$]hadoop jar /bgdt/hadoop-3.0.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar pi 100 100000000</div><div class="line">[hadoop@hadoop-master:~$]hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjbow7phu000cgcllgdnhf6r1" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/08/[excel]Excel_skill/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Excel之下拉式選單設計技巧-1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/27/[hadoop]hadoop_3_install/">Hadoop3.0.0 Cluster環境安裝說明</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/08/[excel]Excel_skill/">Excel之下拉式選單設計技巧-1</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>
+	  <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; undefined ~ 2017 popal<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/" class="mobile-nav-link">隨筆</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'popal';
+  
+  var disqus_url = 'http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

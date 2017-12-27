@@ -66,6 +66,182 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-[hadoop]hadoop_3_install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/27/[hadoop]hadoop_3_install/" class="article-date">
+  <time datetime="2017-12-26T16:00:00.000Z" itemprop="datePublished">2017-12-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/27/[hadoop]hadoop_3_install/">Hadoop3.0.0 Cluster環境安裝說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相關環境說明"><span class="toc-text">相關環境說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#環境準備"><span class="toc-text">環境準備</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-OS-略"><span class="toc-text">Install Linux OS(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-JDK8-略"><span class="toc-text">Install JDK8(略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下載hadoop-3-0-0-tar-gz"><span class="toc-text">下載hadoop-3.0.0.tar.gz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#檔案解壓縮"><span class="toc-text">檔案解壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#設定檔編輯"><span class="toc-text">設定檔編輯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改-bashrc"><span class="toc-text">修改~/.bashrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#core-site-xml"><span class="toc-text">core-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-site-xml"><span class="toc-text">hdfs-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maperd-site-xml"><span class="toc-text">maperd-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yarn-site-xml"><span class="toc-text">yarn-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#worker"><span class="toc-text">worker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#壓縮檔案後scp至DataNode"><span class="toc-text">壓縮檔案後scp至DataNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS格式化"><span class="toc-text">HDFS格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-3-0-0-Port-Number-List"><span class="toc-text">Hadoop 3.0.0 Port Number List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務啟動命令"><span class="toc-text">Hadoop服務啟動命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務關閉"><span class="toc-text">Hadoop服務關閉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-MapReduce-Example"><span class="toc-text">Hadoop MapReduce Example</span></a></li></ol>
+</div>
+
+        <h3 id="相關環境說明"><a href="#相關環境說明" class="headerlink" title="相關環境說明"></a>相關環境說明</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>IP Address</th>
+<th>HostName</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.51.4</td>
+<td>hadoop-master</td>
+<td>NameNode(NN),SecondaryNameNode</td>
+</tr>
+<tr>
+<td>192.168.51.5</td>
+<td>hadoop-slave1</td>
+<td>DataNode(DN1)</td>
+</tr>
+<tr>
+<td>192.168.51.6</td>
+<td>hadoop-slave2</td>
+<td>DataNode(DN2)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h3><h4 id="Install-Linux-OS-略"><a href="#Install-Linux-OS-略" class="headerlink" title="Install Linux OS(略)"></a>Install Linux OS(略)</h4><h4 id="Install-JDK8-略"><a href="#Install-JDK8-略" class="headerlink" title="Install JDK8(略)"></a>Install JDK8(略)</h4><h3 id="下載hadoop-3-0-0-tar-gz"><a href="#下載hadoop-3-0-0-tar-gz" class="headerlink" title="下載hadoop-3.0.0.tar.gz"></a>下載hadoop-3.0.0.tar.gz</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -P /bgdt http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="檔案解壓縮"><a href="#檔案解壓縮" class="headerlink" title="檔案解壓縮"></a>檔案解壓縮</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/hadoop-3.0.0.tar.gz -C /bgdt</div><div class="line">---</div><div class="line">解完壓縮檔之後進入hadoop-3.0.0目錄查看目錄結構</div><div class="line">[hadoop@hadoop-master:~$]ls -la /bgdt/hadoop-3.0.0</div><div class="line">total 220</div><div class="line">drwxr-xr-x 12 hadoop hadoop   4096 Dec 26 15:23 .</div><div class="line">drwxr-xr-x 10 hadoop hadoop   4096 Dec 27 16:54 ..</div><div class="line">drwxr-xr-x  2 hadoop hadoop   4096 Dec  9 03:42 bin</div><div class="line">drwxr-xr-x  3 hadoop hadoop   4096 Dec  9 03:17 etc</div><div class="line">drwxr-xr-x  2 hadoop hadoop   4096 Dec  9 03:42 include</div><div class="line">drwxr-xr-x  3 hadoop hadoop   4096 Dec  9 03:42 lib</div><div class="line">drwxr-xr-x  4 hadoop hadoop   4096 Dec  9 03:42 libexec</div><div class="line">-rw-r--r--  1 hadoop hadoop 147066 Nov 15 03:19 LICENSE.txt</div><div class="line">drwxrwxr-x  3 hadoop hadoop   4096 Dec 27 10:58 logs</div><div class="line">-rw-r--r--  1 hadoop hadoop  20891 Nov 15 03:19 NOTICE.txt</div><div class="line">-rw-r--r--  1 hadoop hadoop   1366 Jul  9  2016 README.txt</div><div class="line">drwxr-xr-x  3 hadoop hadoop   4096 Dec  9 03:17 sbin</div><div class="line">drwxr-xr-x  4 hadoop hadoop   4096 Dec  9 03:53 share</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="設定檔編輯"><a href="#設定檔編輯" class="headerlink" title="設定檔編輯"></a>設定檔編輯</h3><h4 id="修改-bashrc"><a href="#修改-bashrc" class="headerlink" title="修改~/.bashrc"></a>修改~/.bashrc</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vi ~/.bashrc</div><div class="line">export JAVA_HOME=/bgdt/java/jdk1.8.0_101</div><div class="line">export HADOOP_HOME=/bgdt/hadoop-3.0.0</div><div class="line">export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin	</div><div class="line">---</div><div class="line">修改完成後:wq存檔</div><div class="line"></div><div class="line">[hadoop@hadoop-master:~$]source ~/.bashrc</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="core-site-xml"><a href="#core-site-xml" class="headerlink" title="core-site.xml"></a>core-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">	&lt;value&gt;hdfs://hadoop-master:8020&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;file:/bgdt/hadoop-3.0.0/tmp&lt;/value&gt;</div><div class="line">	&lt;description&gt;Abase for other temporary directories.&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</div><div class="line">	&lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</div><div class="line">	&lt;value&gt;*&lt;/value&gt;    </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="hdfs-site-xml"><a href="#hdfs-site-xml" class="headerlink" title="hdfs-site.xml"></a>hdfs-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</div><div class="line">	&lt;value&gt;hadoop-master:50090&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">	&lt;value&gt;3&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;file:/bgdt/hadoop-3.0.0/tmp/dfs/name&lt;/value&gt;</div><div class="line">&lt;/property&gt; </div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;file:/bgdt/hadoop-3.0.0/tmp/dfs/data&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.block.size&lt;/name&gt;</div><div class="line">	&lt;value&gt;64M&lt;/value&gt;   </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="maperd-site-xml"><a href="#maperd-site-xml" class="headerlink" title="maperd-site.xml"></a>maperd-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;   </div><div class="line">&lt;property&gt;  </div><div class="line">	&lt;name&gt;mapreduce.framework.name&lt;/name&gt;  </div><div class="line">	&lt;value&gt;yarn&lt;/value&gt;  </div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">	&lt;value&gt;mna1:10020&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">	&lt;value&gt;mna1:19888&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;  </div><div class="line">	&lt;name&gt;mapreduce.application.classpath&lt;/name&gt;  </div><div class="line">	&lt;value&gt;  </div><div class="line">		$HADOOP_HOME/share/hadoop/common/*,</div><div class="line">		$HADOOP_HOME/share/hadoop/hdfs/*,  </div><div class="line">		$HADOOP_HOME/share/hadoop/mapreduce/*,  </div><div class="line">		$HADOOP_HOME/share/hadoop/yarn/*</div><div class="line">	&lt;/value&gt;</div><div class="line">&lt;/property&gt;  </div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="yarn-site-xml"><a href="#yarn-site-xml" class="headerlink" title="yarn-site.xml"></a>yarn-site.xml</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">	&lt;value&gt;hadoop-master&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">	&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;yarn.log.server.url&lt;/name&gt;</div><div class="line">	&lt;value&gt;http://hadoop-master:19888/jobhistory/logs&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop-slave1</div><div class="line">hadoop-slave2</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="壓縮檔案後scp至DataNode"><a href="#壓縮檔案後scp至DataNode" class="headerlink" title="壓縮檔案後scp至DataNode"></a>壓縮檔案後scp至DataNode</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">將NameNode hadoop目錄壓縮後copy至其他DataNode,進行解壓縮</div><div class="line">---</div><div class="line">[hadoop@hadoop-master:~$]cd /bgdt</div><div class="line">[hadoop@hadoop-master:~$]tar -zcvf ~/hadoop-3.0.0.tar.gz hadoop-3.0.0</div><div class="line">[hadoop@hadoop-master:~$]scp ~/hadoop-3.0.0.tar.gz hadoop-slave1:/bgdt</div><div class="line">[hadoop@hadoop-master:~$]scp ~/hadoop-3.0.0.tar.gz hadoop-slave2:/bgdt</div><div class="line">---</div><div class="line">ssh至DataNode並將hadoop-3.0.0.tar.gz解壓縮</div><div class="line">ssh hadoop-slave1</div><div class="line">[hadoop@hadoop-slave1:~$]tar -zxvf /bgdt/hadoop-3.0.0.tar.gz -C /bgdt</div><div class="line">ssh hadoop-slave2</div><div class="line">[hadoop@hadoop-slave2:~$]tar -zxvf /bgdt/hadoop-3.0.0.tar.gz -C /bgdt</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="HDFS格式化"><a href="#HDFS格式化" class="headerlink" title="HDFS格式化"></a>HDFS格式化</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop namenode -format</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop-3-0-0-Port-Number-List"><a href="#Hadoop-3-0-0-Port-Number-List" class="headerlink" title="Hadoop 3.0.0 Port Number List"></a>Hadoop 3.0.0 Port Number List</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Service Name</th>
+<th style="text-align:left">Hadoop 2.X Port Number</th>
+<th style="text-align:left">Hadoop 3.X Port Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Hadoop HDFS NameNode</td>
+<td style="text-align:left">8020</td>
+<td style="text-align:left">9820</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS NameNode HTTP UI</td>
+<td style="text-align:left">50070</td>
+<td style="text-align:left">9870</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS NameNode HTTPS UI</td>
+<td style="text-align:left">50470</td>
+<td style="text-align:left">9840</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS SecondaryNameNode HTTP UI</td>
+<td style="text-align:left">50091</td>
+<td style="text-align:left">9869</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS SecondaryNameNode HTTPS UI</td>
+<td style="text-align:left">50090</td>
+<td style="text-align:left">9868</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS</td>
+<td style="text-align:left">8020</td>
+<td style="text-align:left">9820</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode IPC Port</td>
+<td style="text-align:left">50020</td>
+<td style="text-align:left">9867</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode</td>
+<td style="text-align:left">50010</td>
+<td style="text-align:left">9866</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode HTTP UI</td>
+<td style="text-align:left">50075</td>
+<td style="text-align:left">9864</td>
+</tr>
+<tr>
+<td style="text-align:left">Hadoop HDFS DataNode HTTPS UI</td>
+<td style="text-align:left">50475</td>
+<td style="text-align:left">9865</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="Hadoop服務啟動命令"><a href="#Hadoop服務啟動命令" class="headerlink" title="Hadoop服務啟動命令"></a>Hadoop服務啟動命令</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">啟動方式1:使用start-*.sh</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]start-dfs.sh</div><div class="line">[hadoop@hadoop-master:~$]start-yarn.sh</div><div class="line">[hadoop@hadoop-master:~$]jps</div><div class="line">2340 ResourceManager</div><div class="line">1834 NameNode</div><div class="line">2107 SecondaryNameNode</div><div class="line">[hadoop@hadoop-master:~$]ssh hadoop-slave1</div><div class="line">[hadoop@hadoop-slave1:~$]jps</div><div class="line">1568 DataNode</div><div class="line">1738 NodeManager</div><div class="line">[hadoop@hadoop-master:~$]ssh hadoop-slave2</div><div class="line">[hadoop@hadoop-slave2:~$]jps</div><div class="line">1715 NodeManager</div><div class="line">1545 DataNode</div><div class="line"></div><div class="line">啟動方式2:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon start namenode</div><div class="line">[hadoop@hadoop-master:~$]yarn --daemon start resourcemanager</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon start proxyserver</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon start httpfs</div><div class="line">[hadoop@hadoop-master:~$]mapred --daemon start historyserver</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave1:~$]hdfs --daemon start datanode</div><div class="line">[hadoop@hadoop-slave1:~$]yarn --daemon start nodemanager</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave2:~$]hdfs --daemon start datanode</div><div class="line">[hadoop@hadoop-slave2:~$]yarn --daemon start nodemanager</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop服務關閉"><a href="#Hadoop服務關閉" class="headerlink" title="Hadoop服務關閉"></a>Hadoop服務關閉</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">停止方式1:使用stop-*.sh</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]stop-dfs.sh</div><div class="line">[hadoop@hadoop-master:~$]stop-yarn.sh</div><div class="line"></div><div class="line">停止方式2:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop namenode</div><div class="line">[hadoop@hadoop-master:~$]yarn --daemon stop resourcemanager</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop proxyserver</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop httpfs</div><div class="line">[hadoop@hadoop-master:~$]mapred --daemon stop historyserver</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave1:~$]hdfs --daemon stop datanode</div><div class="line">[hadoop@hadoop-slave1:~$]yarn --daemon stop nodemanager</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave2:~$]hdfs --daemon stop datanode</div><div class="line">[hadoop@hadoop-slave2:~$]yarn --daemon stop nodemanager</div><div class="line"></div><div class="line">停止DataNode方式3:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs dfsadmin -shutdownDatanode 192.168.51.5:9867</div><div class="line">[hadoop@hadoop-master:~$]hdfs dfsadmin -shutdownDatanode 192.168.51.6:9867</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop-MapReduce-Example"><a href="#Hadoop-MapReduce-Example" class="headerlink" title="Hadoop MapReduce Example"></a>Hadoop MapReduce Example</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master:~$]hadoop jar /bgdt/hadoop-3.0.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar pi 100 100000000</div><div class="line">[hadoop@hadoop-master:~$]hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjbow7phu000cgcllgdnhf6r1" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-[excel]Excel_skill" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/12/08/[excel]Excel_skill/" class="article-date">
@@ -120,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjb2zjea100041slljyayfm0g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjbow7ph80003gcllhxt7h2bq" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/12/08/[excel]Excel_skill/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -186,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjb2zjeah000d1sll7pijtbms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjbow7phr0009gcll371xshj2" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/11/07/[hive]hive_sql_3/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -251,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjb2zjea100071sllmpi9w8yf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjbow7pho0007gcllh44gyd2m" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_1/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -452,7 +628,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjb2zjeah000c1sllza7ztryw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjbow7phv000egcll2z5u9015" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -508,7 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjb2zjeah000m1sll1hbklpkz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjbow7pi2000ngcllt9tvdlew" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -569,58 +745,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjb2zjeah000g1slltaa3mo62" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjbow7phx000hgclltqngojxm" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/05/22/[spark]spark_001/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[vagrant]Vagrantfile配置檔說明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" class="article-date">
-  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/">Vagrant file 配置檔案說明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-file配置檔案說明"><span class="toc-text">vagrant file配置檔案說明</span></a></li></ol>
-</div>
-
-        <h4 id="vagrant-file配置檔案說明"><a href="#vagrant-file配置檔案說明" class="headerlink" title="vagrant file配置檔案說明"></a>vagrant file配置檔案說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"># -*- mode: ruby -*-</div><div class="line"># vi: set ft=ruby :</div><div class="line"></div><div class="line">MASTER_IP	= &apos;192.168.51.4&apos;</div><div class="line">DN1_IP		= &apos;192.168.51.5&apos;</div><div class="line">DN2_IP		= &apos;192.168.51.6&apos;</div><div class="line"></div><div class="line">Vagrant.configure(&quot;2&quot;) do |config|  </div><div class="line">  config.ssh.insert_key =false  </div><div class="line">   </div><div class="line">  #define data1 server</div><div class="line">  config.vm.define &quot;slave1&quot; do |slave1|</div><div class="line">	slave1.vm.hostname = &quot;hadoop-slave1&quot;		##設定VM主機名稱</div><div class="line">	slave1.vm.network &quot;private_network&quot;, ip: DN1_IP	##設定主機 ip</div><div class="line">	slave1.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave1.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	slave1.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave1&quot;</div><div class="line">		v.cpus = 1</div><div class="line">		v.memory = 2500</div><div class="line">	end    </div><div class="line">	slave1.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line"></div><div class="line">  #define data2 server</div><div class="line">  config.vm.define &quot;slave2&quot; do |slave2|</div><div class="line">	slave2.vm.hostname = &quot;hadoop-slave2&quot;		##設定VM主機名稱</div><div class="line">	slave2.vm.network &quot;private_network&quot;, ip: DN2_IP	##設定主機 ip</div><div class="line">	slave2.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave2.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄</div><div class="line">	slave2.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave2&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 2500		##設定VM記憶體大小</div><div class="line">	end</div><div class="line">  	slave2.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line">  </div><div class="line">  #define Master server</div><div class="line">  config.vm.define &quot;master&quot; do |master|</div><div class="line">	master.vm.hostname = &quot;hadoop-master&quot;			##設定VM主機名稱</div><div class="line">	master.vm.network &quot;private_network&quot;, ip: MASTER_IP	##設定主機 ip</div><div class="line">	master.vm.box = &quot;ubuntu/yakkety64&quot;			##設定VM使用的OS Box</div><div class="line">	master.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	master.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;master&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 3500		##設定VM記憶體大小</div><div class="line">	end    </div><div class="line">	master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-master.sh&quot;					##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;			##每次啟動VM時,都必須執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;,privileged: false	##設定VM第一次被啟動時,所需執行的Shell,且使非root帳號執行</div><div class="line">  end   </div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjb2zjeah000l1sllex7fift5" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -679,9 +806,58 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjb2zjeah000i1sllwz8xul4i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjbow7phy000jgcll2gf7ftf2" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[vagrant]Vagrantfile配置檔說明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" class="article-date">
+  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/">Vagrant file 配置檔案說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-file配置檔案說明"><span class="toc-text">vagrant file配置檔案說明</span></a></li></ol>
+</div>
+
+        <h4 id="vagrant-file配置檔案說明"><a href="#vagrant-file配置檔案說明" class="headerlink" title="vagrant file配置檔案說明"></a>vagrant file配置檔案說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"># -*- mode: ruby -*-</div><div class="line"># vi: set ft=ruby :</div><div class="line"></div><div class="line">MASTER_IP	= &apos;192.168.51.4&apos;</div><div class="line">DN1_IP		= &apos;192.168.51.5&apos;</div><div class="line">DN2_IP		= &apos;192.168.51.6&apos;</div><div class="line"></div><div class="line">Vagrant.configure(&quot;2&quot;) do |config|  </div><div class="line">  config.ssh.insert_key =false  </div><div class="line">   </div><div class="line">  #define data1 server</div><div class="line">  config.vm.define &quot;slave1&quot; do |slave1|</div><div class="line">	slave1.vm.hostname = &quot;hadoop-slave1&quot;		##設定VM主機名稱</div><div class="line">	slave1.vm.network &quot;private_network&quot;, ip: DN1_IP	##設定主機 ip</div><div class="line">	slave1.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave1.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	slave1.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave1&quot;</div><div class="line">		v.cpus = 1</div><div class="line">		v.memory = 2500</div><div class="line">	end    </div><div class="line">	slave1.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line"></div><div class="line">  #define data2 server</div><div class="line">  config.vm.define &quot;slave2&quot; do |slave2|</div><div class="line">	slave2.vm.hostname = &quot;hadoop-slave2&quot;		##設定VM主機名稱</div><div class="line">	slave2.vm.network &quot;private_network&quot;, ip: DN2_IP	##設定主機 ip</div><div class="line">	slave2.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave2.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄</div><div class="line">	slave2.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave2&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 2500		##設定VM記憶體大小</div><div class="line">	end</div><div class="line">  	slave2.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line">  </div><div class="line">  #define Master server</div><div class="line">  config.vm.define &quot;master&quot; do |master|</div><div class="line">	master.vm.hostname = &quot;hadoop-master&quot;			##設定VM主機名稱</div><div class="line">	master.vm.network &quot;private_network&quot;, ip: MASTER_IP	##設定主機 ip</div><div class="line">	master.vm.box = &quot;ubuntu/yakkety64&quot;			##設定VM使用的OS Box</div><div class="line">	master.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	master.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;master&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 3500		##設定VM記憶體大小</div><div class="line">	end    </div><div class="line">	master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-master.sh&quot;					##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;			##每次啟動VM時,都必須執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;,privileged: false	##設定VM第一次被啟動時,所需執行的Shell,且使非root帳號執行</div><div class="line">  end   </div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjbow7pi0000mgclldevlh5ka" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -730,59 +906,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjb2zjea100031sllbyq8808e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjbow7pha0004gcllxbiihmxo" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]Hadoop_CMD" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/10/[hadoop]Hadoop_CMD/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/[hadoop]Hadoop_CMD/">Hadoop常用命令說明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  
-</div>
-
-        <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cjb2zjeah00091sllodv9maw0" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -805,7 +931,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -815,7 +941,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -826,6 +952,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/12/27/[hadoop]hadoop_3_install/">Hadoop3.0.0 Cluster環境安裝說明</a>
+          </li>
         
           <li>
             <a href="/2017/12/08/[excel]Excel_skill/">Excel之下拉式選單設計技巧-1</a>
@@ -841,10 +971,6 @@
         
           <li>
             <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/19/[vagrant]打造一個自己開發境境/">透過vagrant打包一個VM Box</a>
           </li>
         
       </ul>
