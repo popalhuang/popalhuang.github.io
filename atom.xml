@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-27T09:53:18.827Z</updated>
+  <updated>2017-12-27T10:25:13.486Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/12/27/%5Bhadoop%5Dhadoop_3_install/"/>
     <id>http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/</id>
     <published>2017-12-26T16:00:00.000Z</published>
-    <updated>2017-12-27T09:53:18.827Z</updated>
+    <updated>2017-12-27T10:25:13.486Z</updated>
     
     <content type="html"><![CDATA[<h3 id="相關環境說明"><a href="#相關環境說明" class="headerlink" title="相關環境說明"></a>相關環境說明</h3><blockquote>
 <table>
@@ -150,7 +150,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">停止方式1:使用stop-*.sh</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]stop-dfs.sh</div><div class="line">[hadoop@hadoop-master:~$]stop-yarn.sh</div><div class="line"></div><div class="line">停止方式2:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop namenode</div><div class="line">[hadoop@hadoop-master:~$]yarn --daemon stop resourcemanager</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop proxyserver</div><div class="line">[hadoop@hadoop-master:~$]hdfs --daemon stop httpfs</div><div class="line">[hadoop@hadoop-master:~$]mapred --daemon stop historyserver</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave1:~$]hdfs --daemon stop datanode</div><div class="line">[hadoop@hadoop-slave1:~$]yarn --daemon stop nodemanager</div><div class="line">-</div><div class="line">[hadoop@hadoop-slave2:~$]hdfs --daemon stop datanode</div><div class="line">[hadoop@hadoop-slave2:~$]yarn --daemon stop nodemanager</div><div class="line"></div><div class="line">停止DataNode方式3:</div><div class="line">-----</div><div class="line">[hadoop@hadoop-master:~$]hdfs dfsadmin -shutdownDatanode 192.168.51.5:9867</div><div class="line">[hadoop@hadoop-master:~$]hdfs dfsadmin -shutdownDatanode 192.168.51.6:9867</div></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="Hadoop-MapReduce-Example"><a href="#Hadoop-MapReduce-Example" class="headerlink" title="Hadoop MapReduce Example"></a>Hadoop MapReduce Example</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master:~$]hadoop jar /bgdt/hadoop-3.0.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar pi 100 100000000</div><div class="line">[hadoop@hadoop-master:~$]hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master:~$]hadoop jar /bgdt/hadoop-3.0.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar pi 100 100000000</div><div class="line">[hadoop@hadoop-master:~$]hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.0.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Hadoop-Web-UI"><a href="#Hadoop-Web-UI" class="headerlink" title="Hadoop Web UI"></a>Hadoop Web UI</h3><blockquote>
+<p></p><h3>Hadoop WebUI-1 Port:9870,此頁面可以觀察Namenode相關資訊</h3><br><img src="/images/hadoop_3_install/hadoop_3_install_1.jpg" alt=""><p></p>
+<p></p><h3>Hadoop WebUI-2 此頁面可以觀察DataNode狀態</h3><br><img src="/images/hadoop_3_install/hadoop_3_install_2.jpg" alt=""><p></p>
+<p></p><h3>Hadoop WebUI-3 此頁面可以觀察HDFS檔案結構,新版的Browser可以直接由介面上上傳檔案,但先決條件為沒有設定相關權限</h3><br><img src="/images/hadoop_3_install/hadoop_3_install_3.jpg" alt=""><p></p>
+<p></p><h3>Hadoop WebUI-4,Port:8088,此頁面為ResourceManager的管理介面,系統會列出所有Application的運行狀態<br><img src="/images/hadoop_3_install/hadoop_3_install_4.jpg" alt=""><p></p>
+</h3></blockquote>
 ]]></content>
     
     <summary type="html">
@@ -529,6 +536,28 @@
   </entry>
   
   <entry>
+    <title>Vagrant file 配置檔案說明</title>
+    <link href="http://yoursite.com/2017/02/20/%5Bvagrant%5DVagrantfile%E9%85%8D%E7%BD%AE%E6%AA%94%E8%AA%AA%E6%98%8E/"/>
+    <id>http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/</id>
+    <published>2017-02-19T16:00:00.000Z</published>
+    <updated>2017-02-20T06:02:47.965Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="vagrant-file配置檔案說明"><a href="#vagrant-file配置檔案說明" class="headerlink" title="vagrant file配置檔案說明"></a>vagrant file配置檔案說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"># -*- mode: ruby -*-</div><div class="line"># vi: set ft=ruby :</div><div class="line"></div><div class="line">MASTER_IP	= &apos;192.168.51.4&apos;</div><div class="line">DN1_IP		= &apos;192.168.51.5&apos;</div><div class="line">DN2_IP		= &apos;192.168.51.6&apos;</div><div class="line"></div><div class="line">Vagrant.configure(&quot;2&quot;) do |config|  </div><div class="line">  config.ssh.insert_key =false  </div><div class="line">   </div><div class="line">  #define data1 server</div><div class="line">  config.vm.define &quot;slave1&quot; do |slave1|</div><div class="line">	slave1.vm.hostname = &quot;hadoop-slave1&quot;		##設定VM主機名稱</div><div class="line">	slave1.vm.network &quot;private_network&quot;, ip: DN1_IP	##設定主機 ip</div><div class="line">	slave1.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave1.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	slave1.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave1&quot;</div><div class="line">		v.cpus = 1</div><div class="line">		v.memory = 2500</div><div class="line">	end    </div><div class="line">	slave1.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line"></div><div class="line">  #define data2 server</div><div class="line">  config.vm.define &quot;slave2&quot; do |slave2|</div><div class="line">	slave2.vm.hostname = &quot;hadoop-slave2&quot;		##設定VM主機名稱</div><div class="line">	slave2.vm.network &quot;private_network&quot;, ip: DN2_IP	##設定主機 ip</div><div class="line">	slave2.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave2.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄</div><div class="line">	slave2.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave2&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 2500		##設定VM記憶體大小</div><div class="line">	end</div><div class="line">  	slave2.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line">  </div><div class="line">  #define Master server</div><div class="line">  config.vm.define &quot;master&quot; do |master|</div><div class="line">	master.vm.hostname = &quot;hadoop-master&quot;			##設定VM主機名稱</div><div class="line">	master.vm.network &quot;private_network&quot;, ip: MASTER_IP	##設定主機 ip</div><div class="line">	master.vm.box = &quot;ubuntu/yakkety64&quot;			##設定VM使用的OS Box</div><div class="line">	master.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	master.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;master&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 3500		##設定VM記憶體大小</div><div class="line">	end    </div><div class="line">	master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-master.sh&quot;					##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;			##每次啟動VM時,都必須執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;,privileged: false	##設定VM第一次被啟動時,所需執行的Shell,且使非root帳號執行</div><div class="line">  end   </div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure></blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;vagrant-file配置檔案說明&quot;&gt;&lt;a href=&quot;#vagrant-file配置檔案說明&quot; class=&quot;headerlink&quot; title=&quot;vagrant file配置檔案說明&quot;&gt;&lt;/a&gt;vagrant file配置檔案說明&lt;/h4&gt;&lt;blockquo
+    
+    </summary>
+    
+      <category term="vagrant" scheme="http://yoursite.com/categories/vagrant/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Vagrant Command Line說明筆記</title>
     <link href="http://yoursite.com/2017/02/20/%5Bvagrant%5DVagrantMemo/"/>
     <id>http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/</id>
@@ -555,28 +584,6 @@
     
       &lt;h4 id=&quot;vagrant-package&quot;&gt;&lt;a href=&quot;#vagrant-package&quot; class=&quot;headerlink&quot; title=&quot;vagrant package&quot;&gt;&lt;/a&gt;vagrant package&lt;/h4&gt;&lt;blockquote&gt;
 &lt;figure 
-    
-    </summary>
-    
-      <category term="vagrant" scheme="http://yoursite.com/categories/vagrant/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Vagrant file 配置檔案說明</title>
-    <link href="http://yoursite.com/2017/02/20/%5Bvagrant%5DVagrantfile%E9%85%8D%E7%BD%AE%E6%AA%94%E8%AA%AA%E6%98%8E/"/>
-    <id>http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/</id>
-    <published>2017-02-19T16:00:00.000Z</published>
-    <updated>2017-02-20T06:02:47.965Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="vagrant-file配置檔案說明"><a href="#vagrant-file配置檔案說明" class="headerlink" title="vagrant file配置檔案說明"></a>vagrant file配置檔案說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"># -*- mode: ruby -*-</div><div class="line"># vi: set ft=ruby :</div><div class="line"></div><div class="line">MASTER_IP	= &apos;192.168.51.4&apos;</div><div class="line">DN1_IP		= &apos;192.168.51.5&apos;</div><div class="line">DN2_IP		= &apos;192.168.51.6&apos;</div><div class="line"></div><div class="line">Vagrant.configure(&quot;2&quot;) do |config|  </div><div class="line">  config.ssh.insert_key =false  </div><div class="line">   </div><div class="line">  #define data1 server</div><div class="line">  config.vm.define &quot;slave1&quot; do |slave1|</div><div class="line">	slave1.vm.hostname = &quot;hadoop-slave1&quot;		##設定VM主機名稱</div><div class="line">	slave1.vm.network &quot;private_network&quot;, ip: DN1_IP	##設定主機 ip</div><div class="line">	slave1.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave1.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	slave1.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave1&quot;</div><div class="line">		v.cpus = 1</div><div class="line">		v.memory = 2500</div><div class="line">	end    </div><div class="line">	slave1.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line"></div><div class="line">  #define data2 server</div><div class="line">  config.vm.define &quot;slave2&quot; do |slave2|</div><div class="line">	slave2.vm.hostname = &quot;hadoop-slave2&quot;		##設定VM主機名稱</div><div class="line">	slave2.vm.network &quot;private_network&quot;, ip: DN2_IP	##設定主機 ip</div><div class="line">	slave2.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave2.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄</div><div class="line">	slave2.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave2&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 2500		##設定VM記憶體大小</div><div class="line">	end</div><div class="line">  	slave2.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line">  </div><div class="line">  #define Master server</div><div class="line">  config.vm.define &quot;master&quot; do |master|</div><div class="line">	master.vm.hostname = &quot;hadoop-master&quot;			##設定VM主機名稱</div><div class="line">	master.vm.network &quot;private_network&quot;, ip: MASTER_IP	##設定主機 ip</div><div class="line">	master.vm.box = &quot;ubuntu/yakkety64&quot;			##設定VM使用的OS Box</div><div class="line">	master.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	master.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;master&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 3500		##設定VM記憶體大小</div><div class="line">	end    </div><div class="line">	master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-master.sh&quot;					##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;			##每次啟動VM時,都必須執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;,privileged: false	##設定VM第一次被啟動時,所需執行的Shell,且使非root帳號執行</div><div class="line">  end   </div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure></blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;vagrant-file配置檔案說明&quot;&gt;&lt;a href=&quot;#vagrant-file配置檔案說明&quot; class=&quot;headerlink&quot; title=&quot;vagrant file配置檔案說明&quot;&gt;&lt;/a&gt;vagrant file配置檔案說明&lt;/h4&gt;&lt;blockquo
     
     </summary>
     
