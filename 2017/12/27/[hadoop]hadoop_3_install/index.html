@@ -71,7 +71,9 @@ DataNode(DN2)
 <meta property="og:image" content="http://yoursite.com/images/hadoop_3_install/hadoop_3_install_2.jpg">
 <meta property="og:image" content="http://yoursite.com/images/hadoop_3_install/hadoop_3_install_3.jpg">
 <meta property="og:image" content="http://yoursite.com/images/hadoop_3_install/hadoop_3_install_4.jpg">
-<meta property="og:updated_time" content="2017-12-27T10:29:39.861Z">
+<meta property="og:image" content="http://yoursite.com/images/hadoop_3_install/hadoop_3_install_5.jpg">
+<meta property="og:image" content="http://yoursite.com/images/hadoop_3_install/hadoop_3_install_6.jpg">
+<meta property="og:updated_time" content="2017-12-27T10:42:25.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop3.0.0 Cluster環境安裝說明">
 <meta name="twitter:description" content="相關環境說明
@@ -145,7 +147,7 @@ DataNode(DN2)
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -182,7 +184,7 @@ DataNode(DN2)
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相關環境說明"><span class="toc-text">相關環境說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#環境準備"><span class="toc-text">環境準備</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-OS-略"><span class="toc-text">Install Linux OS(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-JDK8-略"><span class="toc-text">Install JDK8(略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下載hadoop-3-0-0-tar-gz"><span class="toc-text">下載hadoop-3.0.0.tar.gz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#檔案解壓縮"><span class="toc-text">檔案解壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#設定檔編輯"><span class="toc-text">設定檔編輯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改-bashrc"><span class="toc-text">修改~/.bashrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#core-site-xml"><span class="toc-text">core-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-site-xml"><span class="toc-text">hdfs-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maperd-site-xml"><span class="toc-text">maperd-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yarn-site-xml"><span class="toc-text">yarn-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#worker"><span class="toc-text">worker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#壓縮檔案後scp至DataNode"><span class="toc-text">壓縮檔案後scp至DataNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS格式化"><span class="toc-text">HDFS格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-3-0-0-Port-Number-List"><span class="toc-text">Hadoop 3.0.0 Port Number List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務啟動命令"><span class="toc-text">Hadoop服務啟動命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務關閉"><span class="toc-text">Hadoop服務關閉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-MapReduce-Example"><span class="toc-text">Hadoop MapReduce Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Web-UI"><span class="toc-text">Hadoop Web UI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#web-1"><span class="toc-text">web-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web-2"><span class="toc-text">web-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web-3"><span class="toc-text">web-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web-4"><span class="toc-text">web-4</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相關環境說明"><span class="toc-text">相關環境說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#環境準備"><span class="toc-text">環境準備</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-OS-略"><span class="toc-text">Install Linux OS(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-JDK8-略"><span class="toc-text">Install JDK8(略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下載hadoop-3-0-0-tar-gz"><span class="toc-text">下載hadoop-3.0.0.tar.gz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#檔案解壓縮"><span class="toc-text">檔案解壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#設定檔編輯"><span class="toc-text">設定檔編輯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改-bashrc"><span class="toc-text">修改~/.bashrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#core-site-xml"><span class="toc-text">core-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-site-xml"><span class="toc-text">hdfs-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maperd-site-xml"><span class="toc-text">maperd-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yarn-site-xml"><span class="toc-text">yarn-site.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#worker"><span class="toc-text">worker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#壓縮檔案後scp至DataNode"><span class="toc-text">壓縮檔案後scp至DataNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS格式化"><span class="toc-text">HDFS格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-3-0-0-Port-Number-List"><span class="toc-text">Hadoop 3.0.0 Port Number List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務啟動命令"><span class="toc-text">Hadoop服務啟動命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop服務關閉"><span class="toc-text">Hadoop服務關閉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-MapReduce-Example"><span class="toc-text">Hadoop MapReduce Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop-Web-UI"><span class="toc-text">Hadoop Web UI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#web-1"><span class="toc-text">web-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web-2"><span class="toc-text">web-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web-3"><span class="toc-text">web-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web-4"><span class="toc-text">web-4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UI-5"><span class="toc-text">UI-5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UI-6"><span class="toc-text">UI-6</span></a></li></ol></li></ol>
 </div>
 
         <h3 id="相關環境說明"><a href="#相關環境說明" class="headerlink" title="相關環境說明"></a>相關環境說明</h3><blockquote>
@@ -327,13 +329,19 @@ DataNode(DN2)
 <h4 id="web-4"><a href="#web-4" class="headerlink" title="web-4"></a>web-4</h4><blockquote>
 <p>Hadoop WebUI-4,Port:8088,此頁面為ResourceManager的管理介面,系統會列出所有Application的運行狀態<br><img src="/images/hadoop_3_install/hadoop_3_install_4.jpg" alt=""></p>
 </blockquote>
+<h4 id="UI-5"><a href="#UI-5" class="headerlink" title="UI-5"></a>UI-5</h4><blockquote>
+<p>此圖為Run Hadoop MapReduce時,產生的錯誤訊息(此部分為Hadoop3.0.0的問題,Exception可以暫時略過不管)<br>  <a href="https://issues.apache.org/jira/browse/HDFS-10429" target="_blank" rel="external">HDFS-10429</a> DataStreamer interrupted warning always appears when using CLI upload file<br><img src="/images/hadoop_3_install/hadoop_3_install_5.jpg" alt=""></p>
+</blockquote>
+<h4 id="UI-6"><a href="#UI-6" class="headerlink" title="UI-6"></a>UI-6</h4><blockquote>
+<p>程式Run完後,在此畫面可以觀察Application最後的執行狀態,如果有啟動JobHistory時可以觀察到相關的Log<br><img src="/images/hadoop_3_install/hadoop_3_install_6.jpg" alt=""></p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjbox61lp0005r0lll2apk8zh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjboxma5c0009iwll89lnm13p" class="article-share-link">Partager</a>
       
-        <a href="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
     </footer>
@@ -344,7 +352,7 @@ DataNode(DN2)
   
   
     <a href="/2017/12/08/[excel]Excel_skill/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">Excel之下拉式選單設計技巧-1</div>
     </a>
   
@@ -436,7 +444,7 @@ DataNode(DN2)
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; undefined ~ 2017 popal<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
