@@ -55,7 +55,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -65,6 +65,199 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-[spark2.2]spark2.2.1_Install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/29/[spark2.2]spark2.2.1_Install/" class="article-date">
+  <time datetime="2017-12-28T16:00:00.000Z" itemprop="datePublished">2017-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spark-2-2-1/">spark[2.2.1]</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/29/[spark2.2]spark2.2.1_Install/">Spark2.2.1環境安裝說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相關環境說明"><span class="toc-text">相關環境說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#環境準備"><span class="toc-text">環境準備</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-OS-略"><span class="toc-text">Install Linux OS(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-JDK8-略"><span class="toc-text">Install Linux JDK8(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-Hadoop3-0-0-略"><span class="toc-text">Install Linux Hadoop3.0.0(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-MariaDB-略"><span class="toc-text">Install MariaDB(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Hive2-3-略"><span class="toc-text">Install Hive2.3(略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Download-Spark2-2-1-tagz-file"><span class="toc-text">Download Spark2.2.1 tagz file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解壓縮下載的spark-2-2-1-bin-hadoop2-7-tgz-file-並更改目錄名稱-過長"><span class="toc-text">解壓縮下載的spark-2.2.1-bin-hadoop2.7.tgz file,並更改目錄名稱(過長)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加入SPARK-HOME相關的環境變數"><span class="toc-text">加入SPARK_HOME相關的環境變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#執行-spark-shell-for-python"><span class="toc-text">執行 spark shell(for python)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#執行-spark-shell-for-scala"><span class="toc-text">執行 spark shell(for scala)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#執行spark-sql-Shell"><span class="toc-text">執行spark-sql Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark2-2-1-amp-Hive2-3-2整合測試"><span class="toc-text">Spark2.2.1 & Hive2.3.2整合測試</span></a></li></ol>
+</div>
+
+        <h3 id="相關環境說明"><a href="#相關環境說明" class="headerlink" title="相關環境說明"></a>相關環境說明</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>IP Address</th>
+<th>HostName</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.51.4</td>
+<td>hadoop-master</td>
+<td>NameNode(NN),SecondaryNameNode, HiveServer2</td>
+</tr>
+<tr>
+<td>192.168.51.5</td>
+<td>hadoop-slave1</td>
+<td>DataNode(DN1)</td>
+</tr>
+<tr>
+<td>192.168.51.6</td>
+<td>hadoop-slave2</td>
+<td>DataNode(DN2)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h3><h4 id="Install-Linux-OS-略"><a href="#Install-Linux-OS-略" class="headerlink" title="Install Linux OS(略)"></a>Install Linux OS(略)</h4><h4 id="Install-Linux-JDK8-略"><a href="#Install-Linux-JDK8-略" class="headerlink" title="Install Linux JDK8(略)"></a>Install Linux JDK8(略)</h4><h4 id="Install-Linux-Hadoop3-0-0-略"><a href="#Install-Linux-Hadoop3-0-0-略" class="headerlink" title="Install Linux Hadoop3.0.0(略)"></a>Install Linux Hadoop3.0.0(略)</h4><h4 id="Install-MariaDB-略"><a href="#Install-MariaDB-略" class="headerlink" title="Install MariaDB(略)"></a>Install MariaDB(略)</h4><h4 id="Install-Hive2-3-略"><a href="#Install-Hive2-3-略" class="headerlink" title="Install Hive2.3(略)"></a>Install Hive2.3(略)</h4><h3 id="Download-Spark2-2-1-tagz-file"><a href="#Download-Spark2-2-1-tagz-file" class="headerlink" title="Download Spark2.2.1 tagz file"></a>Download Spark2.2.1 tagz file</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget -P /bgdt http://apache.stu.edu.tw/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz</div><div class="line">wget -P /bgdt http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="解壓縮下載的spark-2-2-1-bin-hadoop2-7-tgz-file-並更改目錄名稱-過長"><a href="#解壓縮下載的spark-2-2-1-bin-hadoop2-7-tgz-file-並更改目錄名稱-過長" class="headerlink" title="解壓縮下載的spark-2.2.1-bin-hadoop2.7.tgz file,並更改目錄名稱(過長)"></a>解壓縮下載的spark-2.2.1-bin-hadoop2.7.tgz file,並更改目錄名稱(過長)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/spark-2.2.1-bin-hadoop2.7.tgz -C /bgdt</div><div class="line">mv /bgdt/spark-2.2.1-bin-hadoop2.7 /bgdt/spark-2.2.1</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="加入SPARK-HOME相關的環境變數"><a href="#加入SPARK-HOME相關的環境變數" class="headerlink" title="加入SPARK_HOME相關的環境變數"></a>加入SPARK_HOME相關的環境變數</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">vi ~/.bashrc</div><div class="line"></div><div class="line">##Spark Segement</div><div class="line">export SPARK_HOME=/bgdt/spark-2.2.1</div><div class="line">export PATH=$PATH:$SPARK_HOME/sbin:$SPARK_HOME/bin</div><div class="line"></div><div class="line">source ~/.bashrc</div><div class="line"></div><div class="line">cp /bgdt/mysql-connector-java-5.1.39.jar /bgdt/spark-2.2.1/jars</div><div class="line">ln -s /bgdt/hive-2.3.2/conf/hive-site.xml /bgdt/spark-2.2.1/conf/hive-site.xml</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="執行-spark-shell-for-python"><a href="#執行-spark-shell-for-python" class="headerlink" title="執行 spark shell(for python)"></a>執行 spark shell(for python)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ pyspark</div><div class="line">Python 2.7.13 (default, Jan 19 2017, 14:48:08)</div><div class="line">[GCC 6.3.0 20170118] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">2017-12-29 11:34:53,515 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">2017-12-29 11:35:06,762 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1</div><div class="line">      /_/</div><div class="line"></div><div class="line">Using Python version 2.7.13 (default, Jan 19 2017 14:48:08)</div><div class="line">SparkSession available as &apos;spark&apos;.</div><div class="line">&gt;&gt;&gt; spark</div><div class="line">&lt;pyspark.sql.session.SparkSession object at 0x7f62b8e37610&gt;</div><div class="line">&gt;&gt;&gt; sc</div><div class="line">&lt;SparkContext master=local[*] appName=PySparkShell&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="執行-spark-shell-for-scala"><a href="#執行-spark-shell-for-scala" class="headerlink" title="執行 spark shell(for scala)"></a>執行 spark shell(for scala)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ spark-shell</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">2017-12-29 11:44:58,352 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">Spark context Web UI available at http://192.168.51.4:4040</div><div class="line">Spark context available as &apos;sc&apos; (master = local[*], app id = local-1514519099800).</div><div class="line">Spark session available as &apos;spark&apos;.</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /___/ .__/\_,_/_/ /_/\_\   version 2.2.1</div><div class="line">      /_/</div><div class="line"></div><div class="line">Using Scala version 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_101)</div><div class="line">Type in expressions to have them evaluated.</div><div class="line">Type :help for more information.</div><div class="line"></div><div class="line">scala&gt; spark</div><div class="line">res0: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@7afb9c93</div><div class="line"></div><div class="line">scala&gt; sc</div><div class="line">res1: org.apache.spark.SparkContext = org.apache.spark.SparkContext@14292d71</div><div class="line"></div><div class="line">scala&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="執行spark-sql-Shell"><a href="#執行spark-sql-Shell" class="headerlink" title="執行spark-sql Shell"></a>執行spark-sql Shell</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ spark-sql</div><div class="line">2017-12-29 18:04:01,165 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">2017-12-29 18:04:01,307 INFO metastore.HiveMetaStore: 0: Opening raw store with implemenation class:org.apache.hadoop.hive.metastore.ObjectStore</div><div class="line">2017-12-29 18:04:01,344 INFO metastore.ObjectStore: ObjectStore, initialize called</div><div class="line">2017-12-29 18:04:01,642 INFO DataNucleus.Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored</div><div class="line">2017-12-29 18:04:01,642 INFO DataNucleus.Persistence: Property datanucleus.cache.level2 unknown - will be ignored</div><div class="line">2017-12-29 18:04:05,450 INFO metastore.ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes=&quot;Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order&quot;</div><div class="line">2017-12-29 18:04:07,495 INFO DataNucleus.Datastore: The class &quot;org.apache.hadoop.hive.metastore.model.MFieldSchema&quot; is tagged as &quot;embedded-only&quot; so does not have its own datastore table.</div><div class="line">2017-12-29 18:04:07,497 INFO DataNucleus.Datastore: The class &quot;org.apache.hadoop.hive.metastore.model.MOrder&quot; is tagged as &quot;embedded-only&quot; so does not have its own datastore table.</div><div class="line">......</div><div class="line">......</div><div class="line">......</div><div class="line">2017-12-29 18:04:20,967 INFO metastore.HiveMetaStore: 0: get_database: global_temp</div><div class="line">2017-12-29 18:04:20,967 INFO HiveMetaStore.audit: ugi=hadoop    ip=unknown-ip-addr      cmd=get_database: global_temp</div><div class="line">2017-12-29 18:04:20,970 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException</div><div class="line">2017-12-29 18:04:21,293 INFO session.SessionState: Created local directory: /tmp/d8b65bb8-f4f6-43f2-b544-39331b237673_resources</div><div class="line">2017-12-29 18:04:21,298 INFO session.SessionState: Created HDFS directory: /tmp/hive/hadoop/d8b65bb8-f4f6-43f2-b544-39331b237673</div><div class="line">2017-12-29 18:04:21,306 INFO session.SessionState: Created local directory: /tmp/hadoop/d8b65bb8-f4f6-43f2-b544-39331b237673</div><div class="line">2017-12-29 18:04:21,310 INFO session.SessionState: Created HDFS directory: /tmp/hive/hadoop/d8b65bb8-f4f6-43f2-b544-39331b237673/_tmp_space.db</div><div class="line">2017-12-29 18:04:21,311 INFO client.HiveClientImpl: Warehouse location for Hive client (version 1.2.1) is /user/hive/warehouse</div><div class="line">2017-12-29 18:04:21,406 INFO state.StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint</div><div class="line"></div><div class="line">spark-sql&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Spark2-2-1-amp-Hive2-3-2整合測試"><a href="#Spark2-2-1-amp-Hive2-3-2整合測試" class="headerlink" title="Spark2.2.1 &amp; Hive2.3.2整合測試"></a>Spark2.2.1 &amp; Hive2.3.2整合測試</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">###開啟第1個putty連線</div><div class="line">hadoop@hadoop-master:~$spark-sql</div><div class="line">spark-sql&gt;create database test1;</div><div class="line">..... INFO execution.SparkSqlParser: Parsing command: create database test1</div><div class="line">..... INFO metastore.HiveMetaStore: 0: create_database: Database(name:test1, description:, locationUri:hdfs://hadoop-master:8020/user/hive/warehouse/test1.db, parameters:&#123;&#125;)</div><div class="line">..... INFO HiveMetaStore.audit: ugi=hadoop    ip=unknown-ip-addr      cmd=create_database: Database(name:test1, description:, locationUri:hdfs://hadoop-master:8020/user/hive/warehouse/test1.db, parameters:&#123;&#125;)</div><div class="line">..... WARN metastore.ObjectStore: Failed to get database test1, returning NoSuchObjectException</div><div class="line">..... INFO common.FileUtils: Creating directory if it doesn&apos;t exist: hdfs://hadoop-master:8020/user/hive/warehouse/test1.db</div><div class="line">Time taken: 0.326 seconds</div><div class="line">..... INFO CliDriver: Time taken: 0.326 seconds</div><div class="line"></div><div class="line">spark-sql&gt;show databases;</div><div class="line">INFO execution.SparkSqlParser: Parsing command: show databases</div><div class="line">INFO metastore.HiveMetaStore: 0: get_databases: *</div><div class="line">HiveMetaStore.audit: ugi=hadoop    ip=unknown-ip-addr      cmd=get_databases: *</div><div class="line">INFO codegen.CodeGenerator: Code generated in 544.163987 ms</div><div class="line">default</div><div class="line">test1</div><div class="line"></div><div class="line">###開啟第2個putty連線</div><div class="line">hadoop@hadoop-master:~$hive</div><div class="line">hive&gt;show databases;</div><div class="line">OK</div><div class="line">default</div><div class="line">test1</div><div class="line">......</div><div class="line"></div><div class="line">hive&gt;create database test2;</div><div class="line">OK</div><div class="line">Time taken: 0.341 seconds</div><div class="line"></div><div class="line">hive&gt;show databases;</div><div class="line">OK</div><div class="line">default</div><div class="line">test1</div><div class="line">test2</div><div class="line">......</div><div class="line"></div><div class="line">spark-sql&gt;show databases;</div><div class="line">default</div><div class="line">test1</div><div class="line">test2</div><div class="line"></div><div class="line">###以上驗證由兩種不同方式所建立的資料庫是可以同步的</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/29/[spark2.2]spark2.2.1_Install/" data-id="cjbrrouis000llcllcyp3ujv9" class="article-share-link">Delen</a>
+      
+        <a href="http://yoursite.com/2017/12/29/[spark2.2]spark2.2.1_Install/#disqus_thread" class="article-comment-link">Commentaren</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hive]Hive2.3_for_Hadoop3_Install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" class="article-date">
+  <time datetime="2017-12-27T16:00:00.000Z" itemprop="datePublished">2017-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hive/">hive</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/">Hive2.3+Hadooop3.0.0環境安裝說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相關環境說明"><span class="toc-text">相關環境說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#環境準備"><span class="toc-text">環境準備</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-OS-略"><span class="toc-text">Install Linux OS(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-JDK8-略"><span class="toc-text">Install Linux JDK8(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-Linux-Hadoop3-0-0-略"><span class="toc-text">Install Linux Hadoop3.0.0(略)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Install-MariaDB-略"><span class="toc-text">Install MariaDB(略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive2-3-Install-File-Download"><span class="toc-text">Hive2.3 Install File Download</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解壓縮"><span class="toc-text">解壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Mariadb建立Hive2-3所使用的MetaStore-DataBase"><span class="toc-text">使用Mariadb建立Hive2.3所使用的MetaStore DataBase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在HDFS中建立hive儲存目錄"><span class="toc-text">在HDFS中建立hive儲存目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用SchemaTool建立Hive2-3-Meta-Data-Table-Schema"><span class="toc-text">使用SchemaTool建立Hive2.3 Meta Data Table Schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相關配置檔設定"><span class="toc-text">相關配置檔設定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改-bashrc"><span class="toc-text">修改~/.bashrc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#啟動Hive"><span class="toc-text">啟動Hive</span></a></li></ol>
+</div>
+
+        <h3 id="相關環境說明"><a href="#相關環境說明" class="headerlink" title="相關環境說明"></a>相關環境說明</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>IP Address</th>
+<th>HostName</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.51.4</td>
+<td>hadoop-master</td>
+<td>NameNode(NN),SecondaryNameNode, HiveServer2</td>
+</tr>
+<tr>
+<td>192.168.51.5</td>
+<td>hadoop-slave1</td>
+<td>DataNode(DN1)</td>
+</tr>
+<tr>
+<td>192.168.51.6</td>
+<td>hadoop-slave2</td>
+<td>DataNode(DN2)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h3><h4 id="Install-Linux-OS-略"><a href="#Install-Linux-OS-略" class="headerlink" title="Install Linux OS(略)"></a>Install Linux OS(略)</h4><h4 id="Install-Linux-JDK8-略"><a href="#Install-Linux-JDK8-略" class="headerlink" title="Install Linux JDK8(略)"></a>Install Linux JDK8(略)</h4><h4 id="Install-Linux-Hadoop3-0-0-略"><a href="#Install-Linux-Hadoop3-0-0-略" class="headerlink" title="Install Linux Hadoop3.0.0(略)"></a>Install Linux Hadoop3.0.0(略)</h4><h4 id="Install-MariaDB-略"><a href="#Install-MariaDB-略" class="headerlink" title="Install MariaDB(略)"></a>Install MariaDB(略)</h4><h3 id="Hive2-3-Install-File-Download"><a href="#Hive2-3-Install-File-Download" class="headerlink" title="Hive2.3 Install File Download"></a>Hive2.3 Install File Download</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget -P /bgdt https://archive.apache.org/dist/hive/hive-2.3.2/apache-hive-2.3.2-bin.tar.gz </div><div class="line">wget -P /bgdt http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="解壓縮"><a href="#解壓縮" class="headerlink" title="解壓縮"></a>解壓縮</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf /bgdt/apache-hive-2.3.2-bin.tar.gz -C /bgdt</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="使用Mariadb建立Hive2-3所使用的MetaStore-DataBase"><a href="#使用Mariadb建立Hive2-3所使用的MetaStore-DataBase" class="headerlink" title="使用Mariadb建立Hive2.3所使用的MetaStore DataBase"></a>使用Mariadb建立Hive2.3所使用的MetaStore DataBase</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">step1:</div><div class="line">sudo -S /usr/local/mysql/bin/mysqld --user=root &amp;	##啟動mariadb</div><div class="line">hadoop@hadoop-master:~$ netstat -tnl | grep &quot;3306&quot;</div><div class="line">tcp6       0      0 :::3306                 :::*                    LISTEN</div><div class="line"></div><div class="line">step2:</div><div class="line">/usr/local/mysql/bin/mysql -u root --password=\!QAZxsw2	##進入Mariadb CLI</div><div class="line">MariaDB [(none)]&gt;</div><div class="line"></div><div class="line">step3:</div><div class="line">MariaDB [(none)]&gt;grant all privileges on *.* to &apos;root&apos;@&apos;hadoop-master&apos; identified by &apos;!QAZxsw2&apos; with grant option;</div><div class="line"></div><div class="line">step4:</div><div class="line">MariaDB [(none)]&gt; create database metastore3_db;	##這邊建立的database就是之後ConnectionURL中,使用的DB名稱</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="在HDFS中建立hive儲存目錄"><a href="#在HDFS中建立hive儲存目錄" class="headerlink" title="在HDFS中建立hive儲存目錄"></a>在HDFS中建立hive儲存目錄</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -p /user/hive/warehouse</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="使用SchemaTool建立Hive2-3-Meta-Data-Table-Schema"><a href="#使用SchemaTool建立Hive2-3-Meta-Data-Table-Schema" class="headerlink" title="使用SchemaTool建立Hive2.3 Meta Data Table Schema"></a>使用SchemaTool建立Hive2.3 Meta Data Table Schema</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">schematool -dbType mysql -initSchema				##此語法會重新建立新的Table,如果需要upgrade就不行用這個語法</div><div class="line">schematool -dbType mysql -upgradeSchemaFrom 0.7.0 -dryRun	##更新新的schema,但不會影響到既有的Table</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="相關配置檔設定"><a href="#相關配置檔設定" class="headerlink" title="相關配置檔設定"></a>相關配置檔設定</h3><blockquote>
+<p>hive-site.xml檔案設定內容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;hive.metastore.warehouse.dir&lt;/name&gt;</div><div class="line">    &lt;value&gt;/user/hive/warehouse&lt;/value&gt;</div><div class="line">    &lt;description&gt;location of default database for the warehouse&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</div><div class="line">	&lt;value&gt;jdbc:mysql://hadoop-master:3306/metastore3_db&lt;/value&gt;</div><div class="line">	&lt;description&gt;JDBC connect string for a JDBC metastore &lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</div><div class="line">	&lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</div><div class="line">	&lt;description&gt;Driver class name for a JDBC metastore&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</div><div class="line">	&lt;value&gt;root&lt;/value&gt;</div><div class="line">	&lt;description&gt;username to use against metastore database&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</div><div class="line">	&lt;value&gt;!QAZxsw2&lt;/value&gt;</div><div class="line">	&lt;description&gt;password to use against metastore database&lt;/description&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">   &lt;name&gt;hive.metastore.schema.verification&lt;/name&gt;  </div><div class="line">   &lt;value&gt;false&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="修改-bashrc"><a href="#修改-bashrc" class="headerlink" title="修改~/.bashrc"></a>修改~/.bashrc</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">vi ~/.bashrc</div><div class="line"></div><div class="line">##Hive Segement</div><div class="line">export HIVE_HOME=/bgdt/hive-2.3.2</div><div class="line">export PATH=$PATH:$HIVE_HOME/bin</div><div class="line"></div><div class="line"></div><div class="line">source ~/.bashrc</div><div class="line"></div><div class="line">cp /bgdt/mysql-connector-java-5.1.39.jar /bgdt/hive-2.3.2/lib</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="啟動Hive"><a href="#啟動Hive" class="headerlink" title="啟動Hive"></a>啟動Hive</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hive	##進入Hive CLI</div><div class="line">nohup /bgdt/hive-2.3.2/bin/hive --service hiveserver2 &amp;		##啟動Hive2.3 for JDBC Service</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjbrrouim000elcllevf73ogo" class="article-share-link">Delen</a>
+      
+        <a href="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/#disqus_thread" class="article-comment-link">Commentaren</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-[hadoop]hadoop_3_install" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -249,9 +442,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjboxomwv0009lklld1niddbh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjbrroui80004lcllcnqqxjxp" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -315,9 +508,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjboxomwm0003lkllrk6azz2t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjbrroui70003lcllpt9lrska" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/12/08/[excel]Excel_skill/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/12/08/[excel]Excel_skill/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -381,74 +574,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjboxomx0000elklldufu12if" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjbrrouio000hlcll48cq547z" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/11/07/[hive]hive_sql_3/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
-  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
-</div>
-
-        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
-<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
-<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
-<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
-<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
-<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjboxomwz000clkllybtdweyu" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_1/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/11/07/[hive]hive_sql_3/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -647,9 +775,74 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjboxomx7000llkllerpzb6j1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjbrrouiq000jlcllvijyt8ze" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_2/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_2/#disqus_thread" class="article-comment-link">Commentaren</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
+  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hive/">hive</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
+</div>
+
+        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
+<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
+<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
+<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
+<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
+<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjbrrouil000clcll8h67fbin" class="article-share-link">Delen</a>
+      
+        <a href="http://yoursite.com/2017/11/06/[hive]hive_sql_1/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -703,9 +896,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjboxomxd000qlkllnjf3rzq1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjbrrouj1000vlcllbn749fns" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -764,58 +957,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjboxomx2000hlkll6prrwxwp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjbrrouiv000olcllnec51ryy" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/05/22/[spark]spark_001/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[vagrant]Vagrantfile配置檔說明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" class="article-date">
-  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/">Vagrant file 配置檔案說明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-file配置檔案說明"><span class="toc-text">vagrant file配置檔案說明</span></a></li></ol>
-</div>
-
-        <h4 id="vagrant-file配置檔案說明"><a href="#vagrant-file配置檔案說明" class="headerlink" title="vagrant file配置檔案說明"></a>vagrant file配置檔案說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"># -*- mode: ruby -*-</div><div class="line"># vi: set ft=ruby :</div><div class="line"></div><div class="line">MASTER_IP	= &apos;192.168.51.4&apos;</div><div class="line">DN1_IP		= &apos;192.168.51.5&apos;</div><div class="line">DN2_IP		= &apos;192.168.51.6&apos;</div><div class="line"></div><div class="line">Vagrant.configure(&quot;2&quot;) do |config|  </div><div class="line">  config.ssh.insert_key =false  </div><div class="line">   </div><div class="line">  #define data1 server</div><div class="line">  config.vm.define &quot;slave1&quot; do |slave1|</div><div class="line">	slave1.vm.hostname = &quot;hadoop-slave1&quot;		##設定VM主機名稱</div><div class="line">	slave1.vm.network &quot;private_network&quot;, ip: DN1_IP	##設定主機 ip</div><div class="line">	slave1.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave1.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	slave1.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave1&quot;</div><div class="line">		v.cpus = 1</div><div class="line">		v.memory = 2500</div><div class="line">	end    </div><div class="line">	slave1.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line"></div><div class="line">  #define data2 server</div><div class="line">  config.vm.define &quot;slave2&quot; do |slave2|</div><div class="line">	slave2.vm.hostname = &quot;hadoop-slave2&quot;		##設定VM主機名稱</div><div class="line">	slave2.vm.network &quot;private_network&quot;, ip: DN2_IP	##設定主機 ip</div><div class="line">	slave2.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave2.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄</div><div class="line">	slave2.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave2&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 2500		##設定VM記憶體大小</div><div class="line">	end</div><div class="line">  	slave2.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line">  </div><div class="line">  #define Master server</div><div class="line">  config.vm.define &quot;master&quot; do |master|</div><div class="line">	master.vm.hostname = &quot;hadoop-master&quot;			##設定VM主機名稱</div><div class="line">	master.vm.network &quot;private_network&quot;, ip: MASTER_IP	##設定主機 ip</div><div class="line">	master.vm.box = &quot;ubuntu/yakkety64&quot;			##設定VM使用的OS Box</div><div class="line">	master.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	master.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;master&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 3500		##設定VM記憶體大小</div><div class="line">	end    </div><div class="line">	master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-master.sh&quot;					##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;			##每次啟動VM時,都必須執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;,privileged: false	##設定VM第一次被啟動時,所需執行的Shell,且使非root帳號執行</div><div class="line">  end   </div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjboxomx5000jlkllxx3w4bqs" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/05/22/[spark]spark_001/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -874,72 +1018,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjboxomxb000olkllhq84zfbq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjbrrouiw000qlcllvtepr4w5" class="article-share-link">Delen</a>
       
-        <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoopMultiDirectoryStore" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#環境說明"><span class="toc-text">環境說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相關設定說明"><span class="toc-text">相關設定說明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#進入劇本之前"><span class="toc-text">進入劇本之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本1"><span class="toc-text">劇本1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本2"><span class="toc-text">劇本2</span></a></li></ol>
-</div>
-
-        <h3 id="環境說明"><a href="#環境說明" class="headerlink" title="環境說明"></a>環境說明</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">namenode *1(for Linux OS)</div><div class="line">datanode *4(for Linux OS)</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="相關設定說明"><a href="#相關設定說明" class="headerlink" title="相關設定說明"></a>相關設定說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/data/data2</div><div class="line"></div><div class="line">##修改hdfs-site.xml</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;/bgdt/hadoop-2.7.2/tmp/dfs/data,/bgdt/data/data2&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.failed.volumes.tolerated&lt;/name&gt;</div><div class="line">	&lt;value&gt;1&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="進入劇本之前"><a href="#進入劇本之前" class="headerlink" title="進入劇本之前"></a>進入劇本之前</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##重啟dfs與yarn</div><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div><div class="line"></div><div class="line">##並下達以下指令:</div><div class="line">hadoop balancer</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="劇本1"><a href="#劇本1" class="headerlink" title="劇本1"></a>劇本1</h3><blockquote>
-<p>系統Run了一段時間後,發現空間不夠了,想增加一個空間給目前的Hadoop cluster環境,因此有了以下的劇本與想法<br>1.用新加一個目錄,來取代模擬新分割區<br>2.copy 一個檔案至HDFS系統後,透過介面查詢相關block id,找出相對實體檔案的儲存位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -P /user/hadoop/data</div><div class="line">hadoop fs -put /opt/staff.csv /user/hadoop/data</div><div class="line"></div><div class="line">##打開Web UI觀察 /user/hadoop/data/staff.csv block Id=XXXXXX</div><div class="line">在檔案下載畫面中會有檔案相關資訊</div><div class="line">block Id:  </div><div class="line">Avaailable</div><div class="line">dna1</div><div class="line">dna3</div><div class="line"></div><div class="line">##確認block Id,與存放的Datanode位置後,直接查找存放的實體位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line">/bgdt/data/data2/current/BP-1008347755-192.168.11.96-1474254342729/current/finalized/subdir0/subdir0/blk_XXXXXX</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="劇本2"><a href="#劇本2" class="headerlink" title="劇本2"></a>劇本2</h3><blockquote>
-<p>將某個Datanode的某個目錄權限及owner設定成(chown root:root chmod 000),模擬硬碟損壞的狀況　<br>1.測試當某個正在運行的hadoop cluster節點的儲存目錄被設為無讀寫權限時,系統是否會Crash<br>2.當目錄修復完成後資料是否有辦法從其他的node,reconvert回來<br>3.當該某個正在運行的節點,所有目錄都無法讀取時,系統是否會正常運行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">##將測試檔案存放到HDFS,並設定副本數為4</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff_1.csv /user/hadoop/data</div><div class="line"></div><div class="line">##查詢block Id 及block儲存位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line"></div><div class="line">##模擬故障</div><div class="line">sudo chown -R root:root /bgdt/hadoop-2.7.2/tmp</div><div class="line">sudo chmod -R 000 /bgdt/hadoop-2.7.2/tmp</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##Web UI上Datanode Volume Failures會出現有問題的目錄</div><div class="line"></div><div class="line">##balencer執行完成後,會將原本在/tmp目錄下的資料搬移到 /bgdt/data/data2</div><div class="line"></div><div class="line">##此時若再把另外一個目錄也模擬成無權限狀態</div><div class="line">sudo chown -R root:root /bgdt/data</div><div class="line">sudo chmod -R 000 /bgdt/data</div><div class="line"></div><div class="line">##該node的Status會變成Dead,並且DataNode的process會停止</div><div class="line"></div><div class="line">##此時資料的Repl雖然一樣是4,但實際上的資料份數是3</div><div class="line"></div><div class="line">##接著將/bgdt/data目錄設回原本權限,並將資料刪除</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/data</div><div class="line">sudo chmod -R 755 /bgdt/data</div><div class="line">rm -rf /bgdt/data</div><div class="line"></div><div class="line">##並將/bgdt/data目錄的資料刪除後,重啟datanode</div><div class="line">hadoop-daemon.sh start datanode</div><div class="line"></div><div class="line">##重啟成功後,進行balancer</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##看到所有檔案的副本數與與資料又恢復正常</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cjboxomwu0007lklloeovnlms" class="article-share-link">Share</a>
-      
-        <a href="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
     </footer>
@@ -962,7 +1043,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Excel/">Excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark-2-2-1/">spark[2.2.1]</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -972,7 +1053,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -985,6 +1066,14 @@
       <ul>
         
           <li>
+            <a href="/2017/12/29/[spark2.2]spark2.2.1_Install/">Spark2.2.1環境安裝說明</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/">Hive2.3+Hadooop3.0.0環境安裝說明</a>
+          </li>
+        
+          <li>
             <a href="/2017/12/27/[hadoop]hadoop_3_install/">Hadoop3.0.0 Cluster環境安裝說明</a>
           </li>
         
@@ -994,14 +1083,6 @@
         
           <li>
             <a href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/06/[hive]hive_sql_2/">Hive相關語法整理-2(Table)</a>
           </li>
         
       </ul>
