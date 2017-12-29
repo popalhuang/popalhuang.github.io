@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/12/29/test/</loc>
+    
+    <lastmod>2017-12-29T10:35:52.959Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/12/29/%5Bspark2.2%5Dspark2.2.1_Install/</loc>
     
     <lastmod>2017-12-29T10:14:35.281Z</lastmod>
