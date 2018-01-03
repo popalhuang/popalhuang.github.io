@@ -3,21 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>常用Linux 命令筆記(for Oracle Linux) | Popal&#39;s Blog</title>
+  <title>Catégorie: hadoop | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常用指令新增使用者及密碼修改
-12345678[root@hadoop-master]$useradd hadoop[root@hadoop-master]$passwd hadoop[root@hadoop-master]$visudo #如果須要讓 &amp;quot;hadoop&amp;quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案......root    ALL=(ALL)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="常用Linux 命令筆記(for Oracle Linux)">
-<meta property="og:url" content="http://yoursite.com/2016/12/07/[Linux]Linux/index.html">
+  <meta name="description" content="技術之路學習歷程">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Popal's Blog">
+<meta property="og:url" content="http://yoursite.com/categories/hadoop/page/2/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="常用指令新增使用者及密碼修改
-12345678[root@hadoop-master]$useradd hadoop[root@hadoop-master]$passwd hadoop[root@hadoop-master]$visudo #如果須要讓 &amp;quot;hadoop&amp;quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案......root    ALL=(ALL)">
-<meta property="og:updated_time" content="2018-01-02T06:40:15.591Z">
+<meta property="og:description" content="技術之路學習歷程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用Linux 命令筆記(for Oracle Linux)">
-<meta name="twitter:description" content="常用指令新增使用者及密碼修改
-12345678[root@hadoop-master]$useradd hadoop[root@hadoop-master]$passwd hadoop[root@hadoop-master]$visudo #如果須要讓 &amp;quot;hadoop&amp;quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案......root    ALL=(ALL)">
+<meta name="twitter:title" content="Popal's Blog">
+<meta name="twitter:description" content="技術之路學習歷程">
   
   
   
@@ -68,71 +64,44 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-[Linux]Linux" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/07/[Linux]Linux/" class="article-date">
-  <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      常用Linux 命令筆記(for Oracle Linux)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/01/08/[Install]BigData/" class="archive-article-date">
+  <time datetime="2017-01-08T10:00:00.000Z" itemprop="datePublished">Jan 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/01/08/[Install]BigData/">Hadoop Cluster相關環境建置筆記(持續修正中......)</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
-</div>
-
-        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cjbyxyzrd0000rsll745bvik1" class="article-share-link">Partager</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/01/08/[Install]BigData/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
-      <div class="article-nav-title">
-        
-          Hadoop Cluster相關環境建置筆記(持續修正中......)
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/categories/hadoop/"><<前一頁</a><a class="page-number" href="/categories/hadoop/">1</a><span class="page-number current">2</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
