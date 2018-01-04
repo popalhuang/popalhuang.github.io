@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/04/%5Bhadoop%5Dhadoop_archive_cmd/</loc>
+    
+    <lastmod>2018-01-04T10:37:42.385Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhdfs_other_cmd/</loc>
+    
+    <lastmod>2018-01-04T09:56:48.999Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/04/%5Bhadoop%5Dhadoop_snapshot_cmd/</loc>
+    
+    <lastmod>2018-01-04T08:49:54.309Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhdfs_dfsadmin_cmd/</loc>
     
-    <lastmod>2018-01-03T10:47:35.967Z</lastmod>
+    <lastmod>2018-01-04T06:24:18.600Z</lastmod>
     
   </url>
   
@@ -12,13 +33,6 @@
     <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhdfs_ec_cmd/</loc>
     
     <lastmod>2018-01-03T08:17:51.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhdfs_other_cmd/</loc>
-    
-    <lastmod>2018-01-03T06:16:27.827Z</lastmod>
     
   </url>
   
