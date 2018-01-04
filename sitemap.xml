@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhadoop_fsck_cmd/</loc>
+    
+    <lastmod>2018-01-04T10:44:48.754Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/04/%5Bhadoop%5Dhadoop_archive_cmd/</loc>
     
     <lastmod>2018-01-04T10:37:42.385Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhdfs_ec_cmd/</loc>
     
     <lastmod>2018-01-03T08:17:51.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhadoop_fsck_cmd/</loc>
-    
-    <lastmod>2018-01-03T05:51:16.396Z</lastmod>
     
   </url>
   
