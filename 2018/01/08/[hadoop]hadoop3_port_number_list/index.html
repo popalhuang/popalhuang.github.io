@@ -3,30 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Vagrant Command Line說明筆記 | Popal&#39;s Blog</title>
+  <title>hadoop3.0.0 相關服務 Port Number 設定參數 | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vagrant package
-1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
-
-vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445dfs.balancer.address					0.0.0.0:0dfs.mover.address					0.0.0.0:0dfs.federation.router.http-address			0.0.0.0:50071dfs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vagrant Command Line說明筆記">
-<meta property="og:url" content="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/index.html">
+<meta property="og:title" content="hadoop3.0.0 相關服務 Port Number 設定參數">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="vagrant package
-1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
-
-vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
-<meta property="og:updated_time" content="2017-07-18T05:24:19.802Z">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445dfs.balancer.address					0.0.0.0:0dfs.mover.address					0.0.0.0:0dfs.federation.router.http-address			0.0.0.0:50071dfs">
+<meta property="og:updated_time" content="2018-01-08T05:30:13.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vagrant Command Line說明筆記">
-<meta name="twitter:description" content="vagrant package
-1vagrant package --base &amp;lt;vm_name&amp;gt; --output &amp;lt;box_name&amp;gt;.box
-
-vagrant box
-1234vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/vagrant box add precise64 http://f">
+<meta name="twitter:title" content="hadoop3.0.0 相關服務 Port Number 設定參數">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445dfs.balancer.address					0.0.0.0:0dfs.mover.address					0.0.0.0:0dfs.federation.router.http-address			0.0.0.0:50071dfs">
   
   
   
@@ -77,14 +65,14 @@ vagrant box
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-[vagrant]VagrantMemo" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-[hadoop]hadoop3_port_number_list" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/20/[vagrant]VagrantMemo/" class="article-date">
-  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
+    <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/" class="article-date">
+  <time datetime="2018-01-07T16:00:00.000Z" itemprop="datePublished">2018-01-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
   </div>
 
   </div>
@@ -95,7 +83,7 @@ vagrant box
         
   
     <h1 class="article-title" itemprop="name">
-      Vagrant Command Line說明筆記
+      hadoop3.0.0 相關服務 Port Number 設定參數
     </h1>
   
 
@@ -105,28 +93,16 @@ vagrant box
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-package"><span class="toc-text">vagrant package</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-box"><span class="toc-text">vagrant box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-init"><span class="toc-text">vagrant init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-啟動-停止-重啟-移除-全部VM"><span class="toc-text">vagrant 啟動/停止/重啟/移除 全部VM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#other-command"><span class="toc-text">other command</span></a></li></ol>
+  
 </div>
 
-        <h4 id="vagrant-package"><a href="#vagrant-package" class="headerlink" title="vagrant package"></a>vagrant package</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant package --base &lt;vm_name&gt; --output &lt;box_name&gt;.box</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="vagrant-box"><a href="#vagrant-box" class="headerlink" title="vagrant box"></a>vagrant box</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/</div><div class="line">vagrant box add precise64 http://files.vagrantup.com/precise64.box</div><div class="line">vagrant box list</div><div class="line">vagrant box remove precise64</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="vagrant-init"><a href="#vagrant-init" class="headerlink" title="vagrant init"></a>vagrant init</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant init  precise64	##會在執行語法的目錄下產生一個Vagrantfile的配置檔</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="vagrant-啟動-停止-重啟-移除-全部VM"><a href="#vagrant-啟動-停止-重啟-移除-全部VM" class="headerlink" title="vagrant 啟動/停止/重啟/移除 全部VM"></a>vagrant 啟動/停止/重啟/移除 全部VM</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">##以下為啟動/停止/重啟/移除全部VM的用法</div><div class="line">vagrant up	##啟動全部VM</div><div class="line">vagrant halt	##停止全部VM</div><div class="line">vagrant reload	##重啟全部VM</div><div class="line">vagrant destroy	##移除全部VM</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除單一VM的用法</div><div class="line">vagrant up master</div><div class="line">vagrant halt master</div><div class="line">vagrant reload master</div><div class="line">vagrant destroy master</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除多個VM的用法(VM名稱中間空格,以做為多個VM名稱區隔)</div><div class="line">vagrant up master slave1</div><div class="line">vagrant halt master slave1</div><div class="line">vagrant reload master slave1</div><div class="line">vagrant destroy master slave1</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="other-command"><a href="#other-command" class="headerlink" title="other command"></a>other command</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant version</div><div class="line">vagrant status</div><div class="line">vagrant ssh-config &lt;vm_name&gt;</div><div class="line">vagrant ssh</div></pre></td></tr></table></figure></blockquote>
+        <blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">dfs.balancer.address					0.0.0.0:0</div><div class="line">dfs.mover.address					0.0.0.0:0</div><div class="line"></div><div class="line">dfs.federation.router.http-address			0.0.0.0:50071</div><div class="line">dfs.federation.router.https-address			0.0.0.0:50072</div><div class="line">dfs.federation.router.admin-address			0.0.0.0:8111</div><div class="line">dfs.federation.router.rpc-address			0.0.0.0:8888</div><div class="line"></div><div class="line">dfs.namenode.backup.address				0.0.0.0:50100</div><div class="line">dfs.namenode.backup.http-address			0.0.0.0:50105</div><div class="line"></div><div class="line">dfs.journalnode.http-address				0.0.0.0:8480</div><div class="line">dfs.journalnode.https-address				0.0.0.0:8481</div><div class="line">dfs.journalnode.rpc-address				0.0.0.0:8485</div><div class="line"></div><div class="line">dfs.datanode.http.address				0.0.0.0:9864</div><div class="line">dfs.datanode.https.address				0.0.0.0:9865</div><div class="line">dfs.datanode.address					0.0.0.0:9866</div><div class="line">dfs.datanode.ipc.address				0.0.0.0:9867</div><div class="line"></div><div class="line">dfs.namenode.secondary.http-address			0.0.0.0:9868</div><div class="line">dfs.namenode.secondary.https-address			0.0.0.0:9869</div><div class="line">dfs.namenode.http-address				0.0.0.0:9870</div><div class="line">dfs.namenode.https-address				0.0.0.0:9871</div><div class="line"></div><div class="line">yarn.nodemanager.address				$&#123;yarn.nodemanager.hostname&#125;:0</div><div class="line">yarn.nodemanager.localizer.address			$&#123;yarn.nodemanager.hostname&#125;:8040</div><div class="line">yarn.nodemanager.webapp.address				$&#123;yarn.nodemanager.hostname&#125;:8042</div><div class="line">yarn.nodemanager.collector-service.address		$&#123;yarn.nodemanager.hostname&#125;:8048</div><div class="line"></div><div class="line">yarn.resourcemanager.scheduler.address			$&#123;yarn.resourcemanager.hostname&#125;:8030</div><div class="line">yarn.resourcemanager.resource-tracker.address		$&#123;yarn.resourcemanager.hostname&#125;:8031</div><div class="line">yarn.resourcemanager.address				$&#123;yarn.resourcemanager.hostname&#125;:8032</div><div class="line">yarn.resourcemanager.admin.address			$&#123;yarn.resourcemanager.hostname&#125;:8033</div><div class="line">yarn.resourcemanager.webapp.address			$&#123;yarn.resourcemanager.hostname&#125;:8088</div><div class="line">yarn.resourcemanager.webapp.https.address		$&#123;yarn.resourcemanager.hostname&#125;:8090</div><div class="line"></div><div class="line">yarn.timeline-service.address				$&#123;yarn.timeline-service.hostname&#125;:10200</div><div class="line">yarn.timeline-service.webapp.address			$&#123;yarn.timeline-service.hostname&#125;:8188</div><div class="line">yarn.timeline-service.webapp.https.address		$&#123;yarn.timeline-service.hostname&#125;:8190</div><div class="line"></div><div class="line">mapreduce.jobhistory.address				0.0.0.0:10020	</div><div class="line">mapreduce.jobhistory.webapp.address			0.0.0.0:19888	</div><div class="line">mapreduce.jobhistory.webapp.https.address		0.0.0.0:19890</div><div class="line">mapreduce.jobhistory.admin.address			0.0.0.0:10033</div></pre></td></tr></table></figure></blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjc62p5k8001bm0llv8u89tkz" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="cjc62p5iz000cm0llmwqavxjq" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -135,19 +111,19 @@ vagrant box
     
 <nav id="article-nav">
   
-    <a href="/2017/05/22/[spark]spark_001/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
-          Spark程式開發系列_for Java1.8_001
+          Hadoop3.0.0 NFS Gateway
         
       </div>
     </a>
   
   
-    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">Vagrant file 配置檔案說明</div>
+      <div class="article-nav-title">hadoop archive command Memo</div>
     </a>
   
 </nav>

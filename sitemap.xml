@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/08/%5Bhadoop%5Dhadoop3.0.0_nfs_gateway/</loc>
+    
+    <lastmod>2018-01-08T10:36:18.805Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/08/%5Bhadoop%5Dhadoop%203.0.0_daemon_cmd/</loc>
+    
+    <lastmod>2018-01-08T05:35:49.241Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/08/%5Bhadoop%5Dhadoop3_port_number_list/</loc>
+    
+    <lastmod>2018-01-08T05:30:13.644Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/03/%5Bhadoop%5Dhadoop_fsck_cmd/</loc>
     
     <lastmod>2018-01-04T10:44:48.754Z</lastmod>

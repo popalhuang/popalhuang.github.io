@@ -66,14 +66,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-[hadoop]Hadoop_CMD" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-[vagrant]VagrantMemo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/10/[hadoop]Hadoop_CMD/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+    <a href="/2017/02/20/[vagrant]VagrantMemo/" class="article-date">
+  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
   </div>
 
   </div>
@@ -84,7 +84,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/[hadoop]Hadoop_CMD/">Hadoop常用命令說明</a>
+      <a class="article-title" href="/2017/02/20/[vagrant]VagrantMemo/">Vagrant Command Line說明筆記</a>
     </h1>
   
 
@@ -94,17 +94,75 @@
       
         
 <div id="toc">
-  
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-package"><span class="toc-text">vagrant package</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-box"><span class="toc-text">vagrant box</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-init"><span class="toc-text">vagrant init</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-啟動-停止-重啟-移除-全部VM"><span class="toc-text">vagrant 啟動/停止/重啟/移除 全部VM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#other-command"><span class="toc-text">other command</span></a></li></ol>
 </div>
 
-        <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
+        <h4 id="vagrant-package"><a href="#vagrant-package" class="headerlink" title="vagrant package"></a>vagrant package</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant package --base &lt;vm_name&gt; --output &lt;box_name&gt;.box</div></pre></td></tr></table></figure>
 </blockquote>
+<h4 id="vagrant-box"><a href="#vagrant-box" class="headerlink" title="vagrant box"></a>vagrant box</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant box add ubuntu/precise64	##https://atlas.hashicorp.com/</div><div class="line">vagrant box add precise64 http://files.vagrantup.com/precise64.box</div><div class="line">vagrant box list</div><div class="line">vagrant box remove precise64</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="vagrant-init"><a href="#vagrant-init" class="headerlink" title="vagrant init"></a>vagrant init</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant init  precise64	##會在執行語法的目錄下產生一個Vagrantfile的配置檔</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="vagrant-啟動-停止-重啟-移除-全部VM"><a href="#vagrant-啟動-停止-重啟-移除-全部VM" class="headerlink" title="vagrant 啟動/停止/重啟/移除 全部VM"></a>vagrant 啟動/停止/重啟/移除 全部VM</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">##以下為啟動/停止/重啟/移除全部VM的用法</div><div class="line">vagrant up	##啟動全部VM</div><div class="line">vagrant halt	##停止全部VM</div><div class="line">vagrant reload	##重啟全部VM</div><div class="line">vagrant destroy	##移除全部VM</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除單一VM的用法</div><div class="line">vagrant up master</div><div class="line">vagrant halt master</div><div class="line">vagrant reload master</div><div class="line">vagrant destroy master</div><div class="line"></div><div class="line">##以下為啟動/停止/重啟/移除多個VM的用法(VM名稱中間空格,以做為多個VM名稱區隔)</div><div class="line">vagrant up master slave1</div><div class="line">vagrant halt master slave1</div><div class="line">vagrant reload master slave1</div><div class="line">vagrant destroy master slave1</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="other-command"><a href="#other-command" class="headerlink" title="other command"></a>other command</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vagrant version</div><div class="line">vagrant status</div><div class="line">vagrant ssh-config &lt;vm_name&gt;</div><div class="line">vagrant ssh</div></pre></td></tr></table></figure></blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cjc0d7yr10006r0llif1wx0fj" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjc62p5k8001bm0llv8u89tkz" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[vagrant]Vagrantfile配置檔說明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/" class="article-date">
+  <time datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vagrant/">vagrant</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/20/[vagrant]Vagrantfile配置檔說明/">Vagrant file 配置檔案說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vagrant-file配置檔案說明"><span class="toc-text">vagrant file配置檔案說明</span></a></li></ol>
+</div>
+
+        <h4 id="vagrant-file配置檔案說明"><a href="#vagrant-file配置檔案說明" class="headerlink" title="vagrant file配置檔案說明"></a>vagrant file配置檔案說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"># -*- mode: ruby -*-</div><div class="line"># vi: set ft=ruby :</div><div class="line"></div><div class="line">MASTER_IP	= &apos;192.168.51.4&apos;</div><div class="line">DN1_IP		= &apos;192.168.51.5&apos;</div><div class="line">DN2_IP		= &apos;192.168.51.6&apos;</div><div class="line"></div><div class="line">Vagrant.configure(&quot;2&quot;) do |config|  </div><div class="line">  config.ssh.insert_key =false  </div><div class="line">   </div><div class="line">  #define data1 server</div><div class="line">  config.vm.define &quot;slave1&quot; do |slave1|</div><div class="line">	slave1.vm.hostname = &quot;hadoop-slave1&quot;		##設定VM主機名稱</div><div class="line">	slave1.vm.network &quot;private_network&quot;, ip: DN1_IP	##設定主機 ip</div><div class="line">	slave1.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave1.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	slave1.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave1&quot;</div><div class="line">		v.cpus = 1</div><div class="line">		v.memory = 2500</div><div class="line">	end    </div><div class="line">	slave1.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line"></div><div class="line">  #define data2 server</div><div class="line">  config.vm.define &quot;slave2&quot; do |slave2|</div><div class="line">	slave2.vm.hostname = &quot;hadoop-slave2&quot;		##設定VM主機名稱</div><div class="line">	slave2.vm.network &quot;private_network&quot;, ip: DN2_IP	##設定主機 ip</div><div class="line">	slave2.vm.box = &quot;ubuntu/yakkety64&quot;		##設定VM使用的OS Box</div><div class="line">	slave2.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄</div><div class="line">	slave2.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;slave2&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 2500		##設定VM記憶體大小</div><div class="line">	end</div><div class="line">  	slave2.vm.provision &quot;shell&quot;, path: &quot;bootstrap-slave.sh&quot;	##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">  end</div><div class="line">  </div><div class="line">  #define Master server</div><div class="line">  config.vm.define &quot;master&quot; do |master|</div><div class="line">	master.vm.hostname = &quot;hadoop-master&quot;			##設定VM主機名稱</div><div class="line">	master.vm.network &quot;private_network&quot;, ip: MASTER_IP	##設定主機 ip</div><div class="line">	master.vm.box = &quot;ubuntu/yakkety64&quot;			##設定VM使用的OS Box</div><div class="line">	master.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/src&quot;, mount_options: [&quot;dmode=775,fmode=664&quot;]	##設定公用分享目錄	</div><div class="line">	master.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">		v.name = &quot;master&quot;	##設定VM名稱</div><div class="line">		v.cpus = 1		##設定VM所使用的CPU core數量</div><div class="line">		v.memory = 3500		##設定VM記憶體大小</div><div class="line">	end    </div><div class="line">	master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-master.sh&quot;					##設定VM第一次被啟動時,所需執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;			##每次啟動VM時,都必須執行的Shell,且使用root帳號執行</div><div class="line">	#master.vm.provision &quot;shell&quot;, path: &quot;bootstrap-complete.sh&quot;, run: &quot;always&quot;,privileged: false	##設定VM第一次被啟動時,所需執行的Shell,且使非root帳號執行</div><div class="line">  end   </div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjc62p5k9001dm0llnoe9j9zp" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -153,7 +211,116 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjc0d7yqx0005r0llisisn9qh" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjc62p5iq0005m0llp66g18ys" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoopMultiDirectoryStore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#環境說明"><span class="toc-text">環境說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相關設定說明"><span class="toc-text">相關設定說明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#進入劇本之前"><span class="toc-text">進入劇本之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本1"><span class="toc-text">劇本1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劇本2"><span class="toc-text">劇本2</span></a></li></ol>
+</div>
+
+        <h3 id="環境說明"><a href="#環境說明" class="headerlink" title="環境說明"></a>環境說明</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">namenode *1(for Linux OS)</div><div class="line">datanode *4(for Linux OS)</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="相關設定說明"><a href="#相關設定說明" class="headerlink" title="相關設定說明"></a>相關設定說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mkdir -p /bgdt/data/data2</div><div class="line"></div><div class="line">##修改hdfs-site.xml</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.data.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;/bgdt/hadoop-2.7.2/tmp/dfs/data,/bgdt/data/data2&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;dfs.datanode.failed.volumes.tolerated&lt;/name&gt;</div><div class="line">	&lt;value&gt;1&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="進入劇本之前"><a href="#進入劇本之前" class="headerlink" title="進入劇本之前"></a>進入劇本之前</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">##重啟dfs與yarn</div><div class="line">start-dfs.sh</div><div class="line">start-yarn.sh</div><div class="line"></div><div class="line">##並下達以下指令:</div><div class="line">hadoop balancer</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="劇本1"><a href="#劇本1" class="headerlink" title="劇本1"></a>劇本1</h3><blockquote>
+<p>系統Run了一段時間後,發現空間不夠了,想增加一個空間給目前的Hadoop cluster環境,因此有了以下的劇本與想法<br>1.用新加一個目錄,來取代模擬新分割區<br>2.copy 一個檔案至HDFS系統後,透過介面查詢相關block id,找出相對實體檔案的儲存位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir -P /user/hadoop/data</div><div class="line">hadoop fs -put /opt/staff.csv /user/hadoop/data</div><div class="line"></div><div class="line">##打開Web UI觀察 /user/hadoop/data/staff.csv block Id=XXXXXX</div><div class="line">在檔案下載畫面中會有檔案相關資訊</div><div class="line">block Id:  </div><div class="line">Avaailable</div><div class="line">dna1</div><div class="line">dna3</div><div class="line"></div><div class="line">##確認block Id,與存放的Datanode位置後,直接查找存放的實體位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line">/bgdt/data/data2/current/BP-1008347755-192.168.11.96-1474254342729/current/finalized/subdir0/subdir0/blk_XXXXXX</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="劇本2"><a href="#劇本2" class="headerlink" title="劇本2"></a>劇本2</h3><blockquote>
+<p>將某個Datanode的某個目錄權限及owner設定成(chown root:root chmod 000),模擬硬碟損壞的狀況　<br>1.測試當某個正在運行的hadoop cluster節點的儲存目錄被設為無讀寫權限時,系統是否會Crash<br>2.當目錄修復完成後資料是否有辦法從其他的node,reconvert回來<br>3.當該某個正在運行的節點,所有目錄都無法讀取時,系統是否會正常運行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">##將測試檔案存放到HDFS,並設定副本數為4</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff_1.csv /user/hadoop/data</div><div class="line"></div><div class="line">##查詢block Id 及block儲存位置</div><div class="line">ssh dna1 &quot;find /bgdt -name &quot;blk_&lt;ID&gt;&quot;&quot;</div><div class="line"></div><div class="line">##模擬故障</div><div class="line">sudo chown -R root:root /bgdt/hadoop-2.7.2/tmp</div><div class="line">sudo chmod -R 000 /bgdt/hadoop-2.7.2/tmp</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##Web UI上Datanode Volume Failures會出現有問題的目錄</div><div class="line"></div><div class="line">##balencer執行完成後,會將原本在/tmp目錄下的資料搬移到 /bgdt/data/data2</div><div class="line"></div><div class="line">##此時若再把另外一個目錄也模擬成無權限狀態</div><div class="line">sudo chown -R root:root /bgdt/data</div><div class="line">sudo chmod -R 000 /bgdt/data</div><div class="line"></div><div class="line">##該node的Status會變成Dead,並且DataNode的process會停止</div><div class="line"></div><div class="line">##此時資料的Repl雖然一樣是4,但實際上的資料份數是3</div><div class="line"></div><div class="line">##接著將/bgdt/data目錄設回原本權限,並將資料刪除</div><div class="line">sudo chown -R hadoop:hadoop /bgdt/data</div><div class="line">sudo chmod -R 755 /bgdt/data</div><div class="line">rm -rf /bgdt/data</div><div class="line"></div><div class="line">##並將/bgdt/data目錄的資料刪除後,重啟datanode</div><div class="line">hadoop-daemon.sh start datanode</div><div class="line"></div><div class="line">##重啟成功後,進行balancer</div><div class="line">hadoop balancer</div><div class="line"></div><div class="line">##看到所有檔案的副本數與與資料又恢復正常</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cjc62p5j1000dm0llvegl5aeh" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]Hadoop_CMD" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/10/[hadoop]Hadoop_CMD/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]Hadoop_CMD/">Hadoop常用命令說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir    /user/hadoop/data                      </div><div class="line">hadoop fs -mkdir -p /user/hadoop/data                      ##連Partants Directories建立</div><div class="line"></div><div class="line">hadoop fs -ls -h[-d] /user/hadoop</div><div class="line">hadoop fs -lsr       /user/hadoop</div><div class="line"></div><div class="line">hadoop fs -put      /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,不會overwrite</div><div class="line">hadoop fs -put -f   /opt/staff.csv /user/hadoop/data       ##上傳檔案至HDFS,overwrite當前檔案</div><div class="line"></div><div class="line">hadoop fs -df -h    /user/hadoop</div><div class="line">hadoop fs -du -h    /user/hadoop</div><div class="line">hadoop fs -dus      /user/hadoop</div><div class="line">hadoop fs -Ddfs.replication=4 -put /opt/staff.csv /user/hadoop/data</div><div class="line">hadoop fs -setrep 10 /user/hadoop/data/staff.csv</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -mkdir -p /user/hadoop/ccc</div><div class="line"></div><div class="line">hadoop fs -touchz /user/hadoop/ccc/test.xml	##建立一個空檔案</div><div class="line"></div><div class="line">hadoop fs -cat    /user/hadoop/ccc/test.xml</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -rm    /user/hadoop/ccc/test.xml	##刪除HDFS上的檔案</div><div class="line">hadoop fs -rmdir /user/hadoop/ccc		##刪除HDFS上的空目錄</div><div class="line">hadoop fs -rmr   /user/hadoop/ccc		##刪除指定目錄下所有的檔案及目錄</div><div class="line"></div><div class="line"></div><div class="line">hadoop fs -copyFromLocal /opt/staff.csv /user/hadoop/ccc			##檔案上傳到HDFS</div><div class="line">hadoop fs -copyToLocal   /user/hadoop/ccc/staff.csv /opt/staff_download.csv 	##檔案下載到/opt</div><div class="line">hadoop fs -moveFromLocal</div><div class="line">hadoop fs -moveToLocal</div><div class="line"></div><div class="line"></div><div class="line">hadoop fsck /user/hadoop/data/staff.csv -files -blocks -locations</div><div class="line">hadoop fsck -blockId blk_&lt;id&gt;</div><div class="line"></div><div class="line">hadoop dfsadmin -safemode enter	##進入安全模式</div><div class="line">hadoop dfsadmin -safemode leave ##離開安全模式</div><div class="line">hadoop dfsadmin -safemode get   ##取得目前狀態</div><div class="line">hadoop dfsadmin -safemode wait  </div><div class="line"></div><div class="line">hadoop dfsadmin -report</div><div class="line">hadoop dfsadmin -refreshNodes</div><div class="line">hadoop dfsadmin -printTopology</div><div class="line"></div><div class="line">hadoop namenode -format		##格式化namenode,在HDFS系統上的資料會全部刪除</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cjc62p5kf001lm0ll5ypqy1r0" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -446,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cjc0d7yqq0002r0llfzmskxmz" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cjc62p5in0004m0llwrm2l9lc" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -497,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cjc0d7yqj0000r0llpn151585" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="cjc62p5if0001m0llgzghf840" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -520,7 +687,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -530,7 +697,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -543,23 +710,23 @@
       <ul>
         
           <li>
+            <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/">Hadoop3.0.0 NFS Gateway</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/">hadoop3.0.0 相關服務 Port Number 設定參數</a>
+          </li>
+        
+          <li>
             <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/">hadoop archive command Memo</a>
           </li>
         
           <li>
             <a href="/2018/01/04/[hadoop]hadoop_snapshot_cmd/">hdfs snapshot command Memo</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/03/[hadoop]hdfs_ec_cmd/">hdfs ec command Memo</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/03/[hadoop]hadoop_fsck_cmd/">hdfs fsck command Memo</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/03/[hadoop]hdfs_other_cmd/">hdfs client command Memo</a>
           </li>
         
       </ul>
