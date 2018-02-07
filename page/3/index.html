@@ -55,7 +55,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -65,69 +65,6 @@
 </header>
       <div class="outer">
         <section id="main">
-  
-    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
-  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
-</div>
-
-        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
-<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
-<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
-<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
-<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
-<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjdcfgsmp001788ll6uez3hws" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
   
     <article id="post-[hive]hive_sql_2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -318,7 +255,70 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjdcfgsmz001c88lln8ywmyo4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_2/" data-id="cjdcfxm7a001ayklll5krkfar" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
+  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hive/">hive</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
+</div>
+
+        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
+<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
+<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
+<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
+<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
+<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjdcfxm700017ykllmavuo28b" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -372,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjdcfgsn9001q88ll3l07c5tc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/19/[vagrant]打造一個自己開發境境/" data-id="cjdcfxm7k001qykllqivqxuuv" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -431,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjdcfgsmz001h88llc2k5z7ux" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/22/[spark]spark_001/" data-id="cjdcfxm7a001hykll9cdewwtu" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -490,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjdcfgsn9001m88llxm3igvmz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]VagrantMemo/" data-id="cjdcfxm7a001jykllofoiso4z" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -537,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjdcfgsn9001o88lllgyvff49" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/20/[vagrant]Vagrantfile配置檔說明/" data-id="cjdcfxm7k001oykllgj9nashl" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -598,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cjdcfgsmf000n88ll69y27kua" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="cjdcfxm6g000nyklla2gw35rm" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -646,7 +646,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cjdcfgsm5000d88llg29zjg0o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="cjdcfxm660007ykllx9u2iaw8" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -695,7 +695,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjdcfgslv000588lldvwt48pr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="cjdcfxm5w0003yklluch11ygy" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -988,7 +988,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cjdcfgsll000088llsbze28cn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="cjdcfxm5m0001ykllo4slamxp" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -1034,11 +1034,11 @@
       <ul>
         
           <li>
-            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
           </li>
         
           <li>
-            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
           </li>
         
           <li>
@@ -1046,11 +1046,11 @@
           </li>
         
           <li>
-            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark - RDD Memo_1</a>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
           </li>
         
           <li>
-            <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/">hadoop3.0.0 相關服務 Port Number 設定參數</a>
+            <a href="/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/">Hadoop3.0.0 NFS Gateway</a>
           </li>
         
       </ul>
@@ -1079,7 +1079,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ~ 2018 popal<br>
-      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
     </div>
   </div>
 </footer>
