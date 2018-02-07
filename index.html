@@ -66,6 +66,243 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-[hadoop]Hadoop3.0.0_overview" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <ol>
+<li>Minimum required Java version increased from Java 7 to Java 8</li>
+<li>Support for erasure coding in HDFS</li>
+<li>YARN Timeline Service v.2</li>
+<li>Shell script rewrite</li>
+<li>Shaded client jars</li>
+<li>Support for Opportunistic Containers and Distributed Scheduling.</li>
+<li>MapReduce task-level native optimization</li>
+<li>Support for more than 2 NameNodes</li>
+<li>Default ports of multiple services have been changed.</li>
+<li>Support for Microsoft Azure Data Lake and Aliyun Object Storage System filesystem connectors</li>
+<li>Intra-datanode balancer</li>
+<li>Reworked daemon and task heap management</li>
+<li>S3Guard: Consistency and Metadata Caching for the S3A filesystem client</li>
+<li>HDFS Router-Based Federation</li>
+<li>API-based configuration of Capacity Scheduler queue configuration</li>
+<li>YARN Resource Types</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="cjdcfgslv000888ll6cwlzcno" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoop3.0.0_quota_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Quota相關指令"><span class="toc-text">Quota相關指令:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Name-Quotas"><span class="toc-text">Name Quotas</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Space-Quotas"><span class="toc-text">Space Quotas</span></a></li></ol>
+</div>
+
+        <h5 id="Quota相關指令"><a href="#Quota相關指令" class="headerlink" title="Quota相關指令:"></a>Quota相關指令:</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Administrative Commands:</div><div class="line">	hdfs dfsadmin</div><div class="line">		[-setQuota &lt;quota&gt; &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-clrQuota &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-setSpaceQuota &lt;quota&gt; [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-clrSpaceQuota [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">	</div><div class="line">Reporting Commands:</div><div class="line">	hadoop fs -count -q -v &lt;dirname&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="Name-Quotas"><a href="#Name-Quotas" class="headerlink" title="Name Quotas"></a>Name Quotas</h5><blockquote>
+<p>透過限制目錄或文件數量,當達到限制上限時,系統會發出錯誤訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setQuota 3 /user/hadoop/example/data2</div><div class="line"></div><div class="line">## QUOTA     --&gt;Name Quota(-setQuota設定數量)</div><div class="line">## REM_QUOTA(剩餘Quota) --&gt;REM_QUOTA = Quota-(DIR_COUNT+FILE_COUNT)</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               2            none             inf            1            0                  0 /user/hadoop/example/data2</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data1.txt</div><div class="line">Test1!!!!</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               1            none             inf            1            1                 10 /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data2.txt</div><div class="line">Test2!!!!</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               0            none             inf            1            2                 20 /user/hadoop/example/data2</div><div class="line">		   </div><div class="line">##無法再加入檔案,因為REM_QUOTA已經=0了		   </div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data3.txt</div><div class="line">put: The NameSpace quota (directories and files) of directory /user/hadoop/example/data2 is exceeded: quota=3 file count=4</div><div class="line"></div><div class="line">##清除Quota限制</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -clrQuota /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data3.txt</div><div class="line">TEST3!!!!!!</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf            none             inf            1            3                 32 /user/hadoop/example/data2</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="Space-Quotas"><a href="#Space-Quotas" class="headerlink" title="Space Quotas"></a>Space Quotas</h5><blockquote>
+<p>透過限制目錄或檔案size大小,當達到限制上限時,系統會發出錯誤訊息(檔案大小和block size有關係)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setSpaceQuota 1M /user/hadoop/example/data3</div><div class="line"></div><div class="line">##Space Quota要考慮到Block size的問題,所以基本上會以block size的倍數來做為空間配額大小(block size*repl number)</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setSpaceQuota 64M /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -put - /user/hadoop/example/data3/data1.txt</div><div class="line">Test11111!!!</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -count -q -v /user/hadoop/example/data3</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf        67108864        67108851            1            1                 13 /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -put - /user/hadoop/example/data3/data2.txt</div><div class="line">TEST2!!!!</div><div class="line">put: The DiskSpace quota of /user/hadoop/example/data3 is exceeded: quota = 67108864 B = 64 MB but diskspace consumed = 67108877 B = 64.00 MB</div><div class="line"></div><div class="line">## 清除SpaceQuota的限制</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -clrSpaceQuota /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/data3</div><div class="line">-rw-r--r--   1 hadoop supergroup         13 2018-01-09 12:06 /user/hadoop/example/data3/data1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data3</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf            none             inf            1            1                 13 /user/hadoop/example/data3</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" data-id="cjdcfgsmf000j88lltvuv839d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]Hadoop3.0.0_doc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#General"><span class="toc-text">General</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Common"><span class="toc-text">Common</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HDFS"><span class="toc-text">HDFS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MapReduce"><span class="toc-text">MapReduce</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MapReduce-REST-APIs"><span class="toc-text">MapReduce REST APIs</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#YARN"><span class="toc-text">YARN</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#YARN-REST-APIs"><span class="toc-text">YARN REST APIs</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Hadoop-Compatible-File-Systems"><span class="toc-text">Hadoop Compatible File Systems</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Auth"><span class="toc-text">Auth</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Tools"><span class="toc-text">Tools</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Configuration"><span class="toc-text">Configuration</span></a></li></ol>
+</div>
+
+        <h5 id="General"><a href="#General" class="headerlink" title="General"></a>General</h5><hr>
+<p>Overview<br>Hadoop: Setting up a Single Node Cluster.<br>Hadoop Cluster Setup<br>Hadoop Commands Guide<br>FileSystem Shell<br>Apache Hadoop Compatibility<br>Apache Hadoop Downstream Developer’s Guide<br>Hadoop Interface Taxonomy: Audience and Stability Classification<br>The Hadoop FileSystem API Definition</p>
+<h5 id="Common"><a href="#Common" class="headerlink" title="Common"></a>Common</h5><hr>
+<p>Hadoop: CLI MiniCluster<br>Native Libraries Guide<br>Proxy user - Superusers Acting On Behalf Of Other Users<br>Rack Awareness<br>Hadoop in Secure Mode<br>Service Level Authorization Guide<br>Authentication for Hadoop HTTP web-consoles<br>CredentialProvider API Guide<br>Hadoop Key Management Server (KMS) - Documentation Sets<br>Enabling Dapper-like Tracing in Hadoop<br>Unix Shell Guide</p>
+<h5 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h5><hr>
+<p>HDFS Architecture<br>HDFS Users Guide<br>HDFS Commands Guide<br>HDFS High Availability Using the Quorum Journal Manager<br>HDFS High Availability<br>HDFS Federation<br>ViewFs Guide<br>HDFS Snapshots<br>Offline Edits Viewer Guide<br>Offline Image Viewer Guide<br>HDFS Permissions Guide<br>HDFS Quotas Guide<br>C API libhdfs<br>WebHDFS REST API<br>Hadoop HDFS over HTTP - Documentation Sets<br>HDFS Short-Circuit Local Reads<br>Centralized Cache Management in HDFS<br>HDFS NFS Gateway<br>HDFS Rolling Upgrade<br>Extended Attributes in HDFS<br>Transparent Encryption in HDFS<br>HDFS Support for Multihomed Networks<br>Archival Storage, SSD &amp; Memory<br>Memory Storage Support in HDFS<br>Synthetic Load Generator Guide<br>HDFS Erasure Coding<br>HDFS Disk Balancer<br>HDFS Upgrade Domain<br>HDFS DataNode Admin Guide<br>Unix Shell Guide<br>HDFS Router-based Federation</p>
+<h5 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h5><hr>
+<p>Tutorial<br>MapReduce Commands Guide<br>Apache Hadoop MapReduce - Migrating from Apache Hadoop 1.x to Apache Hadoop 2.x<br>Hadoop: Encrypted Shuffle<br>Hadoop: Pluggable Shuffle and Pluggable Sort<br>Hadoop: Distributed Cache Deploy<br>MR Support for YARN Shared Cache</p>
+<h5 id="MapReduce-REST-APIs"><a href="#MapReduce-REST-APIs" class="headerlink" title="MapReduce REST APIs"></a>MapReduce REST APIs</h5><hr>
+<p>MapReduce Application Master REST API’s.<br>MapReduce History Server REST API’s.</p>
+<h5 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h5><hr>
+<p>Apache Hadoop YARN<br>YARN Commands<br>Hadoop: Capacity Scheduler<br>Hadoop: Fair Scheduler<br>ResourceManager Restart<br>ResourceManager High Availability<br>Hadoop: YARN Resource Configuration<br>YARN Node Labels<br>Web Application Proxy<br>The YARN Timeline Server<br>The YARN Timeline Service v.2<br>Hadoop: Writing YARN Applications<br>YARN Application Security<br>NodeManager<br>Launching Applications Using Docker Containers<br>Using CGroups with YARN<br>YARN Secure Containers<br>YARN Service Registry<br>Reservation System<br>Graceful Decommission of YARN Nodes<br>Opportunistic Containers<br>Hadoop: YARN Federation<br>YARN Shared Cache</p>
+<h5 id="YARN-REST-APIs"><a href="#YARN-REST-APIs" class="headerlink" title="YARN REST APIs"></a>YARN REST APIs</h5><hr>
+<p>Hadoop YARN - Introduction to the web services REST API’s<br>ResourceManager REST API’s.<br>NodeManager REST API’s<br>The YARN Timeline Server<br>The YARN Timeline Service v.2</p>
+<h5 id="Hadoop-Compatible-File-Systems"><a href="#Hadoop-Compatible-File-Systems" class="headerlink" title="Hadoop Compatible File Systems"></a>Hadoop Compatible File Systems</h5><hr>
+<p>Hadoop-Aliyun module: Integration with Aliyun Web Services<br>Hadoop-AWS module: Integration with Amazon Web Services<br>Hadoop Azure Support: Azure Blob Storage<br>Hadoop Azure Data Lake Support<br>Hadoop OpenStack Support: Swift Object Store</p>
+<h5 id="Auth"><a href="#Auth" class="headerlink" title="Auth"></a>Auth</h5><hr>
+<p>Hadoop Auth, Java HTTP SPNEGO<br>Hadoop Auth, Java HTTP SPNEGO - Examples<br>Hadoop Auth, Java HTTP SPNEGO - Server Side Configuration<br>Hadoop Auth, Java HTTP SPNEGO - Building It</p>
+<h5 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h5><hr>
+<p>Hadoop Streaming<br>Hadoop Archives Guide<br>Hadoop Archive Logs Guide<br>DistCp Guide<br>Gridmix<br>Rumen<br>Resource Estimator Service<br>YARN Scheduler Load Simulator (SLS)<br>Hadoop Benchmarking</p>
+<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><hr>
+<p>Changelog and Release Notes<br>Java API docs<br>Unix Shell API<br>Metrics</p>
+<h5 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h5><hr>
+<p>core-default.xml<br>hdfs-default.xml<br>mapred-default.xml<br>yarn-default.xml<br>Deprecated Properties</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_doc/" data-id="cjdcfgslv000688ll4uq3r5jj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[spark]spark2.2.1_RDD_Memo_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spark/">spark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark - RDD Memo_1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#start-pyspark"><span class="toc-text">start pyspark</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pyspark-RDD-Operate-map、flatMap、distinct"><span class="toc-text">pyspark: RDD Operate(map、flatMap、distinct)</span></a></li></ol>
+</div>
+
+        <h5 id="start-pyspark"><a href="#start-pyspark" class="headerlink" title="start pyspark"></a>start pyspark</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">hadoop@hadoop-master:~$ pyspark</div><div class="line"></div><div class="line">###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好</div><div class="line">Python 2.7.13 (default, Jan 19 2017, 14:48:08)</div><div class="line">[GCC 6.3.0 20170118] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">2018-01-09 15:32:11,663 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">2018-01-09 15:32:21,550 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1</div><div class="line">      /_/</div><div class="line"></div><div class="line">Using Python version 2.7.13 (default, Jan 19 2017 14:48:08)</div><div class="line">SparkSession available as &apos;spark&apos;.</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line">##開始可以操作pyspark相關語法</div><div class="line">## sc    是 SparkContext物件</div><div class="line">## spark 是 SparkSession物件</div><div class="line">&gt;&gt;&gt; sc</div><div class="line">&lt;SparkContext master=local[*] appName=PySparkShell&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; spark</div><div class="line">&lt;pyspark.sql.session.SparkSession object at 0x7fa3a1ab4610&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; from pyspark.conf import SparkConf</div><div class="line">&gt;&gt;&gt; conf = SparkConf()</div><div class="line">&gt;&gt;&gt; print (&quot;環境變數\n&quot;)</div><div class="line">環境變數</div><div class="line"></div><div class="line">&gt;&gt;&gt; print (conf.toDebugString())</div><div class="line">spark.app.name=PySparkShell</div><div class="line">spark.master=local[*]</div><div class="line">spark.submit.deployMode=client</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="pyspark-RDD-Operate-map、flatMap、distinct"><a href="#pyspark-RDD-Operate-map、flatMap、distinct" class="headerlink" title="pyspark: RDD Operate(map、flatMap、distinct)"></a>pyspark: RDD Operate(map、flatMap、distinct)</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">## RDD map的用法</div><div class="line">## Example1:</div><div class="line">rdd = sc.parallelize([1, 2, 3, 4])</div><div class="line">rdd1=rdd.map(lambda x: x*x)</div><div class="line">rdd1.collect()</div><div class="line">Output:[1, 4, 9, 16]</div><div class="line"></div><div class="line">## Example2: Lambda回傳字串</div><div class="line">rdd = sc.parallelize([&quot;Apple&quot;, &quot;Orange&quot;, &quot;Banana&quot;,&quot;Grape&quot;,&quot;Apple&quot;])</div><div class="line">rdd = rdd.map(lambda x: x+&quot;&apos;s&quot;)</div><div class="line">rdd.collect()</div><div class="line">Output:[&quot;Apple&apos;s&quot;, &quot;Orange&apos;s&quot;, &quot;Banana&apos;s&quot;, &quot;Grape&apos;s&quot;, &quot;Apple&apos;s&quot;]</div><div class="line"></div><div class="line">## Example3: Lambda回傳List</div><div class="line">rdd = sc.parallelize([&quot;Apple&quot;, &quot;Orange&quot;, &quot;Banana&quot;,&quot;Grape&quot;,&quot;Apple&quot;])</div><div class="line">rdd = rdd.map(lambda x:(x,1))</div><div class="line">rdd.collect()</div><div class="line">Output:[(&apos;Apple&apos;, 1), (&apos;Orange&apos;, 1), (&apos;Banana&apos;, 1), (&apos;Grape&apos;, 1), (&apos;Apple&apos;, 1)]</div><div class="line"></div><div class="line">## RDD flatMap的用法</div><div class="line">##Example1:</div><div class="line">rdd = sc.parallelize([&quot;Apple&quot;, &quot;Orange&quot;, &quot;Banana&quot;,&quot;Grape&quot;,&quot;Apple&quot;])</div><div class="line">rdd = rdd.flatMap(lambda x:[(x,1)])</div><div class="line">rdd.collect()</div><div class="line">Output:[(&apos;Apple&apos;, 1), (&apos;Orange&apos;, 1), (&apos;Banana&apos;, 1), (&apos;Grape&apos;, 1), (&apos;Apple&apos;, 1)]</div><div class="line"></div><div class="line">##Example2:</div><div class="line">rdd = sc.parallelize([&quot;Apple&quot;, &quot;Orange&quot;, &quot;Banana&quot;,&quot;Grape&quot;,&quot;Apple&quot;])</div><div class="line">rdd = rdd.flatMap(lambda x:[(&quot;fruit:&quot;+x)])</div><div class="line">rdd.collect()</div><div class="line">Output:[&apos;fruit:Apple&apos;, &apos;fruit:Orange&apos;, &apos;fruit:Banana&apos;, &apos;fruit:Grape&apos;, &apos;fruit:Apple&apos;]</div><div class="line"></div><div class="line">##RDD distinct用法</div><div class="line">##Example1:</div><div class="line">rdd = sc.parallelize([&quot;Apple&quot;, &quot;Orange&quot;, &quot;Banana&quot;,&quot;Grape&quot;,&quot;Apple&quot;])</div><div class="line">rdd.distinct().collect()</div><div class="line">Output:[&apos;Orange&apos;, &apos;Grape&apos;, &apos;Apple&apos;, &apos;Banana&apos;]</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" data-id="cjdcfgsmz001j88llb7wjhwd4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-[hadoop]hadoop3_port_number_list" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/" class="article-date">
@@ -103,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="cjc62vbqn0005xgllclrhitd6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="cjdcfgsmf000l88lloftyh1o9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -150,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" data-id="cjc62vbqs0008xgll8n3j9ngi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" data-id="cjdcfgsm5000f88lloug4c62r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,69 +425,20 @@
       
         
 <div id="toc">
-  
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Hadoop3-0-0-NFS-Gateway-setting-amp-start"><span class="toc-text">Hadoop3.0.0 NFS Gateway setting & start</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Hadoop3-0-0-NFS-Gateway-modify-mount-point"><span class="toc-text">Hadoop3.0.0 NFS Gateway modify mount point</span></a></li></ol>
 </div>
 
-        <blockquote>
+        <h5 id="Hadoop3-0-0-NFS-Gateway-setting-amp-start"><a href="#Hadoop3-0-0-NFS-Gateway-setting-amp-start" class="headerlink" title="Hadoop3.0.0 NFS Gateway setting &amp; start"></a>Hadoop3.0.0 NFS Gateway setting &amp; start</h5><blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ service nfs-kernel-server stop</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ start-dfs.sh</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ start-yarn.sh</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs --daemon start nfs3</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ rpcinfo -p</div><div class="line">   program vers proto   port  service</div><div class="line">    100000    4   tcp    111  portmapper</div><div class="line">    100000    3   tcp    111  portmapper</div><div class="line">    100000    2   tcp    111  portmapper</div><div class="line">    100000    4   udp    111  portmapper</div><div class="line">    100000    3   udp    111  portmapper</div><div class="line">    100000    2   udp    111  portmapper</div><div class="line">    100005    1   udp  46340  mountd</div><div class="line">    100005    1   tcp  33399  mountd</div><div class="line">    100005    2   udp  56322  mountd</div><div class="line">    100005    2   tcp  43065  mountd</div><div class="line">    100005    3   udp  52402  mountd</div><div class="line">    100005    3   tcp  49301  mountd</div><div class="line">    100003    2   tcp   2049  nfs</div><div class="line">    100003    3   tcp   2049  nfs</div><div class="line">    100003    4   tcp   2049  nfs</div><div class="line">    100227    2   tcp   2049</div><div class="line">    100227    3   tcp   2049</div><div class="line">    100003    2   udp   2049  nfs</div><div class="line">    100003    3   udp   2049  nfs</div><div class="line">    100003    4   udp   2049  nfs</div><div class="line">    100227    2   udp   2049</div><div class="line">    100227    3   udp   2049</div><div class="line">    100021    1   udp  50043  nlockmgr</div><div class="line">    100021    3   udp  50043  nlockmgr</div><div class="line">    100021    4   udp  50043  nlockmgr</div><div class="line">    100021    1   tcp  33247  nlockmgr</div><div class="line">    100021    3   tcp  33247  nlockmgr</div><div class="line">    100021    4   tcp  33247  nlockmgr</div><div class="line">	</div><div class="line">hadoop@hadoop-master:~$ showmount -e</div><div class="line">Export list for hadoop-master:</div><div class="line">/ *</div><div class="line">	</div><div class="line">hadoop@hadoop-master:~$ netstat -tnl</div><div class="line">Active Internet connections (only servers)</div><div class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State</div><div class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:8088       0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:8030       0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 0.0.0.0:50079           0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:8031       0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:8032       0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:8033       0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:50090      0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 0.0.0.0:9870            0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 0.0.0.0:4242            0.0.0.0:*               LISTEN</div><div class="line">tcp        0      0 192.168.51.4:8020       0.0.0.0:*               LISTEN</div><div class="line">tcp6       0      0 :::22                   :::*                    LISTEN</div><div class="line">tcp6       0      0 :::5355                 :::*                    LISTEN</div><div class="line">tcp6       0      0 :::111                  :::*                    LISTEN</div><div class="line"></div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ jps</div><div class="line">4116 Nfs3</div><div class="line">2392 ResourceManager</div><div class="line">2108 SecondaryNameNode</div><div class="line">4157 Jps</div><div class="line">1837 NameNode</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ mkdir -p /opt/hdfs</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ sudo mount -t nfs -o vers=3,proto=tcp,nolock,sync 192.168.51.4:/  /opt/hdfs</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ ls -la /opt/hdfs/user</div><div class="line">total 4</div><div class="line">drwxr-xr-x  6 hadoop 2584148964  192 Jan  4 16:35 .</div><div class="line">drwxr-xr-x  4 hadoop 2584148964  128 Dec 26 15:25 ..</div><div class="line">drwxr-xr-x 41 hadoop 2584148964 1312 Jan  8 17:00 hadoop</div><div class="line">drwxr-xr-x  3 hadoop 2584148964   96 Dec 26 18:44 hive</div><div class="line">drwxr-xr-x  2 hadoop 2584148964   64 Jan  3 17:30 snapshot</div><div class="line">drwxr-xr-x  2 hadoop 2584148964   64 Jan  4 16:35 vagrant</div><div class="line"></div><div class="line">hadoop@hadoop-master:/home$ sudo umount /opt/hdfs</div><div class="line">hadoop@hadoop-master:/home$ ls -la /opt/hdfs</div><div class="line">total 8</div><div class="line">drwxrwxr-x 2 hadoop hadoop 4096 Jan  8 17:32 .</div><div class="line">drwxr-xr-x 4 hadoop hadoop 4096 Jan  8 17:32 ..</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## 將hdfs目錄mount起來</div><div class="line">## 建立一個檔案</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="Hadoop3-0-0-NFS-Gateway-modify-mount-point"><a href="#Hadoop3-0-0-NFS-Gateway-modify-mount-point" class="headerlink" title="Hadoop3.0.0 NFS Gateway modify mount point"></a>Hadoop3.0.0 NFS Gateway modify mount point</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">vi /bgdt/hadoop-3.0.0/etc/hadoop/hdfs-site.xml</div><div class="line"></div><div class="line">##在設定檔中加入以下參數(nfs.export.point)</div><div class="line">&lt;property&gt;</div><div class="line">  &lt;name&gt;nfs.export.point&lt;/name&gt;</div><div class="line">  &lt;value&gt;/user&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line"></div><div class="line"></div><div class="line">##重新啟動HDFS</div><div class="line">hadoop@hadoop-master:~$start-dfs.sh</div><div class="line"></div><div class="line">##重新啟動NFS3</div><div class="line">hadoop@hadoop-master:~$hdfs --daemon start nfs3</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$showmount -e</div><div class="line">Export list for hadoop-master:</div><div class="line">/user *</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ sudo mount -t nfs -o vers=3,proto=tcp,nolock,sync 192.168.51.4:/user  /opt/hdfs</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ ls -la /opt/hdfs</div><div class="line">total 8</div><div class="line">drwxr-xr-x  6 hadoop 2584148964  192 Jan  4 16:35 .</div><div class="line">drwxr-xr-x  4 hadoop hadoop     4096 Jan  8 17:32 ..</div><div class="line">drwxr-xr-x 41 hadoop 2584148964 1312 Jan  8 17:00 hadoop</div><div class="line">drwxr-xr-x  3 hadoop 2584148964   96 Dec 26 18:44 hive</div><div class="line">drwxr-xr-x  2 hadoop 2584148964   64 Jan  3 17:30 snapshot</div><div class="line">drwxr-xr-x  2 hadoop 2584148964   64 Jan  4 16:35 vagrant</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ sudo umount /opt/hdfs</div></pre></td></tr></table></figure>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" data-id="cjc62vbqv000axgllve6kixp4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoop_archive_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/" class="article-date">
-  <time datetime="2018-01-03T16:00:00.000Z" itemprop="datePublished">2018-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/04/[hadoop]hadoop_archive_cmd/">hadoop archive command Memo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop壓縮機制"><span class="toc-text">hadoop壓縮機制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-archive操作方式"><span class="toc-text">hadoop archive操作方式</span></a></li></ol>
-</div>
-
-        <h5 id="hadoop壓縮機制"><a href="#hadoop壓縮機制" class="headerlink" title="hadoop壓縮機制"></a>hadoop壓縮機制</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">usage: archive &lt;-archiveName &lt;NAME&gt;.har&gt; &lt;-p &lt;parent path&gt;&gt; [-r &lt;replication factor&gt;] &lt;src&gt;* &lt;dest&gt;</div><div class="line"> -archiveName &lt;arg&gt;   Name of the Archive. This is mandatory option</div><div class="line"> -help                Show the usage</div><div class="line"> -p &lt;arg&gt;             Parent path of sources. This is mandatory option</div><div class="line"> -r &lt;arg&gt;             Replication factor archive files</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hadoop-archive操作方式"><a href="#hadoop-archive操作方式" class="headerlink" title="hadoop archive操作方式"></a>hadoop archive操作方式</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test2.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test3.txt</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有檔案和目錄</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example1.har -p /user/hadoop/example -r 3 /user/hadoop</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有txt檔</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example2.har -p /user/hadoop/example/ -r 3 *.txt /user/hadoop</div><div class="line"></div><div class="line">## 查詢壓縮檔的內容</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example1.har</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:12 har:///user/hadoop/example1.har/lab_2</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:13 har:///user/hadoop/example1.har/lab_2/example1.har</div><div class="line">-rw-r--r--   3 hadoop supergroup        373 2018-01-03 15:41 har:///user/hadoop/example1.har/lab_2/test9.tar.gz</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example1.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example1.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example1.har/test3.txt</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example2.har</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example2.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example2.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example2.har/test3.txt</div><div class="line"></div><div class="line">##解壓縮使用cp命令</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -cp har:///user/hadoop/example2.har/* hdfs:/user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/lab_3</div><div class="line">-rw-r--r--   1 hadoop supergroup         23 2018-01-04 18:34 /user/hadoop/example/lab_3/test1.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         30 2018-01-04 18:34 /user/hadoop/example/lab_3/test2.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         15 2018-01-04 18:34 /user/hadoop/example/lab_3/test3.txt</div></pre></td></tr></table></figure>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_archive_cmd/" data-id="cjc62vbqx000dxgllyp78tfjb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" data-id="cjdcfgsm5000h88ll9obdfmvz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -301,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_snapshot_cmd/" data-id="cjc62vbr7000lxgllpbbwlu8f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_snapshot_cmd/" data-id="cjdcfgsmp000v88ll3nfg41d8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,10 +499,10 @@
 
 
   
-    <article id="post-[hadoop]hdfs_dfsadmin_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-[hadoop]hadoop_archive_cmd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" class="article-date">
-  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+    <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/" class="article-date">
+  <time datetime="2018-01-03T16:00:00.000Z" itemprop="datePublished">2018-01-04</time>
 </a>
     
   <div class="article-category">
@@ -329,7 +517,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/">hdfs dfsadmin command Memo</a>
+      <a class="article-title" href="/2018/01/04/[hadoop]hadoop_archive_cmd/">hadoop archive command Memo</a>
     </h1>
   
 
@@ -339,163 +527,20 @@
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-dfsadmin相關語法"><span class="toc-text">hdfs dfsadmin相關語法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-report"><span class="toc-text">hdfs dfsadmin -report</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-printTopology"><span class="toc-text">hdfs dfsadmin -printTopology</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-getDatanodeInfo"><span class="toc-text">hdfs dfsadmin -getDatanodeInfo</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-safemode"><span class="toc-text">hdfs dfsadmin -safemode</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-shutdownDatanode"><span class="toc-text">hdfs dfsadmin -shutdownDatanode</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-metasave"><span class="toc-text">hdfs dfsadmin -metasave</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-listOpenFiles"><span class="toc-text">hdfs dfsadmin -listOpenFiles</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-triggerBlockReport"><span class="toc-text">hdfs dfsadmin -triggerBlockReport</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#hdfs-dfsadmin-BalancerBandwidth"><span class="toc-text">hdfs dfsadmin BalancerBandwidth</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop壓縮機制"><span class="toc-text">hadoop壓縮機制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-archive操作方式"><span class="toc-text">hadoop archive操作方式</span></a></li></ol>
 </div>
 
-        <h5 id="hdfs-dfsadmin相關語法"><a href="#hdfs-dfsadmin相關語法" class="headerlink" title="hdfs dfsadmin相關語法"></a>hdfs dfsadmin相關語法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">Note: Administrative commands can only be run as the HDFS superuser.</div><div class="line">        [-report [-live] [-dead] [-decommissioning] [-enteringmaintenance] [-inmaintenance]]</div><div class="line">        [-safemode &lt;enter | leave | get | wait&gt;]</div><div class="line">        [-saveNamespace [-beforeShutdown]]</div><div class="line">        [-rollEdits]</div><div class="line">        [-restoreFailedStorage true|false|check]</div><div class="line">        [-refreshNodes]</div><div class="line">        [-setQuota &lt;quota&gt; &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">        [-clrQuota &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">        [-setSpaceQuota &lt;quota&gt; [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">        [-clrSpaceQuota [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">        [-finalizeUpgrade]</div><div class="line">        [-rollingUpgrade [&lt;query|prepare|finalize&gt;]]</div><div class="line">        [-refreshServiceAcl]</div><div class="line">        [-refreshUserToGroupsMappings]</div><div class="line">        [-refreshSuperUserGroupsConfiguration]</div><div class="line">        [-refreshCallQueue]</div><div class="line">        [-refresh &lt;host:ipc_port&gt; &lt;key&gt; [arg1..argn]</div><div class="line">        [-reconfig &lt;namenode|datanode&gt; &lt;host:ipc_port&gt; &lt;start|status|properties&gt;]</div><div class="line">        [-printTopology]</div><div class="line">        [-refreshNamenodes datanode_host:ipc_port]</div><div class="line">        [-getVolumeReport datanode_host:ipc_port]</div><div class="line">        [-deleteBlockPool datanode_host:ipc_port blockpoolId [force]]</div><div class="line">        [-setBalancerBandwidth &lt;bandwidth in bytes per second&gt;]</div><div class="line">        [-getBalancerBandwidth &lt;datanode_host:ipc_port&gt;]</div><div class="line">        [-fetchImage &lt;local directory&gt;]</div><div class="line">        [-allowSnapshot &lt;snapshotDir&gt;]</div><div class="line">        [-disallowSnapshot &lt;snapshotDir&gt;]</div><div class="line">        [-shutdownDatanode &lt;datanode_host:ipc_port&gt; [upgrade]]</div><div class="line">        [-evictWriters &lt;datanode_host:ipc_port&gt;]</div><div class="line">        [-getDatanodeInfo &lt;datanode_host:ipc_port&gt;]</div><div class="line">        [-metasave filename]</div><div class="line">        [-triggerBlockReport [-incremental] &lt;datanode_host:ipc_port&gt;]</div><div class="line">        [-listOpenFiles]</div><div class="line">        [-help [cmd]]</div></pre></td></tr></table></figure>
+        <h5 id="hadoop壓縮機制"><a href="#hadoop壓縮機制" class="headerlink" title="hadoop壓縮機制"></a>hadoop壓縮機制</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">usage: archive &lt;-archiveName &lt;NAME&gt;.har&gt; &lt;-p &lt;parent path&gt;&gt; [-r &lt;replication factor&gt;] &lt;src&gt;* &lt;dest&gt;</div><div class="line"> -archiveName &lt;arg&gt;   Name of the Archive. This is mandatory option</div><div class="line"> -help                Show the usage</div><div class="line"> -p &lt;arg&gt;             Parent path of sources. This is mandatory option</div><div class="line"> -r &lt;arg&gt;             Replication factor archive files</div></pre></td></tr></table></figure>
 </blockquote>
-<h6 id="hdfs-dfsadmin-report"><a href="#hdfs-dfsadmin-report" class="headerlink" title="hdfs dfsadmin -report"></a>hdfs dfsadmin -report</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -report</div><div class="line">Configured Capacity: 42002972672 (39.12 GB)</div><div class="line">Present Capacity: 26379444224 (24.57 GB)</div><div class="line">DFS Remaining: 26331783168 (24.52 GB)</div><div class="line">DFS Used: 47661056 (45.45 MB)</div><div class="line">DFS Used%: 0.18%</div><div class="line">Replicated Blocks:</div><div class="line">        Under replicated blocks: 967</div><div class="line">        Blocks with corrupt replicas: 0</div><div class="line">        Missing blocks: 0</div><div class="line">        Missing blocks (with replication factor 1): 0</div><div class="line">        Pending deletion blocks: 0</div><div class="line">Erasure Coded Block Groups:</div><div class="line">        Low redundancy block groups: 0</div><div class="line">        Block groups with corrupt internal blocks: 0</div><div class="line">        Missing block groups: 0</div><div class="line">        Pending deletion blocks: 0</div><div class="line"></div><div class="line">-------------------------------------------------</div><div class="line">Live datanodes (2):</div><div class="line"></div><div class="line">Name: 192.168.51.5:9866 (hadoop-slave1)</div><div class="line">Hostname: hadoop-slave1</div><div class="line">Decommission Status : Normal</div><div class="line">Configured Capacity: 21001486336 (19.56 GB)</div><div class="line">DFS Used: 23842816 (22.74 MB)</div><div class="line">Non DFS Used: 6787604480 (6.32 GB)</div><div class="line">DFS Remaining: 13099626496 (12.20 GB)</div><div class="line">DFS Used%: 0.11%</div><div class="line">DFS Remaining%: 62.37%</div><div class="line">Configured Cache Capacity: 0 (0 B)</div><div class="line">Cache Used: 0 (0 B)</div><div class="line">Cache Remaining: 0 (0 B)</div><div class="line">Cache Used%: 100.00%</div><div class="line">Cache Remaining%: 0.00%</div><div class="line">Xceivers: 1</div><div class="line">Last contact: Wed Jan 03 17:52:32 CST 2018</div><div class="line">Last Block Report: Wed Jan 03 15:42:49 CST 2018</div><div class="line"></div><div class="line"></div><div class="line">Name: 192.168.51.6:9866 (hadoop-slave2)</div><div class="line">Hostname: hadoop-slave2</div><div class="line">Decommission Status : Normal</div><div class="line">Configured Capacity: 21001486336 (19.56 GB)</div><div class="line">DFS Used: 23818240 (22.71 MB)</div><div class="line">Non DFS Used: 6655098880 (6.20 GB)</div><div class="line">DFS Remaining: 13232156672 (12.32 GB)</div><div class="line">DFS Used%: 0.11%</div><div class="line">DFS Remaining%: 63.01%</div><div class="line">Configured Cache Capacity: 0 (0 B)</div><div class="line">Cache Used: 0 (0 B)</div><div class="line">Cache Remaining: 0 (0 B)</div><div class="line">Cache Used%: 100.00%</div><div class="line">Cache Remaining%: 0.00%</div><div class="line">Xceivers: 1</div><div class="line">Last contact: Wed Jan 03 17:52:33 CST 2018</div><div class="line">Last Block Report: Wed Jan 03 16:33:35 CST 2018</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-printTopology"><a href="#hdfs-dfsadmin-printTopology" class="headerlink" title="hdfs dfsadmin -printTopology"></a>hdfs dfsadmin -printTopology</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -printTopology</div><div class="line">Rack: /default-rack</div><div class="line">   192.168.51.5:9866 (hadoop-slave1)</div><div class="line">   192.168.51.6:9866 (hadoop-slave2)</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-getDatanodeInfo"><a href="#hdfs-dfsadmin-getDatanodeInfo" class="headerlink" title="hdfs dfsadmin -getDatanodeInfo"></a>hdfs dfsadmin -getDatanodeInfo</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -getDatanodeInfo 192.168.51.6:9867</div><div class="line">Uptime: 5100, Software version: 3.0.0, Config version: core-3.0.0,hdfs-1</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -getDatanodeInfo 192.168.51.5:9867</div><div class="line">Uptime: 10709, Software version: 3.0.0, Config version: core-3.0.0,hdfs-1</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-safemode"><a href="#hdfs-dfsadmin-safemode" class="headerlink" title="hdfs dfsadmin -safemode"></a>hdfs dfsadmin -safemode</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -safemode</div><div class="line">Usage: hdfs dfsadmin [-safemode enter | leave | get | wait | forceExit]</div><div class="line"></div><div class="line">##取得safemode模式</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -safemode get</div><div class="line">Safe mode is OFF</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/snapshot/test3.txt</div><div class="line">3333</div><div class="line">4444</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls /user/hadoop/snapshot</div><div class="line">Found 3 items</div><div class="line">-rw-r--r--   1 hadoop supergroup         29 2018-01-03 16:53 /user/hadoop/snapshot/test1.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup          7 2018-01-03 17:36 /user/hadoop/snapshot/test2.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         10 2018-01-03 18:04 /user/hadoop/snapshot/test3.txt</div><div class="line"></div><div class="line">##進入safemode模式</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -safemode enter</div><div class="line">Safe mode is ON</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -safemode get</div><div class="line">Safe mode is ON</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/snapshot/test4.txt</div><div class="line">put: Cannot create file/user/hadoop/snapshot/test4.txt._COPYING_. Name node is in safe mode.</div><div class="line"></div><div class="line">##離開safemode模式</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -safemode leave</div><div class="line">Safe mode is OFF</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/snapshot/test4.txt</div><div class="line">55555</div><div class="line">66666</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls /user/hadoop/snapshot</div><div class="line">Found 4 items</div><div class="line">-rw-r--r--   1 hadoop supergroup         29 2018-01-03 16:53 /user/hadoop/snapshot/test1.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup          7 2018-01-03 17:36 /user/hadoop/snapshot/test2.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         10 2018-01-03 18:04 /user/hadoop/snapshot/test3.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         12 2018-01-03 18:05 /user/hadoop/snapshot/test4.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-shutdownDatanode"><a href="#hdfs-dfsadmin-shutdownDatanode" class="headerlink" title="hdfs dfsadmin -shutdownDatanode"></a>hdfs dfsadmin -shutdownDatanode</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">##停掉 Datanode</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -shutdownDatanode hadoop-slave2:9867</div><div class="line">Submitted a shutdown request to datanode hadoop-slave2:9867</div><div class="line"></div><div class="line">##觀察 Datanode Status</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -report -dead</div><div class="line">Safe mode is ON</div><div class="line">Configured Capacity: 21001486336 (19.56 GB)</div><div class="line">Present Capacity: 13123469312 (12.22 GB)</div><div class="line">DFS Remaining: 13099626496 (12.20 GB)</div><div class="line">DFS Used: 23842816 (22.74 MB)</div><div class="line">DFS Used%: 0.18%</div><div class="line">Replicated Blocks:</div><div class="line">        Under replicated blocks: 971</div><div class="line">        Blocks with corrupt replicas: 0</div><div class="line">        Missing blocks: 2</div><div class="line">        Missing blocks (with replication factor 1): 2</div><div class="line">        Pending deletion blocks: 0</div><div class="line">Erasure Coded Block Groups:</div><div class="line">        Low redundancy block groups: 1</div><div class="line">        Block groups with corrupt internal blocks: 0</div><div class="line">        Missing block groups: 0</div><div class="line">        Pending deletion blocks: 0</div><div class="line"></div><div class="line">-------------------------------------------------</div><div class="line">Dead datanodes (1):</div><div class="line"></div><div class="line">Name: 192.168.51.6:9866 (hadoop-slave2)</div><div class="line">Hostname: hadoop-slave2</div><div class="line">Decommission Status : Normal</div><div class="line">Configured Capacity: 21001486336 (19.56 GB)</div><div class="line">DFS Used: 23834624 (22.73 MB)</div><div class="line">Non DFS Used: 6655102976 (6.20 GB)</div><div class="line">DFS Remaining: 13232136192 (12.32 GB)</div><div class="line">DFS Used%: 0.11%</div><div class="line">DFS Remaining%: 63.01%</div><div class="line">Configured Cache Capacity: 0 (0 B)</div><div class="line">Cache Used: 0 (0 B)</div><div class="line">Cache Remaining: 0 (0 B)</div><div class="line">Cache Used%: 100.00%</div><div class="line">Cache Remaining%: 0.00%</div><div class="line">Xceivers: 0</div><div class="line">Last contact: Wed Jan 03 18:16:00 CST 2018</div><div class="line">Last Block Report: Wed Jan 03 16:33:35 CST 2018</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-metasave"><a href="#hdfs-dfsadmin-metasave" class="headerlink" title="hdfs dfsadmin -metasave"></a>hdfs dfsadmin -metasave</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 產生所有metadata資訊,產生後會存放於hdfs系統的Log資料夾內</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -metasave metasave.txt</div><div class="line">Created metasave file metasave.txt in the log directory of namenode hdfs://hadoop-master:8020</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-listOpenFiles"><a href="#hdfs-dfsadmin-listOpenFiles" class="headerlink" title="hdfs dfsadmin -listOpenFiles"></a>hdfs dfsadmin -listOpenFiles</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -listOpenFiles</div><div class="line">Client Host             Client Name             Open File Path</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-triggerBlockReport"><a href="#hdfs-dfsadmin-triggerBlockReport" class="headerlink" title="hdfs dfsadmin -triggerBlockReport"></a>hdfs dfsadmin -triggerBlockReport</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -triggerBlockReport 192.168.51.5:9867</div><div class="line">Triggering a full block report on 192.168.51.5:9867.</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hdfs-dfsadmin-BalancerBandwidth"><a href="#hdfs-dfsadmin-BalancerBandwidth" class="headerlink" title="hdfs dfsadmin BalancerBandwidth"></a>hdfs dfsadmin BalancerBandwidth</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">##取得Namenode與各Datanode之間的IPC頻寬(目前設定為10M bytes/s)</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -getBalancerBandwidth hadoop-slave1:9867</div><div class="line">Balancer bandwidth is 10485760 bytes per second.</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -getBalancerBandwidth hadoop-slave2:9867</div><div class="line">Balancer bandwidth is 10485760 bytes per second.</div><div class="line"></div><div class="line">##設定Namenode與Datanode之間的頻寬大小</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setBalancerBandwidth 15M</div><div class="line">Balancer bandwidth is set to 15728640</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -getBalancerBandwidth hadoop-slave2:9867</div><div class="line">Balancer bandwidth is 15728640 bytes per second.</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -getBalancerBandwidth hadoop-slave1:9867</div><div class="line">Balancer bandwidth is 15728640 bytes per second.</div></pre></td></tr></table></figure>
+<h5 id="hadoop-archive操作方式"><a href="#hadoop-archive操作方式" class="headerlink" title="hadoop archive操作方式"></a>hadoop archive操作方式</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test2.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test3.txt</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有檔案和目錄</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example1.har -p /user/hadoop/example -r 3 /user/hadoop</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有txt檔</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example2.har -p /user/hadoop/example/ -r 3 *.txt /user/hadoop</div><div class="line"></div><div class="line">## 查詢壓縮檔的內容</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example1.har</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:12 har:///user/hadoop/example1.har/lab_2</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:13 har:///user/hadoop/example1.har/lab_2/example1.har</div><div class="line">-rw-r--r--   3 hadoop supergroup        373 2018-01-03 15:41 har:///user/hadoop/example1.har/lab_2/test9.tar.gz</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example1.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example1.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example1.har/test3.txt</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example2.har</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example2.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example2.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example2.har/test3.txt</div><div class="line"></div><div class="line">##解壓縮使用cp命令</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -cp har:///user/hadoop/example2.har/* hdfs:/user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/lab_3</div><div class="line">-rw-r--r--   1 hadoop supergroup         23 2018-01-04 18:34 /user/hadoop/example/lab_3/test1.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         30 2018-01-04 18:34 /user/hadoop/example/lab_3/test2.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         15 2018-01-04 18:34 /user/hadoop/example/lab_3/test3.txt</div></pre></td></tr></table></figure>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjc62vbrh000rxglltrqp3e7u" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hdfs_ec_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/03/[hadoop]hdfs_ec_cmd/" class="article-date">
-  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/[hadoop]hdfs_ec_cmd/">hdfs ec command Memo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試"><span class="toc-text">hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)</span></a></li></ol>
-</div>
-
-        <h4 id="hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試"><a href="#hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試" class="headerlink" title="hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)"></a>hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)</h4><blockquote>
-<p>EC相關架構的介紹可以參考網路相關的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div></pre></td><td class="code"><pre><div class="line">Usage: bin/hdfs ec [COMMAND]</div><div class="line">          [-listPolicies]</div><div class="line">          [-addPolicies -policyFile &lt;file&gt;]</div><div class="line">          [-getPolicy -path &lt;path&gt;]</div><div class="line">          [-removePolicy -policy &lt;policy&gt;]</div><div class="line">          [-setPolicy -path &lt;path&gt; [-policy &lt;policy&gt;] [-replicate]]</div><div class="line">          [-unsetPolicy -path &lt;path&gt;]</div><div class="line">          [-listCodecs]</div><div class="line">          [-enablePolicy -policy &lt;policy&gt;]</div><div class="line">          [-disablePolicy -policy &lt;policy&gt;]</div><div class="line">          [-help &lt;command-name&gt;]</div><div class="line"></div><div class="line">##列出所有Erasure Coding可用的相關Policies</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listPolicies</div><div class="line">Erasure Coding Policies:</div><div class="line">ErasureCodingPolicy=[Name=RS-10-4-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=10, numParityUnits=4]], CellSize=1048576, Id=5], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-3-2-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=3, numParityUnits=2]], CellSize=1048576, Id=2], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-6-3-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=1], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-LEGACY-6-3-1024k, Schema=[ECSchema=[Codec=rs-legacy, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=3], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=XOR-2-1-1024k, Schema=[ECSchema=[Codec=xor, numDataUnits=2, numParityUnits=1]], CellSize=1048576, Id=4], State=DISABLED</div><div class="line"></div><div class="line">##列出所有Erasure Coding Codec列表</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listCodecs</div><div class="line">Erasure Coding Codecs: Codec [Coder List]</div><div class="line">        RS [RS_NATIVE, RS_JAVA]</div><div class="line">        RS-LEGACY [RS-LEGACY_JAVA]</div><div class="line">        XOR [XOR_NATIVE, XOR_JAVA]</div><div class="line"></div><div class="line">##Enable XOR-2-1-1024k的EC Policy		</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -enablePolicy -policy XOR-2-1-1024k</div><div class="line">Erasure coding policy XOR-2-1-1024k is enabled</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listPolicies</div><div class="line">Erasure Coding Policies:</div><div class="line">ErasureCodingPolicy=[Name=RS-10-4-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=10, numParityUnits=4]], CellSize=1048576, Id=5], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-3-2-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=3, numParityUnits=2]], CellSize=1048576, Id=2], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-6-3-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=1], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-LEGACY-6-3-1024k, Schema=[ECSchema=[Codec=rs-legacy, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=3], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=XOR-2-1-1024k, Schema=[ECSchema=[Codec=xor, numDataUnits=2, numParityUnits=1]], CellSize=1048576, Id=4], State=ENABLED</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_2</div><div class="line"></div><div class="line">##將目錄設定為XOR-2-1-1024k的EC Policy</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -setPolicy -path /user/hadoop/example/lab_2 -policy XOR-2-1-1024k</div><div class="line">Set erasure coding policy XOR-2-1-1024k on /user/hadoop/example/lab_2</div><div class="line"></div><div class="line">##上傳檔案</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put ~/test9.tar.gz /user/hadoop/example/lab_2</div><div class="line">2018-01-03 15:41:12,678 WARN erasurecode.ErasureCodeNative: ISA-L support is not available in your platform... using builtin-java codec where applicable</div><div class="line">2018-01-03 15:41:12,741 WARN hdfs.DFSOutputStream: Cannot allocate parity block(index=2, policy=XOR-2-1-1024k). Not enough datanodes? Exclude nodes=[]</div><div class="line">2018-01-03 15:41:12,953 WARN hdfs.DFSOutputStream: Block group &lt;1&gt; has 1 corrupt blocks. It&apos;s at high risk of losing data.</div><div class="line"></div><div class="line">##觀察上傳檔案的複本數</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls /user/hadoop/example/lab_2</div><div class="line">Found 1 items</div><div class="line">-rw-r--r--   1 hadoop supergroup        373 2018-01-03 15:41 /user/hadoop/example/lab_2/test9.tar.gz</div><div class="line"></div><div class="line">##以下為使用fsck指令觀察該檔案Block相關訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/example/lab_2/test9.tar.gz -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Fexample%2Flab_2%2Ftest9.tar.gz</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/example/lab_2/test9.tar.gz at Wed Jan 03 15:46:48 CST 2018</div><div class="line">/user/hadoop/example/lab_2/test9.tar.gz 373 bytes, erasure-coded: policy=XOR-2-1-1024k, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346 len=373 Live_repl=2  </div><div class="line">[blk_-9223372036854775776:DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK], </div><div class="line"> blk_-9223372036854775774:DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK]]</div><div class="line"></div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total blocks (validated):      0</div><div class="line"> Minimally replicated blocks:   0</div><div class="line"> Over-replicated blocks:        0</div><div class="line"> Under-replicated blocks:       0</div><div class="line"> Mis-replicated blocks:         0</div><div class="line"> Default replication factor:    1</div><div class="line"> Average block replication:     0.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    373 B</div><div class="line"> Total files:   1</div><div class="line"> Total block groups (validated):        1 (avg. block group size 373 B)</div><div class="line"> Minimally erasure-coded block groups:  1 (100.0 %)</div><div class="line"> Over-erasure-coded block groups:       0 (0.0 %)</div><div class="line"> Under-erasure-coded block groups:      0 (0.0 %)</div><div class="line"> Unsatisfactory placement block groups: 0 (0.0 %)</div><div class="line"> Average block group size:      2.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0 (0.0 %)</div><div class="line">FSCK ended at Wed Jan 03 15:46:48 CST 2018 in 2 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/example/lab_2/test9.tar.gz&apos; is HEALTHY</div><div class="line"></div><div class="line">##以blockId觀察複本狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck -blockId blk_-9223372036854775776</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_-9223372036854775776+&amp;path=%2F</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 15:49:12 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_-9223372036854775776</div><div class="line">Block belongs to: /user/hadoop/example/lab_2/test9.tar.gz</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">null</div><div class="line"></div><div class="line"></div><div class="line">Fsck on blockId &apos;blk_-9223372036854775776</div><div class="line"></div><div class="line">##以下為模擬shutdown 一台Datanode,資料是否還會存在??</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -shutdownDatanode hadoop-slave2:9867</div><div class="line">Submitted a shutdown request to datanode hadoop-slave2:9867</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/example/lab_2/test9.tar.gz -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Fexample%2Flab_2%2Ftest9.tar.gz</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/example/lab_2/test9.tar.gz at Wed Jan 03 16:11:01 CST 2018</div><div class="line">/user/hadoop/example/lab_2/test9.tar.gz 373 bytes, erasure-coded: policy=XOR-2-1-1024k, 1 block(s):  </div><div class="line">Under replicated BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346. </div><div class="line">Target Replicas is 2 but found 1 live replica(s), 0 decommissioned replica(s), 0 decommissioning replica(s).</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346 len=373 Live_repl=1  </div><div class="line">[blk_-9223372036854775776:DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  1</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total blocks (validated):      0</div><div class="line"> Minimally replicated blocks:   0</div><div class="line"> Over-replicated blocks:        0</div><div class="line"> Under-replicated blocks:       0</div><div class="line"> Mis-replicated blocks:         0</div><div class="line"> Default replication factor:    1</div><div class="line"> Average block replication:     0.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    373 B</div><div class="line"> Total files:   1</div><div class="line"> Total block groups (validated):        1 (avg. block group size 373 B)</div><div class="line"> Minimally erasure-coded block groups:  1 (100.0 %)</div><div class="line"> Over-erasure-coded block groups:       0 (0.0 %)</div><div class="line"> Under-erasure-coded block groups:      1 (100.0 %)</div><div class="line"> Unsatisfactory placement block groups: 0 (0.0 %)</div><div class="line"> Average block group size:      1.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       1 (50.0 %)</div><div class="line">FSCK ended at Wed Jan 03 16:11:01 CST 2018 in 3 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/example/lab_2/test9.tar.gz&apos; is HEALTHY</div><div class="line"></div><div class="line">雖然複本數是設定為1,但因為使用的是EC策略,資料仍然是可下載而且資料內容也是正確的</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="cjc62vbri000txgllgfptuaww" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hdfs_other_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/03/[hadoop]hdfs_other_cmd/" class="article-date">
-  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/[hadoop]hdfs_other_cmd/">hdfs client command Memo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-getconf相關用法"><span class="toc-text">hdfs getconf相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-envvars相關用法"><span class="toc-text">hdfs envvars相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-classpath相關用法"><span class="toc-text">hdfs classpath相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-version相關用法"><span class="toc-text">hdfs version相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-groups相關用法"><span class="toc-text">hdfs groups相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-conftest"><span class="toc-text">hadoop conftest</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-jnipath"><span class="toc-text">hadoop jnipath</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-checknative"><span class="toc-text">hadoop checknative</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#hadoop-daemonlog"><span class="toc-text">hadoop daemonlog</span></a></li></ol></li></ol>
-</div>
-
-        <h5 id="hdfs-getconf相關用法"><a href="#hdfs-getconf相關用法" class="headerlink" title="hdfs getconf相關用法"></a>hdfs getconf相關用法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Usage:</div><div class="line">hadoop getconf</div><div class="line">        [-namenodes]            gets list of namenodes in the cluster.</div><div class="line">        [-secondaryNameNodes]   gets list of secondary namenodes in the cluster.</div><div class="line">        [-backupNodes]          gets list of backup nodes in the cluster.</div><div class="line">        [-includeFile]          gets the include file path that defines the datanodes that can join the cluster.</div><div class="line">        [-excludeFile]          gets the exclude file path that defines the datanodes that need to decommissioned.</div><div class="line">        [-nnRpcAddresses]       gets the namenode rpc addresses</div><div class="line">        [-confKey [key]]		gets a specific key from the configuration</div><div class="line">---</div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -namenodes</div><div class="line">hadoop-master</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -secondaryNameNodes</div><div class="line">hadoop-master</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -backupNodes</div><div class="line">0.0.0.0</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -nnRpcAddresses</div><div class="line">hadoop-master:8020</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -includeFile</div><div class="line">Configuration dfs.hosts is missing.</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -excludeFile</div><div class="line">Configuration dfs.hosts.exclude is missing.</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -confKey &quot;fs.trash.interval&quot;</div><div class="line">1440</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hdfs-envvars相關用法"><a href="#hdfs-envvars相關用法" class="headerlink" title="hdfs envvars相關用法"></a>hdfs envvars相關用法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs envvars</div><div class="line">JAVA_HOME=&apos;/bgdt/java/jdk1.8.0_101&apos;</div><div class="line">HADOOP_HDFS_HOME=&apos;/bgdt/hadoop-3.0.0&apos;</div><div class="line">HDFS_DIR=&apos;share/hadoop/hdfs&apos;</div><div class="line">HDFS_LIB_JARS_DIR=&apos;share/hadoop/hdfs/lib&apos;</div><div class="line">HADOOP_CONF_DIR=&apos;/bgdt/hadoop-3.0.0/etc/hadoop&apos;</div><div class="line">HADOOP_TOOLS_HOME=&apos;/bgdt/hadoop-3.0.0&apos;</div><div class="line">HADOOP_TOOLS_DIR=&apos;share/hadoop/tools&apos;</div><div class="line">HADOOP_TOOLS_LIB_JARS_DIR=&apos;share/hadoop/tools/lib&apos;</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hdfs-classpath相關用法"><a href="#hdfs-classpath相關用法" class="headerlink" title="hdfs classpath相關用法"></a>hdfs classpath相關用法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs classpath</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop:/bgdt/hadoop-3.0.0/share/hadoop/common/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/common/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/mapreduce/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/mapreduce/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/hadoop-yarn-api-3.0.0</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hdfs-version相關用法"><a href="#hdfs-version相關用法" class="headerlink" title="hdfs version相關用法"></a>hdfs version相關用法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs version</div><div class="line">Hadoop 3.0.0</div><div class="line">Source code repository https://git-wip-us.apache.org/repos/asf/hadoop.git -r c25427ceca461ee979d30edd7a4b0f50718e6533</div><div class="line">Compiled by andrew on 2017-12-08T19:16Z</div><div class="line">Compiled with protoc 2.5.0</div><div class="line">From source with checksum 397832cb5529187dc8cd74ad54ff22</div><div class="line">This command was run using /bgdt/hadoop-3.0.0/share/hadoop/common/hadoop-common-3.0.0.jar</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hdfs-groups相關用法"><a href="#hdfs-groups相關用法" class="headerlink" title="hdfs groups相關用法"></a>hdfs groups相關用法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs groups</div><div class="line">hadoop : hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hadoop-conftest"><a href="#hadoop-conftest" class="headerlink" title="hadoop conftest"></a>hadoop conftest</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop conftest</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/hadoop-policy.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/yarn-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/hdfs-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/core-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/mapred-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/capacity-scheduler.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/kms-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/httpfs-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/kms-acls.xml: valid</div><div class="line">OK</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hadoop-jnipath"><a href="#hadoop-jnipath" class="headerlink" title="hadoop jnipath"></a>hadoop jnipath</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop jnipath</div><div class="line">/bgdt/hadoop-3.0.0/lib/native</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hadoop-checknative"><a href="#hadoop-checknative" class="headerlink" title="hadoop checknative"></a>hadoop checknative</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop checknative</div><div class="line">2018-01-04 17:18:04,659 INFO bzip2.Bzip2Factory: Successfully loaded &amp; initialized native-bzip2 library system-native</div><div class="line">2018-01-04 17:18:04,667 INFO zlib.ZlibFactory: Successfully loaded &amp; initialized native-zlib library</div><div class="line">2018-01-04 17:18:04,682 ERROR snappy.SnappyCompressor: failed to load SnappyCompressor</div><div class="line">java.lang.UnsatisfiedLinkError: Cannot load libsnappy.so.1 (libsnappy.so.1: cannot open shared object file: No such file or directory)!</div><div class="line">        at org.apache.hadoop.io.compress.snappy.SnappyCompressor.initIDs(Native Method)</div><div class="line">        at org.apache.hadoop.io.compress.snappy.SnappyCompressor.&lt;clinit&gt;(SnappyCompressor.java:57)</div><div class="line">        at org.apache.hadoop.io.compress.SnappyCodec.isNativeCodeLoaded(SnappyCodec.java:82)</div><div class="line">        at org.apache.hadoop.util.NativeLibraryChecker.main(NativeLibraryChecker.java:100)</div><div class="line">2018-01-04 17:18:04,691 WARN erasurecode.ErasureCodeNative: ISA-L support is not available in your platform... using builtin-java codec where applicable</div><div class="line">Native library checking:</div><div class="line">hadoop:  true /bgdt/hadoop-3.0.0/lib/native/libhadoop.so.1.0.0</div><div class="line">zlib:    true /lib/x86_64-linux-gnu/libz.so.1</div><div class="line">zstd  :  false</div><div class="line">snappy:  false</div><div class="line">lz4:     true revision:10301</div><div class="line">bzip2:   true /lib/x86_64-linux-gnu/libbz2.so.1</div><div class="line">openssl: false Cannot load libcrypto.so (libcrypto.so: cannot open shared object file: No such file or directory)!</div><div class="line">ISA-L:   false libhadoop was built without ISA-L support</div></pre></td></tr></table></figure>
-</blockquote>
-<h6 id="hadoop-daemonlog"><a href="#hadoop-daemonlog" class="headerlink" title="hadoop daemonlog"></a>hadoop daemonlog</h6><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">##取得Class Log Level級別</div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -getlevel hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Effective Level: INFO</div><div class="line"></div><div class="line">##設定Class Log Level級別</div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -setlevel  hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager DEBUG</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager&amp;level=DEBUG</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Submitted Level: DEBUG</div><div class="line">Setting Level to DEBUG ...</div><div class="line">Effective Level: DEBUG</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -getlevel hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Effective Level: DEBUG</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_other_cmd/" data-id="cjc62vbrz0019xgll7s2rgfrp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_archive_cmd/" data-id="cjdcfgsmf000r88llgjicmyhy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -545,90 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjc62vbr3000jxglljj4zzcnz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]Hadoop_permission_memo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/[hadoop]Hadoop_permission_memo/" class="article-date">
-  <time datetime="2018-01-01T16:00:00.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/[hadoop]Hadoop_permission_memo/">Hadoop權限操作說明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用到的HDFS語法整理"><span class="toc-text">使用到的HDFS語法整理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以下為操作驗證"><span class="toc-text">以下為操作驗證</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用hadoop語法查看目錄權限"><span class="toc-text">使用hadoop語法查看目錄權限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號"><span class="toc-text">使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#建立一個文字檔"><span class="toc-text">建立一個文字檔</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用hadoop語法-上傳至HDFS時-出現錯誤訊息"><span class="toc-text">使用hadoop語法,上傳至HDFS時,出現錯誤訊息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將-user-hadoop權限變更"><span class="toc-text">將/user/hadoop權限變更</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal帳號再傳送一次檔案"><span class="toc-text">使用popal帳號再傳送一次檔案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#觀察檔案是否有上傳至HDFS"><span class="toc-text">觀察檔案是否有上傳至HDFS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將原本權限復原"><span class="toc-text">將原本權限復原</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將test1-txt的擁有者變更成hadoop"><span class="toc-text">將test1.txt的擁有者變更成hadoop</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal使用者變更test1-txt內容"><span class="toc-text">使用popal使用者變更test1.txt內容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將-user-hadoop-test1-txt的擁有者變更"><span class="toc-text">將/user/hadoop/test1.txt的擁有者變更</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal的帳號再變更-user-hadoop-test1-txt"><span class="toc-text">使用popal的帳號再變更/user/hadoop/test1.txt</span></a></li></ol></li></ol>
-</div>
-
-        <h4 id="使用到的HDFS語法整理"><a href="#使用到的HDFS語法整理" class="headerlink" title="使用到的HDFS語法整理"></a>使用到的HDFS語法整理</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls -d /user/hadoop</div><div class="line">hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">hadoop fs -chmod -R 757 /user/hadoop</div><div class="line">hadoop fs -ls  /user/hadoop</div><div class="line">hadoop fs -chown hadoop /user/hadoop/test1.txt</div><div class="line">hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">hadoop fs -cat /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="以下為操作驗證"><a href="#以下為操作驗證" class="headerlink" title="以下為操作驗證"></a>以下為操作驗證</h4><h5 id="使用hadoop語法查看目錄權限"><a href="#使用hadoop語法查看目錄權限" class="headerlink" title="使用hadoop語法查看目錄權限"></a>使用hadoop語法查看目錄權限</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$hadoop fs -ls -d /user/hadoop</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2017-12-27 18:39 /user/hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號"><a href="#使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號" class="headerlink" title="使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號"></a>使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$sudo useradd -m popal</div><div class="line">hadoop@hadoop-master:~$ls -la /home</div><div class="line">hadoop@hadoop-master:~$sudo passwd popal</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="建立一個文字檔"><a href="#建立一個文字檔" class="headerlink" title="建立一個文字檔"></a>建立一個文字檔</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$vi ~/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用hadoop語法-上傳至HDFS時-出現錯誤訊息"><a href="#使用hadoop語法-上傳至HDFS時-出現錯誤訊息" class="headerlink" title="使用hadoop語法,上傳至HDFS時,出現錯誤訊息"></a>使用hadoop語法,上傳至HDFS時,出現錯誤訊息</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">Error:&quot;put: Permission denied: user=popal, access=WRITE, inode=&quot;/user/hadoop&quot;:hadoop:supergroup:drwxr-xr-x&quot;</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將-user-hadoop權限變更"><a href="#將-user-hadoop權限變更" class="headerlink" title="將/user/hadoop權限變更"></a>將/user/hadoop權限變更</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chmod -R 757 /user/hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -ls -d /user/hadoop</div><div class="line">drwxr-xrwx   - hadoop supergroup          0 2017-12-27 18:39 /user/hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用popal帳號再傳送一次檔案"><a href="#使用popal帳號再傳送一次檔案" class="headerlink" title="使用popal帳號再傳送一次檔案"></a>使用popal帳號再傳送一次檔案</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">(沒有任何錯誤訊息,並傳送成功)</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="觀察檔案是否有上傳至HDFS"><a href="#觀察檔案是否有上傳至HDFS" class="headerlink" title="觀察檔案是否有上傳至HDFS"></a>觀察檔案是否有上傳至HDFS</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -ls  /user/hadoop</div><div class="line">-rw-r--r--   3 popal  supergroup         95 2018-01-02 10:43 /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將原本權限復原"><a href="#將原本權限復原" class="headerlink" title="將原本權限復原"></a>將原本權限復原</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chmod -R 755 /user/hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -ls /user/hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將test1-txt的擁有者變更成hadoop"><a href="#將test1-txt的擁有者變更成hadoop" class="headerlink" title="將test1.txt的擁有者變更成hadoop"></a>將test1.txt的擁有者變更成hadoop</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$hadoop fs -chown hadoop /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用popal使用者變更test1-txt內容"><a href="#使用popal使用者變更test1-txt內容" class="headerlink" title="使用popal使用者變更test1.txt內容"></a>使用popal使用者變更test1.txt內容</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">Error&quot;appendToFile: Permission denied: user=popal, access=WRITE, inode=&quot;/user/hadoop/test1.txt&quot;:hadoop:supergroup:-rwxr-xr-x&quot;</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將-user-hadoop-test1-txt的擁有者變更"><a href="#將-user-hadoop-test1-txt的擁有者變更" class="headerlink" title="將/user/hadoop/test1.txt的擁有者變更"></a>將/user/hadoop/test1.txt的擁有者變更</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chown popal /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用popal的帳號再變更-user-hadoop-test1-txt"><a href="#使用popal的帳號再變更-user-hadoop-test1-txt" class="headerlink" title="使用popal的帳號再變更/user/hadoop/test1.txt"></a>使用popal的帳號再變更/user/hadoop/test1.txt</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -cat /user/hadoop/test1.txt</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjc62vbqa0000xgllujq78xlt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjdcfgsmf000t88llphqi2clq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -641,7 +603,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一頁>></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一頁>></a>
   </nav>
 </section>
         
@@ -651,7 +613,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -661,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -674,23 +636,23 @@
       <ul>
         
           <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark - RDD Memo_1</a>
+          </li>
+        
+          <li>
             <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/">hadoop3.0.0 相關服務 Port Number 設定參數</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/">Hadoop3.0.0 NFS Gateway</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/">hadoop archive command Memo</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/04/[hadoop]hadoop_snapshot_cmd/">hdfs snapshot command Memo</a>
           </li>
         
       </ul>

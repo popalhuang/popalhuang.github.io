@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/09/%5Bspark%5Dspark2.2.1_RDD_Memo_1/</loc>
+    
+    <lastmod>2018-01-09T09:34:06.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/09/%5Bhadoop%5DHadoop3.0.0_doc/</loc>
+    
+    <lastmod>2018-01-09T07:11:00.413Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/09/%5Bhadoop%5DHadoop3.0.0_overview/</loc>
+    
+    <lastmod>2018-01-09T05:47:32.641Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/01/09/%5Bhadoop%5Dhadoop3.0.0_quota_cmd/</loc>
+    
+    <lastmod>2018-01-09T05:28:16.705Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/08/%5Bhadoop%5Dhadoop3.0.0_nfs_gateway/</loc>
     
-    <lastmod>2018-01-08T10:40:42.924Z</lastmod>
+    <lastmod>2018-01-09T02:36:54.107Z</lastmod>
     
   </url>
   
@@ -79,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/12/29/%5Bspark2.2%5Dspark2.2.1_Install/</loc>
+    <loc>http://yoursite.com/2017/12/29/%5Bspark%5Dspark2.2.1_Install/</loc>
     
     <lastmod>2018-01-02T06:40:23.190Z</lastmod>
     

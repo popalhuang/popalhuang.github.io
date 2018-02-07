@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/1 | Popal&#39;s Blog</title>
+  <title>Hadoop 3.0.0 Overview | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技術之路學習歷程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Popal's Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/01/index.html">
+  <meta name="description" content="Minimum required Java version increased from Java 7 to Java 8
+Support for erasure coding in HDFS
+YARN Timeline Service v.2
+Shell script rewrite
+Shaded client jars
+Support for Opportunistic Containers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop 3.0.0 Overview">
+<meta property="og:url" content="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="技術之路學習歷程">
+<meta property="og:description" content="Minimum required Java version increased from Java 7 to Java 8
+Support for erasure coding in HDFS
+YARN Timeline Service v.2
+Shell script rewrite
+Shaded client jars
+Support for Opportunistic Containers">
+<meta property="og:updated_time" content="2018-01-09T05:47:32.641Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Popal's Blog">
-<meta name="twitter:description" content="技術之路學習歷程">
+<meta name="twitter:title" content="Hadoop 3.0.0 Overview">
+<meta name="twitter:description" content="Minimum required Java version increased from Java 7 to Java 8
+Support for erasure coding in HDFS
+YARN Timeline Service v.2
+Shell script rewrite
+Shaded client jars
+Support for Opportunistic Containers">
   
   
   
@@ -64,96 +80,78 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" class="archive-article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">Jan 10</time>
+        <section id="main"><article id="post-[hadoop]Hadoop3.0.0_overview" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/10/[hadoop]hadoopMultiDirectoryStore/">Hadoop資料儲存於多個目錄中的模擬測試</a>
+    <h1 class="article-title" itemprop="name">
+      Hadoop 3.0.0 Overview
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/10/[hadoop]Hadoop_CMD/" class="archive-article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">Jan 10</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
+        
+<div id="toc">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/10/[hadoop]Hadoop_CMD/">Hadoop常用命令說明</a>
-    </h1>
-  
+</div>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/10/[hadoop]CreatNewDataNode/" class="archive-article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">Jan 10</time>
-</a>
+        <ol>
+<li>Minimum required Java version increased from Java 7 to Java 8</li>
+<li>Support for erasure coding in HDFS</li>
+<li>YARN Timeline Service v.2</li>
+<li>Shell script rewrite</li>
+<li>Shaded client jars</li>
+<li>Support for Opportunistic Containers and Distributed Scheduling.</li>
+<li>MapReduce task-level native optimization</li>
+<li>Support for more than 2 NameNodes</li>
+<li>Default ports of multiple services have been changed.</li>
+<li>Support for Microsoft Azure Data Lake and Aliyun Object Storage System filesystem connectors</li>
+<li>Intra-datanode balancer</li>
+<li>Reworked daemon and task heap management</li>
+<li>S3Guard: Consistency and Metadata Caching for the S3A filesystem client</li>
+<li>HDFS Router-Based Federation</li>
+<li>API-based configuration of Capacity Scheduler queue configuration</li>
+<li>YARN Resource Types</li>
+</ol>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/08/[Install]BigData/" class="archive-article-date">
-  <time datetime="2017-01-08T10:00:00.000Z" itemprop="datePublished">Jan 8</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="cjdcfgslv000888ll6cwlzcno" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/08/[Install]BigData/">Hadoop Cluster相關環境建置筆記(持續修正中......)</a>
-    </h1>
-  
-
-    </header>
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hadoop3.0.0 Quota</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
