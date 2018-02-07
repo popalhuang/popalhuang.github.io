@@ -131,7 +131,55 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjdcr3qhe00121wllhxf6urkg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjdcr5tw0001270llnvkejsv3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hdfs_ec_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/[hadoop]hdfs_ec_cmd/" class="article-date">
+  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/[hadoop]hdfs_ec_cmd/">hdfs ec command Memo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試"><span class="toc-text">hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)</span></a></li></ol>
+</div>
+
+        <h4 id="hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試"><a href="#hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試" class="headerlink" title="hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)"></a>hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)</h4><blockquote>
+<p>EC相關架構的介紹可以參考網路相關的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div></pre></td><td class="code"><pre><div class="line">Usage: bin/hdfs ec [COMMAND]</div><div class="line">          [-listPolicies]</div><div class="line">          [-addPolicies -policyFile &lt;file&gt;]</div><div class="line">          [-getPolicy -path &lt;path&gt;]</div><div class="line">          [-removePolicy -policy &lt;policy&gt;]</div><div class="line">          [-setPolicy -path &lt;path&gt; [-policy &lt;policy&gt;] [-replicate]]</div><div class="line">          [-unsetPolicy -path &lt;path&gt;]</div><div class="line">          [-listCodecs]</div><div class="line">          [-enablePolicy -policy &lt;policy&gt;]</div><div class="line">          [-disablePolicy -policy &lt;policy&gt;]</div><div class="line">          [-help &lt;command-name&gt;]</div><div class="line"></div><div class="line">##列出所有Erasure Coding可用的相關Policies</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listPolicies</div><div class="line">Erasure Coding Policies:</div><div class="line">ErasureCodingPolicy=[Name=RS-10-4-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=10, numParityUnits=4]], CellSize=1048576, Id=5], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-3-2-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=3, numParityUnits=2]], CellSize=1048576, Id=2], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-6-3-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=1], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-LEGACY-6-3-1024k, Schema=[ECSchema=[Codec=rs-legacy, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=3], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=XOR-2-1-1024k, Schema=[ECSchema=[Codec=xor, numDataUnits=2, numParityUnits=1]], CellSize=1048576, Id=4], State=DISABLED</div><div class="line"></div><div class="line">##列出所有Erasure Coding Codec列表</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listCodecs</div><div class="line">Erasure Coding Codecs: Codec [Coder List]</div><div class="line">        RS [RS_NATIVE, RS_JAVA]</div><div class="line">        RS-LEGACY [RS-LEGACY_JAVA]</div><div class="line">        XOR [XOR_NATIVE, XOR_JAVA]</div><div class="line"></div><div class="line">##Enable XOR-2-1-1024k的EC Policy		</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -enablePolicy -policy XOR-2-1-1024k</div><div class="line">Erasure coding policy XOR-2-1-1024k is enabled</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listPolicies</div><div class="line">Erasure Coding Policies:</div><div class="line">ErasureCodingPolicy=[Name=RS-10-4-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=10, numParityUnits=4]], CellSize=1048576, Id=5], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-3-2-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=3, numParityUnits=2]], CellSize=1048576, Id=2], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-6-3-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=1], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-LEGACY-6-3-1024k, Schema=[ECSchema=[Codec=rs-legacy, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=3], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=XOR-2-1-1024k, Schema=[ECSchema=[Codec=xor, numDataUnits=2, numParityUnits=1]], CellSize=1048576, Id=4], State=ENABLED</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_2</div><div class="line"></div><div class="line">##將目錄設定為XOR-2-1-1024k的EC Policy</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -setPolicy -path /user/hadoop/example/lab_2 -policy XOR-2-1-1024k</div><div class="line">Set erasure coding policy XOR-2-1-1024k on /user/hadoop/example/lab_2</div><div class="line"></div><div class="line">##上傳檔案</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put ~/test9.tar.gz /user/hadoop/example/lab_2</div><div class="line">2018-01-03 15:41:12,678 WARN erasurecode.ErasureCodeNative: ISA-L support is not available in your platform... using builtin-java codec where applicable</div><div class="line">2018-01-03 15:41:12,741 WARN hdfs.DFSOutputStream: Cannot allocate parity block(index=2, policy=XOR-2-1-1024k). Not enough datanodes? Exclude nodes=[]</div><div class="line">2018-01-03 15:41:12,953 WARN hdfs.DFSOutputStream: Block group &lt;1&gt; has 1 corrupt blocks. It&apos;s at high risk of losing data.</div><div class="line"></div><div class="line">##觀察上傳檔案的複本數</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls /user/hadoop/example/lab_2</div><div class="line">Found 1 items</div><div class="line">-rw-r--r--   1 hadoop supergroup        373 2018-01-03 15:41 /user/hadoop/example/lab_2/test9.tar.gz</div><div class="line"></div><div class="line">##以下為使用fsck指令觀察該檔案Block相關訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/example/lab_2/test9.tar.gz -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Fexample%2Flab_2%2Ftest9.tar.gz</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/example/lab_2/test9.tar.gz at Wed Jan 03 15:46:48 CST 2018</div><div class="line">/user/hadoop/example/lab_2/test9.tar.gz 373 bytes, erasure-coded: policy=XOR-2-1-1024k, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346 len=373 Live_repl=2  </div><div class="line">[blk_-9223372036854775776:DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK], </div><div class="line"> blk_-9223372036854775774:DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK]]</div><div class="line"></div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total blocks (validated):      0</div><div class="line"> Minimally replicated blocks:   0</div><div class="line"> Over-replicated blocks:        0</div><div class="line"> Under-replicated blocks:       0</div><div class="line"> Mis-replicated blocks:         0</div><div class="line"> Default replication factor:    1</div><div class="line"> Average block replication:     0.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    373 B</div><div class="line"> Total files:   1</div><div class="line"> Total block groups (validated):        1 (avg. block group size 373 B)</div><div class="line"> Minimally erasure-coded block groups:  1 (100.0 %)</div><div class="line"> Over-erasure-coded block groups:       0 (0.0 %)</div><div class="line"> Under-erasure-coded block groups:      0 (0.0 %)</div><div class="line"> Unsatisfactory placement block groups: 0 (0.0 %)</div><div class="line"> Average block group size:      2.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0 (0.0 %)</div><div class="line">FSCK ended at Wed Jan 03 15:46:48 CST 2018 in 2 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/example/lab_2/test9.tar.gz&apos; is HEALTHY</div><div class="line"></div><div class="line">##以blockId觀察複本狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck -blockId blk_-9223372036854775776</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_-9223372036854775776+&amp;path=%2F</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 15:49:12 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_-9223372036854775776</div><div class="line">Block belongs to: /user/hadoop/example/lab_2/test9.tar.gz</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">null</div><div class="line"></div><div class="line"></div><div class="line">Fsck on blockId &apos;blk_-9223372036854775776</div><div class="line"></div><div class="line">##以下為模擬shutdown 一台Datanode,資料是否還會存在??</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -shutdownDatanode hadoop-slave2:9867</div><div class="line">Submitted a shutdown request to datanode hadoop-slave2:9867</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/example/lab_2/test9.tar.gz -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Fexample%2Flab_2%2Ftest9.tar.gz</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/example/lab_2/test9.tar.gz at Wed Jan 03 16:11:01 CST 2018</div><div class="line">/user/hadoop/example/lab_2/test9.tar.gz 373 bytes, erasure-coded: policy=XOR-2-1-1024k, 1 block(s):  </div><div class="line">Under replicated BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346. </div><div class="line">Target Replicas is 2 but found 1 live replica(s), 0 decommissioned replica(s), 0 decommissioning replica(s).</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346 len=373 Live_repl=1  </div><div class="line">[blk_-9223372036854775776:DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  1</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total blocks (validated):      0</div><div class="line"> Minimally replicated blocks:   0</div><div class="line"> Over-replicated blocks:        0</div><div class="line"> Under-replicated blocks:       0</div><div class="line"> Mis-replicated blocks:         0</div><div class="line"> Default replication factor:    1</div><div class="line"> Average block replication:     0.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    373 B</div><div class="line"> Total files:   1</div><div class="line"> Total block groups (validated):        1 (avg. block group size 373 B)</div><div class="line"> Minimally erasure-coded block groups:  1 (100.0 %)</div><div class="line"> Over-erasure-coded block groups:       0 (0.0 %)</div><div class="line"> Under-erasure-coded block groups:      1 (100.0 %)</div><div class="line"> Unsatisfactory placement block groups: 0 (0.0 %)</div><div class="line"> Average block group size:      1.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       1 (50.0 %)</div><div class="line">FSCK ended at Wed Jan 03 16:11:01 CST 2018 in 3 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/example/lab_2/test9.tar.gz&apos; is HEALTHY</div><div class="line"></div><div class="line">雖然複本數是設定為1,但因為使用的是EC策略,資料仍然是可下載而且資料內容也是正確的</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="cjdcr5tw0001070llx4iv4xl3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +229,90 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjdcr3qhe000y1wllkfpyykkg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjdcr5tw0000y70llga1rwqlm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]Hadoop_permission_memo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/02/[hadoop]Hadoop_permission_memo/" class="article-date">
+  <time datetime="2018-01-01T16:00:00.000Z" itemprop="datePublished">2018-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/02/[hadoop]Hadoop_permission_memo/">Hadoop權限操作說明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用到的HDFS語法整理"><span class="toc-text">使用到的HDFS語法整理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以下為操作驗證"><span class="toc-text">以下為操作驗證</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用hadoop語法查看目錄權限"><span class="toc-text">使用hadoop語法查看目錄權限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號"><span class="toc-text">使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#建立一個文字檔"><span class="toc-text">建立一個文字檔</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用hadoop語法-上傳至HDFS時-出現錯誤訊息"><span class="toc-text">使用hadoop語法,上傳至HDFS時,出現錯誤訊息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將-user-hadoop權限變更"><span class="toc-text">將/user/hadoop權限變更</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal帳號再傳送一次檔案"><span class="toc-text">使用popal帳號再傳送一次檔案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#觀察檔案是否有上傳至HDFS"><span class="toc-text">觀察檔案是否有上傳至HDFS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將原本權限復原"><span class="toc-text">將原本權限復原</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將test1-txt的擁有者變更成hadoop"><span class="toc-text">將test1.txt的擁有者變更成hadoop</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal使用者變更test1-txt內容"><span class="toc-text">使用popal使用者變更test1.txt內容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將-user-hadoop-test1-txt的擁有者變更"><span class="toc-text">將/user/hadoop/test1.txt的擁有者變更</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal的帳號再變更-user-hadoop-test1-txt"><span class="toc-text">使用popal的帳號再變更/user/hadoop/test1.txt</span></a></li></ol></li></ol>
+</div>
+
+        <h4 id="使用到的HDFS語法整理"><a href="#使用到的HDFS語法整理" class="headerlink" title="使用到的HDFS語法整理"></a>使用到的HDFS語法整理</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls -d /user/hadoop</div><div class="line">hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">hadoop fs -chmod -R 757 /user/hadoop</div><div class="line">hadoop fs -ls  /user/hadoop</div><div class="line">hadoop fs -chown hadoop /user/hadoop/test1.txt</div><div class="line">hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">hadoop fs -cat /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="以下為操作驗證"><a href="#以下為操作驗證" class="headerlink" title="以下為操作驗證"></a>以下為操作驗證</h4><h5 id="使用hadoop語法查看目錄權限"><a href="#使用hadoop語法查看目錄權限" class="headerlink" title="使用hadoop語法查看目錄權限"></a>使用hadoop語法查看目錄權限</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$hadoop fs -ls -d /user/hadoop</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2017-12-27 18:39 /user/hadoop</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號"><a href="#使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號" class="headerlink" title="使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號"></a>使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$sudo useradd -m popal</div><div class="line">hadoop@hadoop-master:~$ls -la /home</div><div class="line">hadoop@hadoop-master:~$sudo passwd popal</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="建立一個文字檔"><a href="#建立一個文字檔" class="headerlink" title="建立一個文字檔"></a>建立一個文字檔</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$vi ~/test1.txt</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="使用hadoop語法-上傳至HDFS時-出現錯誤訊息"><a href="#使用hadoop語法-上傳至HDFS時-出現錯誤訊息" class="headerlink" title="使用hadoop語法,上傳至HDFS時,出現錯誤訊息"></a>使用hadoop語法,上傳至HDFS時,出現錯誤訊息</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">Error:&quot;put: Permission denied: user=popal, access=WRITE, inode=&quot;/user/hadoop&quot;:hadoop:supergroup:drwxr-xr-x&quot;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="將-user-hadoop權限變更"><a href="#將-user-hadoop權限變更" class="headerlink" title="將/user/hadoop權限變更"></a>將/user/hadoop權限變更</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chmod -R 757 /user/hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -ls -d /user/hadoop</div><div class="line">drwxr-xrwx   - hadoop supergroup          0 2017-12-27 18:39 /user/hadoop</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="使用popal帳號再傳送一次檔案"><a href="#使用popal帳號再傳送一次檔案" class="headerlink" title="使用popal帳號再傳送一次檔案"></a>使用popal帳號再傳送一次檔案</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">(沒有任何錯誤訊息,並傳送成功)</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="觀察檔案是否有上傳至HDFS"><a href="#觀察檔案是否有上傳至HDFS" class="headerlink" title="觀察檔案是否有上傳至HDFS"></a>觀察檔案是否有上傳至HDFS</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -ls  /user/hadoop</div><div class="line">-rw-r--r--   3 popal  supergroup         95 2018-01-02 10:43 /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="將原本權限復原"><a href="#將原本權限復原" class="headerlink" title="將原本權限復原"></a>將原本權限復原</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chmod -R 755 /user/hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -ls /user/hadoop</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="將test1-txt的擁有者變更成hadoop"><a href="#將test1-txt的擁有者變更成hadoop" class="headerlink" title="將test1.txt的擁有者變更成hadoop"></a>將test1.txt的擁有者變更成hadoop</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$hadoop fs -chown hadoop /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="使用popal使用者變更test1-txt內容"><a href="#使用popal使用者變更test1-txt內容" class="headerlink" title="使用popal使用者變更test1.txt內容"></a>使用popal使用者變更test1.txt內容</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">Error&quot;appendToFile: Permission denied: user=popal, access=WRITE, inode=&quot;/user/hadoop/test1.txt&quot;:hadoop:supergroup:-rwxr-xr-x&quot;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="將-user-hadoop-test1-txt的擁有者變更"><a href="#將-user-hadoop-test1-txt的擁有者變更" class="headerlink" title="將/user/hadoop/test1.txt的擁有者變更"></a>將/user/hadoop/test1.txt的擁有者變更</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chown popal /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="使用popal的帳號再變更-user-hadoop-test1-txt"><a href="#使用popal的帳號再變更-user-hadoop-test1-txt" class="headerlink" title="使用popal的帳號再變更/user/hadoop/test1.txt"></a>使用popal的帳號再變更/user/hadoop/test1.txt</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -cat /user/hadoop/test1.txt</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjdcr5tv6000f70ll6gy08ptz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -271,90 +402,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]hadoop_fs_cmd/" data-id="cjdcr3qhe000w1wlli1did2xy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]Hadoop_permission_memo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/[hadoop]Hadoop_permission_memo/" class="article-date">
-  <time datetime="2018-01-01T16:00:00.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/[hadoop]Hadoop_permission_memo/">Hadoop權限操作說明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用到的HDFS語法整理"><span class="toc-text">使用到的HDFS語法整理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以下為操作驗證"><span class="toc-text">以下為操作驗證</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用hadoop語法查看目錄權限"><span class="toc-text">使用hadoop語法查看目錄權限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號"><span class="toc-text">使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#建立一個文字檔"><span class="toc-text">建立一個文字檔</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用hadoop語法-上傳至HDFS時-出現錯誤訊息"><span class="toc-text">使用hadoop語法,上傳至HDFS時,出現錯誤訊息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將-user-hadoop權限變更"><span class="toc-text">將/user/hadoop權限變更</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal帳號再傳送一次檔案"><span class="toc-text">使用popal帳號再傳送一次檔案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#觀察檔案是否有上傳至HDFS"><span class="toc-text">觀察檔案是否有上傳至HDFS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將原本權限復原"><span class="toc-text">將原本權限復原</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將test1-txt的擁有者變更成hadoop"><span class="toc-text">將test1.txt的擁有者變更成hadoop</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal使用者變更test1-txt內容"><span class="toc-text">使用popal使用者變更test1.txt內容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#將-user-hadoop-test1-txt的擁有者變更"><span class="toc-text">將/user/hadoop/test1.txt的擁有者變更</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用popal的帳號再變更-user-hadoop-test1-txt"><span class="toc-text">使用popal的帳號再變更/user/hadoop/test1.txt</span></a></li></ol></li></ol>
-</div>
-
-        <h4 id="使用到的HDFS語法整理"><a href="#使用到的HDFS語法整理" class="headerlink" title="使用到的HDFS語法整理"></a>使用到的HDFS語法整理</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls -d /user/hadoop</div><div class="line">hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">hadoop fs -chmod -R 757 /user/hadoop</div><div class="line">hadoop fs -ls  /user/hadoop</div><div class="line">hadoop fs -chown hadoop /user/hadoop/test1.txt</div><div class="line">hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">hadoop fs -cat /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="以下為操作驗證"><a href="#以下為操作驗證" class="headerlink" title="以下為操作驗證"></a>以下為操作驗證</h4><h5 id="使用hadoop語法查看目錄權限"><a href="#使用hadoop語法查看目錄權限" class="headerlink" title="使用hadoop語法查看目錄權限"></a>使用hadoop語法查看目錄權限</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$hadoop fs -ls -d /user/hadoop</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2017-12-27 18:39 /user/hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號"><a href="#使用putty-以hadoop帳號-登入-hadoop-master主機建立一個新帳號" class="headerlink" title="使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號"></a>使用putty(以hadoop帳號)登入,hadoop-master主機建立一個新帳號</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$sudo useradd -m popal</div><div class="line">hadoop@hadoop-master:~$ls -la /home</div><div class="line">hadoop@hadoop-master:~$sudo passwd popal</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="建立一個文字檔"><a href="#建立一個文字檔" class="headerlink" title="建立一個文字檔"></a>建立一個文字檔</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$vi ~/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用hadoop語法-上傳至HDFS時-出現錯誤訊息"><a href="#使用hadoop語法-上傳至HDFS時-出現錯誤訊息" class="headerlink" title="使用hadoop語法,上傳至HDFS時,出現錯誤訊息"></a>使用hadoop語法,上傳至HDFS時,出現錯誤訊息</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">Error:&quot;put: Permission denied: user=popal, access=WRITE, inode=&quot;/user/hadoop&quot;:hadoop:supergroup:drwxr-xr-x&quot;</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將-user-hadoop權限變更"><a href="#將-user-hadoop權限變更" class="headerlink" title="將/user/hadoop權限變更"></a>將/user/hadoop權限變更</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chmod -R 757 /user/hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -ls -d /user/hadoop</div><div class="line">drwxr-xrwx   - hadoop supergroup          0 2017-12-27 18:39 /user/hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用popal帳號再傳送一次檔案"><a href="#使用popal帳號再傳送一次檔案" class="headerlink" title="使用popal帳號再傳送一次檔案"></a>使用popal帳號再傳送一次檔案</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -put ~/test1.txt /user/hadoop</div><div class="line">(沒有任何錯誤訊息,並傳送成功)</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="觀察檔案是否有上傳至HDFS"><a href="#觀察檔案是否有上傳至HDFS" class="headerlink" title="觀察檔案是否有上傳至HDFS"></a>觀察檔案是否有上傳至HDFS</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -ls  /user/hadoop</div><div class="line">-rw-r--r--   3 popal  supergroup         95 2018-01-02 10:43 /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將原本權限復原"><a href="#將原本權限復原" class="headerlink" title="將原本權限復原"></a>將原本權限復原</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chmod -R 755 /user/hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -ls /user/hadoop</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將test1-txt的擁有者變更成hadoop"><a href="#將test1-txt的擁有者變更成hadoop" class="headerlink" title="將test1.txt的擁有者變更成hadoop"></a>將test1.txt的擁有者變更成hadoop</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$hadoop fs -chown hadoop /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用popal使用者變更test1-txt內容"><a href="#使用popal使用者變更test1-txt內容" class="headerlink" title="使用popal使用者變更test1.txt內容"></a>使用popal使用者變更test1.txt內容</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">Error&quot;appendToFile: Permission denied: user=popal, access=WRITE, inode=&quot;/user/hadoop/test1.txt&quot;:hadoop:supergroup:-rwxr-xr-x&quot;</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="將-user-hadoop-test1-txt的擁有者變更"><a href="#將-user-hadoop-test1-txt的擁有者變更" class="headerlink" title="將/user/hadoop/test1.txt的擁有者變更"></a>將/user/hadoop/test1.txt的擁有者變更</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">popal@hadoop-master:~$su - hadoop</div><div class="line">hadoop@hadoop-master:~$hadoop fs -chown popal /user/hadoop/test1.txt</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="使用popal的帳號再變更-user-hadoop-test1-txt"><a href="#使用popal的帳號再變更-user-hadoop-test1-txt" class="headerlink" title="使用popal的帳號再變更/user/hadoop/test1.txt"></a>使用popal的帳號再變更/user/hadoop/test1.txt</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$su - popal</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -appendToFile - /user/hadoop/test1.txt</div><div class="line">popal@hadoop-master:~$/bgdt/hadoop-3.0.0/bin/hadoop fs -cat /user/hadoop/test1.txt</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjdcr3qgu000e1wllkztrbtgs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/[hadoop]hadoop_fs_cmd/" data-id="cjdcr5tvq000w70llldj01iw5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -447,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/29/[spark]spark2.2.1_Install/" data-id="cjdcr3qho001e1wllm2k93bsi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/29/[spark]spark2.2.1_Install/" data-id="cjdcr5twa001f70ll9cj2l3m1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -543,7 +591,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjdcr3qho00181wlle2zrac6b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjdcr5twa001870llio0lpbbw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -736,7 +784,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjdcr3qh4000q1wllmphaf2ia" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjdcr5tvg000q70llg6zfb6nb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -800,7 +848,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjdcr3qfg00041wll145mudns" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjdcr5tuw000570ll1akv639t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -864,70 +912,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjdcr3qho001d1wll62k0um6o" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hive]hive_sql_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/06/[hive]hive_sql_1/" class="article-date">
-  <time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/06/[hive]hive_sql_1/">Hive相關語法整理-1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Database"><span class="toc-text">Create Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Database"><span class="toc-text">Alter Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Database"><span class="toc-text">Show Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desc-Database"><span class="toc-text">Desc Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Database"><span class="toc-text">Use Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drop-Database"><span class="toc-text">Drop Database</span></a></li></ol>
-</div>
-
-        <h2 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h2><blockquote>
-<p>create (database|schema) [if not exists] database_name<br> [comment database_comment]<br> [location hdfs_path]<br> [with dbproperties (property_name=property_value, …)];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create database test1;</div><div class="line"></div><div class="line">create database if not exists test1;</div><div class="line"></div><div class="line">create database if not exists mydatabase</div><div class="line">with dbproperties(&apos;Experiment Name&apos; = &apos;Correlation age/sentiment&apos;,</div><div class="line">&apos;date&apos; = &apos;2013-07-11&apos;,</div><div class="line">&apos;Lead Developer&apos; = &apos;John Foo&apos;,</div><div class="line">&apos;Lead Developer Email&apos; = &apos;jfoo@somewhere.com&apos;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Alter-Database"><a href="#Alter-Database" class="headerlink" title="Alter Database"></a>Alter Database</h2><blockquote>
-<p>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, …);<br>  ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;<br>  ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line"> alter database mydatabase set dbproperties(&quot;date&quot;=&quot;2017-11-06&quot;);</div><div class="line"> alter database mydatabase set dbproperties(&quot;test&quot;=&quot;2017-11-06&quot;);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Show-Database"><a href="#Show-Database" class="headerlink" title="Show Database"></a>Show Database</h2><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">show databases;</div><div class="line">show databases like &quot;test*&quot;;</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Desc-Database"><a href="#Desc-Database" class="headerlink" title="Desc Database"></a>Desc Database</h2><blockquote>
-<p>describe database [extended] db_name;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">desc database test_db;</div><div class="line">desc database extended test_db;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Use-Database"><a href="#Use-Database" class="headerlink" title="Use Database"></a>Use Database</h2><blockquote>
-<p>use db_name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">use test1;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Drop-Database"><a href="#Drop-Database" class="headerlink" title="Drop Database"></a>Drop Database</h2><blockquote>
-<p>drop (database|schema) [if exists] database_name [restrict|cascade];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">drop database if exists test_db;	##Database內有Table的話無法drop,必須是要空的Database</div><div class="line">drop database test_db cascade;		##Database刪除時會Database內所有的Table資料一併刪除</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/06/[hive]hive_sql_1/" data-id="cjdcr3qho001a1wlll9014wmn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjdcr5twa001d70llu6svvz7l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -940,7 +925,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/"><<前一頁</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一頁>></a>
+    <a class="extend prev" rel="prev" href="/"><<前一頁</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一頁>></a>
   </nav>
 </section>
         
@@ -950,7 +935,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -960,7 +945,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -973,7 +958,7 @@
       <ul>
         
           <li>
-            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
           </li>
         
           <li>
@@ -981,15 +966,15 @@
           </li>
         
           <li>
-            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
           </li>
         
           <li>
             <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/">hadoop3.0.0 相關服務 Port Number 設定參數</a>
           </li>
         
       </ul>
