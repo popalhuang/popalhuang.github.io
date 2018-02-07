@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2018/01/09/%5Bspark%5Dspark2.2.1_RDD_Memo_1/</loc>
-    
-    <lastmod>2018-02-07T02:13:45.308Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/01/09/%5Bhadoop%5DHadoop3.0.0_doc/</loc>
     
     <lastmod>2018-01-09T07:11:00.413Z</lastmod>
@@ -103,20 +96,6 @@
     <loc>http://yoursite.com/2017/12/08/%5Bexcel%5DExcel_skill/</loc>
     
     <lastmod>2018-01-02T06:40:53.736Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/12/29/%5Bspark%5Dspark2.2.1_Install/</loc>
-    
-    <lastmod>2018-01-02T06:40:23.190Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/05/22/%5Bspark%5Dspark_001/</loc>
-    
-    <lastmod>2018-01-02T06:40:19.019Z</lastmod>
     
   </url>
   
