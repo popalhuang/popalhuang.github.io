@@ -55,7 +55,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -65,6 +65,127 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-[hadoop]hadoop_fsck_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/[hadoop]hadoop_fsck_cmd/" class="article-date">
+  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/[hadoop]hadoop_fsck_cmd/">hdfs fsck command Memo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hadoop-fsck使用方式"><span class="toc-text">hadoop fsck使用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-fsck-相關參數操作說明"><span class="toc-text">hdfs fsck 相關參數操作說明</span></a></li></ol>
+</div>
+
+        <h4 id="hadoop-fsck使用方式"><a href="#hadoop-fsck使用方式" class="headerlink" title="hadoop fsck使用方式"></a>hadoop fsck使用方式</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:15:13 CST 2018</div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    133 B</div><div class="line"> Total files:   1</div><div class="line"> Total blocks (validated):      1 (avg. block size 133 B)</div><div class="line"> Minimally replicated blocks:   1 (100.0 %)</div><div class="line"> Over-replicated blocks:        0 (0.0 %)</div><div class="line"> Under-replicated blocks:       0 (0.0 %)</div><div class="line"> Mis-replicated blocks:         0 (0.0 %)</div><div class="line"> Default replication factor:    2</div><div class="line"> Average block replication:     2.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0 (0.0 %)</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total block groups (validated):        0</div><div class="line"> Minimally erasure-coded block groups:  0</div><div class="line"> Over-erasure-coded block groups:       0</div><div class="line"> Under-erasure-coded block groups:      0</div><div class="line"> Unsatisfactory placement block groups: 0</div><div class="line"> Average block group size:      0.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0</div><div class="line">FSCK ended at Wed Jan 03 13:15:13 CST 2018 in 1 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; is HEALTHY</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="hdfs-fsck-相關參數操作說明"><a href="#hdfs-fsck-相關參數操作說明" class="headerlink" title="hdfs fsck 相關參數操作說明"></a>hdfs fsck 相關參數操作說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">##檢查並列出所有文件的狀態</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:17:02 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line"></div><div class="line">##列出所有Blocks資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:18:46 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2</div><div class="line"></div><div class="line">##列出所有Blocks的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:19:53 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK], </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line">##列出檔案所有的訊息包含Rack位置</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations -racks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;racks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Thu Jan 04 18:43:12 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  [/default-rack/192.168.51.5:9866, /default-rack/192.168.51.6:9866]</div><div class="line"></div><div class="line"></div><div class="line">##列出所有完整的replication的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -replicaDetails</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;replicadetails=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:21:56 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK](LIVE), </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK](LIVE)]</div><div class="line"></div><div class="line">##查看文件中損壞Blocks的狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -list-corruptfileblocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;listcorruptfileblocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; has 0 CORRUPT files</div><div class="line"></div><div class="line">##列出指定的block的詳細資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -blockId blk_1073743138</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_1073743138+&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 13:34:40 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_1073743138</div><div class="line">Block belongs to: /user/hadoop/test1.txt</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">Block replica on datanode/rack: hadoop-slave1/default-rack is HEALTHY</div><div class="line">Block replica on datanode/rack: hadoop-slave2/default-rack is HEALTHY</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjhpwoi0s000ygwll08y9ml5j" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hdfs_other_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/[hadoop]hdfs_other_cmd/" class="article-date">
+  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/[hadoop]hdfs_other_cmd/">hdfs client command Memo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-getconf相關用法"><span class="toc-text">hdfs getconf相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-envvars相關用法"><span class="toc-text">hdfs envvars相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-classpath相關用法"><span class="toc-text">hdfs classpath相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-version相關用法"><span class="toc-text">hdfs version相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-groups相關用法"><span class="toc-text">hdfs groups相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-conftest"><span class="toc-text">hadoop conftest</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-jnipath"><span class="toc-text">hadoop jnipath</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-checknative"><span class="toc-text">hadoop checknative</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#hadoop-daemonlog"><span class="toc-text">hadoop daemonlog</span></a></li></ol></li></ol>
+</div>
+
+        <h5 id="hdfs-getconf相關用法"><a href="#hdfs-getconf相關用法" class="headerlink" title="hdfs getconf相關用法"></a>hdfs getconf相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Usage:</div><div class="line">hadoop getconf</div><div class="line">        [-namenodes]            gets list of namenodes in the cluster.</div><div class="line">        [-secondaryNameNodes]   gets list of secondary namenodes in the cluster.</div><div class="line">        [-backupNodes]          gets list of backup nodes in the cluster.</div><div class="line">        [-includeFile]          gets the include file path that defines the datanodes that can join the cluster.</div><div class="line">        [-excludeFile]          gets the exclude file path that defines the datanodes that need to decommissioned.</div><div class="line">        [-nnRpcAddresses]       gets the namenode rpc addresses</div><div class="line">        [-confKey [key]]		gets a specific key from the configuration</div><div class="line">---</div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -namenodes</div><div class="line">hadoop-master</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -secondaryNameNodes</div><div class="line">hadoop-master</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -backupNodes</div><div class="line">0.0.0.0</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -nnRpcAddresses</div><div class="line">hadoop-master:8020</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -includeFile</div><div class="line">Configuration dfs.hosts is missing.</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -excludeFile</div><div class="line">Configuration dfs.hosts.exclude is missing.</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -confKey &quot;fs.trash.interval&quot;</div><div class="line">1440</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-envvars相關用法"><a href="#hdfs-envvars相關用法" class="headerlink" title="hdfs envvars相關用法"></a>hdfs envvars相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs envvars</div><div class="line">JAVA_HOME=&apos;/bgdt/java/jdk1.8.0_101&apos;</div><div class="line">HADOOP_HDFS_HOME=&apos;/bgdt/hadoop-3.0.0&apos;</div><div class="line">HDFS_DIR=&apos;share/hadoop/hdfs&apos;</div><div class="line">HDFS_LIB_JARS_DIR=&apos;share/hadoop/hdfs/lib&apos;</div><div class="line">HADOOP_CONF_DIR=&apos;/bgdt/hadoop-3.0.0/etc/hadoop&apos;</div><div class="line">HADOOP_TOOLS_HOME=&apos;/bgdt/hadoop-3.0.0&apos;</div><div class="line">HADOOP_TOOLS_DIR=&apos;share/hadoop/tools&apos;</div><div class="line">HADOOP_TOOLS_LIB_JARS_DIR=&apos;share/hadoop/tools/lib&apos;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-classpath相關用法"><a href="#hdfs-classpath相關用法" class="headerlink" title="hdfs classpath相關用法"></a>hdfs classpath相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs classpath</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop:/bgdt/hadoop-3.0.0/share/hadoop/common/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/common/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/mapreduce/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/mapreduce/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/hadoop-yarn-api-3.0.0</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-version相關用法"><a href="#hdfs-version相關用法" class="headerlink" title="hdfs version相關用法"></a>hdfs version相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs version</div><div class="line">Hadoop 3.0.0</div><div class="line">Source code repository https://git-wip-us.apache.org/repos/asf/hadoop.git -r c25427ceca461ee979d30edd7a4b0f50718e6533</div><div class="line">Compiled by andrew on 2017-12-08T19:16Z</div><div class="line">Compiled with protoc 2.5.0</div><div class="line">From source with checksum 397832cb5529187dc8cd74ad54ff22</div><div class="line">This command was run using /bgdt/hadoop-3.0.0/share/hadoop/common/hadoop-common-3.0.0.jar</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-groups相關用法"><a href="#hdfs-groups相關用法" class="headerlink" title="hdfs groups相關用法"></a>hdfs groups相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs groups</div><div class="line">hadoop : hadoop</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-conftest"><a href="#hadoop-conftest" class="headerlink" title="hadoop conftest"></a>hadoop conftest</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop conftest</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/hadoop-policy.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/yarn-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/hdfs-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/core-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/mapred-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/capacity-scheduler.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/kms-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/httpfs-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/kms-acls.xml: valid</div><div class="line">OK</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-jnipath"><a href="#hadoop-jnipath" class="headerlink" title="hadoop jnipath"></a>hadoop jnipath</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop jnipath</div><div class="line">/bgdt/hadoop-3.0.0/lib/native</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-checknative"><a href="#hadoop-checknative" class="headerlink" title="hadoop checknative"></a>hadoop checknative</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop checknative</div><div class="line">2018-01-04 17:18:04,659 INFO bzip2.Bzip2Factory: Successfully loaded &amp; initialized native-bzip2 library system-native</div><div class="line">2018-01-04 17:18:04,667 INFO zlib.ZlibFactory: Successfully loaded &amp; initialized native-zlib library</div><div class="line">2018-01-04 17:18:04,682 ERROR snappy.SnappyCompressor: failed to load SnappyCompressor</div><div class="line">java.lang.UnsatisfiedLinkError: Cannot load libsnappy.so.1 (libsnappy.so.1: cannot open shared object file: No such file or directory)!</div><div class="line">        at org.apache.hadoop.io.compress.snappy.SnappyCompressor.initIDs(Native Method)</div><div class="line">        at org.apache.hadoop.io.compress.snappy.SnappyCompressor.&lt;clinit&gt;(SnappyCompressor.java:57)</div><div class="line">        at org.apache.hadoop.io.compress.SnappyCodec.isNativeCodeLoaded(SnappyCodec.java:82)</div><div class="line">        at org.apache.hadoop.util.NativeLibraryChecker.main(NativeLibraryChecker.java:100)</div><div class="line">2018-01-04 17:18:04,691 WARN erasurecode.ErasureCodeNative: ISA-L support is not available in your platform... using builtin-java codec where applicable</div><div class="line">Native library checking:</div><div class="line">hadoop:  true /bgdt/hadoop-3.0.0/lib/native/libhadoop.so.1.0.0</div><div class="line">zlib:    true /lib/x86_64-linux-gnu/libz.so.1</div><div class="line">zstd  :  false</div><div class="line">snappy:  false</div><div class="line">lz4:     true revision:10301</div><div class="line">bzip2:   true /lib/x86_64-linux-gnu/libbz2.so.1</div><div class="line">openssl: false Cannot load libcrypto.so (libcrypto.so: cannot open shared object file: No such file or directory)!</div><div class="line">ISA-L:   false libhadoop was built without ISA-L support</div></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="hadoop-daemonlog"><a href="#hadoop-daemonlog" class="headerlink" title="hadoop daemonlog"></a>hadoop daemonlog</h6><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">##取得Class Log Level級別</div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -getlevel hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Effective Level: INFO</div><div class="line"></div><div class="line">##設定Class Log Level級別</div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -setlevel  hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager DEBUG</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager&amp;level=DEBUG</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Submitted Level: DEBUG</div><div class="line">Setting Level to DEBUG ...</div><div class="line">Effective Level: DEBUG</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -getlevel hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Effective Level: DEBUG</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_other_cmd/" data-id="cjhpwoi0u0012gwllpdtuisgv" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-[hadoop]hdfs_dfsadmin_cmd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -131,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjdcr5tw0001270llnvkejsv3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjhpwoi0z0016gwll3jkv1aow" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -179,57 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="cjdcr5tw0001070llx4iv4xl3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoop_fsck_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/03/[hadoop]hadoop_fsck_cmd/" class="article-date">
-  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/[hadoop]hadoop_fsck_cmd/">hdfs fsck command Memo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hadoop-fsck使用方式"><span class="toc-text">hadoop fsck使用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-fsck-相關參數操作說明"><span class="toc-text">hdfs fsck 相關參數操作說明</span></a></li></ol>
-</div>
-
-        <h4 id="hadoop-fsck使用方式"><a href="#hadoop-fsck使用方式" class="headerlink" title="hadoop fsck使用方式"></a>hadoop fsck使用方式</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:15:13 CST 2018</div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    133 B</div><div class="line"> Total files:   1</div><div class="line"> Total blocks (validated):      1 (avg. block size 133 B)</div><div class="line"> Minimally replicated blocks:   1 (100.0 %)</div><div class="line"> Over-replicated blocks:        0 (0.0 %)</div><div class="line"> Under-replicated blocks:       0 (0.0 %)</div><div class="line"> Mis-replicated blocks:         0 (0.0 %)</div><div class="line"> Default replication factor:    2</div><div class="line"> Average block replication:     2.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0 (0.0 %)</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total block groups (validated):        0</div><div class="line"> Minimally erasure-coded block groups:  0</div><div class="line"> Over-erasure-coded block groups:       0</div><div class="line"> Under-erasure-coded block groups:      0</div><div class="line"> Unsatisfactory placement block groups: 0</div><div class="line"> Average block group size:      0.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0</div><div class="line">FSCK ended at Wed Jan 03 13:15:13 CST 2018 in 1 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; is HEALTHY</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="hdfs-fsck-相關參數操作說明"><a href="#hdfs-fsck-相關參數操作說明" class="headerlink" title="hdfs fsck 相關參數操作說明"></a>hdfs fsck 相關參數操作說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">##檢查並列出所有文件的狀態</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:17:02 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line"></div><div class="line">##列出所有Blocks資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:18:46 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2</div><div class="line"></div><div class="line">##列出所有Blocks的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:19:53 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK], </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line">##列出檔案所有的訊息包含Rack位置</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations -racks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;racks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Thu Jan 04 18:43:12 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  [/default-rack/192.168.51.5:9866, /default-rack/192.168.51.6:9866]</div><div class="line"></div><div class="line"></div><div class="line">##列出所有完整的replication的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -replicaDetails</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;replicadetails=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:21:56 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK](LIVE), </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK](LIVE)]</div><div class="line"></div><div class="line">##查看文件中損壞Blocks的狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -list-corruptfileblocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;listcorruptfileblocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; has 0 CORRUPT files</div><div class="line"></div><div class="line">##列出指定的block的詳細資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -blockId blk_1073743138</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_1073743138+&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 13:34:40 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_1073743138</div><div class="line">Block belongs to: /user/hadoop/test1.txt</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">Block replica on datanode/rack: hadoop-slave1/default-rack is HEALTHY</div><div class="line">Block replica on datanode/rack: hadoop-slave2/default-rack is HEALTHY</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjdcr5tw0000y70llga1rwqlm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="cjhpwoi0t0010gwll6txx4aul" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -312,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjdcr5tv6000f70ll6gy08ptz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjhpwoi01000agwllypyok224" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -402,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]hadoop_fs_cmd/" data-id="cjdcr5tvq000w70llldj01iw5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/[hadoop]hadoop_fs_cmd/" data-id="cjhpwoi0q000wgwlla8n5usa2" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -495,7 +566,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/29/[spark]spark2.2.1_Install/" data-id="cjdcr5twa001f70ll9cj2l3m1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/29/[spark]spark2.2.1_Install/" data-id="cjhpwoi19001lgwll3pyv2950" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -591,7 +662,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjdcr5twa001870llio0lpbbw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjhpwoi0w0014gwlle4btic8y" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -784,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjdcr5tvg000q70llg6zfb6nb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjhpwoi0g000mgwll60az54ul" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -848,71 +919,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjdcr5tuw000570ll1akv639t" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hive]hive_sql_3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/07/[hive]hive_sql_3/" class="article-date">
-  <time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished">2017-11-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hive/">hive</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/07/[hive]hive_sql_3/">Hive相關語法整理-3(Partition Table)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Partition-Table"><span class="toc-text">Create Partition Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alter-Partition"><span class="toc-text">Alter Partition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Partition"><span class="toc-text">Add Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rename-Partition"><span class="toc-text">Rename Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exchange-Partition"><span class="toc-text">Exchange Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Drop-Partition"><span class="toc-text">Drop Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-Partition"><span class="toc-text">Show Partition</span></a></li></ol></li></ol>
-</div>
-
-        <h2 id="Create-Partition-Table"><a href="#Create-Partition-Table" class="headerlink" title="Create Partition Table"></a>Create Partition Table</h2><blockquote>
-<p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  [(col_name data_type [COMMENT col_comment], … [constraint_specification])]<br>  [COMMENT table_comment]<br>  [PARTITIONED BY (col_name data_type [COMMENT col_comment], …)]<br>  [<br>   [ROW FORMAT row_format]<br>   [STORED AS file_format]<br>     | STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)]<br>  ]<br>  [LOCATION hdfs_path]<br>  [TBLPROPERTIES (property_name=property_value, …)]<br>  [AS select_statement];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">create table page_view_7(</div><div class="line">  viewTime int, </div><div class="line">  userid bigint,</div><div class="line">  page_url string, </div><div class="line">  referrer_url string,</div><div class="line">  ip string)</div><div class="line">partitioned by(dt string, country string)</div><div class="line">row format delimited</div><div class="line">   fields terminated by &apos;,&apos;</div><div class="line">stored as textfile;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<hr>
-<h2 id="Alter-Partition"><a href="#Alter-Partition" class="headerlink" title="Alter Partition"></a>Alter Partition</h2><h3 id="Add-Partition"><a href="#Add-Partition" class="headerlink" title="Add Partition"></a>Add Partition</h3><blockquote>
-<p>ALTER TABLE table_name ADD [IF NOT EXISTS]<br>  PARTITION partition_spec [LOCATION ‘location’][, PARTITION partition_spec [LOCATION ‘location’], …];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">ALTER TABLE page_view_7 ADD PARTITION (dt=&apos;2008-08-08&apos;, country=&apos;us&apos;);</div><div class="line">ALTER TABLE page_view_7 ADD PARTITION (dt=&apos;2017-11-01&apos;, country=&apos;us&apos;) location &quot;/user/hadoop/data/page_view_7/partitions&quot;;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<hr>
-<h3 id="Rename-Partition"><a href="#Rename-Partition" class="headerlink" title="Rename Partition"></a>Rename Partition</h3><blockquote>
-<p>ALTER TABLE table_name PARTITION partition_spec RENAME TO PARTITION partition_spec;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">alter table page_view_7 partition (dt=&quot;2017-11-07&quot;,country=&quot;taiwan&quot;) rename to partition (dt=&quot;test_2017-11-07&quot;,country=&quot;taiwan&quot;);</div><div class="line"></div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">dt=2017-11-01/country=us</div><div class="line">dt=test_2017-11-07/country=taiwan</div><div class="line">Time taken: 0.054 seconds, Fetched: 8 row(s)</div></pre></td></tr></table></figure></p>
-</blockquote>
-<hr>
-<h3 id="Exchange-Partition"><a href="#Exchange-Partition" class="headerlink" title="Exchange Partition"></a>Exchange Partition</h3><blockquote>
-<p>ALTER TABLE table_name_2 EXCHANGE PARTITION (partition_spec) WITH TABLE table_name_1;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">alter table pv_7 exchange partition (dt=&quot;test_2017-11-07&quot;,country=&quot;taiwan&quot;) with table page_view_7;</div><div class="line"></div><div class="line">Demo:</div><div class="line">hive&gt; create table pv_7 like page_view_7;</div><div class="line">OK</div><div class="line">Time taken: 0.59 seconds</div><div class="line">hive&gt; alter table pv_7 exchange partition (dt=&quot;test_2017-11-07&quot;,country=&quot;taiwan&quot;) with table page_view_7;</div><div class="line">OK</div><div class="line">Time taken: 0.297 seconds</div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">dt=2017-11-01/country=us</div><div class="line">Time taken: 0.058 seconds, Fetched: 7 row(s)</div><div class="line">hive&gt; show partitions pv_7;</div><div class="line">OK</div><div class="line">dt=test_2017-11-07/country=taiwan</div><div class="line">Time taken: 0.055 seconds, Fetched: 1 row(s)</div></pre></td></tr></table></figure></p>
-</blockquote>
-<hr>
-<h3 id="Drop-Partition"><a href="#Drop-Partition" class="headerlink" title="Drop Partition"></a>Drop Partition</h3><blockquote>
-<p>ALTER TABLE table_name DROP [IF EXISTS] PARTITION partition_spec[, PARTITION partition_spec, …]<br>  [IGNORE PROTECTION] [PURGE];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Example:</div><div class="line">alter table page_view_7 drop if exists partition (dt=&quot;2017-11-01&quot;,country=&quot;us&quot;);</div><div class="line"></div><div class="line">Demo:</div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">dt=2017-11-01/country=us</div><div class="line">Time taken: 0.054 seconds, Fetched: 7 row(s)</div><div class="line">hive&gt; alter table page_view_7 drop if exists partition (dt=&quot;2017-11-01&quot;,country=&quot;us&quot;);</div><div class="line">Dropped the partition dt=2017-11-01/country=us</div><div class="line">OK</div><div class="line">Time taken: 0.36 seconds</div><div class="line">hive&gt; show partitions page_view_7;</div><div class="line">OK</div><div class="line">dt=2008-08-08/country=Taiwan</div><div class="line">dt=2008-08-08/country=us</div><div class="line">dt=2008-08-09/country=us</div><div class="line">dt=2008-08-10/country=us</div><div class="line">dt=2017-08-08/country=taiwan</div><div class="line">dt=2017-08-08/country=us</div><div class="line">Time taken: 0.052 seconds, Fetched: 6 row(s)</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h3 id="Show-Partition"><a href="#Show-Partition" class="headerlink" title="Show Partition"></a>Show Partition</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/07/[hive]hive_sql_3/" data-id="cjdcr5twa001d70llu6svvz7l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjhpwoi08000dgwllzb2corml" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -935,7 +942,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -945,7 +952,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -958,15 +965,7 @@
       <ul>
         
           <li>
-            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+            <a href="/2018/05/28/[test]test1/">Test</a>
           </li>
         
           <li>
@@ -974,7 +973,15 @@
           </li>
         
           <li>
-            <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
           </li>
         
       </ul>
@@ -1003,7 +1010,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ~ 2018 popal<br>
-      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
     </div>
   </div>
 </footer>
