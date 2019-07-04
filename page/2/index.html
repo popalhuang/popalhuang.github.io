@@ -131,57 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjxoio56i000s32p682w1tt42" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoop_fsck_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/03/[hadoop]hadoop_fsck_cmd/" class="article-date">
-  <time datetime="2018-01-03T00:00:00.000Z" itemprop="datePublished">2018-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/[hadoop]hadoop_fsck_cmd/">hdfs fsck command Memo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hadoop-fsck使用方式"><span class="toc-text">hadoop fsck使用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-fsck-相關參數操作說明"><span class="toc-text">hdfs fsck 相關參數操作說明</span></a></li></ol>
-</div>
-
-        <h4 id="hadoop-fsck使用方式"><a href="#hadoop-fsck使用方式" class="headerlink" title="hadoop fsck使用方式"></a>hadoop fsck使用方式</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:15:13 CST 2018</div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    133 B</div><div class="line"> Total files:   1</div><div class="line"> Total blocks (validated):      1 (avg. block size 133 B)</div><div class="line"> Minimally replicated blocks:   1 (100.0 %)</div><div class="line"> Over-replicated blocks:        0 (0.0 %)</div><div class="line"> Under-replicated blocks:       0 (0.0 %)</div><div class="line"> Mis-replicated blocks:         0 (0.0 %)</div><div class="line"> Default replication factor:    2</div><div class="line"> Average block replication:     2.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0 (0.0 %)</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total block groups (validated):        0</div><div class="line"> Minimally erasure-coded block groups:  0</div><div class="line"> Over-erasure-coded block groups:       0</div><div class="line"> Under-erasure-coded block groups:      0</div><div class="line"> Unsatisfactory placement block groups: 0</div><div class="line"> Average block group size:      0.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0</div><div class="line">FSCK ended at Wed Jan 03 13:15:13 CST 2018 in 1 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; is HEALTHY</div></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="hdfs-fsck-相關參數操作說明"><a href="#hdfs-fsck-相關參數操作說明" class="headerlink" title="hdfs fsck 相關參數操作說明"></a>hdfs fsck 相關參數操作說明</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">##檢查並列出所有文件的狀態</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:17:02 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line"></div><div class="line">##列出所有Blocks資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:18:46 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2</div><div class="line"></div><div class="line">##列出所有Blocks的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:19:53 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK], </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line">##列出檔案所有的訊息包含Rack位置</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations -racks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;racks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Thu Jan 04 18:43:12 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  [/default-rack/192.168.51.5:9866, /default-rack/192.168.51.6:9866]</div><div class="line"></div><div class="line"></div><div class="line">##列出所有完整的replication的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -replicaDetails</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;replicadetails=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:21:56 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK](LIVE), </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK](LIVE)]</div><div class="line"></div><div class="line">##查看文件中損壞Blocks的狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -list-corruptfileblocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;listcorruptfileblocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; has 0 CORRUPT files</div><div class="line"></div><div class="line">##列出指定的block的詳細資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -blockId blk_1073743138</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_1073743138+&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 13:34:40 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_1073743138</div><div class="line">Block belongs to: /user/hadoop/test1.txt</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">Block replica on datanode/rack: hadoop-slave1/default-rack is HEALTHY</div><div class="line">Block replica on datanode/rack: hadoop-slave2/default-rack is HEALTHY</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjxoio56l000u32p6vc5st73n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_dfsadmin_cmd/" data-id="cjxoiu3t7000y4fp6ox1s68ew" class="article-share-link">Share</a>
       
       
     </footer>
@@ -252,7 +202,57 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_other_cmd/" data-id="cjxoio56o000w32p6kmsxka0s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_other_cmd/" data-id="cjxoiu3td00104fp6csz0rjll" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoop_fsck_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/[hadoop]hadoop_fsck_cmd/" class="article-date">
+  <time datetime="2018-01-03T00:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/[hadoop]hadoop_fsck_cmd/">hdfs fsck command Memo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hadoop-fsck使用方式"><span class="toc-text">hadoop fsck使用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-fsck-相關參數操作說明"><span class="toc-text">hdfs fsck 相關參數操作說明</span></a></li></ol>
+</div>
+
+        <h4 id="hadoop-fsck使用方式"><a href="#hadoop-fsck使用方式" class="headerlink" title="hadoop fsck使用方式"></a>hadoop fsck使用方式</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:15:13 CST 2018</div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    133 B</div><div class="line"> Total files:   1</div><div class="line"> Total blocks (validated):      1 (avg. block size 133 B)</div><div class="line"> Minimally replicated blocks:   1 (100.0 %)</div><div class="line"> Over-replicated blocks:        0 (0.0 %)</div><div class="line"> Under-replicated blocks:       0 (0.0 %)</div><div class="line"> Mis-replicated blocks:         0 (0.0 %)</div><div class="line"> Default replication factor:    2</div><div class="line"> Average block replication:     2.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0 (0.0 %)</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total block groups (validated):        0</div><div class="line"> Minimally erasure-coded block groups:  0</div><div class="line"> Over-erasure-coded block groups:       0</div><div class="line"> Under-erasure-coded block groups:      0</div><div class="line"> Unsatisfactory placement block groups: 0</div><div class="line"> Average block group size:      0.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0</div><div class="line">FSCK ended at Wed Jan 03 13:15:13 CST 2018 in 1 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; is HEALTHY</div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="hdfs-fsck-相關參數操作說明"><a href="#hdfs-fsck-相關參數操作說明" class="headerlink" title="hdfs fsck 相關參數操作說明"></a>hdfs fsck 相關參數操作說明</h4><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">##檢查並列出所有文件的狀態</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:17:02 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line"></div><div class="line">##列出所有Blocks資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:18:46 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2</div><div class="line"></div><div class="line">##列出所有Blocks的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:19:53 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK], </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line">##列出檔案所有的訊息包含Rack位置</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -locations -racks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;racks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Thu Jan 04 18:43:12 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  [/default-rack/192.168.51.5:9866, /default-rack/192.168.51.6:9866]</div><div class="line"></div><div class="line"></div><div class="line">##列出所有完整的replication的位置訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -files -blocks -replicaDetails</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;replicadetails=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/test1.txt at Wed Jan 03 13:21:56 CST 2018</div><div class="line">/user/hadoop/test1.txt 133 bytes, replicated: replication=2, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_1073743138_2323 len=133 Live_repl=2  </div><div class="line">[DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK](LIVE), </div><div class="line"> DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK](LIVE)]</div><div class="line"></div><div class="line">##查看文件中損壞Blocks的狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -list-corruptfileblocks</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;listcorruptfileblocks=1&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">The filesystem under path &apos;/user/hadoop/test1.txt&apos; has 0 CORRUPT files</div><div class="line"></div><div class="line">##列出指定的block的詳細資訊</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/test1.txt -blockId blk_1073743138</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_1073743138+&amp;path=%2Fuser%2Fhadoop%2Ftest1.txt</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 13:34:40 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_1073743138</div><div class="line">Block belongs to: /user/hadoop/test1.txt</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">Block replica on datanode/rack: hadoop-slave1/default-rack is HEALTHY</div><div class="line">Block replica on datanode/rack: hadoop-slave2/default-rack is HEALTHY</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hadoop_fsck_cmd/" data-id="cjxoiu3tf00124fp61rhkl4zr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -300,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="cjxoio56v001732p6yvcgxfz8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="cjxoiu3u6001a4fp6dns0n3iu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -383,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjxoio569000m32p6p9obtnae" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/[hadoop]Hadoop_permission_memo/" data-id="cjxoiu3sa000e4fp68kwubgjj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -473,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/[hadoop]hadoop_fs_cmd/" data-id="cjxoio57c001l32p6tf9kj2mu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/[hadoop]hadoop_fs_cmd/" data-id="cjxoiu3t5000w4fp65evq8tfx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -566,7 +566,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/29/[spark]spark2.2.1_Install/" data-id="cjxoio572001d32p6a02qi6m0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/29/[spark]spark2.2.1_Install/" data-id="cjxoiu3ve001m4fp699qvhkb7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -662,7 +662,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjxoio56r001032p6lquuiu2x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/[hive]Hive2.3_for_Hadoop3_Install/" data-id="cjxoiu3ud001d4fp6qp0crrp2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -855,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjxoio55h000c32p6k0yabxh2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/27/[hadoop]hadoop_3_install/" data-id="cjxoiu3sr000q4fp6t11x55m7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -919,7 +919,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjxoio55b000732p6r12b2t85" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/08/[excel]Excel_skill/" data-id="cjxoiu3qw00004fp6wfog37i6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -969,15 +969,15 @@
           </li>
         
           <li>
-            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
-          </li>
-        
-          <li>
             <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
           </li>
         
           <li>
             <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
           </li>
         
           <li>
