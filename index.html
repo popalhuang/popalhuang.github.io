@@ -55,7 +55,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -94,14 +94,68 @@
       
         
 <div id="toc">
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello"><span class="toc-text">Hello!!</span></a></li></ol>
 </div>
 
-        
+        <h2 id="Hello"><a href="#Hello" class="headerlink" title="Hello!!"></a>Hello!!</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/28/[test]test1/" data-id="cjxohs70r001l1dp6ej3dlz8m" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/05/28/[test]test1/" data-id="cjxoio57g001p32p6i71vj76r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoop3.0.0_quota_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" class="article-date">
+  <time datetime="2018-01-09T00:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Quota相關指令"><span class="toc-text">Quota相關指令:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Name-Quotas"><span class="toc-text">Name Quotas</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Space-Quotas"><span class="toc-text">Space Quotas</span></a></li></ol>
+</div>
+
+        <h5 id="Quota相關指令"><a href="#Quota相關指令" class="headerlink" title="Quota相關指令:"></a>Quota相關指令:</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Administrative Commands:</div><div class="line">	hdfs dfsadmin</div><div class="line">		[-setQuota &lt;quota&gt; &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-clrQuota &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-setSpaceQuota &lt;quota&gt; [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-clrSpaceQuota [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">	</div><div class="line">Reporting Commands:</div><div class="line">	hadoop fs -count -q -v &lt;dirname&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="Name-Quotas"><a href="#Name-Quotas" class="headerlink" title="Name Quotas"></a>Name Quotas</h5><blockquote>
+<p>透過限制目錄或文件數量,當達到限制上限時,系統會發出錯誤訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setQuota 3 /user/hadoop/example/data2</div><div class="line"></div><div class="line">## QUOTA     --&gt;Name Quota(-setQuota設定數量)</div><div class="line">## REM_QUOTA(剩餘Quota) --&gt;REM_QUOTA = Quota-(DIR_COUNT+FILE_COUNT)</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               2            none             inf            1            0                  0 /user/hadoop/example/data2</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data1.txt</div><div class="line">Test1!!!!</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               1            none             inf            1            1                 10 /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data2.txt</div><div class="line">Test2!!!!</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               0            none             inf            1            2                 20 /user/hadoop/example/data2</div><div class="line">		   </div><div class="line">##無法再加入檔案,因為REM_QUOTA已經=0了		   </div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data3.txt</div><div class="line">put: The NameSpace quota (directories and files) of directory /user/hadoop/example/data2 is exceeded: quota=3 file count=4</div><div class="line"></div><div class="line">##清除Quota限制</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -clrQuota /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data3.txt</div><div class="line">TEST3!!!!!!</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf            none             inf            1            3                 32 /user/hadoop/example/data2</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="Space-Quotas"><a href="#Space-Quotas" class="headerlink" title="Space Quotas"></a>Space Quotas</h5><blockquote>
+<p>透過限制目錄或檔案size大小,當達到限制上限時,系統會發出錯誤訊息(檔案大小和block size有關係)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setSpaceQuota 1M /user/hadoop/example/data3</div><div class="line"></div><div class="line">##Space Quota要考慮到Block size的問題,所以基本上會以block size的倍數來做為空間配額大小(block size*repl number)</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setSpaceQuota 64M /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -put - /user/hadoop/example/data3/data1.txt</div><div class="line">Test11111!!!</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -count -q -v /user/hadoop/example/data3</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf        67108864        67108851            1            1                 13 /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -put - /user/hadoop/example/data3/data2.txt</div><div class="line">TEST2!!!!</div><div class="line">put: The DiskSpace quota of /user/hadoop/example/data3 is exceeded: quota = 67108864 B = 64 MB but diskspace consumed = 67108877 B = 64.00 MB</div><div class="line"></div><div class="line">## 清除SpaceQuota的限制</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -clrSpaceQuota /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/data3</div><div class="line">-rw-r--r--   1 hadoop supergroup         13 2018-01-09 12:06 /user/hadoop/example/data3/data1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data3</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf            none             inf            1            1                 13 /user/hadoop/example/data3</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" data-id="cjxoio55d000832p67aqch7a6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_doc/" data-id="cjxohs6y600051dp6n7kmeimh" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_doc/" data-id="cjxoio55f000a32p62jwipij0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -233,61 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="cjxohs6y900061dp60zu96lr5" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoop3.0.0_quota_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" class="article-date">
-  <time datetime="2018-01-09T00:00:00.000Z" itemprop="datePublished">2018-01-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Quota相關指令"><span class="toc-text">Quota相關指令:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Name-Quotas"><span class="toc-text">Name Quotas</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Space-Quotas"><span class="toc-text">Space Quotas</span></a></li></ol>
-</div>
-
-        <h5 id="Quota相關指令"><a href="#Quota相關指令" class="headerlink" title="Quota相關指令:"></a>Quota相關指令:</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Administrative Commands:</div><div class="line">	hdfs dfsadmin</div><div class="line">		[-setQuota &lt;quota&gt; &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-clrQuota &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-setSpaceQuota &lt;quota&gt; [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">		[-clrSpaceQuota [-storageType &lt;storagetype&gt;] &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">	</div><div class="line">Reporting Commands:</div><div class="line">	hadoop fs -count -q -v &lt;dirname&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="Name-Quotas"><a href="#Name-Quotas" class="headerlink" title="Name Quotas"></a>Name Quotas</h5><blockquote>
-<p>透過限制目錄或文件數量,當達到限制上限時,系統會發出錯誤訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setQuota 3 /user/hadoop/example/data2</div><div class="line"></div><div class="line">## QUOTA     --&gt;Name Quota(-setQuota設定數量)</div><div class="line">## REM_QUOTA(剩餘Quota) --&gt;REM_QUOTA = Quota-(DIR_COUNT+FILE_COUNT)</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               2            none             inf            1            0                  0 /user/hadoop/example/data2</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data1.txt</div><div class="line">Test1!!!!</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               1            none             inf            1            1                 10 /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data2.txt</div><div class="line">Test2!!!!</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">           3               0            none             inf            1            2                 20 /user/hadoop/example/data2</div><div class="line">		   </div><div class="line">##無法再加入檔案,因為REM_QUOTA已經=0了		   </div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data3.txt</div><div class="line">put: The NameSpace quota (directories and files) of directory /user/hadoop/example/data2 is exceeded: quota=3 file count=4</div><div class="line"></div><div class="line">##清除Quota限制</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -clrQuota /user/hadoop/example/data2</div><div class="line">hadoop@hadoop-master:~$ hdfs dfs -put - /user/hadoop/example/data2/data3.txt</div><div class="line">TEST3!!!!!!</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data2</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf            none             inf            1            3                 32 /user/hadoop/example/data2</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h5 id="Space-Quotas"><a href="#Space-Quotas" class="headerlink" title="Space Quotas"></a>Space Quotas</h5><blockquote>
-<p>透過限制目錄或檔案size大小,當達到限制上限時,系統會發出錯誤訊息(檔案大小和block size有關係)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setSpaceQuota 1M /user/hadoop/example/data3</div><div class="line"></div><div class="line">##Space Quota要考慮到Block size的問題,所以基本上會以block size的倍數來做為空間配額大小(block size*repl number)</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -setSpaceQuota 64M /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -put - /user/hadoop/example/data3/data1.txt</div><div class="line">Test11111!!!</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -count -q -v /user/hadoop/example/data3</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf        67108864        67108851            1            1                 13 /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$  hadoop fs -put - /user/hadoop/example/data3/data2.txt</div><div class="line">TEST2!!!!</div><div class="line">put: The DiskSpace quota of /user/hadoop/example/data3 is exceeded: quota = 67108864 B = 64 MB but diskspace consumed = 67108877 B = 64.00 MB</div><div class="line"></div><div class="line">## 清除SpaceQuota的限制</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -clrSpaceQuota /user/hadoop/example/data3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/data3</div><div class="line">-rw-r--r--   1 hadoop supergroup         13 2018-01-09 12:06 /user/hadoop/example/data3/data1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -count -q -v /user/hadoop/example/data3</div><div class="line">       QUOTA       REM_QUOTA     SPACE_QUOTA REM_SPACE_QUOTA    DIR_COUNT   FILE_COUNT       CONTENT_SIZE PATHNAME</div><div class="line">        none             inf            none             inf            1            1                 13 /user/hadoop/example/data3</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" data-id="cjxohs6yh000c1dp60mlfulmr" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="cjxoio55y000i32p66fvrh6ks" class="article-share-link">Share</a>
       
       
     </footer>
@@ -338,54 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" data-id="cjxohs70y001q1dp6r19rd65n" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoop 3.0.0_daemon_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" class="article-date">
-  <time datetime="2018-01-08T00:00:00.000Z" itemprop="datePublished">2018-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  
-</div>
-
-        <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">hdfs --daemon start balancer             run a cluster balancing utility</div><div class="line">hdfs --daemon start datanode             run a DFS datanode</div><div class="line">hdfs --daemon start dfsrouter            run the DFS router</div><div class="line">hdfs --daemon start diskbalancer         Distributes data evenly among disks on a given node</div><div class="line">hdfs --daemon start journalnode          run the DFS journalnode</div><div class="line">hdfs --daemon start mover                run a utility to move block replicas across storage types</div><div class="line">hdfs --daemon start namenode             run the DFS namenode</div><div class="line">hdfs --daemon start nfs3                 run an NFS version 3 gateway</div><div class="line">hdfs --daemon start portmap              run a portmap service</div><div class="line">hdfs --daemon start secondarynamenode    run the DFS secondary namenode</div><div class="line">hdfs --daemon start zkfc                 run the ZK Failover Controller daemon</div><div class="line"></div><div class="line">yarn --daemon start nodemanager          run a nodemanager on each worker </div><div class="line">yarn --daemon start proxyserver          run the web app proxy server</div><div class="line">yarn --daemon start resourcemanager      run the ResourceManager</div><div class="line">yarn --daemon start router               run the Router daemon</div><div class="line">yarn --daemon start sharedcachemanager   run the SharedCacheManager daemon</div><div class="line">yarn --daemon start timelineserver       run the timeline server</div><div class="line"></div><div class="line">mapred --daemon start historyserver      run job history servers as a standalone daemon</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" data-id="cjxohs6yc00081dp6p3riya4n" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" data-id="cjxoio570001b32p6366yzm0v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -436,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" data-id="cjxohs6ys000i1dp6ps2p0n5f" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" data-id="cjxoio55k000e32p6mcclvc9i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -483,7 +436,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="cjxohs6z5000s1dp6f6p18ktv" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="cjxoio55p000g32p61fr0ayaj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoop 3.0.0_daemon_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" class="article-date">
+  <time datetime="2018-01-08T00:00:00.000Z" itemprop="datePublished">2018-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">hdfs --daemon start balancer             run a cluster balancing utility</div><div class="line">hdfs --daemon start datanode             run a DFS datanode</div><div class="line">hdfs --daemon start dfsrouter            run the DFS router</div><div class="line">hdfs --daemon start diskbalancer         Distributes data evenly among disks on a given node</div><div class="line">hdfs --daemon start journalnode          run the DFS journalnode</div><div class="line">hdfs --daemon start mover                run a utility to move block replicas across storage types</div><div class="line">hdfs --daemon start namenode             run the DFS namenode</div><div class="line">hdfs --daemon start nfs3                 run an NFS version 3 gateway</div><div class="line">hdfs --daemon start portmap              run a portmap service</div><div class="line">hdfs --daemon start secondarynamenode    run the DFS secondary namenode</div><div class="line">hdfs --daemon start zkfc                 run the ZK Failover Controller daemon</div><div class="line"></div><div class="line">yarn --daemon start nodemanager          run a nodemanager on each worker </div><div class="line">yarn --daemon start proxyserver          run the web app proxy server</div><div class="line">yarn --daemon start resourcemanager      run the ResourceManager</div><div class="line">yarn --daemon start router               run the Router daemon</div><div class="line">yarn --daemon start sharedcachemanager   run the SharedCacheManager daemon</div><div class="line">yarn --daemon start timelineserver       run the timeline server</div><div class="line"></div><div class="line">mapred --daemon start historyserver      run job history servers as a standalone daemon</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" data-id="cjxoio566000k32p63lugtzob" class="article-share-link">Share</a>
       
       
     </footer>
@@ -534,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_archive_cmd/" data-id="cjxohs6zm00141dp6hj9p6x5q" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_archive_cmd/" data-id="cjxoio56p000y32p6biw3xfjc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -585,7 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_snapshot_cmd/" data-id="cjxohs6zp00161dp6pqanprwc" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_snapshot_cmd/" data-id="cjxoio56x001932p6nr9ovyqk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -635,15 +635,15 @@
           </li>
         
           <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+          </li>
+        
+          <li>
             <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
           </li>
         
           <li>
             <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
           </li>
         
           <li>
@@ -676,7 +676,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ~ 2019 popal<br>
-      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
     </div>
   </div>
 </footer>
