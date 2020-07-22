@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Solace Install for VitualBox | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Get a Software Event BrokerSolace PubSub+ Standard or Solace PubSub+ Enterprise Evaluation EditionSolace PubSub+ EnterpriseImport the Software Event BrokerIn Oracle VM VirtualBox Manager, select File">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solace Install for VitualBox">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/[Solace]SolaceforVirtualbox/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="Get a Software Event BrokerSolace PubSub+ Standard or Solace PubSub+ Enterprise Evaluation EditionSolace PubSub+ EnterpriseImport the Software Event BrokerIn Oracle VM VirtualBox Manager, select File">
+<meta property="og:updated_time" content="2020-07-22T07:10:28.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Solace Install for VitualBox">
+<meta name="twitter:description" content="Get a Software Event BrokerSolace PubSub+ Standard or Solace PubSub+ Enterprise Evaluation EditionSolace PubSub+ EnterpriseImport the Software Event BrokerIn Oracle VM VirtualBox Manager, select File">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/categories/hadoop">Hadoop</a>
+        
+          <a class="main-nav-link" href="/about">關於我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[Solace]SolaceforVirtualbox" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/[Solace]SolaceforVirtualbox/" class="article-date">
+  <time datetime="2020-07-21T16:00:00.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Solace/">Solace</a>►<a class="article-category-link" href="/categories/Solace/Solace-Install/">Solace Install</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Solace Install for VitualBox
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-a-Software-Event-Broker"><span class="toc-text">Get a Software Event Broker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solace-PubSub-Standard-or-Solace-PubSub-Enterprise-Evaluation-Edition"><span class="toc-text">Solace PubSub+ Standard or Solace PubSub+ Enterprise Evaluation Edition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solace-PubSub-Enterprise"><span class="toc-text">Solace PubSub+ Enterprise</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Import-the-Software-Event-Broker"><span class="toc-text">Import the Software Event Broker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#In-Oracle-VM-VirtualBox-Manager-select-File-gt-Import-Appliance"><span class="toc-text">In Oracle VM VirtualBox Manager, select File > Import Appliance.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-the-OVA-file-downloaded-in-the-previous-step"><span class="toc-text">select the OVA file downloaded in the previous step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#default-appliance-settings-are-sufficient-to-begin-the-import"><span class="toc-text">default appliance settings are sufficient to begin the import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Oracle-VM-VirtualBox-Manager-will-import-the-event-broker-OVA"><span class="toc-text">Oracle VM VirtualBox Manager will import the event broker OVA.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VM-VirtualBox-Manager-Settings"><span class="toc-text">VM VirtualBox Manager,Settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start-the-VM"><span class="toc-text">start the VM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Login-to-the-event-broker-must-“sysadmin”"><span class="toc-text">Login to the event broker,must “sysadmin”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-the-Host-Name"><span class="toc-text">Configure the Host Name</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shut-down-Solace-PubSub"><span class="toc-text">Shut down Solace PubSub+</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configure-the-hostname"><span class="toc-text">Configure the hostname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restart-the-Solace-PubSub"><span class="toc-text">Restart the Solace PubSub+</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Verify-that-the-hostname-has-been-set-to-the-new-one"><span class="toc-text">Verify that the hostname has been set to the new one</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-the-Solace-CLI"><span class="toc-text">Access the Solace CLI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#To-enter-the-Solace-CLI-from-the-console-in-the-Linux-host-environment"><span class="toc-text">To enter the Solace CLI from the console in the Linux host environment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-an-admin-user-named"><span class="toc-text">create an admin user named</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#To-determine-the-IP-address-assigned-to-the-event-broker"><span class="toc-text">To determine the IP address assigned to the event broker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#To-remotely-access-the-Solace-CLI-for-the-event-broker-you-can-now-ssh-to-port-2222"><span class="toc-text">To remotely access the Solace CLI for the event broker, you can now ssh to port 2222</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-Configuration-Defaults"><span class="toc-text">Review Configuration Defaults</span></a></li></ol>
+</div>
+
+        <h2 id="Get-a-Software-Event-Broker"><a href="#Get-a-Software-Event-Broker" class="headerlink" title="Get a Software Event Broker"></a>Get a Software Event Broker</h2><h3 id="Solace-PubSub-Standard-or-Solace-PubSub-Enterprise-Evaluation-Edition"><a href="#Solace-PubSub-Standard-or-Solace-PubSub-Enterprise-Evaluation-Edition" class="headerlink" title="Solace PubSub+ Standard or Solace PubSub+ Enterprise Evaluation Edition"></a>Solace PubSub+ Standard or Solace PubSub+ Enterprise Evaluation Edition</h3><h3 id="Solace-PubSub-Enterprise"><a href="#Solace-PubSub-Enterprise" class="headerlink" title="Solace PubSub+ Enterprise"></a>Solace PubSub+ Enterprise</h3><h2 id="Import-the-Software-Event-Broker"><a href="#Import-the-Software-Event-Broker" class="headerlink" title="Import the Software Event Broker"></a>Import the Software Event Broker</h2><h3 id="In-Oracle-VM-VirtualBox-Manager-select-File-gt-Import-Appliance"><a href="#In-Oracle-VM-VirtualBox-Manager-select-File-gt-Import-Appliance" class="headerlink" title="In Oracle VM VirtualBox Manager, select File &gt; Import Appliance."></a>In Oracle VM VirtualBox Manager, select File &gt; Import Appliance.</h3><h3 id="select-the-OVA-file-downloaded-in-the-previous-step"><a href="#select-the-OVA-file-downloaded-in-the-previous-step" class="headerlink" title="select the OVA file downloaded in the previous step"></a>select the OVA file downloaded in the previous step</h3><h3 id="default-appliance-settings-are-sufficient-to-begin-the-import"><a href="#default-appliance-settings-are-sufficient-to-begin-the-import" class="headerlink" title="default appliance settings are sufficient to begin the import"></a>default appliance settings are sufficient to begin the import</h3><h3 id="Oracle-VM-VirtualBox-Manager-will-import-the-event-broker-OVA"><a href="#Oracle-VM-VirtualBox-Manager-will-import-the-event-broker-OVA" class="headerlink" title="Oracle VM VirtualBox Manager will import the event broker OVA."></a>Oracle VM VirtualBox Manager will import the event broker OVA.</h3><h3 id="VM-VirtualBox-Manager-Settings"><a href="#VM-VirtualBox-Manager-Settings" class="headerlink" title="VM VirtualBox Manager,Settings"></a>VM VirtualBox Manager,Settings</h3><h3 id="start-the-VM"><a href="#start-the-VM" class="headerlink" title="start the VM"></a>start the VM</h3><h3 id="Login-to-the-event-broker-must-“sysadmin”"><a href="#Login-to-the-event-broker-must-“sysadmin”" class="headerlink" title="Login to the event broker,must “sysadmin”"></a>Login to the event broker,must “sysadmin”</h3><h2 id="Configure-the-Host-Name"><a href="#Configure-the-Host-Name" class="headerlink" title="Configure the Host Name"></a>Configure the Host Name</h2><h3 id="Shut-down-Solace-PubSub"><a href="#Shut-down-Solace-PubSub" class="headerlink" title="Shut down Solace PubSub+"></a>Shut down Solace PubSub+</h3><h3 id="Configure-the-hostname"><a href="#Configure-the-hostname" class="headerlink" title="Configure the hostname"></a>Configure the hostname</h3><h3 id="Restart-the-Solace-PubSub"><a href="#Restart-the-Solace-PubSub" class="headerlink" title="Restart the Solace PubSub+"></a>Restart the Solace PubSub+</h3><h3 id="Verify-that-the-hostname-has-been-set-to-the-new-one"><a href="#Verify-that-the-hostname-has-been-set-to-the-new-one" class="headerlink" title="Verify that the hostname has been set to the new one"></a>Verify that the hostname has been set to the new one</h3><h2 id="Access-the-Solace-CLI"><a href="#Access-the-Solace-CLI" class="headerlink" title="Access the Solace CLI"></a>Access the Solace CLI</h2><h3 id="To-enter-the-Solace-CLI-from-the-console-in-the-Linux-host-environment"><a href="#To-enter-the-Solace-CLI-from-the-console-in-the-Linux-host-environment" class="headerlink" title="To enter the Solace CLI from the console in the Linux host environment"></a>To enter the Solace CLI from the console in the Linux host environment</h3><h3 id="create-an-admin-user-named"><a href="#create-an-admin-user-named" class="headerlink" title="create an admin user named"></a>create an admin user named</h3><h3 id="To-determine-the-IP-address-assigned-to-the-event-broker"><a href="#To-determine-the-IP-address-assigned-to-the-event-broker" class="headerlink" title="To determine the IP address assigned to the event broker"></a>To determine the IP address assigned to the event broker</h3><h3 id="To-remotely-access-the-Solace-CLI-for-the-event-broker-you-can-now-ssh-to-port-2222"><a href="#To-remotely-access-the-Solace-CLI-for-the-event-broker-you-can-now-ssh-to-port-2222" class="headerlink" title="To remotely access the Solace CLI for the event broker, you can now ssh to port 2222"></a>To remotely access the Solace CLI for the event broker, you can now ssh to port 2222</h3><h2 id="Review-Configuration-Defaults"><a href="#Review-Configuration-Defaults" class="headerlink" title="Review Configuration Defaults"></a>Review Configuration Defaults</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/[Solace]SolaceforVirtualbox/" data-id="ckcx1jzbx0006nsh4zk2gaqsv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/22/[Solace]SolaceCache/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Solace Cache
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/22/[solace]SolaceforDocker_Install/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Solace Install for docker</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Solace/">Solace</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Solace/Solace-Cache/">Solace Cache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solace/Solace-Install/">Solace Install</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[Solace]SolaceCache/">Solace Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[Solace]SolaceforVirtualbox/">Solace Install for VitualBox</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[solace]SolaceforDocker_Install/">Solace Install for docker</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>	  
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ~ 2020 popal<br>
+      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/categories/hadoop" class="mobile-nav-link">Hadoop</a>
+  
+    <a href="/about" class="mobile-nav-link">關於我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

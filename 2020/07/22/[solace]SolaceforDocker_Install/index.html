@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Solace Install for docker | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Solace for Docker 環境安裝File list &amp;amp; Work preparationVM Create &amp;amp; Package InstallOS Install(for CentOS8.2)OS Network SettingOS start &amp;amp; Package Installcifs package installDocker Install&amp;amp;Set">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solace Install for docker">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/[solace]SolaceforDocker_Install/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="Solace for Docker 環境安裝File list &amp;amp; Work preparationVM Create &amp;amp; Package InstallOS Install(for CentOS8.2)OS Network SettingOS start &amp;amp; Package Installcifs package installDocker Install&amp;amp;Set">
+<meta property="og:updated_time" content="2020-07-22T07:21:06.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Solace Install for docker">
+<meta name="twitter:description" content="Solace for Docker 環境安裝File list &amp;amp; Work preparationVM Create &amp;amp; Package InstallOS Install(for CentOS8.2)OS Network SettingOS start &amp;amp; Package Installcifs package installDocker Install&amp;amp;Set">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/categories/hadoop">Hadoop</a>
+        
+          <a class="main-nav-link" href="/about">關於我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[solace]SolaceforDocker_Install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/[solace]SolaceforDocker_Install/" class="article-date">
+  <time datetime="2020-07-21T16:00:00.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Solace/">Solace</a>►<a class="article-category-link" href="/categories/Solace/Solace-Install/">Solace Install</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Solace Install for docker
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solace-for-Docker-環境安裝"><span class="toc-text">Solace for Docker 環境安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#File-list-amp-Work-preparation"><span class="toc-text">File list & Work preparation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VM-Create-amp-Package-Install"><span class="toc-text">VM Create & Package Install</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OS-Install-for-CentOS8-2"><span class="toc-text">OS Install(for CentOS8.2)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OS-Network-Setting"><span class="toc-text">OS Network Setting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OS-start-amp-Package-Install"><span class="toc-text">OS start & Package Install</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#cifs-package-install"><span class="toc-text">cifs package install</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-Install-amp-Setting"><span class="toc-text">Docker Install&Setting</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Docker-Package-Install"><span class="toc-text">Docker Package Install</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Docker-Enable-Start"><span class="toc-text">Docker Enable/Start</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Docker-macvlan-Network-Setting"><span class="toc-text">Docker macvlan Network Setting</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VM-Export"><span class="toc-text">VM Export</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get-a-PubSub-Software-Event-Broker-Image"><span class="toc-text">Get a PubSub+ Software Event Broker Image</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#start-Docker"><span class="toc-text">start Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pull-the-image"><span class="toc-text">Pull the image</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-PubSub-Software-Event-Broker-Container"><span class="toc-text">Create the PubSub+ Software Event Broker Container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Manage-the-PubSub-Software-Event-Broker"><span class="toc-text">Manage the PubSub+ Software Event Broker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Solace-PubSub-Manager-management-access"><span class="toc-text">Solace PubSub+ Manager management access</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Solace-CLI-management-access"><span class="toc-text">Solace CLI management access</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Solace-CLI-進行基本設定操作"><span class="toc-text">使用 Solace CLI 進行基本設定操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#System-User-Create"><span class="toc-text">System User Create</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cli-user"><span class="toc-text">cli user</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#file-transfer"><span class="toc-text">file-transfer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Client-User-Create"><span class="toc-text">Client User Create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Connect-Max-Setting"><span class="toc-text">Connect Max. Setting</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Try-Me-進行Publish-Subscribe功能測試"><span class="toc-text">使用 Try Me! 進行Publish/Subscribe功能測試</span></a></li></ol>
+</div>
+
+        <h2 id="Solace-for-Docker-環境安裝"><a href="#Solace-for-Docker-環境安裝" class="headerlink" title="Solace for Docker 環境安裝"></a>Solace for Docker 環境安裝</h2><h3 id="File-list-amp-Work-preparation"><a href="#File-list-amp-Work-preparation" class="headerlink" title="File list &amp; Work preparation"></a>File list &amp; Work preparation</h3><h3 id="VM-Create-amp-Package-Install"><a href="#VM-Create-amp-Package-Install" class="headerlink" title="VM Create &amp; Package Install"></a>VM Create &amp; Package Install</h3><h4 id="OS-Install-for-CentOS8-2"><a href="#OS-Install-for-CentOS8-2" class="headerlink" title="OS Install(for CentOS8.2)"></a>OS Install(for CentOS8.2)</h4><h4 id="OS-Network-Setting"><a href="#OS-Network-Setting" class="headerlink" title="OS Network Setting"></a>OS Network Setting</h4><h4 id="OS-start-amp-Package-Install"><a href="#OS-start-amp-Package-Install" class="headerlink" title="OS start &amp; Package Install"></a>OS start &amp; Package Install</h4><h5 id="cifs-package-install"><a href="#cifs-package-install" class="headerlink" title="cifs package install"></a>cifs package install</h5><h4 id="Docker-Install-amp-Setting"><a href="#Docker-Install-amp-Setting" class="headerlink" title="Docker Install&amp;Setting"></a>Docker Install&amp;Setting</h4><h5 id="Docker-Package-Install"><a href="#Docker-Package-Install" class="headerlink" title="Docker Package Install"></a>Docker Package Install</h5><h5 id="Docker-Enable-Start"><a href="#Docker-Enable-Start" class="headerlink" title="Docker Enable/Start"></a>Docker Enable/Start</h5><h5 id="Docker-macvlan-Network-Setting"><a href="#Docker-macvlan-Network-Setting" class="headerlink" title="Docker macvlan Network Setting"></a>Docker macvlan Network Setting</h5><h4 id="VM-Export"><a href="#VM-Export" class="headerlink" title="VM Export"></a>VM Export</h4><h3 id="Get-a-PubSub-Software-Event-Broker-Image"><a href="#Get-a-PubSub-Software-Event-Broker-Image" class="headerlink" title="Get a PubSub+ Software Event Broker Image"></a>Get a PubSub+ Software Event Broker Image</h3><h4 id="start-Docker"><a href="#start-Docker" class="headerlink" title="start Docker"></a>start Docker</h4><h4 id="Pull-the-image"><a href="#Pull-the-image" class="headerlink" title="Pull the image"></a>Pull the image</h4><h3 id="Create-the-PubSub-Software-Event-Broker-Container"><a href="#Create-the-PubSub-Software-Event-Broker-Container" class="headerlink" title="Create the PubSub+ Software Event Broker Container"></a>Create the PubSub+ Software Event Broker Container</h3><h3 id="Manage-the-PubSub-Software-Event-Broker"><a href="#Manage-the-PubSub-Software-Event-Broker" class="headerlink" title="Manage the PubSub+ Software Event Broker"></a>Manage the PubSub+ Software Event Broker</h3><h4 id="Solace-PubSub-Manager-management-access"><a href="#Solace-PubSub-Manager-management-access" class="headerlink" title="Solace PubSub+ Manager management access"></a>Solace PubSub+ Manager management access</h4><h4 id="Solace-CLI-management-access"><a href="#Solace-CLI-management-access" class="headerlink" title="Solace CLI management access"></a>Solace CLI management access</h4><h2 id="使用-Solace-CLI-進行基本設定操作"><a href="#使用-Solace-CLI-進行基本設定操作" class="headerlink" title="使用 Solace CLI 進行基本設定操作"></a>使用 Solace CLI 進行基本設定操作</h2><h3 id="System-User-Create"><a href="#System-User-Create" class="headerlink" title="System User Create"></a>System User Create</h3><h4 id="cli-user"><a href="#cli-user" class="headerlink" title="cli user"></a>cli user</h4><h4 id="file-transfer"><a href="#file-transfer" class="headerlink" title="file-transfer"></a>file-transfer</h4><h3 id="Client-User-Create"><a href="#Client-User-Create" class="headerlink" title="Client User Create"></a>Client User Create</h3><h3 id="Connect-Max-Setting"><a href="#Connect-Max-Setting" class="headerlink" title="Connect Max. Setting"></a>Connect Max. Setting</h3><h2 id="使用-Try-Me-進行Publish-Subscribe功能測試"><a href="#使用-Try-Me-進行Publish-Subscribe功能測試" class="headerlink" title="使用 Try Me! 進行Publish/Subscribe功能測試"></a>使用 Try Me! 進行Publish/Subscribe功能測試</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/[solace]SolaceforDocker_Install/" data-id="ckcx1jzdh001nnsh4qo8t00gw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/22/[Solace]SolaceforVirtualbox/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Solace Install for VitualBox
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hadoop3.0.0 Document List</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Solace/">Solace</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Solace/Solace-Cache/">Solace Cache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solace/Solace-Install/">Solace Install</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[Solace]SolaceCache/">Solace Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[Solace]SolaceforVirtualbox/">Solace Install for VitualBox</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[solace]SolaceforDocker_Install/">Solace Install for docker</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>	  
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ~ 2020 popal<br>
+      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/categories/hadoop" class="mobile-nav-link">Hadoop</a>
+  
+    <a href="/about" class="mobile-nav-link">關於我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

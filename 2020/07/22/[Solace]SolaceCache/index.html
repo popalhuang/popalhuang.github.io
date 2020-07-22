@@ -3,33 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hadoop 3.0.0 Overview | Popal&#39;s Blog</title>
+  <title>Solace Cache | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Minimum required Java version increased from Java 7 to Java 8
-Support for erasure coding in HDFS
-YARN Timeline Service v.2
-Shell script rewrite
-Shaded client jars
-Support for Opportunistic Containers">
+  <meta name="description" content="File List &amp;amp; DirectoryDocker Build Directory &amp;amp; Dockerfile Preparesolcache gz filesolclient gz fileSolace Cache Instance Service Install &amp;amp; startsolace cache container createsolace cache cont">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop 3.0.0 Overview">
-<meta property="og:url" content="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/index.html">
+<meta property="og:title" content="Solace Cache">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/[Solace]SolaceCache/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="Minimum required Java version increased from Java 7 to Java 8
-Support for erasure coding in HDFS
-YARN Timeline Service v.2
-Shell script rewrite
-Shaded client jars
-Support for Opportunistic Containers">
-<meta property="og:updated_time" content="2018-01-09T05:47:32.641Z">
+<meta property="og:description" content="File List &amp;amp; DirectoryDocker Build Directory &amp;amp; Dockerfile Preparesolcache gz filesolclient gz fileSolace Cache Instance Service Install &amp;amp; startsolace cache container createsolace cache cont">
+<meta property="og:updated_time" content="2020-07-22T07:23:09.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop 3.0.0 Overview">
-<meta name="twitter:description" content="Minimum required Java version increased from Java 7 to Java 8
-Support for erasure coding in HDFS
-YARN Timeline Service v.2
-Shell script rewrite
-Shaded client jars
-Support for Opportunistic Containers">
+<meta name="twitter:title" content="Solace Cache">
+<meta name="twitter:description" content="File List &amp;amp; DirectoryDocker Build Directory &amp;amp; Dockerfile Preparesolcache gz filesolclient gz fileSolace Cache Instance Service Install &amp;amp; startsolace cache container createsolace cache cont">
   
   
   
@@ -80,14 +65,14 @@ Support for Opportunistic Containers">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-[hadoop]Hadoop3.0.0_overview" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-[Solace]SolaceCache" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/" class="article-date">
-  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+    <a href="/2020/07/22/[Solace]SolaceCache/" class="article-date">
+  <time datetime="2020-07-21T16:00:00.000Z" itemprop="datePublished">2020-07-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+    <a class="article-category-link" href="/categories/Solace/">Solace</a>►<a class="article-category-link" href="/categories/Solace/Solace-Cache/">Solace Cache</a>
   </div>
 
   </div>
@@ -98,7 +83,7 @@ Support for Opportunistic Containers">
         
   
     <h1 class="article-title" itemprop="name">
-      Hadoop 3.0.0 Overview
+      Solace Cache
     </h1>
   
 
@@ -108,32 +93,14 @@ Support for Opportunistic Containers">
       
         
 <div id="toc">
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#File-List-amp-Directory"><span class="toc-text">File List & Directory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-Build-Directory-amp-Dockerfile-Prepare"><span class="toc-text">Docker Build Directory & Dockerfile Prepare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solcache-gz-file"><span class="toc-text">solcache gz file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solclient-gz-file"><span class="toc-text">solclient gz file</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solace-Cache-Instance-Service-Install-amp-start"><span class="toc-text">Solace Cache Instance Service Install & start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#solace-cache-container-create"><span class="toc-text">solace cache container create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solace-cache-container-enable-start"><span class="toc-text">solace cache container enable/start</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VMR-configure-Setting-for-CLI"><span class="toc-text">VMR configure Setting(for CLI)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-Distributed-Caches"><span class="toc-text">Configuring Distributed Caches</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-Cache-Clusters"><span class="toc-text">Configuring Cache Clusters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-Cache-Instances"><span class="toc-text">Configuring Cache Instances</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-me-Test-Publish-Subscribe-CacheRequest-Topic"><span class="toc-text">try me!! Test Publish/Subscribe/CacheRequest Topic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish-Topic"><span class="toc-text">Publish Topic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Subscribe-topic"><span class="toc-text">Subscribe topic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#use-javascript-CacheRequest-Topic"><span class="toc-text">use javascript CacheRequest Topic</span></a></li></ol></li></ol>
 </div>
 
-        <ol>
-<li>Minimum required Java version increased from Java 7 to Java 8</li>
-<li>Support for erasure coding in HDFS</li>
-<li>YARN Timeline Service v.2</li>
-<li>Shell script rewrite</li>
-<li>Shaded client jars</li>
-<li>Support for Opportunistic Containers and Distributed Scheduling.</li>
-<li>MapReduce task-level native optimization</li>
-<li>Support for more than 2 NameNodes</li>
-<li>Default ports of multiple services have been changed.</li>
-<li>Support for Microsoft Azure Data Lake and Aliyun Object Storage System filesystem connectors</li>
-<li>Intra-datanode balancer</li>
-<li>Reworked daemon and task heap management</li>
-<li>S3Guard: Consistency and Metadata Caching for the S3A filesystem client</li>
-<li>HDFS Router-Based Federation</li>
-<li>API-based configuration of Capacity Scheduler queue configuration</li>
-<li>YARN Resource Types</li>
-</ol>
-
+        <h2 id="File-List-amp-Directory"><a href="#File-List-amp-Directory" class="headerlink" title="File List &amp; Directory"></a>File List &amp; Directory</h2><h3 id="Docker-Build-Directory-amp-Dockerfile-Prepare"><a href="#Docker-Build-Directory-amp-Dockerfile-Prepare" class="headerlink" title="Docker Build Directory &amp; Dockerfile Prepare"></a>Docker Build Directory &amp; Dockerfile Prepare</h3><h3 id="solcache-gz-file"><a href="#solcache-gz-file" class="headerlink" title="solcache gz file"></a>solcache gz file</h3><h3 id="solclient-gz-file"><a href="#solclient-gz-file" class="headerlink" title="solclient gz file"></a>solclient gz file</h3><h2 id="Solace-Cache-Instance-Service-Install-amp-start"><a href="#Solace-Cache-Instance-Service-Install-amp-start" class="headerlink" title="Solace Cache Instance Service Install &amp; start"></a>Solace Cache Instance Service Install &amp; start</h2><h3 id="solace-cache-container-create"><a href="#solace-cache-container-create" class="headerlink" title="solace cache container create"></a>solace cache container create</h3><h3 id="solace-cache-container-enable-start"><a href="#solace-cache-container-enable-start" class="headerlink" title="solace cache container enable/start"></a>solace cache container enable/start</h3><h2 id="VMR-configure-Setting-for-CLI"><a href="#VMR-configure-Setting-for-CLI" class="headerlink" title="VMR configure Setting(for CLI)"></a>VMR configure Setting(for CLI)</h2><h3 id="Configuring-Distributed-Caches"><a href="#Configuring-Distributed-Caches" class="headerlink" title="Configuring Distributed Caches"></a>Configuring Distributed Caches</h3><h3 id="Configuring-Cache-Clusters"><a href="#Configuring-Cache-Clusters" class="headerlink" title="Configuring Cache Clusters"></a>Configuring Cache Clusters</h3><h3 id="Configuring-Cache-Instances"><a href="#Configuring-Cache-Instances" class="headerlink" title="Configuring Cache Instances"></a>Configuring Cache Instances</h3><h2 id="try-me-Test-Publish-Subscribe-CacheRequest-Topic"><a href="#try-me-Test-Publish-Subscribe-CacheRequest-Topic" class="headerlink" title="try me!! Test Publish/Subscribe/CacheRequest Topic"></a>try me!! Test Publish/Subscribe/CacheRequest Topic</h2><h3 id="Publish-Topic"><a href="#Publish-Topic" class="headerlink" title="Publish Topic"></a>Publish Topic</h3><h3 id="Subscribe-topic"><a href="#Subscribe-topic" class="headerlink" title="Subscribe topic"></a>Subscribe topic</h3><h3 id="use-javascript-CacheRequest-Topic"><a href="#use-javascript-CacheRequest-Topic" class="headerlink" title="use javascript CacheRequest Topic"></a>use javascript CacheRequest Topic</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="ckcx1jzc7000dnsh4gadlycfi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/[Solace]SolaceCache/" data-id="ckcx1jzbt0005nsh4brtjl8zl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,19 +109,19 @@ Support for Opportunistic Containers">
     
 <nav id="article-nav">
   
-    <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/22/[Linux]Linux-systemctl/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          PySpark-RDD Memo_1
+          Linux - systemctl Command Usage
         
       </div>
     </a>
   
   
-    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/07/22/[Solace]SolaceforVirtualbox/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hadoop3.0.0 Quota</div>
+      <div class="article-nav-title">Solace Install for VitualBox</div>
     </a>
   
 </nav>

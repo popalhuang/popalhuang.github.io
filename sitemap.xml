@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/07/22/%5BSolace%5DSolaceCache/</loc>
+    
+    <lastmod>2020-07-22T07:23:09.116Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/22/%5Bsolace%5DSolaceforDocker_Install/</loc>
+    
+    <lastmod>2020-07-22T07:21:06.921Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/22/%5BSolace%5DSolaceforVirtualbox/</loc>
+    
+    <lastmod>2020-07-22T07:10:28.737Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/07/22/%5BLinux%5DLinux-systemctl/</loc>
     
     <lastmod>2020-07-22T05:47:29.095Z</lastmod>
