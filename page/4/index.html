@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Popal&#39;s Blog</title>
+  <title>青子的部落</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技術之路學習歷程">
+  <meta name="description" content="記錄技術與生活">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Popal's Blog">
+<meta property="og:title" content="青子的部落">
 <meta property="og:url" content="http://yoursite.com/page/4/index.html">
-<meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="技術之路學習歷程">
+<meta property="og:site_name" content="青子的部落">
+<meta property="og:description" content="記錄技術與生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Popal's Blog">
-<meta name="twitter:description" content="技術之路學習歷程">
+<meta name="twitter:title" content="青子的部落">
+<meta name="twitter:description" content="記錄技術與生活">
   
   
   
@@ -32,7 +32,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Popal&#39;s Blog</a>
+        <a href="/" id="logo">青子的部落</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -55,7 +55,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -104,56 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="ckcx48s6f000d58h4yd99o87j" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]CreatNewDataNode" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/10/[hadoop]CreatNewDataNode/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BigData/">BigData</a>►<a class="article-category-link" href="/categories/BigData/Hadoop/">Hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  
-</div>
-
-        <blockquote>
-<p>hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode<br>1.動態新增一個DataNode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">##新主機請安裝以下</div><div class="line">1.  安裝Linux OS</div><div class="line">2.  在/etc/hosts加入所有Hadoop cluster節點的hostname</div><div class="line">3.  進入NameNode下執行</div><div class="line">    ssh-copy-id hadoop@hadoop-slave5</div><div class="line">    scp hadoop-bin-2.7.2.tar.gz hadoop@hadoop-slave5:/bgdt/install_src</div><div class="line">4.  進入新增的DataNode</div><div class="line">5.  tar -zxvf jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line">6.  tar -zxvf hadoop-bin-2.7.2.tar.gz -C /bgdt</div><div class="line">7.  Modify ~/.bashrc</div><div class="line">8.  scp 相關設定檔</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/slaves hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/slaves</div><div class="line">9.  hadoop-daemon.sh start datanode</div><div class="line">10. 觀察Web UI是否出現slave5 DataNode</div></pre></td></tr></table></figure>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="ckcx48s67000858h4y1oziqk5" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]Hadoop_CMD/" data-id="ckcx4qdkc000c40h41ngxexxc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +165,56 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="ckcx48s6y000p58h4muknvmq3" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]hadoopMultiDirectoryStore/" data-id="ckcx4qdkp000l40h48yobqelg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]CreatNewDataNode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/10/[hadoop]CreatNewDataNode/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BigData/">BigData</a>►<a class="article-category-link" href="/categories/BigData/Hadoop/">Hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/[hadoop]CreatNewDataNode/">Hadoop Cluster-動態新增一個節點</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<p>hadoop cluster Run了一段時間後,想要增加運算速度,因此想動態新增一個DataNode<br>1.動態新增一個DataNode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">##新主機請安裝以下</div><div class="line">1.  安裝Linux OS</div><div class="line">2.  在/etc/hosts加入所有Hadoop cluster節點的hostname</div><div class="line">3.  進入NameNode下執行</div><div class="line">    ssh-copy-id hadoop@hadoop-slave5</div><div class="line">    scp hadoop-bin-2.7.2.tar.gz hadoop@hadoop-slave5:/bgdt/install_src</div><div class="line">4.  進入新增的DataNode</div><div class="line">5.  tar -zxvf jdk-8u101-linux-x64.tar.gz -C /bgdt/java</div><div class="line">6.  tar -zxvf hadoop-bin-2.7.2.tar.gz -C /bgdt</div><div class="line">7.  Modify ~/.bashrc</div><div class="line">8.  scp 相關設定檔</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/hdfs-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/core-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/mapred-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/yarn-site.xml</div><div class="line">    scp /bgdt/hadoop-2.7.2/etc/hadoop/slaves hadoop@hadoop-slave5:/bgdt/hadoop-2.7.2/etc/hadoop/slaves</div><div class="line">9.  hadoop-daemon.sh start datanode</div><div class="line">10. 觀察Web UI是否出現slave5 DataNode</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/10/[hadoop]CreatNewDataNode/" data-id="ckcx4qdjx000540h4a73e4641" class="article-share-link">Share</a>
       
       
     </footer>
@@ -507,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="ckcx48s55000058h4lyx60gfw" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/01/08/[Install]BigData/" data-id="ckcx4qdji000040h4ibg6mv29" class="article-share-link">Share</a>
       
       
     </footer>
@@ -558,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="ckcx48s5a000158h48254wery" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="ckcx4qdm6002140h4yuwi6t47" class="article-share-link">Share</a>
       
       
     </footer>
@@ -604,6 +604,14 @@
       <ul>
         
           <li>
+            <a href="/2020/07/22/[Solace]SolaceCache/">Solace Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/22/[solace]SolaceforDocker_Install/">Solace Install for docker</a>
           </li>
         
@@ -612,15 +620,7 @@
           </li>
         
           <li>
-            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/[Solace]SolaceCache/">Solace Cache</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
           </li>
         
       </ul>
@@ -649,7 +649,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ~ 2020 popal<br>
-      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
     </div>
   </div>
 </footer>
