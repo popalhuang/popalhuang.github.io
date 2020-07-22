@@ -5,16 +5,19 @@
   
   <title>Linux - systemctl Command Usage | Popal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="systemctl Command Memo">
+  <meta name="description" content="systemctl command Usage透過systemctl管理單一服務(service unit)的啟動/開機啟動與觀察狀態
+12345678910111213141516171819systemctl [command] [service]command 主要有：start     ：立刻啟動後面接的servicestop      ：立刻關閉後面接的servicerestart">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux - systemctl Command Usage">
 <meta property="og:url" content="http://yoursite.com/2020/07/22/[Linux]Linux-systemctl/index.html">
 <meta property="og:site_name" content="Popal's Blog">
-<meta property="og:description" content="systemctl Command Memo">
-<meta property="og:updated_time" content="2020-07-22T05:29:31.183Z">
+<meta property="og:description" content="systemctl command Usage透過systemctl管理單一服務(service unit)的啟動/開機啟動與觀察狀態
+12345678910111213141516171819systemctl [command] [service]command 主要有：start     ：立刻啟動後面接的servicestop      ：立刻關閉後面接的servicerestart">
+<meta property="og:updated_time" content="2020-07-22T05:47:29.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux - systemctl Command Usage">
-<meta name="twitter:description" content="systemctl Command Memo">
+<meta name="twitter:description" content="systemctl command Usage透過systemctl管理單一服務(service unit)的啟動/開機啟動與觀察狀態
+12345678910111213141516171819systemctl [command] [service]command 主要有：start     ：立刻啟動後面接的servicestop      ：立刻關閉後面接的servicerestart">
   
   
   
@@ -56,7 +59,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -93,17 +96,26 @@
       
         
 <div id="toc">
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#systemctl-command-Usage"><span class="toc-text">systemctl command Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#透過systemctl管理單一服務-service-unit-的啟動-開機啟動與觀察狀態"><span class="toc-text">透過systemctl管理單一服務(service unit)的啟動/開機啟動與觀察狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透過-systemctl-觀察系統上所有的服務"><span class="toc-text">透過 systemctl 觀察系統上所有的服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透過-systemctl-管理不同的操作環境-target-unit"><span class="toc-text">透過 systemctl 管理不同的操作環境 (target unit)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透過-systemctl-分析各服務之間的相依性"><span class="toc-text">透過 systemctl 分析各服務之間的相依性</span></a></li></ol></li></ol>
 </div>
 
-        <blockquote>
-<p>systemctl Command Memo</p>
+        <h2 id="systemctl-command-Usage"><a href="#systemctl-command-Usage" class="headerlink" title="systemctl command Usage"></a>systemctl command Usage</h2><h3 id="透過systemctl管理單一服務-service-unit-的啟動-開機啟動與觀察狀態"><a href="#透過systemctl管理單一服務-service-unit-的啟動-開機啟動與觀察狀態" class="headerlink" title="透過systemctl管理單一服務(service unit)的啟動/開機啟動與觀察狀態"></a>透過systemctl管理單一服務(service unit)的啟動/開機啟動與觀察狀態</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">systemctl [command] [service]</div><div class="line">command 主要有：</div><div class="line">start     ：立刻啟動後面接的service</div><div class="line">stop      ：立刻關閉後面接的service</div><div class="line">restart   ：立刻關閉後啟動後面接的service，亦即執行 stop 再 start 的意思</div><div class="line">reload    ：不關閉後面接的service的情況下，重新載入設定檔，讓設定生效</div><div class="line">enable    ：設定下次開機時，後面接的service 會被啟動</div><div class="line">disable   ：設定下次開機時，後面接的service 不會被啟動</div><div class="line">status    ：目前後面接的這個service 的狀態，會列出有沒有正在執行、開機預設執行否、登錄等資訊等！</div><div class="line">is-active ：目前有沒有正在運作中</div><div class="line">is-enabled：開機時有沒有預設要啟用這個service</div><div class="line"></div><div class="line">Example:</div><div class="line">systemctl enable docker</div><div class="line">systemctl start docker</div><div class="line">systemctl status docker</div><div class="line">systemctl restart docker</div><div class="line">systemctl stop docker</div><div class="line">systemctl disable docker</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="透過-systemctl-觀察系統上所有的服務"><a href="#透過-systemctl-觀察系統上所有的服務" class="headerlink" title="透過 systemctl 觀察系統上所有的服務"></a>透過 systemctl 觀察系統上所有的服務</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">systemctl [command] [--type=TYPE] [--all]</div><div class="line">command:</div><div class="line">    list-units      ：依據 unit 列出目前有啟動的 unit。若加上 --all 才會列出沒啟動的。</div><div class="line">    list-unit-files ：依據 /usr/lib/systemd/system/ 內的檔案，將所有檔案列表說明。</div><div class="line">--type=TYPE：unit type(service, socket, target...)</div><div class="line"></div><div class="line">Example:</div><div class="line">Example:</div><div class="line">systemctl list-units --type=service --all</div><div class="line">systemctl list-units --type=service --all | grep cpu</div><div class="line">systemctl list-unit-files</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="透過-systemctl-管理不同的操作環境-target-unit"><a href="#透過-systemctl-管理不同的操作環境-target-unit" class="headerlink" title="透過 systemctl 管理不同的操作環境 (target unit)"></a>透過 systemctl 管理不同的操作環境 (target unit)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">systemctl get-default</div><div class="line"></div><div class="line">systemctl poweroff	##關機</div><div class="line">systemctl reboot	##重開機</div><div class="line">systemctl suspend	##暫停</div><div class="line">systemctl hibernate	##休眠</div><div class="line">systemctl rescue	##</div><div class="line">systemctl emergency	##</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="透過-systemctl-分析各服務之間的相依性"><a href="#透過-systemctl-分析各服務之間的相依性" class="headerlink" title="透過 systemctl 分析各服務之間的相依性"></a>透過 systemctl 分析各服務之間的相依性</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">systemctl list-dependencies</div><div class="line">systemctl list-dependencies --reverse</div><div class="line">systemctl list-dependencies graphical.target</div></pre></td></tr></table></figure>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/[Linux]Linux-systemctl/" data-id="ckcwxk3b2001tcwh48w5ay0fl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/[Linux]Linux-systemctl/" data-id="ckcwy3t65000274h4q2y7ml22" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -113,9 +125,9 @@
 <nav id="article-nav">
   
   
-    <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">PySpark-RDD Memo_1</div>
+    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Hadoop3.0.0 Quota</div>
     </a>
   
 </nav>
@@ -158,7 +170,7 @@
           </li>
         
           <li>
-            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
           </li>
         
           <li>
@@ -170,7 +182,7 @@
           </li>
         
           <li>
-            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
           </li>
         
       </ul>
@@ -199,7 +211,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 ~ 2020 popal<br>
-      Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
     </div>
   </div>
 </footer>
