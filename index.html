@@ -66,55 +66,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-[test]test1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/28/[test]test1/" class="article-date">
-  <time datetime="2018-05-28T00:00:00.000Z" itemprop="datePublished">2018-05-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/test/">test</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/28/[test]test1/">Test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-aaa"><span class="toc-text">Hello!! aaa</span></a></li></ol>
-</div>
-
-        <h2 id="Hello-aaa"><a href="#Hello-aaa" class="headerlink" title="Hello!! aaa"></a>Hello!! aaa</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/28/[test]test1/" data-id="cjxoiu3vh001p4fp6nn7lwncy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-[hadoop]Hadoop3.0.0_doc" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/" class="article-date">
-  <time datetime="2018-01-09T00:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
 </a>
     
   <div class="article-category">
@@ -170,7 +125,58 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_doc/" data-id="cjxoiu3rw00074fp61lapc0nc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_doc/" data-id="ckcwqib1o0004ysh432gznmhl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[spark]spark2.2.1_RDD_Memo_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spark/">spark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#start-pyspark"><span class="toc-text">start pyspark</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pyspark-RDD-Operate"><span class="toc-text">pyspark: RDD Operate</span></a></li></ol>
+</div>
+
+        <h5 id="start-pyspark"><a href="#start-pyspark" class="headerlink" title="start pyspark"></a>start pyspark</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">hadoop@hadoop-master:~$ pyspark</div><div class="line"></div><div class="line">###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好</div><div class="line">Python 2.7.13 (default, Jan 19 2017, 14:48:08)</div><div class="line">[GCC 6.3.0 20170118] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">2018-01-09 15:32:11,663 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">2018-01-09 15:32:21,550 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1</div><div class="line">      /_/</div><div class="line"></div><div class="line">Using Python version 2.7.13 (default, Jan 19 2017 14:48:08)</div><div class="line">SparkSession available as &apos;spark&apos;.</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line">##開始可以操作pyspark相關語法</div><div class="line">## sc    是 SparkContext物件</div><div class="line">## spark 是 SparkSession物件</div><div class="line">&gt;&gt;&gt; sc</div><div class="line">&lt;SparkContext master=local[*] appName=PySparkShell&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; spark</div><div class="line">&lt;pyspark.sql.session.SparkSession object at 0x7fa3a1ab4610&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; from pyspark.conf import SparkConf</div><div class="line">&gt;&gt;&gt; conf = SparkConf()</div><div class="line">&gt;&gt;&gt; print (&quot;環境變數\n&quot;)</div><div class="line">環境變數</div><div class="line"></div><div class="line">&gt;&gt;&gt; print (conf.toDebugString())</div><div class="line">spark.app.name=PySparkShell</div><div class="line">spark.master=local[*]</div><div class="line">spark.submit.deployMode=client</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="pyspark-RDD-Operate"><a href="#pyspark-RDD-Operate" class="headerlink" title="pyspark: RDD Operate"></a>pyspark: RDD Operate</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">## Apache Spark RDD - aggregate函數</div><div class="line">&gt;&gt;&gt; seqOp = (lambda x, y: (x[0] + y, x[1] + 1))</div><div class="line">&gt;&gt;&gt; combOp = (lambda x, y: (x[0] + y[0], x[1] + y[1]))</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5]).aggregate((0, 0), seqOp, combOp)</div><div class="line">(15, 5)</div><div class="line">&gt;&gt;&gt; sc.parallelize([]).aggregate((0, 0), seqOp, combOp)</div><div class="line">(0, 0)</div><div class="line"></div><div class="line">## Apache Spark RDD - cartesian</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([1, 2])</div><div class="line">&gt;&gt;&gt; sorted(rdd.cartesian(rdd).collect())</div><div class="line">[(1, 1), (1, 2), (2, 1), (2, 2)]</div><div class="line"></div><div class="line">## Apache Spark RDD - glom,coalesce</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5], 3).glom().collect()</div><div class="line">[[1], [2, 3], [4, 5]]</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5], 3).coalesce(1).glom().collect()</div><div class="line">[[1, 2, 3, 4, 5]]</div><div class="line"></div><div class="line">## Apache Spark RDD - collectAsMap</div><div class="line">&gt;&gt;&gt; m = sc.parallelize([(&quot;ted&quot;, 2), (&quot;kevin&quot;, 4)]).collectAsMap()</div><div class="line">&gt;&gt;&gt; m[&quot;ted&quot;]</div><div class="line">2</div><div class="line">&gt;&gt;&gt; m[&quot;kevin&quot;]</div><div class="line">4</div><div class="line"></div><div class="line">## Apache Spark RDD - combineByKey</div><div class="line">&gt;&gt;&gt; x = sc.parallelize([(&quot;a&quot;, 1), (&quot;b&quot;, 1), (&quot;a&quot;, 2)])</div><div class="line">&gt;&gt;&gt; def to_list(a):</div><div class="line">...     return [a]</div><div class="line">...</div><div class="line">&gt;&gt;&gt; def append(a,b):</div><div class="line">...     a.append(b)</div><div class="line">...     return a</div><div class="line">...</div><div class="line">&gt;&gt;&gt; def extend(a,b):</div><div class="line">...     a.extend(b)</div><div class="line">...     return a</div><div class="line">...</div><div class="line">&gt;&gt;&gt; sorted(x.combineByKey(to_list, append, extend).collect())</div><div class="line">[(&apos;a&apos;, [1, 2]), (&apos;b&apos;, [1])]</div><div class="line"></div><div class="line">## Apache Spark RDD - count</div><div class="line">&gt;&gt;&gt; sc.parallelize([2, 3, 4]).count()</div><div class="line">3</div><div class="line"></div><div class="line">## Apache Spark RDD - countApproxDistinct</div><div class="line">&gt;&gt;&gt; n = sc.parallelize(range(1000)).map(str).countApproxDistinct()</div><div class="line">&gt;&gt;&gt; 900 &lt; n &lt; 1100</div><div class="line">True</div><div class="line">&gt;&gt;&gt; n = sc.parallelize([i % 20 for i in range(1000)]).countApproxDistinct()</div><div class="line">&gt;&gt;&gt; 16 &lt; n &lt; 24</div><div class="line">True</div><div class="line"></div><div class="line">## Apache Spark RDD - countApprox</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize(range(1000), 10)</div><div class="line">&gt;&gt;&gt; rdd.countApprox(1000, 1.0)</div><div class="line">[Stage 20:===================================================&gt;     (9 + 1) / 10]1000</div><div class="line"></div><div class="line">## Apache Spark RDD - countByKey</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([(&quot;a&quot;, 1), (&quot;b&quot;, 1), (&quot;a&quot;, 1)])</div><div class="line">&gt;&gt;&gt; sorted(rdd.countByKey().items())</div><div class="line">[(&apos;a&apos;, 2), (&apos;b&apos;, 1)]</div><div class="line"></div><div class="line">## Apache Spark RDD - countByValue</div><div class="line">&gt;&gt;&gt; sorted(sc.parallelize([1, 2, 1, 2, 2], 2).countByValue().items())</div><div class="line">[(1, 2), (2, 3)]</div><div class="line"></div><div class="line">## Apache Spark RDD - distinct</div><div class="line">&gt;&gt;&gt; sorted(sc.parallelize([1, 1, 2, 3]).distinct().collect())</div><div class="line">[1, 2, 3]</div><div class="line"></div><div class="line">## Apache Spark RDD - filter</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([1, 2, 3, 4, 5])</div><div class="line">&gt;&gt;&gt; rdd.filter(lambda x: x % 2 == 0).collect()</div><div class="line">[2,4]</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" data-id="ckcwqib2y001eysh4g7dh0qhl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -183,7 +189,7 @@
     <article id="post-[hadoop]Hadoop3.0.0_overview" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/" class="article-date">
-  <time datetime="2018-01-09T00:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
 </a>
     
   <div class="article-category">
@@ -233,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="cjxoiu3rz00084fp6vz643gpu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]Hadoop3.0.0_overview/" data-id="ckcwqib1u0006ysh4xf7wikxj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -246,7 +252,7 @@
     <article id="post-[hadoop]hadoop3.0.0_quota_cmd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" class="article-date">
-  <time datetime="2018-01-09T00:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
 </a>
     
   <div class="article-category">
@@ -287,105 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" data-id="cjxoiu3sl000l4fp6ysd3y735" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[spark]spark2.2.1_RDD_Memo_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" class="article-date">
-  <time datetime="2018-01-09T00:00:00.000Z" itemprop="datePublished">2018-01-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/spark/">spark</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#start-pyspark"><span class="toc-text">start pyspark</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pyspark-RDD-Operate"><span class="toc-text">pyspark: RDD Operate</span></a></li></ol>
-</div>
-
-        <h5 id="start-pyspark"><a href="#start-pyspark" class="headerlink" title="start pyspark"></a>start pyspark</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">hadoop@hadoop-master:~$ pyspark</div><div class="line"></div><div class="line">###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好</div><div class="line">Python 2.7.13 (default, Jan 19 2017, 14:48:08)</div><div class="line">[GCC 6.3.0 20170118] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">2018-01-09 15:32:11,663 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">2018-01-09 15:32:21,550 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1</div><div class="line">      /_/</div><div class="line"></div><div class="line">Using Python version 2.7.13 (default, Jan 19 2017 14:48:08)</div><div class="line">SparkSession available as &apos;spark&apos;.</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line">##開始可以操作pyspark相關語法</div><div class="line">## sc    是 SparkContext物件</div><div class="line">## spark 是 SparkSession物件</div><div class="line">&gt;&gt;&gt; sc</div><div class="line">&lt;SparkContext master=local[*] appName=PySparkShell&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; spark</div><div class="line">&lt;pyspark.sql.session.SparkSession object at 0x7fa3a1ab4610&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; from pyspark.conf import SparkConf</div><div class="line">&gt;&gt;&gt; conf = SparkConf()</div><div class="line">&gt;&gt;&gt; print (&quot;環境變數\n&quot;)</div><div class="line">環境變數</div><div class="line"></div><div class="line">&gt;&gt;&gt; print (conf.toDebugString())</div><div class="line">spark.app.name=PySparkShell</div><div class="line">spark.master=local[*]</div><div class="line">spark.submit.deployMode=client</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="pyspark-RDD-Operate"><a href="#pyspark-RDD-Operate" class="headerlink" title="pyspark: RDD Operate"></a>pyspark: RDD Operate</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">## Apache Spark RDD - aggregate函數</div><div class="line">&gt;&gt;&gt; seqOp = (lambda x, y: (x[0] + y, x[1] + 1))</div><div class="line">&gt;&gt;&gt; combOp = (lambda x, y: (x[0] + y[0], x[1] + y[1]))</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5]).aggregate((0, 0), seqOp, combOp)</div><div class="line">(15, 5)</div><div class="line">&gt;&gt;&gt; sc.parallelize([]).aggregate((0, 0), seqOp, combOp)</div><div class="line">(0, 0)</div><div class="line"></div><div class="line">## Apache Spark RDD - cartesian</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([1, 2])</div><div class="line">&gt;&gt;&gt; sorted(rdd.cartesian(rdd).collect())</div><div class="line">[(1, 1), (1, 2), (2, 1), (2, 2)]</div><div class="line"></div><div class="line">## Apache Spark RDD - glom,coalesce</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5], 3).glom().collect()</div><div class="line">[[1], [2, 3], [4, 5]]</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5], 3).coalesce(1).glom().collect()</div><div class="line">[[1, 2, 3, 4, 5]]</div><div class="line"></div><div class="line">## Apache Spark RDD - collectAsMap</div><div class="line">&gt;&gt;&gt; m = sc.parallelize([(&quot;ted&quot;, 2), (&quot;kevin&quot;, 4)]).collectAsMap()</div><div class="line">&gt;&gt;&gt; m[&quot;ted&quot;]</div><div class="line">2</div><div class="line">&gt;&gt;&gt; m[&quot;kevin&quot;]</div><div class="line">4</div><div class="line"></div><div class="line">## Apache Spark RDD - combineByKey</div><div class="line">&gt;&gt;&gt; x = sc.parallelize([(&quot;a&quot;, 1), (&quot;b&quot;, 1), (&quot;a&quot;, 2)])</div><div class="line">&gt;&gt;&gt; def to_list(a):</div><div class="line">...     return [a]</div><div class="line">...</div><div class="line">&gt;&gt;&gt; def append(a,b):</div><div class="line">...     a.append(b)</div><div class="line">...     return a</div><div class="line">...</div><div class="line">&gt;&gt;&gt; def extend(a,b):</div><div class="line">...     a.extend(b)</div><div class="line">...     return a</div><div class="line">...</div><div class="line">&gt;&gt;&gt; sorted(x.combineByKey(to_list, append, extend).collect())</div><div class="line">[(&apos;a&apos;, [1, 2]), (&apos;b&apos;, [1])]</div><div class="line"></div><div class="line">## Apache Spark RDD - count</div><div class="line">&gt;&gt;&gt; sc.parallelize([2, 3, 4]).count()</div><div class="line">3</div><div class="line"></div><div class="line">## Apache Spark RDD - countApproxDistinct</div><div class="line">&gt;&gt;&gt; n = sc.parallelize(range(1000)).map(str).countApproxDistinct()</div><div class="line">&gt;&gt;&gt; 900 &lt; n &lt; 1100</div><div class="line">True</div><div class="line">&gt;&gt;&gt; n = sc.parallelize([i % 20 for i in range(1000)]).countApproxDistinct()</div><div class="line">&gt;&gt;&gt; 16 &lt; n &lt; 24</div><div class="line">True</div><div class="line"></div><div class="line">## Apache Spark RDD - countApprox</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize(range(1000), 10)</div><div class="line">&gt;&gt;&gt; rdd.countApprox(1000, 1.0)</div><div class="line">[Stage 20:===================================================&gt;     (9 + 1) / 10]1000</div><div class="line"></div><div class="line">## Apache Spark RDD - countByKey</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([(&quot;a&quot;, 1), (&quot;b&quot;, 1), (&quot;a&quot;, 1)])</div><div class="line">&gt;&gt;&gt; sorted(rdd.countByKey().items())</div><div class="line">[(&apos;a&apos;, 2), (&apos;b&apos;, 1)]</div><div class="line"></div><div class="line">## Apache Spark RDD - countByValue</div><div class="line">&gt;&gt;&gt; sorted(sc.parallelize([1, 2, 1, 2, 2], 2).countByValue().items())</div><div class="line">[(1, 2), (2, 3)]</div><div class="line"></div><div class="line">## Apache Spark RDD - distinct</div><div class="line">&gt;&gt;&gt; sorted(sc.parallelize([1, 1, 2, 3]).distinct().collect())</div><div class="line">[1, 2, 3]</div><div class="line"></div><div class="line">## Apache Spark RDD - filter</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([1, 2, 3, 4, 5])</div><div class="line">&gt;&gt;&gt; rdd.filter(lambda x: x % 2 == 0).collect()</div><div class="line">[2,4]</div></pre></td></tr></table></figure>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" data-id="cjxoiu3vj001r4fp6mqacdeow" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-[hadoop]hadoop 3.0.0_daemon_cmd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" class="article-date">
-  <time datetime="2018-01-08T00:00:00.000Z" itemprop="datePublished">2018-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div id="toc">
-  
-</div>
-
-        <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">hdfs --daemon start balancer             run a cluster balancing utility</div><div class="line">hdfs --daemon start datanode             run a DFS datanode</div><div class="line">hdfs --daemon start dfsrouter            run the DFS router</div><div class="line">hdfs --daemon start diskbalancer         Distributes data evenly among disks on a given node</div><div class="line">hdfs --daemon start journalnode          run the DFS journalnode</div><div class="line">hdfs --daemon start mover                run a utility to move block replicas across storage types</div><div class="line">hdfs --daemon start namenode             run the DFS namenode</div><div class="line">hdfs --daemon start nfs3                 run an NFS version 3 gateway</div><div class="line">hdfs --daemon start portmap              run a portmap service</div><div class="line">hdfs --daemon start secondarynamenode    run the DFS secondary namenode</div><div class="line">hdfs --daemon start zkfc                 run the ZK Failover Controller daemon</div><div class="line"></div><div class="line">yarn --daemon start nodemanager          run a nodemanager on each worker </div><div class="line">yarn --daemon start proxyserver          run the web app proxy server</div><div class="line">yarn --daemon start resourcemanager      run the ResourceManager</div><div class="line">yarn --daemon start router               run the Router daemon</div><div class="line">yarn --daemon start sharedcachemanager   run the SharedCacheManager daemon</div><div class="line">yarn --daemon start timelineserver       run the timeline server</div><div class="line"></div><div class="line">mapred --daemon start historyserver      run job history servers as a standalone daemon</div></pre></td></tr></table></figure></blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" data-id="cjxoiu3s1000a4fp647wripvw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" data-id="ckcwqib27000kysh4div7e4ez" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,7 +306,7 @@
     <article id="post-[hadoop]hadoop3.0.0_nfs_gateway" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" class="article-date">
-  <time datetime="2018-01-08T00:00:00.000Z" itemprop="datePublished">2018-01-08</time>
+  <time datetime="2018-01-07T16:00:00.000Z" itemprop="datePublished">2018-01-08</time>
 </a>
     
   <div class="article-category">
@@ -436,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" data-id="cjxoiu3s4000c4fp6ks3hxph3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/" data-id="ckcwqib23000dysh4e1u6h8th" class="article-share-link">Share</a>
       
       
     </footer>
@@ -449,7 +357,7 @@
     <article id="post-[hadoop]hadoop3_port_number_list" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/" class="article-date">
-  <time datetime="2018-01-08T00:00:00.000Z" itemprop="datePublished">2018-01-08</time>
+  <time datetime="2018-01-07T16:00:00.000Z" itemprop="datePublished">2018-01-08</time>
 </a>
     
   <div class="article-category">
@@ -483,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="cjxoiu3sd000g4fp6e3eu6rz6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="ckcwqib2g000tysh4q8o87tg6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -493,10 +401,10 @@
 
 
   
-    <article id="post-[hadoop]hadoop_archive_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-[hadoop]hadoop 3.0.0_daemon_cmd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/" class="article-date">
-  <time datetime="2018-01-04T00:00:00.000Z" itemprop="datePublished">2018-01-04</time>
+    <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" class="article-date">
+  <time datetime="2018-01-07T16:00:00.000Z" itemprop="datePublished">2018-01-08</time>
 </a>
     
   <div class="article-category">
@@ -511,7 +419,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/04/[hadoop]hadoop_archive_cmd/">hadoop archive command Memo</a>
+      <a class="article-title" href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/">hadoop3.0.0 daemon command</a>
     </h1>
   
 
@@ -521,20 +429,16 @@
       
         
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop壓縮機制"><span class="toc-text">hadoop壓縮機制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-archive操作方式"><span class="toc-text">hadoop archive操作方式</span></a></li></ol>
+  
 </div>
 
-        <h5 id="hadoop壓縮機制"><a href="#hadoop壓縮機制" class="headerlink" title="hadoop壓縮機制"></a>hadoop壓縮機制</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">usage: archive &lt;-archiveName &lt;NAME&gt;.har&gt; &lt;-p &lt;parent path&gt;&gt; [-r &lt;replication factor&gt;] &lt;src&gt;* &lt;dest&gt;</div><div class="line"> -archiveName &lt;arg&gt;   Name of the Archive. This is mandatory option</div><div class="line"> -help                Show the usage</div><div class="line"> -p &lt;arg&gt;             Parent path of sources. This is mandatory option</div><div class="line"> -r &lt;arg&gt;             Replication factor archive files</div></pre></td></tr></table></figure>
-</blockquote>
-<h5 id="hadoop-archive操作方式"><a href="#hadoop-archive操作方式" class="headerlink" title="hadoop archive操作方式"></a>hadoop archive操作方式</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test2.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test3.txt</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有檔案和目錄</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example1.har -p /user/hadoop/example -r 3 /user/hadoop</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有txt檔</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example2.har -p /user/hadoop/example/ -r 3 *.txt /user/hadoop</div><div class="line"></div><div class="line">## 查詢壓縮檔的內容</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example1.har</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:12 har:///user/hadoop/example1.har/lab_2</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:13 har:///user/hadoop/example1.har/lab_2/example1.har</div><div class="line">-rw-r--r--   3 hadoop supergroup        373 2018-01-03 15:41 har:///user/hadoop/example1.har/lab_2/test9.tar.gz</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example1.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example1.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example1.har/test3.txt</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example2.har</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example2.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example2.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example2.har/test3.txt</div><div class="line"></div><div class="line">##解壓縮使用cp命令</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -cp har:///user/hadoop/example2.har/* hdfs:/user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/lab_3</div><div class="line">-rw-r--r--   1 hadoop supergroup         23 2018-01-04 18:34 /user/hadoop/example/lab_3/test1.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         30 2018-01-04 18:34 /user/hadoop/example/lab_3/test2.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         15 2018-01-04 18:34 /user/hadoop/example/lab_3/test3.txt</div></pre></td></tr></table></figure>
-</blockquote>
+        <blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">hdfs --daemon start balancer             run a cluster balancing utility</div><div class="line">hdfs --daemon start datanode             run a DFS datanode</div><div class="line">hdfs --daemon start dfsrouter            run the DFS router</div><div class="line">hdfs --daemon start diskbalancer         Distributes data evenly among disks on a given node</div><div class="line">hdfs --daemon start journalnode          run the DFS journalnode</div><div class="line">hdfs --daemon start mover                run a utility to move block replicas across storage types</div><div class="line">hdfs --daemon start namenode             run the DFS namenode</div><div class="line">hdfs --daemon start nfs3                 run an NFS version 3 gateway</div><div class="line">hdfs --daemon start portmap              run a portmap service</div><div class="line">hdfs --daemon start secondarynamenode    run the DFS secondary namenode</div><div class="line">hdfs --daemon start zkfc                 run the ZK Failover Controller daemon</div><div class="line"></div><div class="line">yarn --daemon start nodemanager          run a nodemanager on each worker </div><div class="line">yarn --daemon start proxyserver          run the web app proxy server</div><div class="line">yarn --daemon start resourcemanager      run the ResourceManager</div><div class="line">yarn --daemon start router               run the Router daemon</div><div class="line">yarn --daemon start sharedcachemanager   run the SharedCacheManager daemon</div><div class="line">yarn --daemon start timelineserver       run the timeline server</div><div class="line"></div><div class="line">mapred --daemon start historyserver      run job history servers as a standalone daemon</div></pre></td></tr></table></figure></blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_archive_cmd/" data-id="cjxoiu3so000o4fp66wecx10w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" data-id="ckcwqib2a000nysh4wp7nnlxc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -547,7 +451,7 @@
     <article id="post-[hadoop]hadoop_snapshot_cmd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/04/[hadoop]hadoop_snapshot_cmd/" class="article-date">
-  <time datetime="2018-01-04T00:00:00.000Z" itemprop="datePublished">2018-01-04</time>
+  <time datetime="2018-01-03T16:00:00.000Z" itemprop="datePublished">2018-01-04</time>
 </a>
     
   <div class="article-category">
@@ -585,7 +489,106 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_snapshot_cmd/" data-id="cjxoiu3t0000u4fp61fimfpdc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_snapshot_cmd/" data-id="ckcwqib37001sysh4uzjl2xjp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hadoop_archive_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/04/[hadoop]hadoop_archive_cmd/" class="article-date">
+  <time datetime="2018-01-03T16:00:00.000Z" itemprop="datePublished">2018-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/04/[hadoop]hadoop_archive_cmd/">hadoop archive command Memo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop壓縮機制"><span class="toc-text">hadoop壓縮機制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-archive操作方式"><span class="toc-text">hadoop archive操作方式</span></a></li></ol>
+</div>
+
+        <h5 id="hadoop壓縮機制"><a href="#hadoop壓縮機制" class="headerlink" title="hadoop壓縮機制"></a>hadoop壓縮機制</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">usage: archive &lt;-archiveName &lt;NAME&gt;.har&gt; &lt;-p &lt;parent path&gt;&gt; [-r &lt;replication factor&gt;] &lt;src&gt;* &lt;dest&gt;</div><div class="line"> -archiveName &lt;arg&gt;   Name of the Archive. This is mandatory option</div><div class="line"> -help                Show the usage</div><div class="line"> -p &lt;arg&gt;             Parent path of sources. This is mandatory option</div><div class="line"> -r &lt;arg&gt;             Replication factor archive files</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-archive操作方式"><a href="#hadoop-archive操作方式" class="headerlink" title="hadoop archive操作方式"></a>hadoop archive操作方式</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test1.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test2.txt</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put - /user/hadoop/example/test3.txt</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有檔案和目錄</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example1.har -p /user/hadoop/example -r 3 /user/hadoop</div><div class="line"></div><div class="line">##壓縮/user/hadoop/example目錄下所有txt檔</div><div class="line">hadoop@hadoop-master:~$ hadoop archive -archiveName example2.har -p /user/hadoop/example/ -r 3 *.txt /user/hadoop</div><div class="line"></div><div class="line">## 查詢壓縮檔的內容</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example1.har</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:12 har:///user/hadoop/example1.har/lab_2</div><div class="line">drwxr-xr-x   - hadoop supergroup          0 2018-01-04 18:13 har:///user/hadoop/example1.har/lab_2/example1.har</div><div class="line">-rw-r--r--   3 hadoop supergroup        373 2018-01-03 15:41 har:///user/hadoop/example1.har/lab_2/test9.tar.gz</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example1.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example1.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example1.har/test3.txt</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R har:///user/hadoop/example2.har</div><div class="line">-rw-r--r--   3 hadoop supergroup         23 2018-01-04 18:09 har:///user/hadoop/example2.har/test1.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         30 2018-01-04 18:10 har:///user/hadoop/example2.har/test2.txt</div><div class="line">-rw-r--r--   3 hadoop supergroup         15 2018-01-04 18:10 har:///user/hadoop/example2.har/test3.txt</div><div class="line"></div><div class="line">##解壓縮使用cp命令</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -cp har:///user/hadoop/example2.har/* hdfs:/user/hadoop/example/lab_3</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls -R /user/hadoop/example/lab_3</div><div class="line">-rw-r--r--   1 hadoop supergroup         23 2018-01-04 18:34 /user/hadoop/example/lab_3/test1.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         30 2018-01-04 18:34 /user/hadoop/example/lab_3/test2.txt</div><div class="line">-rw-r--r--   1 hadoop supergroup         15 2018-01-04 18:34 /user/hadoop/example/lab_3/test3.txt</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/04/[hadoop]hadoop_archive_cmd/" data-id="ckcwqib2b000pysh4v13aotng" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-[hadoop]hdfs_ec_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/[hadoop]hdfs_ec_cmd/" class="article-date">
+  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/[hadoop]hdfs_ec_cmd/">hdfs ec command Memo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試"><span class="toc-text">hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)</span></a></li></ol>
+</div>
+
+        <h4 id="hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試"><a href="#hdfs-ec-使用方式-以XOR-2-1-1024k-Policy做為測試" class="headerlink" title="hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)"></a>hdfs ec 使用方式(以XOR-2-1-1024k Policy做為測試)</h4><blockquote>
+<p>EC相關架構的介紹可以參考網路相關的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div></pre></td><td class="code"><pre><div class="line">Usage: bin/hdfs ec [COMMAND]</div><div class="line">          [-listPolicies]</div><div class="line">          [-addPolicies -policyFile &lt;file&gt;]</div><div class="line">          [-getPolicy -path &lt;path&gt;]</div><div class="line">          [-removePolicy -policy &lt;policy&gt;]</div><div class="line">          [-setPolicy -path &lt;path&gt; [-policy &lt;policy&gt;] [-replicate]]</div><div class="line">          [-unsetPolicy -path &lt;path&gt;]</div><div class="line">          [-listCodecs]</div><div class="line">          [-enablePolicy -policy &lt;policy&gt;]</div><div class="line">          [-disablePolicy -policy &lt;policy&gt;]</div><div class="line">          [-help &lt;command-name&gt;]</div><div class="line"></div><div class="line">##列出所有Erasure Coding可用的相關Policies</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listPolicies</div><div class="line">Erasure Coding Policies:</div><div class="line">ErasureCodingPolicy=[Name=RS-10-4-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=10, numParityUnits=4]], CellSize=1048576, Id=5], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-3-2-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=3, numParityUnits=2]], CellSize=1048576, Id=2], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-6-3-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=1], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-LEGACY-6-3-1024k, Schema=[ECSchema=[Codec=rs-legacy, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=3], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=XOR-2-1-1024k, Schema=[ECSchema=[Codec=xor, numDataUnits=2, numParityUnits=1]], CellSize=1048576, Id=4], State=DISABLED</div><div class="line"></div><div class="line">##列出所有Erasure Coding Codec列表</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listCodecs</div><div class="line">Erasure Coding Codecs: Codec [Coder List]</div><div class="line">        RS [RS_NATIVE, RS_JAVA]</div><div class="line">        RS-LEGACY [RS-LEGACY_JAVA]</div><div class="line">        XOR [XOR_NATIVE, XOR_JAVA]</div><div class="line"></div><div class="line">##Enable XOR-2-1-1024k的EC Policy		</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -enablePolicy -policy XOR-2-1-1024k</div><div class="line">Erasure coding policy XOR-2-1-1024k is enabled</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -listPolicies</div><div class="line">Erasure Coding Policies:</div><div class="line">ErasureCodingPolicy=[Name=RS-10-4-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=10, numParityUnits=4]], CellSize=1048576, Id=5], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-3-2-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=3, numParityUnits=2]], CellSize=1048576, Id=2], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-6-3-1024k, Schema=[ECSchema=[Codec=rs, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=1], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=RS-LEGACY-6-3-1024k, Schema=[ECSchema=[Codec=rs-legacy, numDataUnits=6, numParityUnits=3]], CellSize=1048576, Id=3], State=DISABLED</div><div class="line">ErasureCodingPolicy=[Name=XOR-2-1-1024k, Schema=[ECSchema=[Codec=xor, numDataUnits=2, numParityUnits=1]], CellSize=1048576, Id=4], State=ENABLED</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop fs -mkdir -p /user/hadoop/example/lab_2</div><div class="line"></div><div class="line">##將目錄設定為XOR-2-1-1024k的EC Policy</div><div class="line">hadoop@hadoop-master:~$ hdfs ec -setPolicy -path /user/hadoop/example/lab_2 -policy XOR-2-1-1024k</div><div class="line">Set erasure coding policy XOR-2-1-1024k on /user/hadoop/example/lab_2</div><div class="line"></div><div class="line">##上傳檔案</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -put ~/test9.tar.gz /user/hadoop/example/lab_2</div><div class="line">2018-01-03 15:41:12,678 WARN erasurecode.ErasureCodeNative: ISA-L support is not available in your platform... using builtin-java codec where applicable</div><div class="line">2018-01-03 15:41:12,741 WARN hdfs.DFSOutputStream: Cannot allocate parity block(index=2, policy=XOR-2-1-1024k). Not enough datanodes? Exclude nodes=[]</div><div class="line">2018-01-03 15:41:12,953 WARN hdfs.DFSOutputStream: Block group &lt;1&gt; has 1 corrupt blocks. It&apos;s at high risk of losing data.</div><div class="line"></div><div class="line">##觀察上傳檔案的複本數</div><div class="line">hadoop@hadoop-master:~$ hadoop fs -ls /user/hadoop/example/lab_2</div><div class="line">Found 1 items</div><div class="line">-rw-r--r--   1 hadoop supergroup        373 2018-01-03 15:41 /user/hadoop/example/lab_2/test9.tar.gz</div><div class="line"></div><div class="line">##以下為使用fsck指令觀察該檔案Block相關訊息</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/example/lab_2/test9.tar.gz -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Fexample%2Flab_2%2Ftest9.tar.gz</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/example/lab_2/test9.tar.gz at Wed Jan 03 15:46:48 CST 2018</div><div class="line">/user/hadoop/example/lab_2/test9.tar.gz 373 bytes, erasure-coded: policy=XOR-2-1-1024k, 1 block(s):  OK</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346 len=373 Live_repl=2  </div><div class="line">[blk_-9223372036854775776:DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK], </div><div class="line"> blk_-9223372036854775774:DatanodeInfoWithStorage[192.168.51.6:9866,DS-482194d9-aa70-4ab8-8253-907739d5b1a1,DISK]]</div><div class="line"></div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  2</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total blocks (validated):      0</div><div class="line"> Minimally replicated blocks:   0</div><div class="line"> Over-replicated blocks:        0</div><div class="line"> Under-replicated blocks:       0</div><div class="line"> Mis-replicated blocks:         0</div><div class="line"> Default replication factor:    1</div><div class="line"> Average block replication:     0.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    373 B</div><div class="line"> Total files:   1</div><div class="line"> Total block groups (validated):        1 (avg. block group size 373 B)</div><div class="line"> Minimally erasure-coded block groups:  1 (100.0 %)</div><div class="line"> Over-erasure-coded block groups:       0 (0.0 %)</div><div class="line"> Under-erasure-coded block groups:      0 (0.0 %)</div><div class="line"> Unsatisfactory placement block groups: 0 (0.0 %)</div><div class="line"> Average block group size:      2.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       0 (0.0 %)</div><div class="line">FSCK ended at Wed Jan 03 15:46:48 CST 2018 in 2 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/example/lab_2/test9.tar.gz&apos; is HEALTHY</div><div class="line"></div><div class="line">##以blockId觀察複本狀況</div><div class="line">hadoop@hadoop-master:~$ hdfs fsck -blockId blk_-9223372036854775776</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;blockId=blk_-9223372036854775776+&amp;path=%2F</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 at Wed Jan 03 15:49:12 CST 2018</div><div class="line"></div><div class="line">Block Id: blk_-9223372036854775776</div><div class="line">Block belongs to: /user/hadoop/example/lab_2/test9.tar.gz</div><div class="line">No. of Expected Replica: 2</div><div class="line">No. of live Replica: 2</div><div class="line">No. of excess Replica: 0</div><div class="line">No. of stale Replica: 0</div><div class="line">No. of decommissioned Replica: 0</div><div class="line">No. of decommissioning Replica: 0</div><div class="line">No. of corrupted Replica: 0</div><div class="line">null</div><div class="line"></div><div class="line"></div><div class="line">Fsck on blockId &apos;blk_-9223372036854775776</div><div class="line"></div><div class="line">##以下為模擬shutdown 一台Datanode,資料是否還會存在??</div><div class="line">hadoop@hadoop-master:~$ hdfs dfsadmin -shutdownDatanode hadoop-slave2:9867</div><div class="line">Submitted a shutdown request to datanode hadoop-slave2:9867</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs fsck /user/hadoop/example/lab_2/test9.tar.gz -files -blocks -locations</div><div class="line">Connecting to namenode via http://hadoop-master:9870/fsck?ugi=hadoop&amp;files=1&amp;blocks=1&amp;locations=1&amp;path=%2Fuser%2Fhadoop%2Fexample%2Flab_2%2Ftest9.tar.gz</div><div class="line">FSCK started by hadoop (auth:SIMPLE) from /192.168.51.4 for path /user/hadoop/example/lab_2/test9.tar.gz at Wed Jan 03 16:11:01 CST 2018</div><div class="line">/user/hadoop/example/lab_2/test9.tar.gz 373 bytes, erasure-coded: policy=XOR-2-1-1024k, 1 block(s):  </div><div class="line">Under replicated BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346. </div><div class="line">Target Replicas is 2 but found 1 live replica(s), 0 decommissioned replica(s), 0 decommissioning replica(s).</div><div class="line">0. BP-1139418417-192.168.51.4-1514272982687:blk_-9223372036854775776_2346 len=373 Live_repl=1  </div><div class="line">[blk_-9223372036854775776:DatanodeInfoWithStorage[192.168.51.5:9866,DS-f59711c6-801d-4ebc-b55c-228f225117b8,DISK]]</div><div class="line"></div><div class="line"></div><div class="line">Status: HEALTHY</div><div class="line"> Number of data-nodes:  1</div><div class="line"> Number of racks:               1</div><div class="line"> Total dirs:                    0</div><div class="line"> Total symlinks:                0</div><div class="line"></div><div class="line">Replicated Blocks:</div><div class="line"> Total size:    0 B</div><div class="line"> Total files:   0</div><div class="line"> Total blocks (validated):      0</div><div class="line"> Minimally replicated blocks:   0</div><div class="line"> Over-replicated blocks:        0</div><div class="line"> Under-replicated blocks:       0</div><div class="line"> Mis-replicated blocks:         0</div><div class="line"> Default replication factor:    1</div><div class="line"> Average block replication:     0.0</div><div class="line"> Missing blocks:                0</div><div class="line"> Corrupt blocks:                0</div><div class="line"> Missing replicas:              0</div><div class="line"></div><div class="line">Erasure Coded Block Groups:</div><div class="line"> Total size:    373 B</div><div class="line"> Total files:   1</div><div class="line"> Total block groups (validated):        1 (avg. block group size 373 B)</div><div class="line"> Minimally erasure-coded block groups:  1 (100.0 %)</div><div class="line"> Over-erasure-coded block groups:       0 (0.0 %)</div><div class="line"> Under-erasure-coded block groups:      1 (100.0 %)</div><div class="line"> Unsatisfactory placement block groups: 0 (0.0 %)</div><div class="line"> Average block group size:      1.0</div><div class="line"> Missing block groups:          0</div><div class="line"> Corrupt block groups:          0</div><div class="line"> Missing internal blocks:       1 (50.0 %)</div><div class="line">FSCK ended at Wed Jan 03 16:11:01 CST 2018 in 3 milliseconds</div><div class="line"></div><div class="line"></div><div class="line">The filesystem under path &apos;/user/hadoop/example/lab_2/test9.tar.gz&apos; is HEALTHY</div><div class="line"></div><div class="line">雖然複本數是設定為1,但因為使用的是EC策略,資料仍然是可下載而且資料內容也是正確的</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_ec_cmd/" data-id="ckcwqib2q0013ysh4hfa028mh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -608,7 +611,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分類</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -618,7 +621,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">所有文章</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -631,11 +634,11 @@
       <ul>
         
           <li>
-            <a href="/2018/05/28/[test]test1/">Test</a>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
           </li>
         
           <li>
-            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
           </li>
         
           <li>
@@ -647,7 +650,7 @@
           </li>
         
           <li>
-            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+            <a href="/2018/01/08/[hadoop]hadoop3.0.0_nfs_gateway/">Hadoop3.0.0 NFS Gateway</a>
           </li>
         
       </ul>
@@ -675,7 +678,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 ~ 2019 popal<br>
+      &copy; 2016 ~ 2020 popal<br>
       Powered by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
     </div>
   </div>
