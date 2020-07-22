@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PySpark-RDD Memo_1 | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="start pyspark
+12345678910111213141516171819202122232425262728293031323334353637383940hadoop@hadoop-master:~$ pyspark###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好Python 2.7.13 (defa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PySpark-RDD Memo_1">
+<meta property="og:url" content="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="start pyspark
+12345678910111213141516171819202122232425262728293031323334353637383940hadoop@hadoop-master:~$ pyspark###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好Python 2.7.13 (defa">
+<meta property="og:updated_time" content="2018-02-14T06:23:51.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PySpark-RDD Memo_1">
+<meta name="twitter:description" content="start pyspark
+12345678910111213141516171819202122232425262728293031323334353637383940hadoop@hadoop-master:~$ pyspark###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好Python 2.7.13 (defa">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/categories/hadoop">Hadoop</a>
+        
+          <a class="main-nav-link" href="/about">關於我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[spark]spark2.2.1_RDD_Memo_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" class="article-date">
+  <time datetime="2018-01-08T16:00:00.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spark/">spark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PySpark-RDD Memo_1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#start-pyspark"><span class="toc-text">start pyspark</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pyspark-RDD-Operate"><span class="toc-text">pyspark: RDD Operate</span></a></li></ol>
+</div>
+
+        <h5 id="start-pyspark"><a href="#start-pyspark" class="headerlink" title="start pyspark"></a>start pyspark</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">hadoop@hadoop-master:~$ pyspark</div><div class="line"></div><div class="line">###看到以下spark歡迎畫面表示pyspark啟動成功,pyspark預設會把SparkSession的Instance建構好</div><div class="line">Python 2.7.13 (default, Jan 19 2017, 14:48:08)</div><div class="line">[GCC 6.3.0 20170118] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">2018-01-09 15:32:11,663 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">2018-01-09 15:32:21,550 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1</div><div class="line">      /_/</div><div class="line"></div><div class="line">Using Python version 2.7.13 (default, Jan 19 2017 14:48:08)</div><div class="line">SparkSession available as &apos;spark&apos;.</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line">##開始可以操作pyspark相關語法</div><div class="line">## sc    是 SparkContext物件</div><div class="line">## spark 是 SparkSession物件</div><div class="line">&gt;&gt;&gt; sc</div><div class="line">&lt;SparkContext master=local[*] appName=PySparkShell&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; spark</div><div class="line">&lt;pyspark.sql.session.SparkSession object at 0x7fa3a1ab4610&gt;</div><div class="line"></div><div class="line">&gt;&gt;&gt; from pyspark.conf import SparkConf</div><div class="line">&gt;&gt;&gt; conf = SparkConf()</div><div class="line">&gt;&gt;&gt; print (&quot;環境變數\n&quot;)</div><div class="line">環境變數</div><div class="line"></div><div class="line">&gt;&gt;&gt; print (conf.toDebugString())</div><div class="line">spark.app.name=PySparkShell</div><div class="line">spark.master=local[*]</div><div class="line">spark.submit.deployMode=client</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="pyspark-RDD-Operate"><a href="#pyspark-RDD-Operate" class="headerlink" title="pyspark: RDD Operate"></a>pyspark: RDD Operate</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">## Apache Spark RDD - aggregate函數</div><div class="line">&gt;&gt;&gt; seqOp = (lambda x, y: (x[0] + y, x[1] + 1))</div><div class="line">&gt;&gt;&gt; combOp = (lambda x, y: (x[0] + y[0], x[1] + y[1]))</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5]).aggregate((0, 0), seqOp, combOp)</div><div class="line">(15, 5)</div><div class="line">&gt;&gt;&gt; sc.parallelize([]).aggregate((0, 0), seqOp, combOp)</div><div class="line">(0, 0)</div><div class="line"></div><div class="line">## Apache Spark RDD - cartesian</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([1, 2])</div><div class="line">&gt;&gt;&gt; sorted(rdd.cartesian(rdd).collect())</div><div class="line">[(1, 1), (1, 2), (2, 1), (2, 2)]</div><div class="line"></div><div class="line">## Apache Spark RDD - glom,coalesce</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5], 3).glom().collect()</div><div class="line">[[1], [2, 3], [4, 5]]</div><div class="line">&gt;&gt;&gt; sc.parallelize([1, 2, 3, 4, 5], 3).coalesce(1).glom().collect()</div><div class="line">[[1, 2, 3, 4, 5]]</div><div class="line"></div><div class="line">## Apache Spark RDD - collectAsMap</div><div class="line">&gt;&gt;&gt; m = sc.parallelize([(&quot;ted&quot;, 2), (&quot;kevin&quot;, 4)]).collectAsMap()</div><div class="line">&gt;&gt;&gt; m[&quot;ted&quot;]</div><div class="line">2</div><div class="line">&gt;&gt;&gt; m[&quot;kevin&quot;]</div><div class="line">4</div><div class="line"></div><div class="line">## Apache Spark RDD - combineByKey</div><div class="line">&gt;&gt;&gt; x = sc.parallelize([(&quot;a&quot;, 1), (&quot;b&quot;, 1), (&quot;a&quot;, 2)])</div><div class="line">&gt;&gt;&gt; def to_list(a):</div><div class="line">...     return [a]</div><div class="line">...</div><div class="line">&gt;&gt;&gt; def append(a,b):</div><div class="line">...     a.append(b)</div><div class="line">...     return a</div><div class="line">...</div><div class="line">&gt;&gt;&gt; def extend(a,b):</div><div class="line">...     a.extend(b)</div><div class="line">...     return a</div><div class="line">...</div><div class="line">&gt;&gt;&gt; sorted(x.combineByKey(to_list, append, extend).collect())</div><div class="line">[(&apos;a&apos;, [1, 2]), (&apos;b&apos;, [1])]</div><div class="line"></div><div class="line">## Apache Spark RDD - count</div><div class="line">&gt;&gt;&gt; sc.parallelize([2, 3, 4]).count()</div><div class="line">3</div><div class="line"></div><div class="line">## Apache Spark RDD - countApproxDistinct</div><div class="line">&gt;&gt;&gt; n = sc.parallelize(range(1000)).map(str).countApproxDistinct()</div><div class="line">&gt;&gt;&gt; 900 &lt; n &lt; 1100</div><div class="line">True</div><div class="line">&gt;&gt;&gt; n = sc.parallelize([i % 20 for i in range(1000)]).countApproxDistinct()</div><div class="line">&gt;&gt;&gt; 16 &lt; n &lt; 24</div><div class="line">True</div><div class="line"></div><div class="line">## Apache Spark RDD - countApprox</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize(range(1000), 10)</div><div class="line">&gt;&gt;&gt; rdd.countApprox(1000, 1.0)</div><div class="line">[Stage 20:===================================================&gt;     (9 + 1) / 10]1000</div><div class="line"></div><div class="line">## Apache Spark RDD - countByKey</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([(&quot;a&quot;, 1), (&quot;b&quot;, 1), (&quot;a&quot;, 1)])</div><div class="line">&gt;&gt;&gt; sorted(rdd.countByKey().items())</div><div class="line">[(&apos;a&apos;, 2), (&apos;b&apos;, 1)]</div><div class="line"></div><div class="line">## Apache Spark RDD - countByValue</div><div class="line">&gt;&gt;&gt; sorted(sc.parallelize([1, 2, 1, 2, 2], 2).countByValue().items())</div><div class="line">[(1, 2), (2, 3)]</div><div class="line"></div><div class="line">## Apache Spark RDD - distinct</div><div class="line">&gt;&gt;&gt; sorted(sc.parallelize([1, 1, 2, 3]).distinct().collect())</div><div class="line">[1, 2, 3]</div><div class="line"></div><div class="line">## Apache Spark RDD - filter</div><div class="line">&gt;&gt;&gt; rdd = sc.parallelize([1, 2, 3, 4, 5])</div><div class="line">&gt;&gt;&gt; rdd.filter(lambda x: x % 2 == 0).collect()</div><div class="line">[2,4]</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/" data-id="ckcwxfpmj001gy8h4zy70gggg" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Hadoop3.0.0 Document List
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Hadoop3.0.0 Quota</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>	  
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ~ 2020 popal<br>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/categories/hadoop" class="mobile-nav-link">Hadoop</a>
+  
+    <a href="/about" class="mobile-nav-link">關於我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

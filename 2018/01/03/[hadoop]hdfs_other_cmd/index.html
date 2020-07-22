@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hdfs client command Memo | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="hdfs getconf相關用法
+123456789101112131415161718192021222324252627282930Usage:hadoop getconf        [-namenodes]            gets list of namenodes in the cluster.        [-secondaryNameNodes]   gets list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hdfs client command Memo">
+<meta property="og:url" content="http://yoursite.com/2018/01/03/[hadoop]hdfs_other_cmd/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="hdfs getconf相關用法
+123456789101112131415161718192021222324252627282930Usage:hadoop getconf        [-namenodes]            gets list of namenodes in the cluster.        [-secondaryNameNodes]   gets list">
+<meta property="og:updated_time" content="2018-01-04T09:56:48.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hdfs client command Memo">
+<meta name="twitter:description" content="hdfs getconf相關用法
+123456789101112131415161718192021222324252627282930Usage:hadoop getconf        [-namenodes]            gets list of namenodes in the cluster.        [-secondaryNameNodes]   gets list">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/categories/hadoop">Hadoop</a>
+        
+          <a class="main-nav-link" href="/about">關於我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[hadoop]hdfs_other_cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/[hadoop]hdfs_other_cmd/" class="article-date">
+  <time datetime="2018-01-02T16:00:00.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hdfs client command Memo
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-getconf相關用法"><span class="toc-text">hdfs getconf相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-envvars相關用法"><span class="toc-text">hdfs envvars相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-classpath相關用法"><span class="toc-text">hdfs classpath相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-version相關用法"><span class="toc-text">hdfs version相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hdfs-groups相關用法"><span class="toc-text">hdfs groups相關用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-conftest"><span class="toc-text">hadoop conftest</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-jnipath"><span class="toc-text">hadoop jnipath</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hadoop-checknative"><span class="toc-text">hadoop checknative</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#hadoop-daemonlog"><span class="toc-text">hadoop daemonlog</span></a></li></ol></li></ol>
+</div>
+
+        <h5 id="hdfs-getconf相關用法"><a href="#hdfs-getconf相關用法" class="headerlink" title="hdfs getconf相關用法"></a>hdfs getconf相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Usage:</div><div class="line">hadoop getconf</div><div class="line">        [-namenodes]            gets list of namenodes in the cluster.</div><div class="line">        [-secondaryNameNodes]   gets list of secondary namenodes in the cluster.</div><div class="line">        [-backupNodes]          gets list of backup nodes in the cluster.</div><div class="line">        [-includeFile]          gets the include file path that defines the datanodes that can join the cluster.</div><div class="line">        [-excludeFile]          gets the exclude file path that defines the datanodes that need to decommissioned.</div><div class="line">        [-nnRpcAddresses]       gets the namenode rpc addresses</div><div class="line">        [-confKey [key]]		gets a specific key from the configuration</div><div class="line">---</div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -namenodes</div><div class="line">hadoop-master</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -secondaryNameNodes</div><div class="line">hadoop-master</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -backupNodes</div><div class="line">0.0.0.0</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -nnRpcAddresses</div><div class="line">hadoop-master:8020</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -includeFile</div><div class="line">Configuration dfs.hosts is missing.</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -excludeFile</div><div class="line">Configuration dfs.hosts.exclude is missing.</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hdfs getconf -confKey &quot;fs.trash.interval&quot;</div><div class="line">1440</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-envvars相關用法"><a href="#hdfs-envvars相關用法" class="headerlink" title="hdfs envvars相關用法"></a>hdfs envvars相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs envvars</div><div class="line">JAVA_HOME=&apos;/bgdt/java/jdk1.8.0_101&apos;</div><div class="line">HADOOP_HDFS_HOME=&apos;/bgdt/hadoop-3.0.0&apos;</div><div class="line">HDFS_DIR=&apos;share/hadoop/hdfs&apos;</div><div class="line">HDFS_LIB_JARS_DIR=&apos;share/hadoop/hdfs/lib&apos;</div><div class="line">HADOOP_CONF_DIR=&apos;/bgdt/hadoop-3.0.0/etc/hadoop&apos;</div><div class="line">HADOOP_TOOLS_HOME=&apos;/bgdt/hadoop-3.0.0&apos;</div><div class="line">HADOOP_TOOLS_DIR=&apos;share/hadoop/tools&apos;</div><div class="line">HADOOP_TOOLS_LIB_JARS_DIR=&apos;share/hadoop/tools/lib&apos;</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-classpath相關用法"><a href="#hdfs-classpath相關用法" class="headerlink" title="hdfs classpath相關用法"></a>hdfs classpath相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs classpath</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop:/bgdt/hadoop-3.0.0/share/hadoop/common/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/common/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/hdfs/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/mapreduce/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/mapreduce/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/lib/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/*:</div><div class="line">/bgdt/hadoop-3.0.0/share/hadoop/yarn/hadoop-yarn-api-3.0.0</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-version相關用法"><a href="#hdfs-version相關用法" class="headerlink" title="hdfs version相關用法"></a>hdfs version相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs version</div><div class="line">Hadoop 3.0.0</div><div class="line">Source code repository https://git-wip-us.apache.org/repos/asf/hadoop.git -r c25427ceca461ee979d30edd7a4b0f50718e6533</div><div class="line">Compiled by andrew on 2017-12-08T19:16Z</div><div class="line">Compiled with protoc 2.5.0</div><div class="line">From source with checksum 397832cb5529187dc8cd74ad54ff22</div><div class="line">This command was run using /bgdt/hadoop-3.0.0/share/hadoop/common/hadoop-common-3.0.0.jar</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hdfs-groups相關用法"><a href="#hdfs-groups相關用法" class="headerlink" title="hdfs groups相關用法"></a>hdfs groups相關用法</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hdfs groups</div><div class="line">hadoop : hadoop</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-conftest"><a href="#hadoop-conftest" class="headerlink" title="hadoop conftest"></a>hadoop conftest</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop conftest</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/hadoop-policy.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/yarn-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/hdfs-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/core-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/mapred-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/capacity-scheduler.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/kms-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/httpfs-site.xml: valid</div><div class="line">/bgdt/hadoop-3.0.0/etc/hadoop/kms-acls.xml: valid</div><div class="line">OK</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-jnipath"><a href="#hadoop-jnipath" class="headerlink" title="hadoop jnipath"></a>hadoop jnipath</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop jnipath</div><div class="line">/bgdt/hadoop-3.0.0/lib/native</div></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="hadoop-checknative"><a href="#hadoop-checknative" class="headerlink" title="hadoop checknative"></a>hadoop checknative</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">hadoop@hadoop-master:~$ hadoop checknative</div><div class="line">2018-01-04 17:18:04,659 INFO bzip2.Bzip2Factory: Successfully loaded &amp; initialized native-bzip2 library system-native</div><div class="line">2018-01-04 17:18:04,667 INFO zlib.ZlibFactory: Successfully loaded &amp; initialized native-zlib library</div><div class="line">2018-01-04 17:18:04,682 ERROR snappy.SnappyCompressor: failed to load SnappyCompressor</div><div class="line">java.lang.UnsatisfiedLinkError: Cannot load libsnappy.so.1 (libsnappy.so.1: cannot open shared object file: No such file or directory)!</div><div class="line">        at org.apache.hadoop.io.compress.snappy.SnappyCompressor.initIDs(Native Method)</div><div class="line">        at org.apache.hadoop.io.compress.snappy.SnappyCompressor.&lt;clinit&gt;(SnappyCompressor.java:57)</div><div class="line">        at org.apache.hadoop.io.compress.SnappyCodec.isNativeCodeLoaded(SnappyCodec.java:82)</div><div class="line">        at org.apache.hadoop.util.NativeLibraryChecker.main(NativeLibraryChecker.java:100)</div><div class="line">2018-01-04 17:18:04,691 WARN erasurecode.ErasureCodeNative: ISA-L support is not available in your platform... using builtin-java codec where applicable</div><div class="line">Native library checking:</div><div class="line">hadoop:  true /bgdt/hadoop-3.0.0/lib/native/libhadoop.so.1.0.0</div><div class="line">zlib:    true /lib/x86_64-linux-gnu/libz.so.1</div><div class="line">zstd  :  false</div><div class="line">snappy:  false</div><div class="line">lz4:     true revision:10301</div><div class="line">bzip2:   true /lib/x86_64-linux-gnu/libbz2.so.1</div><div class="line">openssl: false Cannot load libcrypto.so (libcrypto.so: cannot open shared object file: No such file or directory)!</div><div class="line">ISA-L:   false libhadoop was built without ISA-L support</div></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="hadoop-daemonlog"><a href="#hadoop-daemonlog" class="headerlink" title="hadoop daemonlog"></a>hadoop daemonlog</h6><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">##取得Class Log Level級別</div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -getlevel hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Effective Level: INFO</div><div class="line"></div><div class="line">##設定Class Log Level級別</div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -setlevel  hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager DEBUG</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager&amp;level=DEBUG</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Submitted Level: DEBUG</div><div class="line">Setting Level to DEBUG ...</div><div class="line">Effective Level: DEBUG</div><div class="line"></div><div class="line">hadoop@hadoop-master:~$ hadoop daemonlog -getlevel hadoop-master:9870 org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Connecting to http://hadoop-master:9870/logLevel?log=org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Submitted Class Name: org.apache.hadoop.yarn.server.nodemanager.NodeManager</div><div class="line">Log Class: org.apache.commons.logging.impl.Log4JLogger</div><div class="line">Effective Level: DEBUG</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/03/[hadoop]hdfs_other_cmd/" data-id="ckcwxfpm80013y8h4mz3emntw" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/03/[hadoop]hdfs_ec_cmd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          hdfs ec command Memo
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/02/[hadoop]hadoop_fs_cmd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">hadoop fs command Memo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>	  
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ~ 2020 popal<br>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/categories/hadoop" class="mobile-nav-link">Hadoop</a>
+  
+    <a href="/about" class="mobile-nav-link">關於我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

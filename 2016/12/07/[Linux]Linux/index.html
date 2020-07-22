@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>常用Linux 命令筆記(for Oracle Linux) | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="常用指令新增使用者及密碼修改
+12345678[root@hadoop-master]$useradd hadoop[root@hadoop-master]$passwd hadoop[root@hadoop-master]$visudo #如果須要讓 &amp;quot;hadoop&amp;quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案......root    ALL=(ALL)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用Linux 命令筆記(for Oracle Linux)">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/[Linux]Linux/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="常用指令新增使用者及密碼修改
+12345678[root@hadoop-master]$useradd hadoop[root@hadoop-master]$passwd hadoop[root@hadoop-master]$visudo #如果須要讓 &amp;quot;hadoop&amp;quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案......root    ALL=(ALL)">
+<meta property="og:updated_time" content="2018-01-02T06:40:15.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用Linux 命令筆記(for Oracle Linux)">
+<meta name="twitter:description" content="常用指令新增使用者及密碼修改
+12345678[root@hadoop-master]$useradd hadoop[root@hadoop-master]$passwd hadoop[root@hadoop-master]$visudo #如果須要讓 &amp;quot;hadoop&amp;quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案......root    ALL=(ALL)">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/categories/hadoop">Hadoop</a>
+        
+          <a class="main-nav-link" href="/about">關於我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[Linux]Linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/07/[Linux]Linux/" class="article-date">
+  <time datetime="2016-12-07T14:05:00.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常用Linux 命令筆記(for Oracle Linux)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令"><span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增使用者及密碼修改"><span class="toc-text">新增使用者及密碼修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系統關機或重啟命令-非”Root”使用者-須加入sudo"><span class="toc-text">系統關機或重啟命令(非”Root”使用者,須加入sudo)</span></a></li></ol></li></ol>
+</div>
+
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="新增使用者及密碼修改"><a href="#新增使用者及密碼修改" class="headerlink" title="新增使用者及密碼修改"></a>新增使用者及密碼修改</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@hadoop-master]$useradd hadoop</div><div class="line">[root@hadoop-master]$passwd hadoop</div><div class="line">[root@hadoop-master]$visudo #如果須要讓 &quot;hadoop&quot;使用者暫時具有管理者(root)權限的話,須使用此指令編輯檔案</div><div class="line">......</div><div class="line">root    ALL=(ALL) ALL ##在此行後面加入</div><div class="line">......</div><div class="line">hadoop  ALL=(ALL) ALL</div><div class="line">......</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="系統關機或重啟命令-非”Root”使用者-須加入sudo"><a href="#系統關機或重啟命令-非”Root”使用者-須加入sudo" class="headerlink" title="系統關機或重啟命令(非”Root”使用者,須加入sudo)"></a>系統關機或重啟命令(非”Root”使用者,須加入sudo)</h3><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h now        ##系統立刻關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -r now        ##系統立刻重新開機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h 20:30      ##系統在今天的 20:30 分關機 </div><div class="line">[hadoop@hadoop-master ~]$sudo shutdown -h +10        ##系統在 10 分鐘後關機</div><div class="line">[hadoop@hadoop-master ~]$sudo sync;sync;sync;reboot  ##重新開機指令,配合寫入緩衝資料的sync指令動作</div><div class="line">[hadoop@hadoop-master ~]$sudo init 0                 ##關機</div><div class="line">[hadoop@hadoop-master ~]$sudo init 6                 ##重新啟動</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/07/[Linux]Linux/" data-id="ckcwxfpl50004y8h4xf4apo20" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/08/[Install]BigData/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Hadoop Cluster相關環境建置筆記(持續修正中......)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>	  
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ~ 2020 popal<br>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/categories/hadoop" class="mobile-nav-link">Hadoop</a>
+  
+    <a href="/about" class="mobile-nav-link">關於我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

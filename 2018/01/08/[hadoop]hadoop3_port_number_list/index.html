@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hadoop3.0.0 相關服務 Port Number 設定參數 | Popal&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445dfs.balancer.address					0.0.0.0:0dfs.mover.address					0.0.0.0:0dfs.federation.router.http-address			0.0.0.0:50071dfs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop3.0.0 相關服務 Port Number 設定參數">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/index.html">
+<meta property="og:site_name" content="Popal's Blog">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445dfs.balancer.address					0.0.0.0:0dfs.mover.address					0.0.0.0:0dfs.federation.router.http-address			0.0.0.0:50071dfs">
+<meta property="og:updated_time" content="2018-01-08T05:30:13.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hadoop3.0.0 相關服務 Port Number 設定參數">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445dfs.balancer.address					0.0.0.0:0dfs.mover.address					0.0.0.0:0dfs.federation.router.http-address			0.0.0.0:50071dfs">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Popal&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邊做邊學</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/categories/hadoop">Hadoop</a>
+        
+          <a class="main-nav-link" href="/about">關於我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-[hadoop]hadoop3_port_number_list" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/08/[hadoop]hadoop3_port_number_list/" class="article-date">
+  <time datetime="2018-01-07T16:00:00.000Z" itemprop="datePublished">2018-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hadoop/">hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hadoop3.0.0 相關服務 Port Number 設定參數
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div id="toc">
+  
+</div>
+
+        <blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">dfs.balancer.address					0.0.0.0:0</div><div class="line">dfs.mover.address					0.0.0.0:0</div><div class="line"></div><div class="line">dfs.federation.router.http-address			0.0.0.0:50071</div><div class="line">dfs.federation.router.https-address			0.0.0.0:50072</div><div class="line">dfs.federation.router.admin-address			0.0.0.0:8111</div><div class="line">dfs.federation.router.rpc-address			0.0.0.0:8888</div><div class="line"></div><div class="line">dfs.namenode.backup.address				0.0.0.0:50100</div><div class="line">dfs.namenode.backup.http-address			0.0.0.0:50105</div><div class="line"></div><div class="line">dfs.journalnode.http-address				0.0.0.0:8480</div><div class="line">dfs.journalnode.https-address				0.0.0.0:8481</div><div class="line">dfs.journalnode.rpc-address				0.0.0.0:8485</div><div class="line"></div><div class="line">dfs.datanode.http.address				0.0.0.0:9864</div><div class="line">dfs.datanode.https.address				0.0.0.0:9865</div><div class="line">dfs.datanode.address					0.0.0.0:9866</div><div class="line">dfs.datanode.ipc.address				0.0.0.0:9867</div><div class="line"></div><div class="line">dfs.namenode.secondary.http-address			0.0.0.0:9868</div><div class="line">dfs.namenode.secondary.https-address			0.0.0.0:9869</div><div class="line">dfs.namenode.http-address				0.0.0.0:9870</div><div class="line">dfs.namenode.https-address				0.0.0.0:9871</div><div class="line"></div><div class="line">yarn.nodemanager.address				$&#123;yarn.nodemanager.hostname&#125;:0</div><div class="line">yarn.nodemanager.localizer.address			$&#123;yarn.nodemanager.hostname&#125;:8040</div><div class="line">yarn.nodemanager.webapp.address				$&#123;yarn.nodemanager.hostname&#125;:8042</div><div class="line">yarn.nodemanager.collector-service.address		$&#123;yarn.nodemanager.hostname&#125;:8048</div><div class="line"></div><div class="line">yarn.resourcemanager.scheduler.address			$&#123;yarn.resourcemanager.hostname&#125;:8030</div><div class="line">yarn.resourcemanager.resource-tracker.address		$&#123;yarn.resourcemanager.hostname&#125;:8031</div><div class="line">yarn.resourcemanager.address				$&#123;yarn.resourcemanager.hostname&#125;:8032</div><div class="line">yarn.resourcemanager.admin.address			$&#123;yarn.resourcemanager.hostname&#125;:8033</div><div class="line">yarn.resourcemanager.webapp.address			$&#123;yarn.resourcemanager.hostname&#125;:8088</div><div class="line">yarn.resourcemanager.webapp.https.address		$&#123;yarn.resourcemanager.hostname&#125;:8090</div><div class="line"></div><div class="line">yarn.timeline-service.address				$&#123;yarn.timeline-service.hostname&#125;:10200</div><div class="line">yarn.timeline-service.webapp.address			$&#123;yarn.timeline-service.hostname&#125;:8188</div><div class="line">yarn.timeline-service.webapp.https.address		$&#123;yarn.timeline-service.hostname&#125;:8190</div><div class="line"></div><div class="line">mapreduce.jobhistory.address				0.0.0.0:10020	</div><div class="line">mapreduce.jobhistory.webapp.address			0.0.0.0:19888	</div><div class="line">mapreduce.jobhistory.webapp.https.address		0.0.0.0:19890</div><div class="line">mapreduce.jobhistory.admin.address			0.0.0.0:10033</div></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/08/[hadoop]hadoop3_port_number_list/" data-id="ckcwxfplu000my8h41xzrf15m" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Hadoop3.0.0 Quota
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/08/[hadoop]hadoop 3.0.0_daemon_cmd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">hadoop3.0.0 daemon command</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hadoop/">hadoop</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spark/">spark</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vagrant/">vagrant</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">所有文章</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/[Linux]Linux-systemctl/">Linux - systemctl Command Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_overview/">Hadoop 3.0.0 Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]Hadoop3.0.0_doc/">Hadoop3.0.0 Document List</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[spark]spark2.2.1_RDD_Memo_1/">PySpark-RDD Memo_1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/09/[hadoop]hadoop3.0.0_quota_cmd/">Hadoop3.0.0 Quota</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">優質連結</h3>
+    <div class="widget">
+      <a href="http://yenyu-lovelan.blogspot.tw/" target="_blank">欲戴王冠 必先承其重~*</a><br>
+	  <a href="http://tomkuo139.blogspot.tw/" target="_blank">昭佑 天翔</a><br>
+	  <a href="http://rocksaying.tw/" target="_blank">石頭閒語</a><br>
+	  <a href="https://blog.toright.com/" target="_blank">Soul & Shell Blog</a><br>	  
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 ~ 2020 popal<br>
+      Propulsé by <a href="http://popalhuang.github.io/" target="_blank">popal Blog</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/categories/hadoop" class="mobile-nav-link">Hadoop</a>
+  
+    <a href="/about" class="mobile-nav-link">關於我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
